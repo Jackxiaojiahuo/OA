@@ -1,0 +1,79 @@
+/* Code tidied up by ScrapBook */
+html { height: 100%; }
+body { height: 100%; font-family: Microsoft Yahei,tahoma,arial,verdana,sans-serif; font-size: 12px; color: rgb(69, 69, 69); line-height: 2; -moz-text-size-adjust: none; }
+table { width: 100%; font-size: 12px; line-height: 2; }
+a { text-decoration: none; color: rgb(99, 139, 217); }
+a:hover { color: orange; }
+a.button { display: inline-block; margin: 0px 5px 5px 0px; padding: 0px 25px; background-image: url("bgButton.png"); border: 1px solid rgb(221, 221, 221); border-radius: 20px; }
+a.button1 { display: inline-block; text-align: center; padding: 3px 15px; background-image: url("bgButton.png"); border-top: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); }
+a.button1L { border-left: 1px solid rgb(221, 221, 221); border-radius: 5px 0px 0px 5px; }
+a.button1M { border-left: 1px solid rgb(221, 221, 221); }
+span.button1M { display: inline-block; text-align: center; padding: 3px 15px; border-top: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); border-left: 1px solid rgb(221, 221, 221); }
+a.button1R { border-left: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); border-radius: 0px 5px 5px 0px; }
+a.buttonPortal { line-height: 1; color: rgb(153, 153, 153); padding: 0px 3px; }
+a.buttonPortal:hover { color: rgb(99, 139, 217); }
+img { vertical-align: middle; }
+input { font-family: Microsoft Yahei,tahoma,arial,verdana,sans-serif; font-size: 12px; }
+input.textBig { font-size: 16px; }
+textarea { font-family: Microsoft Yahei,tahoma,arial,verdana,sans-serif; font-size: 12px; overflow: auto; }
+h1 { display: inline; font-family: Microsoft Yahei; font-weight: normal; font-size: 24px; line-height: 1; }
+#colloaBody { margin: 0px; background-image: url("bg.jpg"); background-position: center center; background-attachment: fixed; background-size: cover; }
+#colloaLogin { color: rgb(176, 196, 222); }
+#colloaLogin td.left { background-image: url("bg40.png"); border-top: 1px solid rgb(176, 196, 222); border-bottom: 1px solid rgb(176, 196, 222); border-left: 1px solid rgb(176, 196, 222); border-radius: 5px 0px 0px 5px; }
+#colloaLogin td.right { background-image: url("bg20.png"); border-top: 1px solid rgb(176, 196, 222); border-bottom: 1px solid rgb(176, 196, 222); border-right: 1px solid rgb(176, 196, 222); border-radius: 0px 5px 5px 0px; }
+#colloaLogin td.right input { width: 90%; font-size: 16px; border: 0px none; color: rgb(176, 196, 222); background-color: transparent; }
+#colloaLogin td.button { background-image: url("bg40.png"); border: 1px solid rgb(176, 196, 222); border-radius: 5px; font-size: 16px; cursor: pointer; }
+#colloaName { font-size: 32px; font-weight: bold; font-family: Microsoft Yahei; text-shadow: 2px 2px 2px rgb(69, 69, 69); }
+#colloaMenu { color: rgb(176, 196, 222); width: 18%; padding: 10px 0px 30px; }
+#colloaMenu a { display: block; color: rgb(176, 196, 222); font-family: Microsoft Yahei; padding: 3px 20px; margin: 3px 0px; }
+#colloaMenu a.indent0 { padding-left: 0px; }
+#colloaMenu a.indent0::after { content: ""; font-family: FontAwesome; float: right; }
+#colloaMenu a.indent0ex { padding-left: 0px; }
+#colloaMenu a:hover { color: orange; }
+#colloaMenu a.textHighlight { background-color: rgb(255, 255, 200); color: orange; }
+#colloaContent { background-color: white; padding: 30px; }
+#colloaMenu2 { float: left; width: 200px; border: 1px solid rgb(221, 221, 221); border-radius: 5px; padding: 30px 0px 25px; }
+#colloaMenu2 a { display: block; background-image: url("bgButton.png"); border-top: 1px solid rgb(238, 238, 238); border-bottom: 1px solid rgb(221, 221, 221); font-size: 14px; margin-bottom: 5px; padding: 0px 10px 2px; }
+#colloaContent2 { margin-left: 230px; }
+#colloaForm { width: 950px; background-color: white; padding: 30px 40px; }
+.radius { border-radius: 5px; }
+.treeOfNavigation a { display: block; font-size: 14px; }
+.boxBorder { min-height: 120px; border: 1px solid rgb(221, 221, 221); border-radius: 5px; margin-bottom: 20px; }
+.boxBorderCaption { display: block; font-size: 14px; color: rgb(69, 69, 69); background-image: url("bgButton.png"); border: 1px solid rgb(221, 221, 221); border-radius: 5px 5px 0px 0px; padding: 0px 15px 2px; }
+.boxBorderContent { min-height: 60px; border-left: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); border-radius: 0px 0px 5px 5px; padding: 10px 15px; margin-bottom: 20px; }
+.boxBorderContent div { line-height: 1.5; padding: 4px 0px; }
+.boxBorderTip { margin-top: 12px; width: 0px; height: 0px; border-right: 15px solid rgb(221, 221, 221); border-bottom: 10px solid transparent; }
+.thumbnail { margin-bottom: 10px; }
+.thumbnail1 { margin: -14px -15px 15px; }
+.boxBorder1 { background-color: lightyellow; border: 1px solid rgb(243, 229, 171); border-radius: 5px; }
+.boxBorder1Caption { display: block; font-size: 14px; background-image: url("bgButton.png"); border: 1px solid rgb(243, 229, 171); border-radius: 5px 5px 0px 0px; padding: 0px 15px 2px; }
+.boxBorder1Content { min-height: 60px; background-color: lightyellow; border-left: 1px solid rgb(243, 229, 171); border-right: 1px solid rgb(243, 229, 171); border-bottom: 1px solid rgb(243, 229, 171); border-radius: 0px 0px 5px 5px; padding: 10px 15px; margin-bottom: 20px; }
+.boxBorder1Content td.sepratorRight { border-right: 1px solid rgb(243, 229, 171); }
+.boxBorder1Tip { margin-top: 12px; width: 0px; height: 0px; border-left: 15px solid rgb(243, 229, 171); border-bottom: 10px solid transparent; }
+.tableList { border: 1px solid rgb(221, 221, 221); background-image: url("bgButton.png"); background-repeat: repeat-x; border-radius: 5px; }
+.tableList th { padding: 3px 0px 3px 10px; text-align: left; white-space: nowrap; }
+.tableList tbody tr:hover { background-color: lightyellow; }
+.tableList td { border-top: 1px solid rgb(221, 221, 221); padding: 3px 0px 3px 10px; }
+.tableList td.sepratorRight { border-right: 1px solid rgb(221, 221, 221); }
+.tableListBorder { border-left: 1px solid rgb(221, 221, 221); border-top: 1px solid rgb(221, 221, 221); }
+.tableListBorder th { background-color: rgb(243, 243, 243); border-bottom: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); text-align: left; padding: 0px 3px; }
+.tableListBorder td { border-bottom: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); padding: 0px 3px; }
+.tableListBorder2 { border-left: 1px solid rgb(221, 221, 221); }
+.tableListBorder2 th { background-color: rgb(243, 243, 243); border-bottom: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); text-align: left; padding: 0px 3px; }
+.tableListBorder2 td { border-bottom: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); padding: 0px 3px; }
+.tableForm { border-top: 1px solid rgb(221, 221, 221); }
+.tableForm tr { vertical-align: top; }
+.tableForm td { height: 100%; border-bottom: 1px solid rgb(221, 221, 221); padding: 0px 3px; }
+.tableForm .fieldLable { border-right: 1px solid rgb(221, 221, 221); }
+form .tableForm .fieldLable { border-right: 1px solid transparent; }
+.fieldLable { text-align: right; }
+.fieldEditable { min-height: 24px; height: 100%; width: 100%; padding: 0px 3px; background-color: rgb(243, 250, 255); border: 0px none; line-height: 2; box-sizing: border-box; }
+.fieldGetValueBySource { float: right; cursor: pointer; }
+.textHighlight { color: orange; }
+.textBold { font-weight: bold; }
+.textBig { font-size: 20px; line-height: 1.2; }
+.textSmall { font-size: 12px; }
+.textGray { color: rgb(153, 153, 153); }
+.text { color: rgb(69, 69, 69); }
+.tipCount { color: white; background-color: rgb(99, 139, 217); border-radius: 12px; font-size: 12px; line-height: 1.5; padding: 0px 8px; margin-top: 5px; text-align: center; }
+div.tipCount { float: right; }

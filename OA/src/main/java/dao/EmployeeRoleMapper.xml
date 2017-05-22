@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="dao.EmployeeRoleDao">
+	<!-- 为员工添加角色 -->
+	<insert id="addRoleForEmp" parameterType="employeerole">
+		insert into employeerole value(#{emp_id},#{role_id});
+	</insert>
+	<!-- 为员工删除角色 -->
+	<delete id="delRoleForEmp" parameterType="Integer">
+		delete from employeerole where emp_id=#{emp_id} 
+	</delete>
+	<!-- 查看员工的所有角色 -->
+	<select id="findAllEmployeeRole" parameterType="Integer" resultType="employeerole">
+		select * from employeerole where emp_id=#{emp_id} 
+	</select>
+</mapper>

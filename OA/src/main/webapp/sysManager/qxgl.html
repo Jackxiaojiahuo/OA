@@ -1,0 +1,607 @@
+
+<link rel="shortcut icon" href="css/colloa.ico">
+<link rel="stylesheet" href="css/qxgl_font-awesome.min.css">
+<link rel="stylesheet" href="css/qxgl_view.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script src="js/mk.js"></script>
+<table style="min-width: 120px; width: 100%; height: 100%;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+    <tr valign="top">
+	<td id="colloaContent">
+<table border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td><h1><img style="cursor: pointer;" src="css/menu.png"> 权限管理</h1></td>
+              <td class="textGray" align="center">* 用户具有自身、所属组织机构以及所属岗位角色的综合权限</td>
+              <td id="oWorkflowList" align="right"><a class="button1 button1A" title="刷新">&nbsp;<i class="fa fa-bolt fa-lg"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div id="colloaMenu2"><a class="textHighlight" href="#"><img src="css/key.gif" border="0"> 模块访问权设置</a><a href="qxgl1.html"><img src="css/key2.gif" border="0"> 模块操作权设置</a><a href="qxgl2.html"><img src="css/share.gif" border="0"> 按用户设置权限</a></div>
+        <div id="colloaContent2"><script language="javaScript">/* Code removed by ScrapBook */</script><script language="javaScript">/* Code removed by ScrapBook */</script>
+          <table class="tableList" style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0">
+            <colgroup>
+            <col>
+            <col width="100px">
+            <col width="80px">
+            <col width="80px">
+            <col width="100px">
+            </colgroup>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>内部标志号</th>
+                <th>排序号</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="treeOfNavigation">
+              <tr psid="0" sid="100000" indent="0">
+                <td style="padding-left: 10px;"><a><img src="css/plus.gif" border="0"><img src="css/desktop.png" border="0"> 我的桌面</a></td>
+                <td>100000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a href="mkfw.html"  class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="100000" sid="103000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 管理驾驶舱</td>
+                <td>103000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a href="mkfw.html"  class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="100000" sid="104000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 个人设置</td>
+                <td>104000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr psid="0" sid="110000" indent="0">
+                <td style="padding-left: 10px;"><a><img src="css/plus.gif" border="0"><img src="css/gear.png" border="0"> 我的事务</a></td>
+                <td>110000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a href="mkfw.html"  class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="110000" sid="110010" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 新建流程事务</td>
+                <td>110010</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="110000" sid="110100" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 待处理的事务</td>
+                <td>110100</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="110000" sid="110200" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 已处理的事务</td>
+                <td>110200</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="110000" sid="110300" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 我发起的事务</td>
+                <td>110300</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr psid="0" sid="130000" indent="0">
+                <td style="padding-left: 10px;"><a><img src="css/plus.gif" border="0"><img src="css/schedule.png" border="0"> 目标管理</a></td>
+                <td>130000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="132000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 我的工作计划</td>
+                <td>132000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="132500" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 全部工作计划</td>
+                <td>132500</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="133000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 我的工作任务</td>
+                <td>133000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="133500" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 全部工作任务</td>
+                <td>133500</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="134000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 我的工作报告</td>
+                <td>134000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="134500" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 全部工作报告</td>
+                <td>134500</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="135000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 我的工作日程</td>
+                <td>135000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="130000" sid="135500" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 全部工作日程</td>
+                <td>135500</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr psid="0" sid="150000" indent="0">
+                <td style="padding-left: 10px;"><a><img src="css/plus.gif" border="0"><img src="css/bulletin.png" border="0"> 信息中心</a></td>
+                <td>150000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150000" sid="150100" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 内部通讯录</td>
+                <td>150100</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150000" sid="150500" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 电子消息</a></td>
+                <td>150500</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150500" sid="150510" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/email.gif" border="0"> 未读消息</td>
+                <td>150510</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150500" sid="150520" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/emailOpen.gif" border="0"> 已读消息</td>
+                <td>150520</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150500" sid="150530" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/emailOpen2.gif" border="0"> 已发送消息</td>
+                <td>150530</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150500" sid="150540" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/email.gif" border="0"> 草稿箱</td>
+                <td>150540</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150500" sid="150550" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/star1.gif" border="0"> 星标消息</td>
+                <td>150550</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150000" sid="151000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 信息公告</td>
+                <td>151000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150000" sid="151100" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 公告管理</td>
+                <td>151100</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150000" sid="152500" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 文档管理</td>
+                <td>152500</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150000" sid="152600" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 全部文档</td>
+                <td>152600</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="150000" sid="155000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 知识社区</td>
+                <td>155000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr psid="0" sid="650000" indent="0">
+                <td style="padding-left: 10px;"><a><img src="css/plus.gif" border="0"><img src="css/asset.png" border="0"> 行政管理</a></td>
+                <td>650000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="650000" sid="653100" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 会议室管理</a></td>
+                <td>653100</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653100" sid="653110" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 会议室列表</td>
+                <td>653110</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653100" sid="653120" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 会议室预定</td>
+                <td>653120</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="650000" sid="653200" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 车辆管理</a></td>
+                <td>653200</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653200" sid="653210" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 车辆列表</td>
+                <td>653210</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653200" sid="653220" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 用车申请</td>
+                <td>653220</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653200" sid="653230" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 车辆保险</td>
+                <td>653230</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653200" sid="653240" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 车辆维修保养</td>
+                <td>653240</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653200" sid="653250" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 车辆年检</td>
+                <td>653250</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653200" sid="653260" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 车辆加油</td>
+                <td>653260</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653200" sid="653270" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 车辆事故</td>
+                <td>653270</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="650000" sid="653300" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 资产管理</a></td>
+                <td>653300</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653300" sid="653310" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 资产列表</td>
+                <td>653310</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653300" sid="653320" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 资产领用</td>
+                <td>653320</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653300" sid="653330" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 资产归还</td>
+                <td>653330</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653300" sid="653340" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 资产采购</td>
+                <td>653340</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="650000" sid="653600" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 印章管理</a></td>
+                <td>653600</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653600" sid="653610" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 印章列表</td>
+                <td>653610</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="653600" sid="653620" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 用章管理</td>
+                <td>653620</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="650000" sid="655000" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 行政事务</a></td>
+                <td>655000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="655000" sid="655810" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 通用行政流程</td>
+                <td>655810</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="655000" sid="655830" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 名片印制申请</td>
+                <td>655830</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="655000" sid="655840" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 行政接待管理</td>
+                <td>655840</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="655000" sid="655850" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 行政维修申请</td>
+                <td>655850</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr psid="0" sid="700000" indent="0">
+                <td style="padding-left: 10px;"><a><img src="css/plus.gif" border="0"><img src="css/persons.png" border="0"> 人力资源</a></td>
+                <td>700000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="700000" sid="702000" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 员工管理</td>
+                <td>702000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="700000" sid="703100" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 招聘和配置</a></td>
+                <td>703100</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703100" sid="703110" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 招聘管理</td>
+                <td>703110</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703100" sid="703120" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 入职管理</td>
+                <td>703120</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703100" sid="703150" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 转正管理</td>
+                <td>703150</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703100" sid="703170" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 岗位调动管理</td>
+                <td>703170</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703100" sid="703190" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 离职管理</td>
+                <td>703190</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="700000" sid="703200" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 考勤管理</a></td>
+                <td>703200</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703200" sid="703210" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 出差申请</td>
+                <td>703210</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703200" sid="703220" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 外出申请</td>
+                <td>703220</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703200" sid="703230" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 加班申请</td>
+                <td>703230</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703200" sid="703240" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 请休假申请</td>
+                <td>703240</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703200" sid="703250" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 调休申请</td>
+                <td>703250</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="703200" sid="705100" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/folder.png" border="0"> 外勤定位</td>
+                <td>705100</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr psid="0" sid="900000" indent="0">
+                <td style="padding-left: 10px;"><a><img src="css/plus.gif" border="0"><img src="css/system.png" border="0"> 系统管理</a></td>
+                <td>900000</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900000" sid="900100" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 组织机构</td>
+                <td>900100</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900000" sid="900200" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 岗位角色</td>
+                <td>900200</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900000" sid="900300" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 用户管理</td>
+                <td>900300</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900000" sid="900400" indent="1">
+                <td style="padding-left: 25px;"><a><img src="css/plus.gif" border="0"><img src="css/catalogue1.png" border="0"> 权限管理</a></td>
+                <td>900400</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900400" sid="900420" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/key.gif" border="0"> 模块访问权设置</td>
+                <td>900420</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900400" sid="900440" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/key2.gif" border="0"> 模块操作权设置</td>
+                <td>900440</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900400" sid="900460" indent="2">
+                <td style="padding-left: 40px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/share.gif" border="0"> 按用户设置权限</td>
+                <td>900460</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900000" sid="900700" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 在线用户</td>
+                <td>900700</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+              <tr style="display: none;" psid="900000" sid="900800" indent="1">
+                <td style="padding-left: 25px;"><span><img src="css/blank16.gif" border="0"></span><img src="css/catalogue1.png" border="0"> 系统日志</td>
+                <td>900800</td>
+                <td>10&nbsp;</td>
+                <td>有效&nbsp;</td>
+                <td><script language="javascript">/* Code removed by ScrapBook */</script><a class="buttonPortal" title="模块访问权设置">&nbsp;<i class="fa fa-user-plus fa-lg"></i></a>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <script language="javaScript">/* Code removed by ScrapBook */</script></div></td>
+    </tr>
+  </tbody>
+</table>
+</tr></tbody></table>

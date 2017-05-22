@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>修改 - 10oa</title>
+<link rel="shortcut icon" href="css/colloa.ico">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/view.css">
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script>
+	$(function(){
+		$(".fieldGetValueBySource").click(function(){
+			$("#fs").toggle();
+		});
+		$("#fs>div").click(function(){
+			$("#ef").html($(this).html());
+			$("#fs").toggle();
+		});
+	});
+</script>
+</head>
+<body id="colloaBody">
+<table style="min-width: 950px; width: 100%; height: 100%;" cellspacing="0" cellpadding="0" border="0">
+  <tbody>
+    <tr valign="top">
+      <td id="colloaForm"><form>
+          <table class="tableForm" summary="" style1="table-layout:fixed;" cellspacing="0" cellpadding="0" border="0">
+            <colgroup>
+            <col width="100">
+            <col>
+            </colgroup>
+            <tbody>
+              <tr>
+                <td>&nbsp;从属于</td>
+                <td id="dbf.psid" dbf.source="select sid,name,psid,stype from userX where sid<>1000001 and statusX=1 and stype=10000 order by sortId,name" dbf.key="0"><img class="fieldGetValueBySource"  src="css/fieldSource.gif">
+                  <div id="ef">&nbsp;</div></td>
+              </tr>
+              <tr>
+                <td>&nbsp;名称<b style="color: red;">*</b></td>
+                <td id="dbf.name" dbf.type="required,unique(userX where sid<>1000001)"><input id="e.dbf.name" class="fieldEditable" value="阿尔法集团"></td>
+              </tr>
+              <tr>
+                <td>&nbsp;描述</td>
+                <td id="dbf.description"><input id="e.dbf.description" class="fieldEditable"></td>
+              </tr>
+              <tr>
+                <td>&nbsp;排序号<b style="color: red;">*</b></td>
+                <td id="dbf.sortId" dbf.type="number,required"><input id="e.dbf.sortId" class="fieldEditable" value="10" step="1"></td>
+              </tr>
+              <tr>
+                <td>&nbsp;职责说明</td>
+                <td id="dbf.jobDesc"><textarea id="e.dbf.jobDesc" class="fieldEditable" style="height: 200px;"></textarea></td>
+              </tr>
+              <tr>
+                <td>&nbsp;状态</td>
+                <td><input id="dbf.statusX" checked="" type="checkbox">
+                  有效</td>
+              </tr>
+            </tbody>
+          </table>
+          <script language="JavaScript">/* Code removed by ScrapBook */</script>
+        </form>
+        <form method="post">
+          <input id="viewState" name="viewState" type="hidden">
+        </form>
+        <script language="javaScript">/* Code removed by ScrapBook */</script><br>
+        <div id="_vWorkflowActionsShow" align="right"><a class="button">确定</a><a class="button">取消</a></div>
+        <br></td>
+    </tr>
+  </tbody>
+</table>
+<div id="fs" style="position: absolute; z-index: 10; background-color: rgb(255, 255, 255); cursor: default; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; padding: 5px; overflow-x: hidden; overflow-y: auto; height: 250px; width: 810px; top: 55px; left: 300px; display: none;">
+  <div id="0" class="" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:5px;">(空)</div>
+  <div id="1000001" class="" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:5px;">阿尔法集团</div>
+  <div id="1000002" class="" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">总经办</div>
+  <div id="1000003" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">人事部</div>
+  <div id="1000004" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">财务部</div>
+  <div id="1000117" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">科技公司</div>
+  <div id="1000005" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">采购部</div>
+  <div id="1000009" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">技术部</div>
+  <div id="1000006" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">生产部</div>
+  <div id="1000033" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">营销部</div>
+  <div id="1000118" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">工程公司</div>
+  <div id="1000120" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">工程部</div>
+  <div id="1000035" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">售后部</div>
+  <div id="1000008" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">网络部</div>
+  <div id="1000034" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">销售部</div>
+  <div id="1000119" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">现代事务所</div>
+  <div id="1000123" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">产权部</div>
+  <div id="1000122" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">法务部</div>
+  <div id="1000124" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">税务部</div>
+  <div id="1000121" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:35px;">咨询部</div>
+  <div id="1000013" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">北京机构</div>
+  <div id="1000011" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">杭州机构</div>
+  <div id="1000010" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">上海机构</div>
+  <div id="1000012" onmouseover="this.className='fieldEditable';" onmouseout="this.className='';" style="height:auto;padding-left:20px;">深圳机构</div>
+</div>
+</body>
+</html>
