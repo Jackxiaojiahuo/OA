@@ -41,12 +41,12 @@
 						<span><a style="display: block;" href="grsz/grsz.jsp"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 个人设置
-						</a></span>
+						</a>
 						<shiro:hasPermission name="/jiashi"> 
-						<span><a style="display: block;" href="driver.jsp"
+						<a style="display: block;" href="driver.jsp"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 管理驾驶舱
-						</a></span></shiro:hasPermission> 
+						</a></shiro:hasPermission> </span>
 						<shiro:hasPermission name="/work">
 						<a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/gear.png" border="0"> 我的事务
@@ -124,16 +124,7 @@
 						</a> <a style="display: none;" href="xz/cllb.html" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 车辆管理
-						</a> <a style="display: none;" href="xz/zclb.html" target="right">
-								<img src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 资产管理
-						</a> <a style="display: none;" href="xz/yzlb.html" target="right">
-								<img src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 印章管理
-						</a> <a style="display: none;" href="xz/tyxzlc.html" target="right">
-								<img src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 行政事务
-						</a></span>
+						</a> </span>
 						</shiro:hasPermission>
 						<shiro:hasPermission name="/hr">
 						 <a class="indent0" href="#"> <img src="css/plusFlag.gif"
@@ -167,16 +158,13 @@
 						</shiro:hasPermission> <a style="display: none;" href="emp.do?action=findEmpRight"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 用户管理
-						</a> <a style="display: none;" href="role.do?action=findAllRole&re=1"
-							target="right"> <img src="css/blank16.gif" border="0">
-								<img src="css/catalogue1.png" border="0"> 权限管理
-						</a> <a style="display: none;" href="sysManager/zxyh.html"
+						</a><a style="display: none;" href="sysManager/zxyh.html"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 在线用户
-						</a> <a style="display: none;" href="sysManager/xtrz.html"
+						</a> <!-- <a style="display: none;" href="sysManager/xtrz.html"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 系统日志
-						</a></span> 
+						</a> --></span> 
 						</shiro:hasPermission>
 						</shiro:authenticated>
 						<a class="indent0ex" href="#"> <img src="css/blank16.gif"

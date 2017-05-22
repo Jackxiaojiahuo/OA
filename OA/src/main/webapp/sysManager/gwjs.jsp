@@ -10,6 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <base href="<%=basePath%>">
 	<link rel="shortcut icon" href="css/colloa.ico">
 	<link rel="stylesheet" href="css/gwjs_font-awesome.min.css">
+	<link rel="stylesheet" href="css/qxgl2font-awesome.min.css">
 	<link rel="stylesheet" href="css/gwjs_view.css">
 	<script src="../js/jquery-1.8.3.min.js"></script>
 	<script>
@@ -59,6 +60,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												${role.role_name }</a></td>
 										<td>${role.role_description }</td>
 										<td>
+											<a href="../res.do?action=findAllRes&role_id=${role.role_id }" class="buttonPortal" 
+											title="模块访问权设置(按用户)">&nbsp;<i class="fa fa-key fa-lg"></i></a>
 											<c:if test="${role.role_id ne 1 }">
 												<a href='../role.do?action=findRoleById&role_id=${role.role_id }' class='buttonPortal'
 											title='修改'>&nbsp;<i class='fa fa-eyedropper fa-lg'></i></a>

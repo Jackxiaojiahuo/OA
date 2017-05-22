@@ -63,7 +63,7 @@
 	        	/login.do=anon
 				/login/login.jsp=anon
 				<!-- 退出,shiro去清除session -->
-				/logout.do = logout
+				<!-- /logout.do = logout -->
 				/index.jsp=authc
 	        	/*.do = authc,resourceCheckFilter
 	        </value>

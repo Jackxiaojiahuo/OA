@@ -31,11 +31,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
                 <tr>
                   <td style="padding-left: 15px;"><input id="103000" type="checkbox">
-                    <img src="css/folder.gif"> 管理驾驶舱</td>
+                    <img src="css/folder.gif"> 个人设置</td>
                 </tr>
                 <tr>
                   <td style="padding-left: 15px;"><input id="930100" disabled="" type="checkbox">
-                    <img src="css/folder.gif"> 个人设置</td>
+                    <img src="css/folder.gif"> 管理驾驶舱</td>
                 </tr>
                 <tr>
                   <td style="padding-left: 0px;"><input id="110000" disabled="" type="checkbox">

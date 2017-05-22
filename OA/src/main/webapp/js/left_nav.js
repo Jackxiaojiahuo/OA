@@ -30,6 +30,7 @@
 		});
 		$('.indent0ex:last').click(function(){//注销按钮点击事件
 			if(confirm('确定要注销吗'))
-				location="logout.do";
+				alert(1);
+				window.open('login/login.jsp',"_parent");
 		});
 	});

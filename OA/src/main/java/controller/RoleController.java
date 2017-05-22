@@ -32,7 +32,7 @@ public class RoleController {
 	 * @return
 	 */
 	@RequestMapping(params="action=findAllRole")
-	public String findAllRole(ModelMap model,Integer index,Integer re){
+	public String findAllRole(ModelMap model,Integer index){
 		if(index==null){
 			index=1;
 		}
@@ -44,11 +44,7 @@ public class RoleController {
 		List<Role> roleList=roleBiz.findAllRole(map);
 		model.put("roleList", roleList);
 		model.put("page", page);
-		if(re==null){
-			return "sysManager/gwjs";
-		}else{
-			return "sysManager/qxgl";
-		}
+		return "sysManager/gwjs";
 	}
 	/**
 	 * 根据编号查询角色
