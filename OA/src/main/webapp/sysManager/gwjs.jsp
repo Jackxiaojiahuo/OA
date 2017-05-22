@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
- <base href="<%=basePath%>">1
+ <base href="<%=basePath%>">
 	<link rel="shortcut icon" href="css/colloa.ico">
 	<link rel="stylesheet" href="css/gwjs_font-awesome.min.css">
 	<link rel="stylesheet" href="css/gwjs_view.css">
