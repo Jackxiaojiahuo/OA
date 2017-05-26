@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="dao.RecruitDao">
+<resultMap type="Recruit" id="rm">
+	<id property="re_id" column="re_id"/>
+	<result property="re_theme" column="re_theme"/>
+	<result property="re_priority" column="re_priority"/>
+	<result property="re_shopdate" column="re_shopdate"/>
+	<result property="re_name" column="re_name"/>
+	<result property="re_post" column="re_post"/>
+	<result property="re_applydate" column="re_applydate"/>
+	<result property="re_number" column="re_number"/>
+	<result property="re_positiondate" column="re_positiondate"/>
+	<result property="re_reason" column="re_reason"/>
+	<result property="re_duty" column="re_duty"/>
+	<result property="re_age" column="re_age"/>
+	<result property="re_sex" column="re_sex"/>
+	<result property="re_experience" column="re_experience"/>
+	<result property="re_lb" column="re_lb"/>
+	<result property="re_req" column="re_req"/>
+	<result property="depart_id" column="depart_id"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+</resultMap>
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<!--全部查询-->
+  <select id="findAllRecruit"  resultMap="rm" parameterType="map">
+    select * from Recruit limit #{index},#{size}
+  </select>
+  <!--全部查询-->
+  <select id="findAllRecruit_count"  resultType="Integer" parameterType="map">
+    select count(*) from Recruit 
+  </select>
+    	<!--根据id查询 --> 
+  <select id="findRecruiteById" parameterType="int" resultMap="rm">
+  	select * from Recruit where re_id=#{re_id}
+  </select>
+	<!-- 招聘申请 -->
+   <insert id="addRecruit">
+  	insert into Recruit(re_theme,re_priority,re_shopdate,re_name,
+  	re_post,re_applydate,re_number,re_positiondate,re_reason,
+  	re_duty,re_age,re_sex,re_experience,re_lb,re_req,depart_id) values(#{re_theme},#{re_priority},#{re_shopdate},
+  	#{re_name},#{re_post},#{re_applydate},#{re_number},#{re_positiondate},
+  	#{re_reason},#{re_duty},#{re_age},#{re_sex},#{re_experience},#{re_lb},#{re_req},#{depart_id})
+  </insert>
+</mapper>

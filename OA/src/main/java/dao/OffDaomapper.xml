@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.OffDao">
+<resultMap type="Off" id="rm">
+<id property="of_id" column="of_id"/>
+<result property="of_theme" column="of_theme"/>
+<result property="of_priority" column="of_priority"/>
+<result property="of_shopdate" column="of_shopdate"/>
+<result property="of_applydate" column="of_applydate"/>
+<result property="of_cdate" column="of_cdate"/>
+<result property="of_ddate" column="of_ddate"/>
+<result property="of_hour" column="of_hour"/>
+<result property="of_day" column="of_day"/>
+<result property="of_reason" column="of_reason"/>
+<result property="of_agent" column="of_agent"/>
+<result property="depart_id" column="depart_id"/>
+<result property="emp_id" column="emp_id"/>
+<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+	</resultMap>
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
+		<!--  全部查询-->
+	<select id="findAllOff" resultMap="rm" parameterType="map">
+		select * from off limit #{index},#{size}
+	</select>
+	<select id="findAllOff_count" resultType="Integer" parameterType="map">
+		select count(*) from off
+	</select>
+	<select id="findOffById" parameterType="int" resultMap="rm">
+		select * from off where of_id=#{of_id}
+	</select>
+	<!--	private Integer of_id;//id
+	private String of_theme;//主题
+	private String of_priority;//优先级
+	private String of_shopdate;//结束时间
+	private String of_applydate;//申请时间
+	private String of_cdate;//调休：从
+	private String of_ddate;//调休：到
+	private String of_hour;//小时
+	private String of_day;//天
+	private String of_reason;//调休事由
+	private String of_agent;//工作代理人
+	private Integer depart_id;//
+	public Department dept;//部门
+	public Employee em;//员工
+	private Integer emp_id;  -->
+	<insert id="addOff">
+		insert into off(of_theme,of_priority,of_shopdate,of_applydate,of_cdate,of_ddate,of_hour,of_day,
+		of_reason,of_agent,depart_id,emp_id) values (#{of_theme},#{of_priority},#{of_shopdate},#{of_applydate},#{of_cdate},#{of_ddate},
+		#{of_hour},#{of_day},#{of_reason},#{of_agent},#{depart_id},#{emp_id})
+	</insert>
+	<select id="findOffBylike" parameterType="Off" resultMap="rm">
+		select * from off
+		<where>
+			<if test="of_theme!=null">
+				of_theme like '%${of_theme}%'
+			</if>
+			<if test="of_cdate">
+				of_cdate like '%${of_cdate}%'
+			</if>
+		</where>
+	</select>
+</mapper>

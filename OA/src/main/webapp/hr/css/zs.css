@@ -1,0 +1,21 @@
+/* Code tidied up by ScrapBook */
+html { height: 100%; }
+body { height: 100%; font-family: Microsoft Yahei,tahoma,arial,verdana,sans-serif; font-size: 12px; color: rgb(69, 69, 69); line-height: 2; }
+table { width: 100%; font-size: 12px; line-height: 2; }
+a { text-decoration: none; color: rgb(99, 139, 217); }
+a:hover { color: orange; }
+a.button1 { display: inline-block; text-align: center; padding: 3px 15px; background-image: url("bgButton.png"); border-top: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); }
+a.button1L { border-left: 1px solid rgb(221, 221, 221); border-radius: 5px 0px 0px 5px; }
+a.button1M { border-left: 1px solid rgb(221, 221, 221); }
+a.button1R { border-left: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); border-radius: 0px 5px 5px 0px; }
+img { vertical-align: middle; }
+input { font-family: Microsoft Yahei,tahoma,arial,verdana,sans-serif; font-size: 12px; }
+#colloaBody { margin: 0px; background-image: url("bg.jpg"); background-position: center center; background-attachment: fixed; background-size: cover; }
+#colloaForm { width: 950px; background-color: white; padding: 30px 40px; }
+.boxBorder { min-height: 120px; border: 1px solid rgb(221, 221, 221); border-radius: 5px; margin-bottom: 20px; }
+.tableListBorder { border-left: 1px solid rgb(221, 221, 221); border-top: 1px solid rgb(221, 221, 221); }
+.tableListBorder td { border-bottom: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); padding: 0px 3px; }
+.tableForm { border-top: 1px solid rgb(221, 221, 221); }
+.tableForm tr { vertical-align: top; }
+.tableForm td { height: 100%; border-bottom: 1px solid rgb(221, 221, 221); padding: 0px 3px; }
+.textGray { color: rgb(153, 153, 153); }

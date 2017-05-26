@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>登记 - 10oa</title>
+<link rel="shortcut icon" href="colloa.ico">
+<link rel="stylesheet" href="../css/djgongtong.min.css">
+<link rel="stylesheet" href="../css/ycdj.css">
+<link type="text/css" rel="stylesheet" href="jquery-ui.css"  /> 
+ <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
+ <script language="JavaScript" src="jquery-ui.min.js"></script>
+  <script>
+			$(function() {
+				$("body").click(function() {
+					$('#fujian').hide();
+				})
+				$("body").click(function() {
+					$('#tupian').hide();
+				})
+				$("#fu").click(function(evt) {
+					$('#fujian').toggle();
+					evt.stopPropagation();
+				});
+				$("#tu").click(function(evt){
+				$('#tupian').toggle();
+				evt.stopPropagation();
+				});
+			});
+			
+		</script>
+ <script>
+     jQuery(function($){  
+        $.datepicker.regional['zh-CN'] = {  
+            closeText: '关闭',  
+            prevText: '<上月',  
+            nextText: '下月>',  
+            currentText: '今天',  
+            monthNames: ['一月','二月','三月','四月','五月','六月',  
+            '七月','八月','九月','十月','十一月','十二月'],  
+            monthNamesShort: ['一','二','三','四','五','六',  
+            '七','八','九','十','十一','十二'],  
+            dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            dayNamesMin: ['日','一','二','三','四','五','六'],  
+            weekHeader: '周',  
+            dateFormat: 'yy-mm-dd',  
+            firstDay: 1,  
+            isRTL: false,  
+            showMonthAfterYear: true,  
+            yearSuffix: '年'};  
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);  
+	 });  
+  $(function(){  
+            $("#scDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            }); 
+	  }); 
+	 $(function(){  
+            $("#cgDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            });  
+        });  
+	 	 $(function(){  
+            $("#njDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            });  
+        });
+	 	 $(function(){  
+            $("#bxDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            });  
+        });
+	 	 $(function(){  
+            $("#byDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            });  
+        });
+ </script>
+</head>
+<body id="colloaBody">
+<table style="min-width: 950px; width: 100%; height: 100%;" cellspacing="0" cellpadding="0" border="0">
+  <tbody>
+    <tr valign="top">
+      
+      <td id="colloaForm"><form>
+          <div class="textBig">登记车辆</div>
+          <br>
+          <table class="tableForm" style="table-layout: fixed;" summary="" cellspacing="0" cellpadding="0" border="0">
+            <colgroup>
+            <col width="100">
+            <col>
+            <col width="100">
+            <col width="380">
+            </colgroup>
+            <tbody>
+              <tr>
+                <td class="fieldLable"><b style="color: red;">*</b>名称</td>
+                <td id="dbf.name" dbf.type="required"><input id="e.dbf.name" class="fieldEditable"></td>
+                <td class="fieldLable"><b style="color: red;">*</b>牌号</td>
+                <td id="dbf.sno" dbf.type="required"><input id="e.dbf.sno" class="fieldEditable"></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">规格</td>
+                <td id="dbf.specification"><input id="e.dbf.specification" class="fieldEditable"></td>
+                <td class="fieldLable">油耗</td>
+                <td id="dbf.text3"><input id="e.dbf.text3" class="fieldEditable"></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">单价</td>
+                <td id="dbf.unitPrice" dbf.type="amount"><input id="e.dbf.unitPrice" class="fieldEditable" value="0" step="0.01"></td>
+                <td class="fieldLable">颜色</td>
+                <td id="dbf.text2"><input id="e.dbf.text2" class="fieldEditable"></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">生产商</td>
+                <td id="dbf.produceXSource"><input id="e.dbf.produceXSource" class="fieldEditable"></td>
+                <td class="fieldLable">生产日期</td>
+                <td id="dbf.produceXTime" dbf.type="date" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="scDate"></div></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">供应商</td>
+                <td id="dbf.supplyXSource"><input id="e.dbf.supplyXSource" class="fieldEditable"></td>
+                <td class="fieldLable">采购日期</td>
+                <td id="dbf.supplyXTime" dbf.type="date" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="cgDate"></div></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">发动机号</td>
+                <td id="dbf.text0"><input id="e.dbf.text0" class="fieldEditable"></td>
+                <td class="fieldLable">车架号</td>
+                <td id="dbf.text1"><input id="e.dbf.text1" class="fieldEditable"></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">存放区域</td>
+                <td id="dbf.regionXSource"><input id="e.dbf.regionXSource" class="fieldEditable"></td>
+                <td class="fieldLable">管理人</td>
+                <td id="dbf.ownerXSource"><input id="e.dbf.ownerXSource" class="fieldEditable"></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">状态</td>
+                <td colspan="3"><input id="dbf.statusX" checked="" value="1" name="dbf.selfStatus" autocomplete="off" type="radio">
+                  <img src="../css/userXStatus0.png">正常
+                  <input id="dbf.statusX" value="10" name="dbf.selfStatus" autocomplete="off" type="radio">
+                  <img src="../css/userXStatus10.png">维修
+                  <input id="dbf.statusX" value="20" name="dbf.selfStatus" autocomplete="off" type="radio">
+                  <img src="../css/userXStatus-1.png">报废</td>
+              </tr>
+              <tr>
+                <td class="fieldLable">附加描述</td>
+                <td id="dbf.description" colspan="3"><input id="e.dbf.description" class="fieldEditable"></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">相关附件</td>
+                <td id="dbf.memoLinks" colspan="3" dbf.source="files"><img class="fieldGetValueBySource" id="fu" src="../css/fieldSource.gif">
+                  <div id="e.dbf.memoLinks"></div></td>
+              </tr>
+              <tr>
+                <td class="fieldLable" rowspan="6">缩略图</td>
+                <td id="dbf.thumbnails" style="padding: 10px;" rowspan="6" dbf.source="file.image"><img class="fieldGetValueBySource" id="tu" src="../css/fieldSource.gif">
+                  <div id="e.dbf.thumbnails"><img class="radius" style="width: 300px;" src="../css/noThumb.jpg" border="0"></div></td>
+                <td class="fieldLable">下次年检日期</td>
+                <td id="dbf.time0" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="njDate"></div></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">保险截止日期</td>
+                <td id="dbf.time1" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="bxDate"></div></td>
+              </tr>
+              <tr>
+                <td class="fieldLable">上次保养日期</td>
+                <td id="dbf.time2" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="byDate"></div></td>
+              </tr>
+              <tr height="150">
+                <td class="fieldLable">&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <script language="javaScript">/* Code removed by ScrapBook */</script>
+        </form>
+        <form method="post">
+          <input id="viewState" name="viewState" type="hidden">
+        </form>
+        <script language="javaScript">/* Code removed by ScrapBook */</script><br>
+        <div id="_vWorkflowActionsShow" align="right"><a class="button">确定</a><a class="button">取消</a></div>
+        <br></td>
+      
+    </tr>
+  </tbody>
+</table>
+<div id="fujian" style="position: absolute; z-index: 10; background-color: rgb(255, 255, 255); cursor: default; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; padding: 5px; overflow-x: hidden; overflow-y: auto; height: 250px; width: 810px; top: 325px; left: 100px; display: none;">
+  <iframe src="ycdj_7.html" style="width: 100%; height: 95%;" frameborder="0"></iframe>
+</div>
+
+<div id="tupian" style="position: absolute; z-index: 10; background-color: rgb(255, 255, 255); cursor: default; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; padding: 5px; overflow-x: hidden; overflow-y: auto; height: 100px; width: 370px; top: 370px; left: 256px; display: none;">
+  <iframe src="ycdj_11.html" style="width: 100%; height: 95%;" frameborder="0"></iframe>
+</div>
+</body>
+</html>

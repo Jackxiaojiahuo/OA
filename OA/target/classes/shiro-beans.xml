@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+         http://www.springframework.org/schema/tx 
+         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	 <!-- permission授权配置 -->
+	 <bean id="urlPermissionResolver" class="permission.UrlPermissionResovler"/>
+	 <!-- md5配置 -->
+	 <bean id="hashMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+	 	<property name="hashAlgorithmName" value="md5"/>
+	 </bean>
+	 <!-- realm认证配置 -->
+	 <bean id="userRealm" class="realm.UserRealm">
+	 	<property name="cachingEnabled" value="true"/>
+	 	<property name="authenticationCachingEnabled" value="true"/>
+	 	<property name="authenticationCacheName" value="shiro-authenticationCache"/>
+	 	<property name="authorizationCachingEnabled" value="true"/>
+	 	<property name="authorizationCacheName" value="shiro-authorizationCache"/>
+	 	<property name="credentialsMatcher" ref="hashMatcher"/>
+	 </bean>
+	  <!-- 会话ID生成器 -->
+    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+    <!-- 会话Cookie模板 -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+    </bean>
+	 <!-- 会话DAO -->
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+        <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+    </bean>
+
+    <!-- 会话验证调度器 -->
+    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
+        <property name="sessionValidationInterval" value="1800000"/>
+        <property name="sessionManager" ref="sessionManager"/>
+    </bean>
+
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="globalSessionTimeout" value="1800000"/>
+        <property name="deleteInvalidSessions" value="true"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <property name="sessionDAO" ref="sessionDAO"/>
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+    </bean>
+	 <!-- 缓存管理器 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+	    	<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
+	    </bean>
+   <!--   <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager"/> -->
+	 <!-- 安全管理器 -->
+	 <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	    <property name="realm" ref="userRealm"/>
+	    <property name="sessionManager" ref="sessionManager"/>
+	    <property name="cacheManager" ref="cacheManager"/>
+	    <property name="authorizer.permissionResolver" ref="urlPermissionResolver"/>
+	</bean>
+	<!-- 没有访问权限 -->
+	<bean id="resourceCheckFilter" class="filter.ResourceCheckFilter">
+		<property name="errorUrl" value="unauth.jsp"/>
+	</bean>	
+	
+	<!-- 并发登录过滤器 -->
+	<bean id="kickoutSessionControlFilter" class="filter.KickoutSessionControlFilter">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="kickoutAfter" value="false"/>
+        <property name="maxSession" value="1"/>
+        <property name="kickoutUrl" value="/login/login.jsp"/>
+    </bean>
+	<!-- shiro的过滤器 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+	    <property name="securityManager" ref="securityManager"/>
+	    <property name="loginUrl" value="login/login.jsp"/>
+	    <!-- override these for application-specific URLs if you like:
+	    <property name="loginUrl" value="/login.jsp"/>
+	    <property name="successUrl" value="/home.jsp"/>
+	    <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+	    The 'filters' property is not necessary since any declared javax.servlet.Filter bean 
+	    defined will be automatically acquired and available via its beanName in chain       
+	    definitions, but you can perform instance overrides or name aliases here if you like:
+	    <property name="filters">
+	        <util:map>
+	            <entry key="anAlias" value-ref="someFilter"/>
+	        </util:map>
+	    </property> -->
+	    <!-- 过滤器链,从上到下顺序执行 -->
+	    <property name="filterChainDefinitions">
+	        <value>
+	        	/login.do=anon
+				/login/login.jsp=anon
+				/index.jsp=authc
+	        	/*.do =kickoutSessionControlFilter, authc,resourceCheckFilter
+	        </value>
+	    </property>
+	</bean>
+	<!-- shiro注解配置 -->
+	<aop:config proxy-target-class="true"></aop:config>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+	    <property name="securityManager" ref="securityManager"/>
+	</bean>
+	<!-- 生命周期 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

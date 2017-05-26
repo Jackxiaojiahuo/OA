@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="dao.UserOnlineDao">
+	<!-- 获取所有在线用户 -->
+	<select id="findEmp" resultType="employee" parameterType="Integer">
+		select * from employee where emp_id=#{emp_id}
+	</select>
+	<resultMap type="useronline" id="findAll">
+		<id column="id" property="id"/>
+		<result column="ip" property="ip"/>
+		<result column="starttime" property="startTime"/>
+		<association property="emp" column="emp_id" javaType="employee" select="findEmp">
+		</association>
+	</resultMap>
+	<select id="findAllUserOnline" resultMap="findAll">
+		select * from useronline
+	</select>
+	<!-- 添加在线用户 -->
+	<insert id="addUserOnline" parameterType="useronline">
+		insert into useronline values(null,#{ip},now(),#{emp_id})
+	</insert>
+	<!-- 删除在线用户 -->
+	<delete id="delUserOnline" parameterType="Integer">
+		delete from useronline where emp_id=#{emp_id}
+	</delete>
+	<!-- 统计所有在线用户数量 -->
+	<select id="findAllUserOnline_count" resultType="Integer">
+		select count(*) from useronline
+	</select>
+</mapper>

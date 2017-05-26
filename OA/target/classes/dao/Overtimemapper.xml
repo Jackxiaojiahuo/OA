@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.OvertimeDao">
+<resultMap type="Overtime" id="rm">
+	<id property="oi_id" column="oi_id"/>
+	<result property="oi_theme" column="oi_theme"/>
+	<result property="oi_priority" column="oi_priority"/>
+	<result property="oi_shopdate" column="oi_shopdate"/>
+	<result property="oi_applydate" column="oi_applydate"/>
+	<result property="oi_cdate" column="oi_cdate"/>
+	<result property="oi_ddate" column="oi_ddate"/>
+	<result property="oi_hour" column="oi_hour"/>
+	<result property="oi_day" column="oi_day"/>
+	<result property="oi_reason" column="oi_reason"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_id" column="emp_id"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+	</resultMap>
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
+		<!--  全部查询-->
+	<select id="findAllOvertime" resultMap="rm" parameterType="map">
+		select * from overtime limit #{index},#{size}
+	</select>
+	<select id="findAllOvertime_count" resultType="Integer" parameterType="map">
+		select count(*) from overtime
+	</select>
+	<select id="findOvertimeById" parameterType="int" resultMap="rm">
+		select * from overtime where oi_id=#{oi_id}
+	</select>
+	<insert id="addOvertime">
+		insert into overtime(oi_theme,oi_priority,oi_shopdate,oi_applydate,oi_cdate,oi_ddate,oi_hour,oi_day,oi_reason,
+		depart_id,emp_id) values(#{oi_theme},#{oi_priority},#{oi_shopdate},#{oi_applydate},#{oi_cdate},#{oi_ddate},#{oi_hour},
+		#{oi_day},#{oi_reason},#{depart_id},#{emp_id})
+	</insert>
+	<select id="findOvertimeBylike" parameterType="Overtime" resultMap="rm">
+		select * from overtime 
+		<where>
+			<if test="oi_theme!=null">
+			oi_theme like '%${oi_theme}%'
+			</if>
+			<if test="oi_cdate!=null">
+			oi_cdate like '%${oi_cdate}%'
+			</if>
+		</where> 
+	</select>
+</mapper>

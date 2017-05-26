@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用车申请* - 10oa</title>
+<link rel="shortcut icon" href="colloa.ico">
+<link rel="stylesheet" href="../css/djgongtong.min.css">
+<link rel="stylesheet" href="../css/djgongtong.css">
+<link type="text/css" rel="stylesheet" href="jquery-ui.css"  /> 
+ <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
+ <script language="JavaScript" src="jquery-ui.min.js"></script>
+  <script>
+			$(document).ready(function() {
+				$(".select_box").click(function(event) {
+					event.stopPropagation();
+					$(this).find(".option").toggle();
+					$(this).parent().siblings().find(".option").hide();
+				});
+				$(document).click(function(event) {
+					var eo = $(event.target);
+					if($(".select_box").is(":visible") && eo.attr("class") != "option" && !eo.parent(".option").length)
+						$('.option').hide();
+				});
+				/*赋值给文本框*/
+				$(".option a").click(function() {
+					var value = $(this).text();
+					$(this).parent().siblings(".select_txt").text(value);
+					$("#select_value").val(value)
+				});
+			});
+			$(function() {
+				$("body").click(function() {
+					$('#fujian').hide();
+				})
+				$("#fu").click(function(evt) {
+					$('#fujian').toggle();
+					evt.stopPropagation();
+				});
+			});
+			
+		</script>
+ <script>
+     jQuery(function($){  
+        $.datepicker.regional['zh-CN'] = {  
+            closeText: '关闭',  
+            prevText: '<上月',  
+            nextText: '下月>',  
+            currentText: '今天',  
+            monthNames: ['一月','二月','三月','四月','五月','六月',  
+            '七月','八月','九月','十月','十一月','十二月'],  
+            monthNamesShort: ['一','二','三','四','五','六',  
+            '七','八','九','十','十一','十二'],  
+            dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            dayNamesMin: ['日','一','二','三','四','五','六'],  
+            weekHeader: '周',  
+            dateFormat: 'yy-mm-dd',  
+            firstDay: 1,  
+            isRTL: false,  
+            showMonthAfterYear: true,  
+            yearSuffix: '年'};  
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);  
+	 });  
+  $(function(){  
+            $("#selectDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            }); 
+	  }); 
+	   $(function(){  
+            $("#sqDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            }); 
+	  });
+	 	   $(function(){  
+            $("#cfDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            }); 
+	  });
+	 	   $(function(){  
+            $("#fhDate").datepicker({//添加日期选择功能  
+            numberOfMonths:1,//显示几个月  
+            showButtonPanel:true,//是否显示按钮面板  
+            dateFormat: 'yy-mm-dd',//日期格式  
+            clearText:"清除",//清除日期的按钮名称  
+            closeText:"关闭",//关闭选择框的按钮名称  
+            yearSuffix: '年', //年的后缀  
+            showMonthAfterYear:true,//是否把月放在年的后面  
+            //defaultDate:'2016-12-31',//默认日期  
+            minDate:'1900-01-01 00:00:00',//最小日期  
+            maxDate:'2099-12-31 23:59:59',//最大日期  
+            //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+            //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+            //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+            //dayNamesMin: ['日','一','二','三','四','五','六'],  
+            onSelect: function(selectedDate) {//选择日期后执行的操作 
+				//alert(selectedDate);
+            }  
+            }); 
+	  });
+ </script>
+ 	<style>
+			.selet_open {
+				display: inline-block;
+				border-left: solid 1px #E5E5E5;
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 30px;
+				height: 22px;
+			}
+			
+			.select_txt {
+				display: inline-block;
+				padding-left: 10px;
+				width: 135px;
+				line-height: 24px;
+				height: 22px;
+				cursor: text;
+				overflow: hidden;
+			}
+			
+			.option {
+				height: 250px;
+				width: 200px;
+				top: 170px;
+				left: 750px;
+				border: solid 1px #EDE7D6;
+				position: absolute;
+				z-index: 2;
+				overflow: hidden;
+				display: none;
+				box-sizing: border-box;
+				padding: 5px;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			
+			.option a {
+				display: block;
+				height: 26px;
+				line-height: 26px;
+				text-align: left;
+				padding: 0 10px;
+				width: 100%;
+				background: #fff;
+			}
+			
+			.option a:hover {
+				background: #FDE0E5;
+			}
+		</style>
+</head>
+<body id="colloaBody">
+<table style="min-width: 950px; width: 100%; height: 100%;" cellspacing="0" cellpadding="0" border="0">
+  <tbody>
+    <tr valign="top">
+      <td id="colloaForm"><div class="formTaskflowContainer">
+          <form class="formTaskflow">
+            <table class="tableForm" style="table-layout: fixed;" cellspacing="0" cellpadding="0" align="center" border="0">
+              <colgroup>
+              <col width="60">
+              <col>
+              <col width="80">
+              <col width="150">
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td style="text-align: right;">&nbsp;<span style="color: rgb(255, 0, 0);">*</span>主题:</td>
+                  <td id="dbf.subject" dbf.type="required"><input id="e.dbf.subject" class="fieldEditable" value="用车申请-李萌-1001692"></td>
+                  <td style="text-align: right;">&nbsp;优先级:</td>
+                  <td><input id="dbf.priority" value="-1" name="dbf.priority" autocomplete="off" type="radio">
+                    低
+                    <input id="dbf.priority" checked="" value="0" name="dbf.priority" autocomplete="off" type="radio">
+                    中
+                    <input id="dbf.priority" value="1" name="dbf.priority" autocomplete="off" type="radio">
+                    高</td>
+                </tr>
+                <tr>
+                  <td style="text-align: right;">&nbsp;步骤:</td>
+                  <td><span id="mapping.dbf.procXSource">申请人填单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人: <span id="mapping.dbf.responsorSource">李萌,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人: <span id="mapping.dbf.participantsSource"></span></td>
+                  <td style="text-align: right;">&nbsp;结束时间:</td>
+                  <td id="dbf.endTime" dbf.type="date" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                    <div class="fieldEditable" contenteditable="true"><input type="text" id="selectDate"></div></td>
+                </tr>
+              </tbody>
+            </table>
+            <div>&nbsp;
+              <div style="text-align: center;"><span style="font-size: 20px;"><strong>用车申请单</strong></span></div>
+            </div>
+            <div>
+              <table class="tableListBorder" cellspacing="0" cellpadding="0" align="center" border="0">
+                <tbody>
+                  <tr>
+                    <td style="text-align: center; width: 144px;"><span style="color: rgb(255, 0, 0);">*</span>申请人</td>
+                    <td id="dbf.operator" style="width: 302px;" dbf.type="required" dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name" dbf.key="1000071" dbf.value="李萌"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                      <div id="e.dbf.operatorSource" class="fieldEditable" contenteditable="true">李萌</div></td>
+                    <td style="text-align: center; width: 147px;"><span style="color: rgb(255, 0, 0);">*</span>所属部门</td>
+                       <td class="select_box">
+													<img class="fieldGetValueBySource" src="../css/fieldSource.gif">
+													<span class="select_txt"></span>
+													<a class="selet_open"><b></b></a>
+													<div class="option">
+														<a>(空)</a>
+														<a>阿尔法集团</a>
+														<a>总经办</a>
+														<a>人事部</a>
+														<a>财务部</a>
+														<a>科技公司</a>
+														<a>采购部</a>
+														<a>技术部</a>
+														<a>生产部</a>
+														<a>营销部</a>
+														<a>工程公司</a>
+														<a>工程部</a>
+														<a>工程部</a>
+														<a>售后部</a>
+														<a>网络部</a>
+														<a>销售部</a>
+														<a>现代事务所</a>
+														<a>产权部</a>
+														<a>法务部</a>
+														<a>税务部</a>
+														<a>咨询部</a>
+														<a>北京机构</a>
+														<a>杭州机构</a>
+														<a>上海机构</a>
+														<a>深圳机构</a>
+													</div>
+												</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;" dbf.type="date,required" dbf.source="date"><span style="color: rgb(255, 0, 0);">*</span>申请日期</td>
+                    <td id="dbf.time2" style="width: 302px;" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                      <div><input type="text" id="sqDate"></div></td>
+                    <td style="text-align: center; width: 147px;">是否自驾</td>
+                    <td style="width: 313px;">&nbsp;
+                      <input id="是否需要自驾" value="1" name="是否需要自驾" type="radio">
+                      自驾（不需要安排司机）
+                      <input id="是否需要自驾" checked="" value="0" name="是否需要自驾" type="radio">
+                      安排司机</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;">乘车人信息</td>
+                    <td id="乘车人" style="width: 302px;"><input id="e.乘车人" class="fieldEditable"></td>
+                    <td style="text-align: center; width: 147px;" dbf.type="" dbf.source="">乘车人数</td>
+                    <td id="乘车人数" style="width: 313px;" dbf.type="number" dbf.source=""><input id="e.乘车人数" class="fieldEditable" step="1"></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;"><span style="color: rgb(255, 0, 0);">*</span>出发时间</td>
+                    <td id="dbf.time0" style="width: 302px;" dbf.type="date,required" dbf.source="datetime,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                      <div class="fieldEditable" contenteditable="true"><input type="text" id="cfDate"></div></td>
+                    <td style="text-align: center; width: 147px;"><span style="color: rgb(255, 0, 0);">*</span>返回时间</td>
+                    <td id="dbf.time1" style="width: 313px;" dbf.type="date,required" dbf.source="datetime,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                      <div class="fieldEditable" contenteditable="true"><input type="text" id="fhDate"></div></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;"><span style="color: rgb(255, 0, 0);">*</span>用车事由</td>
+                    <td id="用车事由" style="width: 765px;" colspan="3" dbf.type="required" dbf.source=""><textarea id="e.用车事由" class="fieldEditable" style="height: 80px;"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;">备注</td>
+                    <td id="备注" style="width: 765px;" colspan="3" dbf.type="" dbf.source=""><textarea id="e.备注" class="fieldEditable" style="height: 80px;"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;"><span style="color: rgb(255, 0, 0);">*</span>指定车辆</td>
+                    <td id="dbf.text0" style="width: 302px;" dbf.type="required!0" dbf.source="select sid,name from resourceX where modello='administration.vehicle' and statusX=1 order by name" dbf.key="">&nbsp;</td>
+                    <td style="text-align: center; width: 147px;">驾驶员信息</td>
+                    <td id="驾驶员" style="width: 313px;" colspan="3">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;">乘车时间和地点</td>
+                    <td id="乘车时间和地点" style="width: 302px;" dbf.type="" dbf.source="">&nbsp;</td>
+                    <td style="text-align: center; width: 147px;">实际用车信息</td>
+                    <td id="实际用车信息" style="width: 313px;" dbf.type="" dbf.source="">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center; width: 144px;">用车油耗(L)</td>
+                    <td id="用车油耗" style="width: 302px;" dbf.type="" dbf.source="">&nbsp;</td>
+                    <td style="text-align: center; width: 147px;">用车费用(元)</td>
+                    <td id="dbf.budget" style="width: 313px;" dbf.type="amount" dbf.source="">0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div>&nbsp;</div>
+            <table class="tableForm" style="table-layout: fixed;" cellspacing="0" cellpadding="0" align="center" border="0">
+              <colgroup>
+              <col width="60">
+              <col>
+              </colgroup>
+              <tbody>
+                <tr>
+                  <td style="text-align: right;">&nbsp;附件:</td>
+                  <td id="attachments" dbf.source="files"><img class="fieldGetValueBySource" id="fu" src="../css/fieldSource.gif">
+                    <div id="e.attachments">&nbsp;</div></td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+        <form method="post">
+          <input id="viewState" name="viewState" type="hidden">
+        </form>
+        <script language="javaScript">/* Code removed by ScrapBook */</script><br>
+        <div id="_vWorkflowActionsShow" align="right"><a class="button">保存</a><a class="button">提交主管审核</a><a class="button">转车辆管理员</a><a class="button">取消</a></div>
+        <br>
+        <table style="table-layout: fixed;" cellspacing="0" cellpadding="0" border="0">
+          <colgroup>
+          <col width="60%">
+          <col width="2%">
+          <col>
+          </colgroup>
+          <tbody>
+            <tr valign="top">
+              <td class="boxBorder"><div style="padding: 2px 10px;">
+                  <div style="float: right;"><a href="ycsqd_lct.html">› 显示流程图</a></div>
+                  【处理过程】</div></td>
+              <td></td>
+              <td><div class="boxBorder">
+                  <div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【父事务】</div>
+                </div>
+                <div class="boxBorder">
+                  <div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
+                </div></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </tbody>
+</table>
+<div id="fujian" style="position: absolute; z-index: 10; background-color: rgb(255, 255, 255); cursor: default; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; padding: 5px; overflow-x: hidden; overflow-y: auto; height: 250px; width: 850px; top: 542px; left: 100px; display: none;">
+  <iframe src="ycsqd_9.html" style="width: 100%; height: 95%;" frameborder="0"></iframe>
+</div>
+</body>
+</html>

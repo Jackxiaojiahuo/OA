@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.QuitDao">
+<resultMap type="Quit" id="rm">
+	<id property="q_id" column="q_id"/>
+	<result property="q_theme" column="q_theme"/>
+	<result property="q_priority" column="q_priority"/>
+	<result property="q_shopdate" column="q_shopdate"/>
+	<result property="q_applydate" column="q_applydate"/>
+	<result property="q_post" column="q_post"/>
+	<result property="q_joindate" column="q_joindate"/>
+	<result property="q_quit" column="q_quit"/>
+	<result property="q_type" column="q_type"/>
+	<result property="q_reason" column="q_reason"/>
+	<result property="q_transfer" column="q_transfer"/>
+	<result property="q_opinion" column="q_opinion"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_id" column="emp_id"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+</resultMap>
+<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
+<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<select id="findAllQuit" resultMap="rm" parameterType="map">
+		select * from quit limit #{index},#{size}
+	</select>
+		<select id="findAllQuit_count" resultType="Integer" parameterType="map">
+		select count(*) from quit
+	</select>
+	<select id="findQuitById" parameterType="int" resultMap="rm">
+		select * from quit where q_id=#{q_id}
+	</select>
+	<insert id="addQuit">
+		insert into quit(q_theme,q_priority,q_shopdate,
+		q_applydate,q_post,q_joindate,q_quit,q_type,q_reason,q_transfer,q_opinion,depart_id,emp_id) values(#{q_theme},#{q_priority},#{q_shopdate},
+		#{q_applydate},#{q_post},#{q_joindate},#{q_quit},#{q_type},#{q_reason},#{q_transfer},#{q_opinion},#{depart_id},#{emp_id})
+	</insert>
+</mapper>

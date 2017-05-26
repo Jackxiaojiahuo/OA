@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.EgressDao">
+	<resultMap type="Egress" id="rm">
+	<id property="eg_id" column="eg_id"/>
+	<result property="eg_theme" column="eg_theme"/>
+	<result property="eg_priority" column="eg_priority"/>
+	<result property="eg_shopdate" column="eg_shopdate"/>
+	<result property="eg_applydate" column="eg_applydate"/>
+	<result property="eg_egress" column="eg_egress"/>
+	<result property="eg_return" column="eg_return"/>
+	<result property="eg_hour" column="eg_hour"/>
+	<result property="eg_day" column="eg_day"/>
+	<result property="eg_site" column="eg_site"/>
+	<result property="eg_reason" column="eg_reason"/>
+	<result property="eg_send" column="eg_send"/>
+	<result property="eg_advance" column="eg_advance"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_id" column="emp_id"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+	</resultMap>
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
+		<!--  全部查询-->
+	<select id="findAllEgress" resultMap="rm" parameterType="map">
+		select * from egress limit #{index},#{size}
+	</select>
+	<select id="findAllEgress_count" resultType="Integer" parameterType="map">
+		select count(*) from egress
+	</select>
+	<select id="findEgressById" parameterType="int" resultMap="rm">
+		select * from egress where eg_id=#{eg_id}
+	</select>
+		<!--	private Integer eg_id;//id
+	private String eg_theme;//主题
+	private String eg_priority;//优先级
+	private String eg_shopdate;//结束时间
+	private String eg_applydate;//申请时间
+	private String eg_egress;//外出时间
+	private String eg_return;//返回时间
+	private String eg_hour;//小时
+	private String eg_day;//天
+	private String eg_site;//外出地点
+	private String eg_reason;//事由及说明
+	private String eg_send;//是否需要派车
+	private String eg_advance;//是否提前申请
+	private Integer depart_id;//
+	public Department dept;//部门
+	public Employee em;//员工
+	private Integer emp_id;  -->
+	<insert id="addEgress">
+		insert into egress(eg_theme,eg_priority,eg_shopdate,eg_applydate,eg_egress,eg_return,
+		eg_hour,eg_day,eg_site,eg_reason,eg_send,eg_advance,depart_id,emp_id) values(#{eg_theme},#{eg_priority},#{eg_shopdate},#{eg_applydate},#{eg_egress},
+		#{eg_return},#{eg_hour},#{eg_day},#{eg_site},#{eg_reason},#{eg_send},#{eg_advance},#{depart_id},#{emp_id})
+	</insert>
+	<select id="findEgressBylike" parameterType="Egress" resultMap="rm">
+		select * from egress
+		<where>
+			<if test="eg_theme!=null">
+				eg_theme like '%${eg_theme}%'
+			</if>
+			<if test="eg_site!=null">
+				eg_site like '%${eg_site}%'
+			</if>
+		</where>
+	</select>
+</mapper>

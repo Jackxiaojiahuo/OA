@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.FurloughDao">
+<resultMap type="Furlough" id="rm">
+	<id property="fg_id" column="fg_id"/>
+	<result property="fg_theme" column="fg_theme"/>
+	<result property="fg_priority" column="fg_priority"/>
+	<result property="fg_shopdate" column="fg_shopdate"/>
+	<result property="fg_applydate" column="fg_applydate"/>
+	<result property="fg_cdate" column="fg_cdate"/>
+	<result property="fg_ddate" column="fg_ddate"/>
+	<result property="fg_hour" column="fg_hour"/>
+	<result property="fg_day" column="fg_day"/>
+	<result property="fg_type" column="fg_type"/>
+	<result property="fg_reason" column="fg_reason"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_id" column="emp_id"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+	</resultMap>
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
+		<!--  全部查询-->
+	<select id="findAllFurlough" resultMap="rm" parameterType="map">
+		select * from furlough limit #{index},#{size}
+	</select>
+	<select id="findAllFurlough_count" resultType="Integer" parameterType="map">
+		select count(*) from furlough
+	</select>
+	
+	<select id="findFurloughById" parameterType="int" resultMap="rm">
+		select * from furlough where fg_id=#{fg_id}
+	</select>
+	<insert id="addFurlough">
+		insert into furlough(fg_theme,fg_priority,fg_shopdate,fg_applydate,fg_cdate,
+		fg_ddate,fg_hour,fg_day,fg_type,fg_reason,depart_id,emp_id) values(#{fg_theme},#{fg_priority},#{fg_shopdate},#{fg_applydate},#{fg_cdate},#{fg_ddate},
+		#{fg_hour},#{fg_day},#{fg_type},#{fg_reason},#{depart_id},#{emp_id})
+	</insert>
+	<select id="findFurloughBylike" parameterType="Furlough" resultMap="rm">
+		select * from furlough
+		<where>
+			<if test="fg_type!=null">
+			fg_type like '%${fg_type}%'
+			</if>
+		</where>
+	</select>
+</mapper>

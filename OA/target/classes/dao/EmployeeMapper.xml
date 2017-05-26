@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.EmployeeDao">
+	<!-- 查询非离职的员工(条件查询:根据部门编号) -->
+	<select id="findAllEmployeeRight" resultType="Employee" parameterType="map">
+		SELECT * FROM employee WHERE emp_state  = '在职'
+			<!-- 是否根据部门查询员工 -->
+			<if test="depart_id!=null">
+				and depart_id=#{depart_id}
+			</if>
+			<!-- 是否根据工号查询员工 -->
+			<if test="emp_code!=null">
+				and emp_code like CONCAT('%',#{emp_code},'%')
+			</if>
+			<!-- 是否根据姓名查询员工 -->
+			<if test="emp_name!=null">
+				and emp_name like CONCAT('%',#{emp_name},'%')
+			</if>
+		 limit #{index},#{size} 
+	</select>
+	<!-- 查询非离职的员工的数量(条件查询:根据部门编号) -->
+	<select id="findAllEmployeeRight_count" resultType="Integer" parameterType="map">
+		SELECT count(*) FROM employee WHERE emp_state  != '离职'    
+		<!-- 是否根据部门查询员工 -->
+			<if test="depart_id!=null">
+				and depart_id=#{depart_id}
+			</if>
+			<!-- 是否根据工号查询员工 -->
+			<if test="emp_code!=null">
+				and emp_code like CONCAT('%',#{emp_code},'%')
+			</if>
+			<!-- 是否根据姓名查询员工 -->
+			<if test="emp_name!=null">
+				and emp_name like CONCAT('%',#{emp_name},'%')
+			</if>
+	</select>
+	<!-- 初始化密码 -->
+	<update id="updatePwdInit" parameterType="employee">
+		update employee set emp_pwd=#{emp_pwd} where emp_id=#{emp_id}
+	</update>
+	<!-- 用户登录 -->
+	<select id="loadByEmpcode" resultType="employee" parameterType="String">
+		select * from employee where emp_code=#{emp_code}
+	</select>
+	<!-- 根据员工编号查询所有资源 -->
+	<select id="listAllResource" resultType="resource" parameterType="Integer">
+		SELECT res.* FROM employee e,Resource res,employeeRole er,RoleResource rr 
+		WHERE e.emp_id=er.emp_id AND er.role_id=rr.role_id  AND rr.res_id=res.r_id AND e.emp_id=#{emp_id}
+	</select>
+	
+	
+	
+	<!-- 曹浩然代码 -->
+	
+	<resultMap type="Employee" id="rm">
+	<id property="emp_id" column="emp_id"/>
+	<result property="emp_code" column="emp_code"/>
+	<result property="emp_name" column="emp_name"/>
+	<result property="emp_sex" column="emp_sex"/>
+	<result property="emp_state" column="emp_state"/>
+	<result property="emp_mobile" column="emp_mobile"/>
+	<result property="emp_email" column="emp_email"/>
+	<result property="emp_birth" column="emp_birth"/>
+	<result property="emp_join" column="emp_join"/>
+	<result property="emp_formal" column="emp_formal"/>
+	<result property="emp_leave" column="emp_leave"/>
+	<result property="emp_description" column="emp_description"/>
+	<result property="emp_icon" column="emp_icon"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_pwd" column="emp_pwd"/>
+	<result property="emp_icon" column="emp_icon"/>
+	<result property="emp_status" column="emp_status"/>
+	<result property="emp_phone" column="emp_phone"/>
+	<result property="emp_qq" column="emp_qq"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+</resultMap>
+<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<!--全部查询-->
+  <select id="findAllEmployee" resultMap="rm" parameterType="map">
+		select * from Employee where emp_state!='离职' limit #{index},#{size}
+	</select>
+	<select id="findAllEmployee_count" resultType="Integer" parameterType="map">
+		select count(*) from Employee where emp_state!='离职'
+	</select>
+	 <!--根据 姓名  工号  模糊  查找-->
+  <select id="findEmployeeBylike" parameterType="Employee" resultMap="rm">
+		select * from Employee 
+		<where>
+			<if test="emp_name!=null">
+			emp_name like '%${emp_name}%'
+			</if>
+			<if test="emp_code!=null">
+			emp_code like '%${emp_code}%'
+			</if>
+		</where> 
+	</select>
+  	<!--根据id查询 --> 
+  <select id="findEmployeeById" parameterType="int" resultMap="rm">
+  	select * from Employee where emp_id=#{emp_id}
+  </select>
+  <!-- 新增员工 
+  -->
+  <insert id="addEmp">
+  	insert into Employee(emp_code,emp_name,emp_sex,emp_state,
+  	emp_mobile,emp_email,emp_birth,emp_join,emp_formal,emp_leave,
+  	emp_description,emp_icon,emp_status,emp_phone,emp_qq) values(#{emp_code},#{emp_name},#{emp_sex},
+  	#{emp_state},#{emp_mobile},#{emp_email},#{emp_birth},#{emp_join},#{emp_formal},#{emp_leave},#{emp_description},#{emp_icon},#{emp_status},#{emp_phone},#{emp_qq})
+  </insert>
+  <!-- 根据在职状态查询 -->
+  <select id="findEmployeeState" parameterType="String" resultMap="rm">
+  	select * from Employee where emp_state like '%${value}%'
+  </select>
+  <!--删除员工-->
+   <delete id="delEmployee">
+  	delete from Employee where emp_id=#{emp_id} 
+  </delete>
+  <!-- 	private String emp_code;//工号
+	private String emp_name;//姓名
+	private String emp_sex;//性别
+	private String emp_state;//在职状态
+	private String emp_mobile;//手机号
+	private String emp_email;//电子邮件
+	private String emp_birth;//出生日期
+	private String emp_join;//入职日期
+	private String emp_formal;//转正日期
+	private String emp_leave;//离职日期
+	private String emp_description;//描述 -->
+	<!-- 修改-->
+  <update id="updateEmployee" >
+	update Employee set emp_code=#{emp_code},emp_name=#{emp_name},
+	emp_sex=#{emp_sex},emp_state=#{emp_state},emp_mobile=#{emp_mobile},
+	emp_email=#{emp_email},emp_birth=#{emp_birth},emp_join=#{emp_join},
+	emp_formal=#{emp_formal},emp_leave=#{emp_leave},emp_description=#{emp_description},emp_status=#{emp_status},emp_phone=#{emp_phone},
+	emp_qq=#{emp_qq} where emp_id=#{emp_id}
+	</update>
+    <select id="zzstate" resultType="int">
+   select count(*) from Employee where emp_state=#{emp_state}
+   </select>
+     <select id="systate" resultType="int">
+   select count(*) from Employee where emp_state=#{emp_state}
+   </select>
+     <select id="txstate" resultType="int">
+   select count(*) from Employee where emp_state=#{emp_state}
+   </select>
+     <select id="lzstate" resultType="int">
+   select count(*) from Employee where emp_state=#{emp_state}
+   </select>
+   <select id="findBycode" resultType="int">
+   select count(*) from Employee where emp_code=#{emp_code}
+   </select>
+</mapper>

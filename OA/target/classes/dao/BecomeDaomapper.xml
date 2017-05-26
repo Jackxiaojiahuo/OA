@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BecomeDao">
+<resultMap type="Become" id="rm">
+	<id property="b_id" column="b_id"/>
+	<result property="b_theme" column="b_theme"/>
+	<result property="b_priority" column="b_priority"/>
+	<result property="b_shopdate" column="b_shopdate"/>
+	<result property="b_applydate" column="b_applydate"/>
+	<result property="b_post" column="b_post"/>
+	<result property="b_joindate" column="b_joindate"/>
+	<result property="b_become" column="b_become"/>
+	<result property="b_content" column="b_content"/>
+	<result property="b_achievement" column="b_achievement"/>
+	<result property="b_problem" column="b_problem"/>
+	<result property="b_imagine" column="b_imagine"/>
+	<result property="b_comment" column="b_comment"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_id" column="emp_id"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+</resultMap> 
+<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
+<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+		<!--  全部查询-->
+	<select id="findAllBecome" resultMap="rm" parameterType="map">
+		select * from become limit #{index},#{size}
+	</select>
+	<select id="findAllBecome_count" resultType="Integer" parameterType="map">
+		select count(*) from become
+	</select>
+		<!-- 根据id查询 -->
+	<select id="findBecomeById" parameterType="int" resultMap="rm">
+		select * from become where b_id=#{b_id}
+	</select>
+	<!-- 转正申请 -->
+	<insert id="addBecome">
+		insert into become(b_theme,b_priority,b_shopdate,b_applydate,
+		b_post,b_joindate,b_become,b_content,b_achievement,b_problem,b_imagine,b_comment,depart_id,emp_id) values(#{b_theme},
+		#{b_priority},#{b_shopdate},#{b_applydate},#{b_post},#{b_joindate},
+		#{b_become},#{b_content},#{b_achievement},#{b_problem},#{b_imagine},#{b_comment},#{depart_id},#{emp_id})
+	</insert>
+</mapper>

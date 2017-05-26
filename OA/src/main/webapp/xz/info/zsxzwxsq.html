@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>事务 - 10oa</title>
+  <link rel="shortcut icon" href="colloa.ico">
+  <link rel="stylesheet" href="../css/zsgongtong.min.css">
+  <link rel="stylesheet" href="../css/zsgongtong.css">
+    <script>
+function aa() {
+    var CheckAll = document.getElementById('All');
+    var CheckBox = document.getElementsByTagName('input');
+    CheckAll.onclick = function() {
+        for (i = 0; i < CheckBox.length; i++) {
+            if (CheckBox[i].checked == true) {
+                CheckBox[i].checked = false;
+            } else {
+                CheckBox[i].checked = true
+            }
+        };
+    };
+};aa()	
+</script>
+  <style>
+/* Code tidied up by ScrapBook */
+</style>
+</head><body id="colloaBody"><table style="min-width: 950px; width: 100%; height: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr valign="top"><td id="colloaForm"><table style="table-layout: fixed;" class="tableForm" align="center" border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col width="60">
+<col>
+<col width="80">
+<col width="150"></colgroup>
+<tbody>
+<tr>
+<td style="text-align: right;">&nbsp;<span style="color: rgb(255, 0, 0);">*</span>主题:</td>
+<td id="dbf.subject" dbf.type="required">行政维修申请-李萌-1000929</td>
+<td style="text-align: right;">&nbsp;优先级:</td>
+<td><input disabled="" id="dbf.priority" name="dbf.priority" value="-1" autocomplete="off" type="radio">低<input disabled="" id="dbf.priority" name="dbf.priority" value="0" checked="" autocomplete="off" type="radio">中<input disabled="" id="dbf.priority" name="dbf.priority" value="1" autocomplete="off" type="radio">高</td></tr>
+<tr>
+<td style="text-align: right;">&nbsp;步骤:</td>
+<td><span id="mapping.dbf.procXSource">主管审批</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人: <span id="mapping.dbf.responsorSource">王刚,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人: <span id="mapping.dbf.participantsSource"></span></td>
+<td style="text-align: right;">&nbsp;结束时间:</td>
+<td id="dbf.endTime" dbf.type="date" dbf.source="date,editable">&nbsp;</td></tr></tbody></table>
+<div>&nbsp;</div>
+<div style="text-align: center;"><span style="font-size: 20px;"><strong>行政维修申请单</strong></span></div>
+<div>
+<table class="tableListBorder" align="center" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: right; width: 93px;"><span style="color: rgb(255, 0, 0);">*</span>申请人：</td>
+<td style="width: 161px;" id="dbf.operator" dbf.type="required" dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name" dbf.key="1000071">李萌</td>
+<td style="text-align: right; width: 113px;"><span style="color: rgb(255, 0, 0);">*</span>所属部门：</td>
+<td style="width: 283px;" id="dbf.division" dbf.type="required" dbf.source="form.fieldSource.division" dbf.key="1000034">销售部</td>
+<td style="text-align: right; width: 99px;" dbf.type="date,required" dbf.source="date"><span style="color: rgb(255, 0, 0);">*</span>申请日期：</td>
+<td style="width: 149px;" id="dbf.time2" dbf.type="date,required" dbf.source="date">2016/5/5</td></tr></tbody></table></div>
+<div>
+<table id="tableOrder" class="tableListBorder" align="center" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: center; background-color: rgb(248, 248, 248); width: 260px;" dbf.type="" dbf.source="">资产名称</td>
+<td style="text-align: center; background-color: rgb(248, 248, 248); width: 187px;" dbf.type="" dbf.source="">编号</td>
+<td style="text-align: center; background-color: rgb(248, 248, 248); width: 466px;" dbf.type="" dbf.source="">问题描述</td></tr>
+<tr>
+<td style="text-align: center; width: 260px;" id="资产名称" dbf.type="checkPrompt" dbf.source="editable,prompt:" dbf.key="1000052" dbf.value="办公椅">办公椅</td>
+<td style="text-align: center; width: 187px;" id="编号">Y-002</td>
+<td style="width: 466px;" id="问题描述">椅背断裂</td></tr>
+<tr>
+<td style="text-align: center; width: 260px;" id="资产名称" dbf.type="checkPrompt" dbf.source="editable,prompt:" dbf.key="1000078" dbf.value="财务文件柜">财务文件柜</td>
+<td style="text-align: center; width: 187px;" id="编号">GCW-001</td>
+<td style="width: 466px;" id="问题描述">锁有问题,需要维修或更换</td></tr>
+<tr>
+<td style="text-align: center; width: 260px;" id="资产名称" dbf.type="checkPrompt" dbf.source="editable,prompt:" dbf.key="">&nbsp;</td>
+<td style="text-align: center; width: 187px;" id="编号">&nbsp;</td>
+<td style="width: 466px;" id="问题描述">&nbsp;</td></tr>
+<tr>
+<td style="text-align: center; width: 260px;" id="资产名称" dbf.type="checkPrompt" dbf.source="editable,prompt:" dbf.key="">&nbsp;</td>
+<td style="text-align: center; width: 187px;" id="编号">&nbsp;</td>
+<td style="width: 466px;" id="问题描述">&nbsp;</td></tr>
+<tr>
+<td style="text-align: center; width: 260px;" id="资产名称" dbf.type="checkPrompt" dbf.source="editable,prompt:" dbf.key="">&nbsp;</td>
+<td style="text-align: center; width: 187px;" id="编号">&nbsp;</td>
+<td style="width: 466px;" id="问题描述">&nbsp;</td></tr></tbody></table></div>
+<table class="tableListBorder" align="center" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td style="text-align: center; width: 122px;" dbf.type="" dbf.source="">附加说明</td>
+<td style="width: 788px; height: 80px;" id="附加说明" dbf.type="" dbf.source="">&nbsp;</td></tr>
+<tr>
+<td style="text-align: center; width: 122px;" dbf.type="" dbf.source="">维修结果</td>
+<td style="width: 788px; height: 80px;" id="维修结果" dbf.type="" dbf.source="">&nbsp;</td></tr></tbody></table>
+<div>&nbsp;</div>
+<table style="table-layout: fixed;" class="tableForm" align="center" border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col width="60">
+<col></colgroup>
+<tbody>
+<tr>
+<td style="text-align: right;">&nbsp;附件:</td>
+<td id="attachments" dbf.source="files">&nbsp;</td></tr></tbody></table>
+<script>/* Code removed by ScrapBook */</script>
+<div style="margin: 20px 0px;" align="right"><script language="javaScript">/* Code removed by ScrapBook */</script><a class="button1 button1L" title="刷新"><i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><a class="button1 button1R" title="关闭"><i class="fa fa-times-circle fa-lg"></i></a></div>
+<table style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0"><colgroup><col width="60%"><col width="2%"><col></colgroup><tbody><tr valign="top"><td class="boxBorder">
+<div style="padding: 2px 10px;"><div style="float: right;"><a href="zsxzwxsq_lct.html">› 显示流程图</a></div>【处理过程】</div>
+<div style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);"><img src="../css/userX0.gif"> 李萌 <span class="textGray">(2016/5/5 16:23)</span></div>
+<div style="padding: 0px 10px 5px 30px;">[<b>转主管审批</b>] </div><div style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);"><img src="../css/userX0.gif"> 王刚 <span class="textGray">(2016/5/7 17:29)</span></div>
+<div style="padding: 0px 10px 5px 30px;"></div>
+</td><td></td><td>
+ <div class="boxBorder"><div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【父事务】</div>
+
+</div>
+<div class="boxBorder">
+<div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
+
+</div>
+</td></tr></tbody></table></td></tr></tbody></table></body>
+</html>
