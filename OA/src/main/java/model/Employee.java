@@ -1,13 +1,6 @@
 package model;
-
-import java.io.Serializable;
-
 //员工
-public class Employee implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Employee {
 	private Integer emp_id;//编号
 	private String emp_code;//工号
 	private String emp_name;//姓名
@@ -23,14 +16,41 @@ public class Employee implements Serializable {
 	private String emp_icon;//头像
 	private Integer depart_id;//部门
 	private String emp_pwd;//密码
-	
+	private String emp_status;//个人状态
+	private String emp_phone;
+	private String emp_qq;
+	public Department dept;
+	public String getEmp_status() {
+		return emp_status;
+	}
+	public void setEmp_status(String emp_status) {
+		this.emp_status = emp_status;
+	}
+	public String getEmp_phone() {
+		return emp_phone;
+	}
+	public void setEmp_phone(String emp_phone) {
+		this.emp_phone = emp_phone;
+	}
+	public String getEmp_qq() {
+		return emp_qq;
+	}
+	public void setEmp_qq(String emp_qq) {
+		this.emp_qq = emp_qq;
+	}
+	public Department getDept() {
+		return dept;
+	}
+	public void setDept(Department dept) {
+		this.dept = dept;
+	}
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Employee(Integer emp_id, String emp_code, String emp_name, String emp_sex, String emp_state,
 			String emp_mobile, String emp_email, String emp_birth, String emp_join, String emp_formal, String emp_leave,
-			String emp_description, String emp_icon, Integer depart_id, String emp_pwd) {
+			String emp_description, String emp_icon, Integer depart_id, String emp_pwd,String emp_status,String emp_phone,String emp_qq) {
 		super();
 		this.emp_id = emp_id;
 		this.emp_code = emp_code;
@@ -47,6 +67,9 @@ public class Employee implements Serializable {
 		this.emp_icon = emp_icon;
 		this.depart_id = depart_id;
 		this.emp_pwd = emp_pwd;
+		this.emp_status=emp_status;
+		this.emp_phone=emp_phone;
+		this.emp_qq=emp_qq;
 	}
 	public String getEmp_pwd() {
 		return emp_pwd;

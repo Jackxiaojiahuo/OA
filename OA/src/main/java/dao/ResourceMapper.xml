@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="dao.ResourceDao">
+	<!-- 按钮资源 -->
+	<select id="findRes2" resultType="resource" parameterType="Integer">
+		select * from resource where r_pid=#{r_id}
+	</select>
+	<resultMap type="resource" id="findResByPid2">
+		<id property="r_id" column="r_id"/>
+		<result property="r_name" column="r_name"/>
+		<result property="r_url" column="r_url"/>
+		<result property="r_check" column="r_check"/>
+		<collection property="childrenList" column="r_id" ofType="resource" select="findRes2"></collection>
+	</resultMap>
+	<!-- 第一层菜单资源 -->
+	<select id="findRes1" resultMap="findResByPid2" parameterType="Integer">
+		select * from resource where r_pid=#{r_id}
+	</select>
+	<resultMap type="resource" id="findResByPid1">
+		<id property="r_id" column="r_id"/>
+		<result property="r_name" column="r_name"/>
+		<result property="r_url" column="r_url"/>
+		<result property="r_type" column="r_type"/>
+		<result property="r_check" column="r_check"/>
+		<collection property="childrenList" column="r_id" ofType="resource" select="findRes1"></collection>
+	</resultMap>
 	<!-- 查询所有菜单资源 -->
-	<select id="findAllRes" parameterType="Integer" resultType="resource">
-		select * from resource  where  r_type=#{r_type}
+	<!-- 顶级菜单资源 -->
+	<select id="findAllRes"  resultMap="findResByPid1">
+		select * from resource  where  r_pid is null
+	</select>
+	<!-- 查询所有默认资源 -->
+	<select id="findResByR_check" resultType="resource">
+		select * from resource where r_check=1
 	</select>
 </mapper>

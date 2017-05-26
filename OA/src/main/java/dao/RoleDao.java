@@ -38,4 +38,10 @@ public interface RoleDao {
 	 * 删除角色信息
 	 */
 	int delRole(Integer role_id);
+	/**
+	 * 根据姓名查询角色
+	 * @param role
+	 * @return
+	 */
+	Role findRoleByName(Role role);
 }

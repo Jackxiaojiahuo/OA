@@ -66,10 +66,9 @@ public class RoleController {
 	 * @return
 	 */
 	@RequestMapping(params="action=addRole")
-	public String addRole(ModelMap model,String role_name,String role_sn,String role_description){
+	public String addRole(ModelMap model,String role_name,String role_description){
 		Role role=new Role();
 		role.setRole_name(role_name);
-		role.setRole_sn(role_sn);
 		role.setRole_description(role_description);
 		int count = roleBiz.addRole(role);
 		if(count>0){
@@ -87,8 +86,8 @@ public class RoleController {
 	 * @return
 	 */
 	@RequestMapping(params="action=editRole")
-	public String updateRole(ModelMap model,Integer role_id,String role_name,String role_sn,String role_description){
-		Role role=new Role(role_id, role_name,role_sn, role_description);
+	public String updateRole(ModelMap model,Integer role_id,String role_name,String role_description){
+		Role role=new Role(role_id, role_name,role_description);
 		int count = roleBiz.updateRole(role);
 		if(count>0){
 			return "redirect:role.do?action=findAllRole";

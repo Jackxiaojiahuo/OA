@@ -16,10 +16,6 @@ public class Role {
 	 */
 	private String role_name;
 	/**
-	 * 角色sn
-	 */
-	private String role_sn;
-	/**
 	 * 角色描述
 	 */
 	private String role_description;
@@ -30,11 +26,10 @@ public class Role {
 
 	
 
-	public Role(Integer role_id, String role_name, String role_sn, String role_description) {
+	public Role(Integer role_id, String role_name, String role_description) {
 		super();
 		this.role_id = role_id;
 		this.role_name = role_name;
-		this.role_sn = role_sn;
 		this.role_description = role_description;
 	}
 
@@ -56,13 +51,6 @@ public class Role {
 		this.role_name = role_name;
 	}
 
-	public String getRole_sn() {
-		return role_sn;
-	}
-
-	public void setRole_sn(String role_sn) {
-		this.role_sn = role_sn;
-	}
 
 
 

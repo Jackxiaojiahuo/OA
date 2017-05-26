@@ -11,7 +11,7 @@
 			$('.indent0').each(function(i){//循环隐藏不是点击事件的模块
 				if(i!=index){
 					$('.indent0:eq('+i+')').next('span').find('[style]').hide();
-					$('.indent0ex').next('span').find('[style]').hide();//将驾驶舱隐藏
+					$('.indent0ex:first').next('span').find('[style]').hide();//将驾驶舱隐藏
 				}
 			});
 			$(this).next('span').find('[style]').toggle();	//隐藏或展示其子模块
@@ -25,12 +25,12 @@
 		$('a[style]').click(function(){//子模块点击事件
 			$('a[style]').removeClass('textHighlight');//所有移除高亮样式
 			$(this).addClass('textHighlight');//给点击模块加高亮样式
-			$('.indent0ex').removeClass('textHighlight');//移除桌面模块高亮样式
+			$('.indent0ex:first').removeClass('textHighlight');//移除桌面模块高亮样式
 			//$('#colloaContent').load($(this).attr('url')+'.html');//在右边加载子模块所指向url
 		});
-		$('.indent0ex:last').click(function(){//注销按钮点击事件
-			if(confirm('确定要注销吗'))
-				alert(1);
-				window.open('login/login.jsp',"_parent");
-		});
+	/*	$('#exit').click(function(){//注销按钮点击事件
+			if(confirm('确定要注销吗')){
+				window.open("login/login.jsp","","pa");
+			}
+		});*/
 	});

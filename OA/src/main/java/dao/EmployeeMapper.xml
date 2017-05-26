@@ -44,10 +44,6 @@
 	<select id="loadByEmpcode" resultType="employee" parameterType="String">
 		select * from employee where emp_code=#{emp_code}
 	</select>
-	<!-- 根据员工编号查询角色sn -->
-	<select id="listRoleSnByUser" resultType="String" parameterType="Integer" >
-		SELECT r.role_sn FROM employeerole er,Role r,employee e WHERE e.emp_id=er.emp_id AND r.role_id=er.role_id AND e.emp_id=#{emp_id}
-	</select>
 	<!-- 根据员工编号查询所有资源 -->
 	<select id="listAllResource" resultType="resource" parameterType="Integer">
 		SELECT res.* FROM employee e,Resource res,employeeRole er,RoleResource rr 
@@ -55,20 +51,58 @@
 	</select>
 	
 	
+	
+	<!-- 曹浩然代码 -->
+	
+	<resultMap type="Employee" id="rm">
+	<id property="emp_id" column="emp_id"/>
+	<result property="emp_code" column="emp_code"/>
+	<result property="emp_name" column="emp_name"/>
+	<result property="emp_sex" column="emp_sex"/>
+	<result property="emp_state" column="emp_state"/>
+	<result property="emp_mobile" column="emp_mobile"/>
+	<result property="emp_email" column="emp_email"/>
+	<result property="emp_birth" column="emp_birth"/>
+	<result property="emp_join" column="emp_join"/>
+	<result property="emp_formal" column="emp_formal"/>
+	<result property="emp_leave" column="emp_leave"/>
+	<result property="emp_description" column="emp_description"/>
+	<result property="emp_icon" column="emp_icon"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_pwd" column="emp_pwd"/>
+	<result property="emp_icon" column="emp_icon"/>
+	<result property="emp_status" column="emp_status"/>
+	<result property="emp_phone" column="emp_phone"/>
+	<result property="emp_qq" column="emp_qq"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+</resultMap>
+<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
 	<!--全部查询-->
-  <select id="findAllEmployee"  resultType="Employee">
-    select * from Employee
-  </select>
-  	<!--根据姓名查询 --> 
-  <select id="findEmployeeByname" parameterType="String" resultType="Employee">
-  	select * from Employee where emp_name like '%${emp_name}%'
-  </select>
-  	<!--根据工号查询 --> 
-  <select id="findEmployeeBycode" parameterType="String" resultType="Employee">
-  	select * from Employee where emp_code like '%${emp_code}%'
-  </select>
+  <select id="findAllEmployee" resultMap="rm" parameterType="map">
+		select * from Employee where emp_state!='离职' limit #{index},#{size}
+	</select>
+	<select id="findAllEmployee_count" resultType="Integer" parameterType="map">
+		select count(*) from Employee where emp_state!='离职'
+	</select>
+	 <!--根据 姓名  工号  模糊  查找-->
+  <select id="findEmployeeBylike" parameterType="Employee" resultMap="rm">
+		select * from Employee 
+		<where>
+			<if test="emp_name!=null">
+			emp_name like '%${emp_name}%'
+			</if>
+			<if test="emp_code!=null">
+			emp_code like '%${emp_code}%'
+			</if>
+		</where> 
+	</select>
   	<!--根据id查询 --> 
-  <select id="findEmployeeById" parameterType="int" resultType="Employee">
+  <select id="findEmployeeById" parameterType="int" resultMap="rm">
   	select * from Employee where emp_id=#{emp_id}
   </select>
   <!-- 新增员工 
@@ -76,12 +110,12 @@
   <insert id="addEmp">
   	insert into Employee(emp_code,emp_name,emp_sex,emp_state,
   	emp_mobile,emp_email,emp_birth,emp_join,emp_formal,emp_leave,
-  	emp_description) values(#{emp_code},#{emp_name},#{emp_sex},
-  	#{emp_state},#{emp_mobile},#{emp_email},#{emp_birth},#{emp_join},#{emp_formal},#{emp_leave},#{emp_description})
+  	emp_description,emp_icon,emp_status,emp_phone,emp_qq) values(#{emp_code},#{emp_name},#{emp_sex},
+  	#{emp_state},#{emp_mobile},#{emp_email},#{emp_birth},#{emp_join},#{emp_formal},#{emp_leave},#{emp_description},#{emp_icon},#{emp_status},#{emp_phone},#{emp_qq})
   </insert>
   <!-- 根据在职状态查询 -->
-  <select id="findEmployeeState" parameterType="String" resultType="Employee">
-  	select * from Employee where emp_state like '%${emp_state}%'
+  <select id="findEmployeeState" parameterType="String" resultMap="rm">
+  	select * from Employee where emp_state like '%${value}%'
   </select>
   <!--删除员工-->
    <delete id="delEmployee">
@@ -103,8 +137,8 @@
 	update Employee set emp_code=#{emp_code},emp_name=#{emp_name},
 	emp_sex=#{emp_sex},emp_state=#{emp_state},emp_mobile=#{emp_mobile},
 	emp_email=#{emp_email},emp_birth=#{emp_birth},emp_join=#{emp_join},
-	emp_formal=#{emp_formal},emp_leave=#{emp_leave},emp_description=#{emp_description} 
-	where emp_id=#{emp_id}
+	emp_formal=#{emp_formal},emp_leave=#{emp_leave},emp_description=#{emp_description},emp_status=#{emp_status},emp_phone=#{emp_phone},
+	emp_qq=#{emp_qq} where emp_id=#{emp_id}
 	</update>
     <select id="zzstate" resultType="int">
    select count(*) from Employee where emp_state=#{emp_state}
@@ -117,5 +151,8 @@
    </select>
      <select id="lzstate" resultType="int">
    select count(*) from Employee where emp_state=#{emp_state}
+   </select>
+   <select id="findBycode" resultType="int">
+   select count(*) from Employee where emp_code=#{emp_code}
    </select>
 </mapper>

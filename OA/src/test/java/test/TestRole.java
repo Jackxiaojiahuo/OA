@@ -1,12 +1,10 @@
 package test;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,14 +15,17 @@ import model.Department;
 public class TestRole {
 	@Test
 	public void testFindAll() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //		RoleDao bean = context.getBean(RoleDao.class);
 ////		int count = bean.findAllRole_count();
 ////		System.out.println(">>>>>"+count);
 //		List<Role> list=bean.findAllRole(new Page(0,14));
 //		System.out.println(list.size());
-		DepartmentDao bean = context.getBean(DepartmentDao.class);
-		List<Department> list=bean.findAllDepart_list();
+//		ResourceDao bean = context.getBean(ResourceDao.class);
+//		List<Resource> list=bean.findAllRes();
+		Date d=new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss EE");
+		System.out.println(sdf.format(d));
 //		show(list,"╟");
 	}
 //	public void show(List<Department> list,String type){

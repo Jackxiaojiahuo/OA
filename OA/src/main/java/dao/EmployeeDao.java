@@ -35,22 +35,24 @@ public interface EmployeeDao {
 	 */
 	Employee loadByEmpcode(String emp_code);
 	/**
-	 * 根据员工编号查询角色sn
-	 * @param emp_id
-	 * @return
-	 */
-	List<String> listRoleSnByUser(Integer emp_id);
-	/**
 	 * 根据员工编号查询所有资源
 	 * @return
 	 */
 	List<Resource> listAllResource(Integer emp_id);
 	
-	List<Employee> findAllEmployee();//全部查询
+	
+	/**
+	 * 
+	 * 曹浩然代码
+	 * 
+	 */
+	
+	List<Employee> findAllEmployee(Map map);//全部查询
+	int findAllEmployee_count(Map map);
 	Employee findEmployeeById(int emp_id);//id查询
 	List<Employee> findEmployeeState(String emp_state);//根据在职状态查询
-	List<Employee> findEmployeeByname(Employee emp);//根据姓名查询
-	List<Employee> findEmployeeBycode(Employee emp);//根据工号查询
+	List<Employee> findEmployeeBylike(Employee emp);//根据模糊查询
+	int findBycode(String emp_code);
 	int addEmp(Employee emp);//新增员工
 	int delEmployee(int emp_id);//删除员工
 	int updateEmployee(Employee e);//修改

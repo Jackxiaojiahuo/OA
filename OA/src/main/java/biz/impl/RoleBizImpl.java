@@ -1,5 +1,6 @@
 package biz.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import biz.RoleBiz;
+import dao.ResourceDao;
 import dao.RoleDao;
+import dao.RoleResourceDao;
+import model.Resource;
 import model.Role;
+import model.RoleResource;
 
 /**
  * 角色业务实现类
@@ -23,6 +28,10 @@ public class RoleBizImpl implements RoleBiz {
 	 */
 	@Autowired
 	private RoleDao dao;
+	@Autowired
+	private ResourceDao resDao;
+	@Autowired
+	private RoleResourceDao roleResDao;
 	/**
 	 * 获取角色列表
 	 */
@@ -45,11 +54,17 @@ public class RoleBizImpl implements RoleBiz {
 		return dao.findRoleById(role_id);
 	}
 	/**
-	 * 添加角色
+	 * 添加角色并赋初始权限
 	 */
 	@Override
 	public int addRole(Role role) {
-		return dao.addRole(role);
+		dao.addRole(role);
+		role=dao.findRoleByName(role);
+		List<Resource> resList = resDao.findResByR_check();
+		for(Resource res:resList){
+			roleResDao.addResForRole(new RoleResource(role.getRole_id(), res.getR_id()));
+		}
+		return 1;
 	}
 	/**
 	 * 修改角色信息

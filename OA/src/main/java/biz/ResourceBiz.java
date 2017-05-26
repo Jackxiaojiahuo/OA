@@ -13,5 +13,5 @@ public interface ResourceBiz {
 	 * 查询所有资源
 	 * @return
 	 */
-	List<Resource> findAllRes(Integer r_type);
+	List<Resource> findAllRes();
 }

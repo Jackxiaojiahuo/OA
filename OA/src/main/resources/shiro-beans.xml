@@ -26,6 +26,37 @@
 	 	<property name="authorizationCacheName" value="shiro-authorizationCache"/>
 	 	<property name="credentialsMatcher" ref="hashMatcher"/>
 	 </bean>
+	  <!-- 会话ID生成器 -->
+    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+
+    <!-- 会话Cookie模板 -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+    </bean>
+	 <!-- 会话DAO -->
+    <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+        <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+    </bean>
+
+    <!-- 会话验证调度器 -->
+    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
+        <property name="sessionValidationInterval" value="1800000"/>
+        <property name="sessionManager" ref="sessionManager"/>
+    </bean>
+
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="globalSessionTimeout" value="1800000"/>
+        <property name="deleteInvalidSessions" value="true"/>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <property name="sessionDAO" ref="sessionDAO"/>
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+    </bean>
 	 <!-- 缓存管理器 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 	    	<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
@@ -34,6 +65,7 @@
 	 <!-- 安全管理器 -->
 	 <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 	    <property name="realm" ref="userRealm"/>
+	    <property name="sessionManager" ref="sessionManager"/>
 	    <property name="cacheManager" ref="cacheManager"/>
 	    <property name="authorizer.permissionResolver" ref="urlPermissionResolver"/>
 	</bean>
@@ -41,6 +73,15 @@
 	<bean id="resourceCheckFilter" class="filter.ResourceCheckFilter">
 		<property name="errorUrl" value="unauth.jsp"/>
 	</bean>	
+	
+	<!-- 并发登录过滤器 -->
+	<bean id="kickoutSessionControlFilter" class="filter.KickoutSessionControlFilter">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="kickoutAfter" value="false"/>
+        <property name="maxSession" value="1"/>
+        <property name="kickoutUrl" value="/login/login.jsp"/>
+    </bean>
 	<!-- shiro的过滤器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 	    <property name="securityManager" ref="securityManager"/>
@@ -62,10 +103,8 @@
 	        <value>
 	        	/login.do=anon
 				/login/login.jsp=anon
-				<!-- 退出,shiro去清除session -->
-				<!-- /logout.do = logout -->
 				/index.jsp=authc
-	        	/*.do = authc,resourceCheckFilter
+	        	/*.do =kickoutSessionControlFilter, authc,resourceCheckFilter
 	        </value>
 	    </property>
 	</bean>

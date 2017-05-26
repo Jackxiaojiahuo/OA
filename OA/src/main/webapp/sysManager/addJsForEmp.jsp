@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                  	<input id="${role.role_id }" name="role_ids" value="${role.role_id }" type="checkbox" 
 	                  	<c:forEach var="emprole" items="${empRole }">
 	                  		<c:if test="${role.role_id eq emprole.role_id }">
-	                  			checked="true"
+	                  			checked
 	                  		</c:if>
 		              	</c:forEach>
 	                  	>

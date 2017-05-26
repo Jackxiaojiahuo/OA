@@ -22,7 +22,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
     	classpath:applicationContext.xml
-    	classpath*:shiro-beans.xml
+    	classpath:shiro-beans.xml
     </param-value>
   </context-param>
   <listener>

@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script src="js/left_nav.js"></script>
 </head>
-<body id="colloaBody"  onmouseover="window.status='隐藏的连接内容';return true">
+<body id="colloaBody">
 	<table style="min-width: 120px; width: 100%; height: 100%;" border="0"
 		cellpadding="0" cellspacing="0">
 		<tbody>
@@ -21,19 +21,19 @@
 						cellpadding="0" cellspacing="0">
 						<tbody>
 							<tr valign="top">
-								<td title="设置状态"
+								<td title=""
 									style="width: 50px; padding: 25px 15px 25px 20px; cursor: pointer;"><img
-									src="css/h23.png" border="0"></td>
+									src="<shiro:principal property="emp_icon"/>" border="0"></td>
 								<td style="padding: 30px 20px 25px 0px;"><img
-									src="css/userXStatus0.png" border="0">${s_emp.emp_name  },<shiro:principal property="emp_name"/>
-									<div style="margin-top: 5px;">探索协同运营管理之道</div></td>
-									<input type="hidden" id="emp_code" value="${s_emp.emp_id }">
+									src="css/userXStatus0.png" border="0"><shiro:principal property="emp_name"/>
+									<div style="margin-top: 5px;"><shiro:principal property="emp_description"/></div></td>
+									<input type="hidden" id="emp_code" value="<shiro:principal property="emp_id"/>">
 							</tr>
 						</tbody>
 					</table>
 					<div id="treeOfMenu">
 						<shiro:authenticated>
-						<shiro:hasPermission name="/desktop">
+						<shiro:hasPermission name="/desktop.do?action=index">
 						<a class="indent0ex textHighlight" href="desktop.jsp"
 							target="right"> <img src="css/plusFlag.gif" border="0">
 							<img src="css/desktop.png" border="0"> 我的桌面
@@ -42,7 +42,7 @@
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 个人设置
 						</a>
-						<shiro:hasPermission name="/jiashi"> 
+						<shiro:hasPermission name="/jiashi.do?action=index"> 
 						<a style="display: block;" href="driver.jsp"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 管理驾驶舱
@@ -130,13 +130,13 @@
 						 <a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/persons.png" border="0">
 							人力资源
-						</a> <span><a style="display: none;" href="hr/syyg.html"
-							target="right"> <img src="css/blank16.gif" border="0">
+						</a> <span><a style="display: none;" href="emp.do?action=Emplist" target="right"> 
+						<img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 员工管理
-						</a> <a style="display: none;" href="hr/zpgl.html" target="right">
+						</a> <a style="display: none;" href="recruit.do?action=Relist" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 招聘和配置
-						</a> <a style="display: none;" href="hr/cc.html" target="right"> <img
+						</a> <a style="display: none;" href="work.do?action=Wklist" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 考勤管理
 						</a></span> 
@@ -158,7 +158,7 @@
 						</shiro:hasPermission> <a style="display: none;" href="emp.do?action=findEmpRight"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 用户管理
-						</a><a style="display: none;" href="sysManager/zxyh.html"
+						</a><a style="display: none;" href="login.do?action=uo"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 在线用户
 						</a> <!-- <a style="display: none;" href="sysManager/xtrz.html"
@@ -167,7 +167,7 @@
 						</a> --></span> 
 						</shiro:hasPermission>
 						</shiro:authenticated>
-						<a class="indent0ex" href="#"> <img src="css/blank16.gif"
+						<a class="indent0ex" href="login/login.jsp" target="_parent" id="exit"> <img src="css/blank16.gif"
 							border="0"> <img src="css/exit.png" border="0" width="24px">
 							安全注销
 						</a>

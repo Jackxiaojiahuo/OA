@@ -18,12 +18,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 #error{
 color:red;}
 </style>
-<script type="text/javascript" src="css/viewCn.js"></script>
-<script type="text/javascript" src="css/view.js"></script>
+<script src="../js/jquery-1.8.3.min.js"></script>
 <script>
 	function login(){
 		document.forms[0].submit();
 	}
+	$(function(){//判断session中是否有值
+		var login=$("#login").val();
+		if(login!="")
+			location="../login.do?action=exit";
+	});
 </script>
 </head>
 <body id="colloaBody">
@@ -32,6 +36,7 @@ color:red;}
 			<tr height="35px">
 				<td style="color: white;">&nbsp;</td>
 			</tr>
+			<input type="hidden" id="login" value="${s_emp.emp_name}">
 			<tr>
 				<td id="colloaLogin" align="center">
 					<div id="colloaName">

@@ -12,14 +12,14 @@ public class RoleResource {
 	/**
 	 * 资源编号
 	 */
-	private Integer Res_id;
+	private Integer res_id;
 	public RoleResource() {
 		super();
 	}
 	public RoleResource(Integer role_id, Integer res_id) {
 		super();
 		this.role_id = role_id;
-		Res_id = res_id;
+		this.res_id = res_id;
 	}
 	public Integer getRole_id() {
 		return role_id;
@@ -28,10 +28,11 @@ public class RoleResource {
 		this.role_id = role_id;
 	}
 	public Integer getRes_id() {
-		return Res_id;
+		return res_id;
 	}
 	public void setRes_id(Integer res_id) {
-		Res_id = res_id;
+		this.res_id = res_id;
 	}
+
 	
 }

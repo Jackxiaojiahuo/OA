@@ -37,7 +37,6 @@ public class UserRealm extends AuthorizingRealm {
 		int eid = emp.getEmp_id();
 		System.out.println(emp.getEmp_id()+","+emp.getEmp_name());
 		EmployeeBiz empService = (EmployeeBiz)InitServlet.getBean("empService");
-		List<String> roles = empService.listRoleSnByUser(eid);
 		List<Resource> reses = empService.listAllResource(eid);
 		List<String> permissions = new ArrayList<String>();
 		for(Resource r:reses) {
@@ -45,7 +44,6 @@ public class UserRealm extends AuthorizingRealm {
 			permissions.add(r.getR_url());//添加的是自定义的userpermission,调用UrlPermissionResovler类的resolvePermission方法
 		}
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.setRoles(new HashSet<String>(roles));
 		info.setStringPermissions(new HashSet<String>(permissions));
 		System.out.println("userRealMMMMMMMMMMMMMMMMM");
 		return info;//调用ResourceCheckFilter类的isAccessAllowed方法
@@ -81,7 +79,6 @@ public class UserRealm extends AuthorizingRealm {
 		for(Object o:keys) {
 			System.out.println("授权缓存:"+o+"-----"+c.get(o)+"----------");
 		}
-		
 		super.clearCachedAuthorizationInfo(principals);
 	}
 

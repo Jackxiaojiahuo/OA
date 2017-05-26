@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/grsz/";
@@ -30,25 +31,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </table>
         <br>
         <div class="boxBorder" style="padding: 30px;">
-          <div style="display: inline-block; vertical-align: top; margin: 0px 20px 20px 0px;"><img src="css/h23.png" border="0"></div>
-          <div style="display: inline-block; vertical-align: top;"><span class="textBig">李萌</span> <br>
+          <div style="display: inline-block; vertical-align: top; margin: 0px 20px 20px 0px;"><img src="../<shiro:principal property="emp_icon"/>" border="0"></div>
+          <div style="display: inline-block; vertical-align: top;"><span class="textBig"><shiro:principal property="emp_name"/></span> <br>
             <br>
-            从属于：销售部 <br>
-            岗位角色：系统管理员, <br>
-            事务委托给： <br>
-            被他人委托： <br>
-            <br>
+            从属于：<shiro:principal property="depart_id"/><br>
             个人状态：<img src="css/userXStatus0.png">在岗 <br>
-            简短说明：探索协同运营管理之道 <br>
+            简短说明：<shiro:principal property="emp_description"/> <br>
             固定电话：025-84858968 <br>
-            移动电话：13900221452 <br>
-            电子消息：limeng123@139.com <br>
-            即时通信： </div>
-        </div></td>
+            移动电话：<shiro:principal property="emp_mobile"/> <br>
+            电子消息：<shiro:principal property="emp_email"/> <br>
+            即时通信：   </div></div></td>
     </tr>
   </tbody>
 </table>
-</td></tr></tbody></table>
-
 </body>
 </html>

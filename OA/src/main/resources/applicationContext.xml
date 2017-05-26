@@ -93,7 +93,10 @@
 			<tx:method name="*" rollback-for="Exception" />
 		</tx:attributes>
 	</tx:advice>
-	
+	<!-- 文件上传解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+		<property name="maxUploadSize" value="5120"></property>
+	</bean>
 	<!-- biz包下所有类方法 -->
 	<!-- 配置AOP，Spring是通过AOP来进行事务管理的 -->
 	<aop:config>

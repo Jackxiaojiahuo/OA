@@ -13,5 +13,10 @@ public interface ResourceDao {
 	 * 查询所有资源
 	 * @return
 	 */
-	List<Resource> findAllRes(Integer r_type);
+	List<Resource> findAllRes();
+	/**
+	 * 查询所有默认资源
+	 * @return
+	 */
+	List<Resource> findResByR_check();
 }

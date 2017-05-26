@@ -22,8 +22,8 @@ public class ResourceBizImpl implements ResourceBiz {
 	 * @return
 	 */
 	@Override
-	public List<Resource> findAllRes(Integer r_type) {
-		return resDao.findAllRes(r_type);
+	public List<Resource> findAllRes() {
+		return resDao.findAllRes();
 	}
 
 }

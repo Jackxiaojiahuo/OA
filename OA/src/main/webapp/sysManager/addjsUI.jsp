@@ -40,12 +40,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </td>
               </tr>
               <tr>
-                <td>&nbsp;角色拼音简写<b style="color: red;">*</b></td>
-                <td id="dbf.name">
-                	<input id="roleSn" name="role_sn" class="fieldEditable" >
-                </td>
-              </tr>
-              <tr>
                 <td>&nbsp;描述</td>
                 <td id="dbf.description">
                 <textarea id="roleDescription" name="role_description" class="fieldEditable" style="height: 200px;"></textarea></td>

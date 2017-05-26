@@ -3,11 +3,11 @@
 <mapper namespace="dao.RoleDao">
     <!-- 新增角色 -->
     <insert id="addRole" parameterType="role">
-        insert into role(role_name,role_sn,role_description) value(#{role_name},#{role_sn},#{role_description})
+        insert into role(role_name,role_description) value(#{role_name},#{role_description})
     </insert>
     <!-- 修改角色信息 -->
     <update id="updateRole" parameterType="role">
-    	update role set role_name=#{role_name},role_sn=#{role_sn},role_description=#{role_description} where role_id=#{role_id}    
+    	update role set role_name=#{role_name},role_description=#{role_description} where role_id=#{role_id}    
     </update>
     <!-- 删除角色信息 -->
     <delete id="delRole" parameterType="Integer">
@@ -27,5 +27,9 @@
     <!-- 根据编号查询角色 -->
     <select id="findRoleById" parameterType="Integer" resultType="role">
 		select * from role where role_id=#{role_id}        
+    </select>
+    <!-- 根据姓名查询角色 -->
+    <select id="findRoleByName" resultType="role" parameterType="role">
+    	select * from role where role_name = #{role_name}
     </select>
 </mapper>

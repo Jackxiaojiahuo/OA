@@ -410,6 +410,11 @@
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
+		<dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
 		
 		<!-- druid连接池 -->
 		<dependency>
@@ -417,6 +422,7 @@
 		    <artifactId>druid</artifactId>
 		    <version>1.0.18</version>
 		</dependency>
+		
 		<!-- ehcache缓存 -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
