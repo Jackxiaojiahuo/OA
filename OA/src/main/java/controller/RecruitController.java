@@ -169,20 +169,20 @@ public class RecruitController {
 			Recruit r=new Recruit(re_number, re_theme,re_priority,re_shopdate,re_name,re_post,re_applydate,re_number,re_positiondate,re_reason,
 					re_duty,re_age,re_sex,re_experience,re_lb, re_req,depart_id, null);
 			ruBiz.addRecruit(r);
-			return "redirect:recruit.do?action=Relist&num=0'";
+			return "redirect:recruit.do?action=Relist&num=0";
 		}else if(sq==1){
 			Entry e=new Entry(null, et_theme,et_priority,et_shopdate,et_name,et_joindate,et_post,et_birth,et_sex,et_life,et_remarks,null, depart_id);
 			eyBiz.addEntry(e);
-			return "redirect:recruit.do?action=Relist&num=1'";
+			return "redirect:recruit.do?action=Relist&num=1";
 		}else if(sq==2){
 			Become b=new Become(null, b_theme,b_priority,b_shopdate,b_applydate,b_post,b_joindate,b_become,b_content,b_achievement,b_problem,b_imagine,b_comment,null, depart_id,emp_id, null);
 			beBiz.addBecome(b);
-			return "redirect:recruit.do?action=Relist&num=2'";
+			return "redirect:recruit.do?action=Relist&num=2";
 		}else{
 			Quit q=new Quit(null, q_theme,q_priority,q_shopdate,
 					q_applydate,q_post,q_joindate,q_quit,q_type,q_reason,q_transfer,q_opinion, null, null, depart_id,emp_id);
 			qtBiz.addQuit(q);
-			return "redirect:recruit.do?action=Relist&num=3'";
+			return "redirect:recruit.do?action=Relist&num=3";
 		}
 		
 	}	

@@ -23,11 +23,11 @@ public interface EmployeeBiz {
 	 */
 	Integer findAllEmployeeRight_count(Map map);
 	/**
-	 * 初始化密码
+	 * 修改密码
 	 * @param emp
 	 * @return
 	 */
-	int updatePwdInit(Employee emp);
+	int updatePwd(Employee emp);
 	/**
 	 * 跳转到增加岗位角色页面
 	 * @return
@@ -38,12 +38,21 @@ public interface EmployeeBiz {
 	 * @param emp
 	 * @return
 	 */
-	Employee login(String emp_code,String emp_pwd);
+	Employee login(String emp_code);
 	/**
 	 * 根据员工编号查询所有资源
 	 * @return
 	 */
 	List<Resource> listAllResource(Integer emp_id);
+	/**
+	 * 修改员工状态信息
+	 * @param emp
+	 * @return
+	 */
+	int upEmp(Employee emp);
+	
+	
+	
 	
 	
 	/**

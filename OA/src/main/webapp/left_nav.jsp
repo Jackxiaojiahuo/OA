@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+	   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +23,23 @@
 						<tbody>
 							<tr valign="top">
 								<td title=""
-									style="width: 50px; padding: 25px 15px 25px 20px; cursor: pointer;"><img
-									src="<shiro:principal property="emp_icon"/>" border="0"></td>
-								<td style="padding: 30px 20px 25px 0px;"><img
-									src="css/userXStatus0.png" border="0"><shiro:principal property="emp_name"/>
-									<div style="margin-top: 5px;"><shiro:principal property="emp_description"/></div></td>
-									<input type="hidden" id="emp_code" value="<shiro:principal property="emp_id"/>">
+									style="width: 50px; padding: 25px 15px 25px 20px; cursor: pointer;"><a href="grsz/szzt.jsp" target="right"><img
+									src="<shiro:principal property="emp_icon"/>" border="0" id="img_left" ></a></td>
+								<td style="padding: 30px 20px 25px 0px;">
+								<c:choose>
+					            	<c:when test="${s_emp.emp_status eq '在岗'  }">
+					            		<img id="status" src="css/userXStatus0.png">
+					            	</c:when>
+					            	<c:when test="${s_emp.emp_status eq '出差' }">
+					            		<img id="status" src="css/userXStatus10.png">
+					            	</c:when>
+					            	<c:otherwise>
+					            		<img id="status" src="css/userXStatus20.png">
+					            	</c:otherwise>
+					            </c:choose>
+									${s_emp.emp_name }
+									<div style="margin-top: 5px;" id="div_des">${s_emp.emp_description }</div></td>
+									<input type="hidden" id="emp_code" value="${s_emp.emp_id }">
 							</tr>
 						</tbody>
 					</table>
@@ -38,7 +50,7 @@
 							target="right"> <img src="css/plusFlag.gif" border="0">
 							<img src="css/desktop.png" border="0"> 我的桌面
 						</a></shiro:hasPermission>
-						<span><a style="display: block;" href="grsz/grsz.jsp"
+						<span><a style="display: block;" href="emp.do?action=showInfo&emp_id=${s_emp.emp_id }"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 个人设置
 						</a>
@@ -118,10 +130,10 @@
 						<shiro:hasPermission name="/xz">
 						 <a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/asset.png" border="0"> 行政管理
-						</a> <span><a style="display: none;" href="xz/hylb.html"
+						</a> <span><a style="display: none;" href="board.do?action=findBoard"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 会议室管理
-						</a> <a style="display: none;" href="xz/cllb.html" target="right">
+						</a> <a style="display: none;" href="car.do?action=findCar" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 车辆管理
 						</a> </span>

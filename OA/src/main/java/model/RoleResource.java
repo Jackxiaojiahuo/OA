@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 角色资源类
  * @author Jack
  *
  */
-public class RoleResource {
+public class RoleResource implements Serializable{
 	/**
 	 * 角色编号
 	 */

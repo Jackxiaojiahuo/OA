@@ -1,6 +1,9 @@
 package model;
+
+import java.io.Serializable;
+
 //员工
-public class Employee {
+public class Employee implements Serializable {
 	private Integer emp_id;//编号
 	private String emp_code;//工号
 	private String emp_name;//姓名

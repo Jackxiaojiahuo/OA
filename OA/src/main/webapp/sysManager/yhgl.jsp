@@ -116,7 +116,7 @@ var setting = {
 		var emp_code=$(obj).attr("emp_code");
 		$.ajax({
 			   type: "POST",
-			   url: "../emp.do?action=initPwd",
+			   url: "../emp.do?action=initPwd&op=init",
 			   data: "emp_id="+emp_id+"&emp_code="+emp_code,
 			   success: function(msg){
 			     alert( msg );
@@ -180,6 +180,7 @@ var setting = {
                     <tr>
                       <th>姓名</th>
                       <th>工号</th>
+                      <th>部门</th>
                       <th>操作</th>
                     </tr>
                   </thead>
@@ -188,6 +189,7 @@ var setting = {
 	                    <tr>
 	                      <td><img src="css/userX0.gif" border="0"> ${emp.emp_name }</td>
 	                      <td>${emp.emp_code }</td>
+	                       <td>${emp.dept.depart_name }</td>
 	                      <td>
 	                      <a href="../emp.do?action=findAllRoleForEmp&emp_id=${emp.emp_id }"  class="buttonPortal" title="岗位或角色">&nbsp;<i class="fa fa-user-md fa-lg"></i></a>
 	                      <a href="javascript:void(0);" onclick="initPwd(this);" emp_id="${emp.emp_id }" emp_code="${emp.emp_code }"  class="buttonPortal" title="初始化口令">&nbsp;<i class="fa fa-key fa-lg"></i></a>&nbsp;</td>

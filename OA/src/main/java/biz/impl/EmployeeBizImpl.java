@@ -89,6 +89,9 @@ public class EmployeeBizImpl implements EmployeeBiz {
 		return empDao.findEmployeeBylike(emp);
 	}
 	
+	
+	
+	
 	/**
 	 * 周志伟代码
 	 */
@@ -112,8 +115,8 @@ public class EmployeeBizImpl implements EmployeeBiz {
 	 * 初始化密码
 	 */
 	@Override
-	public int updatePwdInit(Employee emp) {
-		return empDao.updatePwdInit(emp);
+	public int updatePwd(Employee emp) {
+		return empDao.updatePwd(emp);
 	}
 	/**
 	 * 跳转到增加岗位角色页面
@@ -130,7 +133,7 @@ public class EmployeeBizImpl implements EmployeeBiz {
 	 * 用户登录
 	 */
 	@Override
-	public Employee login(String emp_code,String emp_pwd) {
+	public Employee login(String emp_code) {
 		return empDao.loadByEmpcode(emp_code);
 	}
 	/**
@@ -140,6 +143,15 @@ public class EmployeeBizImpl implements EmployeeBiz {
 	@Override
 	public List<Resource> listAllResource(Integer emp_id){
 		return empDao.listAllResource(emp_id);
+	}
+	/**
+	 * 修改员工状态信息
+	 * @param emp
+	 * @return
+	 */
+	@Override
+	public int upEmp(Employee emp) {
+		return empDao.upEmp(emp);
 	}
 	
 }

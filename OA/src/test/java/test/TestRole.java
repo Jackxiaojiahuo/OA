@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,9 +25,9 @@ public class TestRole {
 //		System.out.println(list.size());
 //		ResourceDao bean = context.getBean(ResourceDao.class);
 //		List<Resource> list=bean.findAllRes();
-		Date d=new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss EE");
-		System.out.println(sdf.format(d));
+//		Date d=new Date();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss EE");
+//		System.out.println(sdf.format(d));
 //		show(list,"╟");
 	}
 //	public void show(List<Department> list,String type){
@@ -36,7 +38,16 @@ public class TestRole {
 //	}
 	@Test
 	public void testUpdateEmp(){
-		System.out.println(ShiroKit.md5("000000", "admin")+"   1>>>>>>>>>>>>>...");
+		//System.out.println(ShiroKit.md5("123456", "Ahz005")+"   1>>>>>>>>>>>>>...");
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		Random random = new Random();
+		int nextInt = random.nextInt(1000);
+		System.out.println(nextInt);
+		String uuid = UUID.randomUUID().toString();
+		System.out.println(uuid);
+		System.out.println(sdf.format(date)+nextInt);
+//		System.out.println("000000".toCharArray());
 //		System.out.println(ShiroKit.md5("000000", "oa")+"   2>>>>>>>>>>>>>...");
 //		Subject subject = SecurityUtils.getSubject();
 //		UsernamePasswordToken token = new UsernamePasswordToken("王伟17", "000000");

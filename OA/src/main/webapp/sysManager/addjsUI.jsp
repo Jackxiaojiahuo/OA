@@ -14,10 +14,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="css/colloa.ico">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/view.css">
+<style>
+.error {
+	color: red;
+}
+</style>
 <script src="../js/jquery-1.8.3.min.js"></script>
 <script>
-	function check(){
-		document.forms[0].submit();
+function checkdepart_name() {
+	var des = $("#roleName").val();
+	des = des.replace(/</g, "&lt;");
+	des = des.replace(/>/g, "&gt;");
+	$("#roleName+label").html("");
+	if (des == ""|| des.length==0) {
+		$("#roleName+label").html("请输入角色名称");
+		return false;
+	} else if (filterSqlStr(des)) {
+		$("#roleName+label").html("字符中包含了敏感字符" + sql_str() + ",请重新输入！");
+		return false;
+	}
+	return true;
+}
+function checkdepart_des() {
+	var des = $("#roleDescription").val();
+	des = des.replace(/</g, "&lt;");
+	des = des.replace(/>/g, "&gt;");
+	$("#roleDescription+label").html("");
+	if (des == "" || des.length==0) {
+		return true;
+	} else if (filterSqlStr(des)) {
+		$("#roleDescription+label").html(
+				"字符中包含了敏感字符" + sql_str() + ",请重新输入！");
+		return false;
+	}
+}
+function check(){
+	var flag=true;
+		if(!checkdepart_name()) flag=false;
+		if(!checkdepart_des()) flag=false;
+		return flag;
+}
+	function sub(){
+		if(check())
+			document.forms[0].submit();
 	}
 </script>
 </head>
@@ -36,19 +75,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <tr>
                 <td>&nbsp;名称<b style="color: red;">*</b></td>
                 <td id="dbf.name">
-                	<input id="roleName" name="role_name" class="fieldEditable" >
+                	<input id="roleName" name="role_name" required="required" class="fieldEditable" ><label
+										class="error"></label>
                 </td>
               </tr>
               <tr>
                 <td>&nbsp;描述</td>
                 <td id="dbf.description">
-                <textarea id="roleDescription" name="role_description" class="fieldEditable" style="height: 200px;"></textarea></td>
+                <textarea id="roleDescription" name="role_description" class="fieldEditable" style="height: 200px;"></textarea><label
+										class="error"></label></td>
               </tr>
             </tbody>
           </table>
 		</form>
         <div id="_vWorkflowActionsShow" align="center">
-        	<a href="javascript:check()" class="button">确定</a>
+        	<a href="javascript:sub()" class="button">确定</a>
         	<a class="button" href="javascript:history.back()">取消</a></div>
         <br>
         </td>

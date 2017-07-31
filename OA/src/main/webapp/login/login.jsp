@@ -61,7 +61,7 @@ color:red;}
 								<tr>
 									<td class="left" align="center"><img src="css/person.png"></td>
 									<td class="right"><input placeholder="请输入用户名" autocomplete="off"
-										name="username" id="username" maxlength="20" value="李萌" type="text"></td>
+										name="username" id="username" maxlength="20" value="admin" type="text"></td>
 								</tr>
 								<tr height="5px">
 									<td colspan="2"></td>

@@ -50,21 +50,21 @@ public class RoleBizImpl implements RoleBiz {
 	 * 根据id查询角色
 	 */
 	@Override
-	public Role findRoleById(Integer role_id) {
-		return dao.findRoleById(role_id);
+	public Role findRoleById(Role role) {
+		return dao.findRoleByPara(role);
 	}
 	/**
-	 * 添加角色并赋初始权限
+	 * 添加角色
 	 */
 	@Override
 	public int addRole(Role role) {
-		dao.addRole(role);
-		role=dao.findRoleByName(role);
-		List<Resource> resList = resDao.findResByR_check();
-		for(Resource res:resList){
-			roleResDao.addResForRole(new RoleResource(role.getRole_id(), res.getR_id()));
-		}
-		return 1;
+//		赋初始权限
+//		role=dao.findRoleByPara(role);
+//		List<Resource> resList = resDao.findResByR_check();
+//		for(Resource res:resList){
+//			roleResDao.addResForRole(new RoleResource(role.getRole_id(), res.getR_id()));
+//		}
+		return dao.addRole(role);
 	}
 	/**
 	 * 修改角色信息

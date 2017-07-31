@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="dao.CarDao">
+	<!-- 查询车辆 -->
+	<select id="findCar" resultType="car" parameterType="car">
+		select * from car
+		<where>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+		</where>
+		<if test="id==null">
+			limit #{curpage},#{pagesize}
+		</if>
+	</select>
+	<select id="findCarCount" resultType="Integer" parameterType="car">
+		select ceil(count(id)/${pagesize}) from car
+		<where>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+		</where>
+	</select>
+    <!-- 添加车辆 -->
+    <insert id="addBoardroom" parameterType="boardroom">
+        insert into car (id,name,no,pic,status)
+        value (null,#{name},#{no},#{pic},#{status})
+    </insert>
+    <!-- 修改车辆信息 -->
+    <update id="updateCar" parameterType="car">
+        update car 
+        <set>
+        	<if test="name!=null">
+        		name=#{name},
+        	</if>
+        	<if test="no!=null">
+        		no=#{no},
+        	</if>
+        	<if test="status!=null">
+        		status=#{status},
+        	</if>
+        	<if test="pic!=null">
+        		pic=#{pic},
+        	</if>
+        </set>
+         where id=#{id}
+    </update>
+</mapper>

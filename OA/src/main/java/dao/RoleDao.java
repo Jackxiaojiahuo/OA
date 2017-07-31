@@ -21,11 +21,11 @@ public interface RoleDao {
 	 */
 	int findAllRole_count();
 	/**
-	 * 根据id查找角色
+	 * 条件查询
 	 * @param id
 	 * @return
 	 */
-	Role findRoleById(Integer role_id);
+	Role findRoleByPara(Role role);
 	/**
 	 * 添加角色
 	 */
@@ -38,10 +38,4 @@ public interface RoleDao {
 	 * 删除角色信息
 	 */
 	int delRole(Integer role_id);
-	/**
-	 * 根据姓名查询角色
-	 * @param role
-	 * @return
-	 */
-	Role findRoleByName(Role role);
 }

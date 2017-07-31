@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.EmployeeDao">
 	<!-- 查询非离职的员工(条件查询:根据部门编号) -->
-	<select id="findAllEmployeeRight" resultType="Employee" parameterType="map">
+	<select id="findAllEmployeeRight" resultMap="rm" parameterType="map">
 		SELECT * FROM employee WHERE emp_state  = '在职'
 			<!-- 是否根据部门查询员工 -->
 			<if test="depart_id!=null">
@@ -22,7 +22,7 @@
 	</select>
 	<!-- 查询非离职的员工的数量(条件查询:根据部门编号) -->
 	<select id="findAllEmployeeRight_count" resultType="Integer" parameterType="map">
-		SELECT count(*) FROM employee WHERE emp_state  != '离职'    
+		SELECT count(*) FROM employee WHERE emp_state  = '在职'    
 		<!-- 是否根据部门查询员工 -->
 			<if test="depart_id!=null">
 				and depart_id=#{depart_id}
@@ -36,12 +36,12 @@
 				and emp_name like CONCAT('%',#{emp_name},'%')
 			</if>
 	</select>
-	<!-- 初始化密码 -->
-	<update id="updatePwdInit" parameterType="employee">
+	<!-- 修改密码 -->
+	<update id="updatePwd" parameterType="employee">
 		update employee set emp_pwd=#{emp_pwd} where emp_id=#{emp_id}
 	</update>
 	<!-- 用户登录 -->
-	<select id="loadByEmpcode" resultType="employee" parameterType="String">
+	<select id="loadByEmpcode" resultMap="rm" parameterType="String">
 		select * from employee where emp_code=#{emp_code}
 	</select>
 	<!-- 根据员工编号查询所有资源 -->
@@ -49,6 +49,12 @@
 		SELECT res.* FROM employee e,Resource res,employeeRole er,RoleResource rr 
 		WHERE e.emp_id=er.emp_id AND er.role_id=rr.role_id  AND rr.res_id=res.r_id AND e.emp_id=#{emp_id}
 	</select>
+	<!-- 修改员工状态信息 -->
+	<update id="upEmp" parameterType="employee">
+		update employee set emp_icon=#{emp_icon},emp_status=#{emp_status},emp_mobile=#{emp_mobile},
+		emp_email=#{emp_email},emp_description=#{emp_description},emp_phone=#{emp_phone},
+		emp_qq=#{emp_qq} where emp_id=#{emp_id}
+	</update>
 	
 	
 	

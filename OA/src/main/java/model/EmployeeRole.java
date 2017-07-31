@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 员工角色类
  * @author Jack
  *
  */
-public class EmployeeRole {
+public class EmployeeRole implements Serializable {
 	/**
 	 * 员工编号
 	 */

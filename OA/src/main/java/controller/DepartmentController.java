@@ -39,7 +39,7 @@ public class DepartmentController {
 	 * 查询所有部门下拉列表
 	 * @return
 	 */
-	@RequestMapping(params="action=findAllDpeart_select")
+	@RequestMapping(params="action=findAllDepart_select")
 	public String findAllDpeart_select(ModelMap model){
 		model.put("list", departBiz.findAllDepart_select());
 		return "sysManager/addbmUI"; 
@@ -115,7 +115,8 @@ public class DepartmentController {
 	 */
 	@RequestMapping(params="action=delDepartById")
 	public String delRole(ModelMap model,Integer depart_id){
-		int count = departBiz.delDepart(depart_id);
+		Department department = new Department(depart_id,0);
+		int count = departBiz.updateDepart(department);
 		if(count>0){
 			return "redirect:depart.do?action=findAllDepart_list";
 		}else{

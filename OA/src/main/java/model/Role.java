@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * 岗位角色类
  * 
  * @author Jack
  *
  */
-public class Role {
+public class Role implements Serializable{
 	/**
 	 * 角色编号
 	 */
@@ -19,7 +21,11 @@ public class Role {
 	 * 角色描述
 	 */
 	private String role_description;
-
+	/**
+	 * 角色状态描述
+	 */
+	private Integer role_statu;
+	
 	public Role() {
 		super();
 	}
@@ -31,6 +37,17 @@ public class Role {
 		this.role_id = role_id;
 		this.role_name = role_name;
 		this.role_description = role_description;
+	}
+	
+
+
+
+	public Role(Integer role_id, String role_name, String role_description, Integer role_statu) {
+		super();
+		this.role_id = role_id;
+		this.role_name = role_name;
+		this.role_description = role_description;
+		this.role_statu = role_statu;
 	}
 
 
@@ -60,6 +77,18 @@ public class Role {
 
 	public void setRole_description(String role_description) {
 		this.role_description = role_description;
+	}
+
+
+
+	public Integer getRole_statu() {
+		return role_statu;
+	}
+
+
+
+	public void setRole_statu(Integer role_statu) {
+		this.role_statu = role_statu;
 	}
 
 }

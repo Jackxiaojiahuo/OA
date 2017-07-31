@@ -54,7 +54,9 @@ public class RoleController {
 	 */
 	@RequestMapping(params="action=findRoleById")
 	public String findRoleById(ModelMap model,Integer role_id){
-		Role role = roleBiz.findRoleById(role_id);
+		Role role=new Role();
+		role.setRole_id(role_id);
+		role = roleBiz.findRoleById(role);
 		model.put("role", role);
 		return "sysManager/editjsUI";
 	}
@@ -101,9 +103,13 @@ public class RoleController {
 	 * @param role_id
 	 * @return
 	 */
-	@RequestMapping(params="action=delRoleById.")
+	@RequestMapping(params="action=delRoleById")
 	public String delRole(ModelMap model,Integer role_id){
-		int count = roleBiz.delRole(role_id);
+		Role role = new Role();
+		role.setRole_id(role_id);
+		role.setRole_statu(0);
+		System.out.println("删除角色"+role_id);
+		int count = roleBiz.updateRole(role);
 		if(count>0){
 			return "redirect:role.do?action=findAllRole";
 		}else{

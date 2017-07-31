@@ -27,8 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <tr>
               <td><h1><img style="cursor: pointer;" src="css/menu.png"> 组织机构</h1></td>
               <td align="right">
-              	<a href="../depart.do?action=findAllDpeart_select" class="button1 button1L">✚ 新增组织机构</a></span><a 
-              href="../depart_findByPid.do"  class="button1 button1R" title="刷新">&nbsp;<i class="fa fa-bolt fa-lg"></i></a></td>
+              	<a href="../depart.do?action=findAllDepart_select" class="button1 button1L">✚ 新增组织机构</a></span><a 
+              href="../depart.do?action=findAllDepart_list"  class="button1 button1R" title="刷新">&nbsp;<i class="fa fa-bolt fa-lg"></i></a></td>
             </tr>
           </tbody>
         </table>
@@ -38,40 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           <tr>
 	               <th>名称</th>
 	               <th>描述</th>
+	               <th>状态</th>
 	               <th>操作</th>
 	           </tr>
 		     </thead>
           <tbody>
-          	<c:forEach items="${departList }" var="depart">
-	            <tr id="${depart.depart_id }">
-	              <td style="padding-left: 10px;"><a><img src="css/userX10000.gif" border="0"> ${depart.depart_name }</a></td>
-	              <td>${depart.depart_description }</td>
-	              <td><a  href="../depart.do?action=findDepartById&depart_id=${depart.depart_id }"  class="buttonPortal" title="修改">
-	              &nbsp;<i class="fa fa-eyedropper fa-lg"></i></a>
-	              <a href="javascript:if (confirm('确认删除?'))  location='../depart.do?action=delDepartById&depart_id=${depart.depart_id }' " class="buttonPortal" title="删除">&nbsp;<i class="fa fa-remove fa-lg"></i></a>&nbsp;
-	              </td>
-	            </tr>
-	            <c:forEach items="${depart.childrenList }" var="d">
-		            <tr id="${d.depart_id }">
-		              <td style="padding-left: 25px;"><a><img src="css/userX10000.gif" border="0"> ${d.depart_name }</a></td>
-		              <td>${d.depart_description }</td>
-		              <td><a  href="../depart.do?action=findDepartById&depart_id=${d.depart_id }"  class="buttonPortal" title="修改">
-		              &nbsp;<i class="fa fa-eyedropper fa-lg"></i></a>
-		              <a href="javascript:if (confirm('确认删除?'))  location='../depart.do?action=delDepartById&depart_id=${d.depart_id }' " class="buttonPortal" title="删除">&nbsp;<i class="fa fa-remove fa-lg"></i></a>&nbsp;
-		              </td>
-		            </tr>
-		            <c:forEach items="${d.childrenList }" var="d1">
-			            <tr id="${d1.depart_id }">
-			              <td style="padding-left: 40px;"><a><img src="css/userX10000.gif" border="0"> ${d1.depart_name }</a></td>
-			              <td>${d1.depart_description }</td>
-			              <td><a  href="../depart.do?action=findDepartById&depart_id=${d1.depart_id }"  class="buttonPortal" title="修改">
-			              &nbsp;<i class="fa fa-eyedropper fa-lg"></i></a>
-			              <a href="javascript:if (confirm('确认删除?'))  location='../depart.do?action=delDepartById&depart_id=${d1.depart_id }' " class="buttonPortal" title="删除">&nbsp;<i class="fa fa-remove fa-lg"></i></a>&nbsp;
-			              </td>
-			            </tr>
-          			</c:forEach>
-          		</c:forEach>
-          	</c:forEach>
+          <c:set var="level" value="0" scope="request" /><!-- 记录树的层次，注意scope-->
+	      <c:import url="zzjg_item.jsp" />
           </tbody>
         </table>
 </tr></tbody></table>

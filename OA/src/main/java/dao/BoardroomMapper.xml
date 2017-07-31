@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="dao.BoardroomDao">
+	<!-- 查询会议室 -->
+	<select id="findBoardroom" resultType="boardroom" parameterType="boardroom">
+		select * from boardroom
+		<where>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+		</where>
+		<if test="id==null">
+			limit #{curpage},#{pagesize}
+		</if>
+	</select>
+	<select id="findBoardroomCount" resultType="Integer" parameterType="boardroom">
+		select ceil(count(id)/${pagesize}) from boardroom
+		<where>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+		</where>
+	</select>
+    <!-- 添加会议室 -->
+    <insert id="addBoardroom" parameterType="boardroom">
+        insert into boardroom (id,name,capacity,location,device,status,description,pic)
+        value (null,#{name},#{capacity},#{location},#{device},#{status},#{description},#{pic})
+    </insert>
+    <!-- 修改会议室信息 -->
+    <update id="updateBoardroom" parameterType="boardroom">
+        update boardroom 
+        <set>
+        	<if test="name!=null">
+        		name=#{name},
+        	</if>
+        	<if test="capacity!=null">
+        		capacity=#{capacity},
+        	</if>
+        	<if test="location!=null">
+        		location=#{location},
+        	</if>
+        	<if test="device!=null">
+        		device=#{device},
+        	</if>
+        	<if test="status!=null">
+        		status=#{status},
+        	</if>
+        	<if test="description!=null">
+        		description=#{description},
+        	</if>
+        	<if test="pic!=null">
+        		pic=#{pic},
+        	</if>
+        </set>
+         where id=#{id}
+    </update>
+</mapper>

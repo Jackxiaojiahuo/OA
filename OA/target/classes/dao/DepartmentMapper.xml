@@ -8,7 +8,7 @@
 	
 	
 	  <!-- 根据父级部门编号查找子部门列表  第二层 -->
-    <select id="findDepartByPid2" parameterType="Integer" resultType="department">
+ <!--    <select id="findDepartByPid2" parameterType="Integer" resultType="department">
         select * from department where depart_pid=#{depart_pid}
     </select>
     <resultMap type="department" id="finddepart2">
@@ -16,29 +16,33 @@
     	<result property="depart_name" column="depart_name"/>
     	<result property="depart_description" column="depart_description"/>
     	<collection property="childrenList" ofType="department" column="depart_id" select="findDepartByPid2"></collection>
-    </resultMap>
+    </resultMap> -->
+    
+    
     <!-- 根据父级部门编号查找子部门列表  第一层 -->
-    <select id="findDepartByPid1" parameterType="Integer" resultMap="finddepart2">
+    <select id="findDepartByPid1" parameterType="Integer" resultMap="finddepart">
         select * from department where depart_pid=#{depart_pid}
     </select>
-    <resultMap type="department" id="finddepart1">
+    <resultMap type="department" id="finddepart">
     	<id property="depart_id" column="depart_id"/>
     	<result property="depart_name" column="depart_name"/>
     	<result property="depart_description" column="depart_description"/>
+    	<result property="depart_statu" column="depart_statu"/>
     	<collection property="childrenList" ofType="department" column="depart_id" select="findDepartByPid1"></collection>
     </resultMap>
     <!-- 查询所有部门按层次关系 -->
-    <select id="findAllDepart_list" resultMap="finddepart1">
+    <select id="findAllDepart_list" resultMap="finddepart">
     	SELECT * FROM department where depart_pid is null
     </select>
     
+     <!-- 根据id查找部门 -->
     <resultMap id="findParent" type="department">
     	<id property="depart_id" column="depart_id"/>
     	<result property="depart_name" column="depart_name"/>
     	<result property="depart_description" column="depart_description"/>
     	<result property="depart_pid" column="depart_pid"/>
+    	<result property="depart_statu" column="depart_statu"/>
     </resultMap>
-    <!-- 根据id查找部门 -->
     <select id="findDepartById" resultMap="findParent" parameterType="Integer">
         select * from department where depart_id=#{depart_id}
     </select>
@@ -51,9 +55,22 @@
     </insert>
     <!-- 修改部门信息 -->
     <update id="updateDepart" parameterType="department">
-        update department set depart_name=#{depart_name},
-        depart_description=#{depart_description},
-        depart_pid=#{depart_pid} where depart_id=#{depart_id}
+        update department 
+        <set>
+        	<if test="depart_name!=null">
+        		depart_name=#{depart_name},
+        	</if>
+        	<if test="depart_description!=null">
+        		depart_description=#{depart_description},
+        	</if>
+        	<if test="depart_pid!=null">
+        		depart_pid=#{depart_pid},
+        	</if>
+        	<if test="depart_statu!=null">
+        		depart_statu=#{depart_statu},
+        	</if>
+        </set>
+         where depart_id=#{depart_id}
     </update>
     <!-- 删除部门信息 -->
     <delete id="delDepart" parameterType="Integer">

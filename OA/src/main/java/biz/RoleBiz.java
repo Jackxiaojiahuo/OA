@@ -26,7 +26,7 @@ public interface RoleBiz {
 	 * @param id
 	 * @return
 	 */
-	Role findRoleById(Integer role_id);
+	Role findRoleById(Role role);
 	/**
 	 * 添加角色
 	 */

@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<img style="cursor: pointer;" src="css/menu.png"> 岗位角色
 								</h1></td>
 							<td align="right"><a href="addjsUI.jsp" class="button1 button1L">✚ 新增岗位角色</a></span><a
-								href="../role.do?action=findAll" class="button1 button1R" title="刷新">&nbsp;<i
+								href="../role.do?action=findAllRole" class="button1 button1R" title="刷新">&nbsp;<i
 									class="fa fa-bolt fa-lg"></i></a></td>
 						</tr>
 					</tbody>
@@ -50,6 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<tr>
 										<th>名称</th>
 										<th>描述</th>
+										<th>状态</th>
 										<th>操作</th>
 									</tr>
 								</thead>
@@ -59,6 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<td><a><img src="css/userX10.gif" border="0">
 												${role.role_name }</a></td>
 										<td>${role.role_description }</td>
+										<td>${role.role_statu eq 1 ? "有效" : "失效" }</td>
 										<td>
 											<a href="../res.do?action=findAllRes&role_id=${role.role_id }" class="buttonPortal" 
 											title="模块访问权设置(按用户)">&nbsp;<i class="fa fa-key fa-lg"></i></a>

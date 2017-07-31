@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @author Jack
  *
  */
-public class Resource {
+public class Resource implements Serializable{
 	/**
 	 * 资源编号
 	 */

@@ -153,23 +153,23 @@ public class WorkController {
 			if(sq==0){
 				Travel t=new Travel(null,tv_theme,tv_priority,tv_applydate,tv_cdate,tv_ddate,tv_termini,tv_reason,tv_traffic,tv_report,tv_result,depart_id,null, null, emp_id);
 				tlBiz.addTravel(t);
-				return "redirect:work.do?action=Wklist&num=0'";
+				return "redirect:work.do?action=Wklist&num=0";
 			}else if(sq==1){
 				Egress e=new Egress(null, eg_theme,eg_priority,eg_shopdate,eg_applydate,eg_egress,eg_return,eg_hour,eg_day,eg_site,eg_reason,eg_send,eg_advance,emp_id,null, null, depart_id);
 				esBiz.addEgress(e);
-				return "redirect:work.do?action=Wklist&num=1'";
+				return "redirect:work.do?action=Wklist&num=1";
 			}else if(sq==2){
 				Overtime o=new Overtime(null, oi_theme,oi_priority,oi_shopdate,oi_applydate,oi_cdate,oi_ddate,oi_hour,oi_day,oi_reason,emp_id,null, null, depart_id);
 				oeBiz.addOvertime(o);
-				return "redirect:work.do?action=Wklist&num=2'";
+				return "redirect:work.do?action=Wklist&num=2";
 			}else if(sq==3){
 				Furlough f=new Furlough(null, fg_theme,fg_priority,fg_shopdate,fg_applydate,fg_cdate,fg_ddate,fg_hour,fg_day,fg_type,fg_reason,emp_id,null, null, depart_id);
 				fhBiz.addFurlough(f);
-				return "redirect:work.do?action=Wklist&num=3'";
+				return "redirect:work.do?action=Wklist&num=3";
 			}else{
 				Off of=new Off(null, of_theme,of_priority,of_shopdate,of_applydate,of_cdate,of_ddate,of_hour,of_day,of_reason,of_agent,emp_id,null, null, depart_id);
 				ofBiz.addOff(of);
-				return "redirect:work.do?action=Wklist&num=4'";
+				return "redirect:work.do?action=Wklist&num=4";
 			}
 		}
 		@RequestMapping(params="action=kqzs")

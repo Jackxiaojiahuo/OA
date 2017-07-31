@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OA</title>
 </head>
-<frameset cols="18%,*" border="0"  scrolling="no" noresize="noresize">
-	<frame name="left" src="left_nav.jsp" />
+<frameset cols="18%,*" border="0"  scrolling="no" noresize="noresize" id="parent_frame">
+	<frame name="left" src="left_nav.jsp" id="left"/>
 	<frame name="right" src="desktop.jsp"/>
  </frameset>
 </html>

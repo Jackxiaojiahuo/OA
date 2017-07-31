@@ -58,7 +58,9 @@ public class UserRealm extends AuthorizingRealm {
 		EmployeeBiz userService = (EmployeeBiz)InitServlet.getBean("empService");
 		String username = token.getPrincipal().toString();//获取用户登录名(工号)
 		String password = new String((char[])token.getCredentials());//因为密码是char数组,所以转换为String
-		Employee emp = userService.login(username, password);//验证用户登录名和密码
+		Employee emp = userService.login(username);//验证用户登录名和密码
+		System.out.println("登录用户名:"+username+",密码:"+password);
+		System.out.println("查询到的用户名:"+emp.getEmp_name());
 		if(emp==null) throw new UnknownAccountException("用户名或者密码出错");
 		if(!emp.getEmp_pwd().equals(ShiroKit.md5(password, username)))
 			throw new IncorrectCredentialsException("用户名或者密码出错");
@@ -94,7 +96,32 @@ public class UserRealm extends AuthorizingRealm {
 		SimplePrincipalCollection spc = new SimplePrincipalCollection(emp.getEmp_name(), getName());
 		super.clearCachedAuthenticationInfo(spc);
 	}
-	
-	
+	/* @Override
+	    public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+	        super.clearCachedAuthorizationInfo(principals);
+	    }
+
+	    @Override
+	    public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+	        super.clearCachedAuthenticationInfo(principals);
+	    }*/
+	    @Override
+	    public void clearCache(PrincipalCollection principals) {
+	        super.clearCache(principals);
+	    }
+
+	    public void clearAllCachedAuthorizationInfo() {
+	        getAuthorizationCache().clear();
+	    }
+
+	    public void clearAllCachedAuthenticationInfo() {
+	        getAuthenticationCache().clear();
+	    }
+
+	    public void clearAllCache() {
+	        clearAllCachedAuthenticationInfo();
+	        clearAllCachedAuthorizationInfo();
+	    }
+
 
 }

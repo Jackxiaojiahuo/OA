@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  * @author Jack
  *
  */
-public class UserOnline {
+public class UserOnline implements Serializable{
 	/**
 	 * 主键
 	 */

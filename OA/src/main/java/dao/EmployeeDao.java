@@ -23,11 +23,11 @@ public interface EmployeeDao {
 	 */
 	Integer findAllEmployeeRight_count(Map map);
 	/**
-	 * 初始化密码
+	 * 修改密码
 	 * @param emp
 	 * @return
 	 */
-	int updatePwdInit(Employee emp);
+	int updatePwd(Employee emp);
 	/**
 	 * 根据工号查找员工
 	 * @param emp
@@ -39,6 +39,13 @@ public interface EmployeeDao {
 	 * @return
 	 */
 	List<Resource> listAllResource(Integer emp_id);
+	/**
+	 * 修改员工状态信息
+	 * @param emp
+	 * @return
+	 */
+	int upEmp(Employee emp);
+	
 	
 	
 	/**

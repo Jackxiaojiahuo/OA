@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * 分页工具类
  * 
  * @author Jack
  *
  */
-public class Page {
+public class Page implements Serializable{
 	/**
 	 * 当前页数
 	 */

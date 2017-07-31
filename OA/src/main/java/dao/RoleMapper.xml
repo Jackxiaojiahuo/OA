@@ -7,7 +7,19 @@
     </insert>
     <!-- 修改角色信息 -->
     <update id="updateRole" parameterType="role">
-    	update role set role_name=#{role_name},role_description=#{role_description} where role_id=#{role_id}    
+    	update role 
+    	<set>
+    		<if test="role_name!=null">
+    			role_name=#{role_name},
+    		</if>
+    		<if test="role_description!=null">
+    			role_description=#{role_description},
+    		</if>
+    		<if test="role_statu!=null">
+    			role_statu=#{role_statu},
+    		</if>
+    	</set> 
+    	 where role_id=#{role_id}    
     </update>
     <!-- 删除角色信息 -->
     <delete id="delRole" parameterType="Integer">
@@ -28,8 +40,16 @@
     <select id="findRoleById" parameterType="Integer" resultType="role">
 		select * from role where role_id=#{role_id}        
     </select>
-    <!-- 根据姓名查询角色 -->
-    <select id="findRoleByName" resultType="role" parameterType="role">
-    	select * from role where role_name = #{role_name}
+    <!-- 条件查询 -->
+    <select id="findRoleByPara" resultType="role" parameterType="role">
+    	select * from role
+    	<where>
+    		<if test="role_id!=null">
+    			role_id=#{role_id}
+    		</if>
+    		<if test="role_name!=null">
+    			role_name = #{role_name}
+    		</if>
+    	</where>
     </select>
 </mapper>
