@@ -16,9 +16,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="css/gwjs1_view.css">
 <script src="../js/jquery-1.8.3.min.js"></script>
 <script>
-	$(function(){
-		
-	});
 	function addJsForEmp(){
 		document.forms[0].submit();
 	}

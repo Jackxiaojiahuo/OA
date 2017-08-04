@@ -10,3 +10,7 @@
   	    }  
   	    return flag;  
   	} 
+  	function sql_str(){  
+  	    var str="and,delete,or,exec,insert,select,union,update,count,*,',join,>,<";  
+  	    return str;  
+  	}  

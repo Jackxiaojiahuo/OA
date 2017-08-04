@@ -9,6 +9,7 @@
 		<id column="id" property="id"/>
 		<result column="ip" property="ip"/>
 		<result column="starttime" property="startTime"/>
+		<result column="sessionId" property="sessionId"/>
 		<association property="emp" column="emp_id" javaType="employee" select="findEmp">
 		</association>
 	</resultMap>
@@ -17,14 +18,10 @@
 	</select>
 	<!-- 添加在线用户 -->
 	<insert id="addUserOnline" parameterType="useronline">
-		insert into useronline values(null,#{ip},now(),#{emp_id})
+		insert into useronline values(null,#{ip},now(),#{emp_id},#{sessionId})
 	</insert>
 	<!-- 删除在线用户 -->
-	<delete id="delUserOnline" parameterType="Integer">
-		delete from useronline where emp_id=#{emp_id}
+	<delete id="delUserOnline" parameterType="String">
+		delete from useronline where sessionId=#{sessionId}
 	</delete>
-	<!-- 统计所有在线用户数量 -->
-	<select id="findAllUserOnline_count" resultType="Integer">
-		select count(*) from useronline
-	</select>
 </mapper>

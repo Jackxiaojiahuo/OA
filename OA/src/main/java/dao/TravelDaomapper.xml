@@ -42,21 +42,6 @@
 	<select id="findTravelById" parameterType="int" resultMap="rm">
 		select * from travel where tv_id=#{tv_id}
 	</select>
-	<!--	private Integer tv_id;//id
-	private String tv_theme;//主题
-	private String tv_priority;//优先级
-	private String tv_applydate;//申请时间
-	private String tv_cdate;//出差：从
-	private String tv_ddate;//出差：到
-	private String tv_termini;//目的地
-	private String tv_reason;//出差事由
-	private String tv_traffic;//交通工具
-	private String tv_report;//出差报告
-	private String tv_result;//出差结果
-	private Integer depart_id;
-	public Department dept;//部门
-	public Employee em;//员工
-	private Integer emp_id;  -->
 	<!-- 出差申请 -->
 	<insert id="addTravel">
 		insert into travel(tv_theme,tv_priority,tv_applydate,tv_cdate,tv_ddate,tv_termini,tv_reason,tv_traffic,
@@ -64,8 +49,20 @@
 		#{tv_reason},#{tv_traffic},#{tv_report},#{tv_result},#{depart_id},#{emp_id})
 	</insert>
 	  	<!--根据主题查询 --> 
-  <select id="findTravelBylike" parameterType="Travel" resultMap="rm">
+  <select id="findTravelBylike" parameterType="map" resultMap="rm">
   	select * from travel
+  	<where>
+  		<if test="tv_theme!=null">
+  			tv_theme like '%${tv_theme}%'
+  		</if>
+  		<if test="tv_termini!=null">
+  			tv_termini like '%${tv_termini}%'
+  		</if>
+  	</where> 
+  	limit #{index},#{size} 
+  </select>
+    <select id="findTravelBylike_count" resultType="Integer" parameterType="map">
+  	select count(*) from travel
   	<where>
   		<if test="tv_theme!=null">
   			tv_theme like '%${tv_theme}%'

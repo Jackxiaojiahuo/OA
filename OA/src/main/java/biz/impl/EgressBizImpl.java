@@ -18,7 +18,9 @@ import model.Egress;
 public class EgressBizImpl implements EgressBiz{
 	@Autowired
 	private EgressDao egrDao;
-	//全部查询
+	/**
+	 *查看全部外出申请信息 
+	 */
 	@Override
 	public List<Egress> findAllEgress(Map map) {
 		return egrDao.findAllEgress(map);
@@ -27,20 +29,31 @@ public class EgressBizImpl implements EgressBiz{
 	public int findAllEgress_count(Map map) {
 		return egrDao.findAllEgress_count(map);
 	}
-	//申请
+	/**
+	 * 外出申请
+	 */
 	@Override
 	public int addEgress(Egress e) {
 		return egrDao.addEgress(e);
 	}
-	//根据id查询
+	/**
+	 *展示外出的详细申请单
+	 */
 	@Override
 	public Egress findEgressById(int eg_id) {
 		return egrDao.findEgressById(eg_id);
 	}
-	//根据模糊条件查询
+	/**
+	 * 根据条件进行模糊查询
+	 */
 	@Override
-	public List<Egress> findEgressBylike(Egress e) {
-		return egrDao.findEgressBylike(e);
+	public List<Egress> findEgressBylike(Map map) {
+		return egrDao.findEgressBylike(map);
+	}
+	@Override
+	public int findEgressBylike_count(Map map) {
+		// TODO Auto-generated method stub
+		return egrDao.findEgressBylike_count(map);
 	}
 
 }

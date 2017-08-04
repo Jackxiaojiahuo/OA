@@ -79,9 +79,9 @@
 								<tbody>
 									<tr>
 										<td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职人</td>
-										<td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key="">${e.et_name }</td>
+										<td id="dbf.operator" dbf.type="required" dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name" dbf.key="1000060">${e.em.emp_name }</td>
 										<td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职日期</td>
-										<td id="dbf.time0" dbf.type="date,required" dbf.source="date">${e.et_joindate }</td>
+										<td id="dbf.operatorSource" dbf.type="date,required" dbf.source="date">${e.et_joindate }</td>
 									</tr>
 									<tr>
 										<td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职部门</td>
@@ -100,7 +100,7 @@
 										<td style="text-align: center;">工作年限</td>
 										<td id="工作年限" dbf.type="" dbf.source="">${e.et_life }</td>
 										<td style="text-align: center;">备注</td>
-										<td id="备注" style="height: 80px;" colspan="3" dbf.type="" dbf.source="">${e.et_remarks }</td>
+										<td id="备注" style="height: 80px;" colspan="1" dbf.type="" dbf.source="">${e.et_remarks }</td>
 									</tr>
 									<tr>
 										
@@ -118,19 +118,18 @@
 								<col width="60">
 								<col>
 							</colgroup>
-							<tbody>
-								<tr>
+							<!--<tbody>
+								 <tr>
 									<td style="text-align: right;">&nbsp;附件:</td>
 									<td id="attachments" dbf.source="files">&nbsp;</td>
-								</tr>
-							</tbody>
+								</tr> 
+							</tbody>-->
 						</table>
 						<div style="margin: 20px 0px;" align="right">
 							<script language="javaScript">
 								/* Code removed by ScrapBook */
 							</script>
-							<a class="button1 button1L" title="刷新" href="javascript:location.reload()"><i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span>
-							<a class="button1 button1R" title="关闭" href="javascript:history.back()"><i class="fa fa-times-circle fa-lg"></i></a>
+							<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
 						</div>
 						<table style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0">
 							<colgroup>
@@ -143,21 +142,21 @@
 									<td class="boxBorder">
 										<div style="padding: 2px 10px;">
 											<div style="float: right;">
-												<a href="zsrz_lct.html">› 显示流程图</a>
+												<!-- <a href="zsrz_lct.html">› 显示流程图</a> -->
 											</div>【处理过程】</div>
 										<div style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);"><img src="../css/userX0.gif"> 陈莹 <span class="textGray">(2016/4/7 15:50)</span></div>
 										<div style="padding: 0px 10px 5px 30px;">[<b>提交主管审批</b>] </div>
 									</td>
 									<td></td>
 									<td>
-										<div class="boxBorder">
+										<!-- <div class="boxBorder">
 											<div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【父事务】</div>
 
 										</div>
 										<div class="boxBorder">
 											<div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
 
-										</div>
+										</div> -->
 									</td>
 								</tr>
 							</tbody>

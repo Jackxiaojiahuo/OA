@@ -20,13 +20,15 @@
     </colgroup><tbody>
     <td class="fieldLable">从属于</td>
                 <td id="dbf.psid" dbf.key="1000011" dbf.source="select sid,name,psid,stype from userX where statusX=1 and stype=10000 order by sortId,name">${e.dept.depart_name }</td>
-               	<td><input type="hidden" name="emp_id"  value="${e.emp_id }"></td>
+               	<td class="fieldLable">个人状态</td>
+				<td>${e.emp_status }</td>
+               <td><input type="hidden" name="emp_id"  value="${e.emp_id }"></td>
                 </tr>
     <tr>
             <td class="fieldLable">状态</td>
             <td><input disabled="" checked="checked" type="checkbox">有效（能够登录本系统）</td>
-            <td class="fieldLable">描述</td>
-            <td>${e.emp_description }</td>
+            <td class="fieldLable" >描述</td>
+            <td colspan="3">${e.emp_description }</td>
         </tr>
         <tr>
             <td class="fieldLable">姓名</td>
@@ -43,8 +45,14 @@
         <tr>
             <td class="fieldLable">移动电话</td>
             <td>${e.emp_mobile }</td>
-            <td class="fieldLable">电子邮件</td>
+            <td class="fieldLable">固定电话</td>
+            <td>${e.emp_phone }</td>
+        </tr>
+        <tr>    
+        	<td class="fieldLable">电子邮件</td>
             <td>${e.emp_email }</td>
+            <td class="fieldLable">即时通信(QQ)</td>
+            <td>${e.emp_qq }</td>
         </tr>
         <tr>
             <td class="fieldLable">出生日期</td>

@@ -48,8 +48,17 @@
 		fg_ddate,fg_hour,fg_day,fg_type,fg_reason,depart_id,emp_id) values(#{fg_theme},#{fg_priority},#{fg_shopdate},#{fg_applydate},#{fg_cdate},#{fg_ddate},
 		#{fg_hour},#{fg_day},#{fg_type},#{fg_reason},#{depart_id},#{emp_id})
 	</insert>
-	<select id="findFurloughBylike" parameterType="Furlough" resultMap="rm">
+	<select id="findFurloughBylike" parameterType="map" resultMap="rm">
 		select * from furlough
+		<where>
+			<if test="fg_type!=null">
+			fg_type like '%${fg_type}%'
+			</if>
+		</where>
+		limit #{index},#{size}
+	</select>
+	<select id="findFurloughBylike_count" resultType="Integer" parameterType="map">
+		select count(*) from furlough
 		<where>
 			<if test="fg_type!=null">
 			fg_type like '%${fg_type}%'

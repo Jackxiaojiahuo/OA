@@ -1,25 +1,74 @@
 package model;
-/*
- * 离职实体类 
- * 
+/**
+ * 离职
+ * @author caohaoran
+ *
  */
 public class Quit {
-	private Integer q_id;//id
-	private String q_theme;//主题
-	private String q_priority;//优先级
-	private String q_shopdate;//结束时间
-	private String q_applydate;//申请时间
-	private String q_post;//工作岗位
-	private String q_joindate;//入职日期
-	private String q_quit;//预计离职日期
-	private String q_type;//离职类型
-	private String q_reason;//离职原因
-	private String q_transfer;//工作交接
-	private String q_opinion;//主管意见
+	/**
+	 * 编号
+	 */
+	private Integer q_id;
+	/**
+	 * 主题
+	 */
+	private String q_theme;
+	/**
+	 * 优先级
+	 */
+	private String q_priority;
+	/**
+	 * 结束时间
+	 */
+	private String q_shopdate;
+	/**
+	 * 申请时间
+	 */
+	private String q_applydate;
+	/**
+	 * 工作岗位
+	 */
+	private String q_post;
+	/**
+	 * 入职日期
+	 */
+	private String q_joindate;
+	/**
+	 * 预计离职日期
+	 */
+	private String q_quit;
+	/**
+	 * 离职类型
+	 */
+	private String q_type;
+	/**
+	 * 离职原因
+	 */
+	private String q_reason;
+	/**
+	 * 工作交接
+	 */
+	private String q_transfer;
+	/**
+	 * 主管意见
+	 */
+	private String q_opinion;
+	/**
+	 * 部门
+	 */
 	public Department dept;
-	public Employee em;//员工
+	/**
+	 * 员工
+	 */
+	public Employee em;
+	/**
+	 * 员工编号
+	 */
 	private Integer emp_id;
-	private Integer depart_id;//部门
+	/**
+	 * 部门编号
+	 */
+	private Integer depart_id;
 	
 	public Quit() {
 		super();

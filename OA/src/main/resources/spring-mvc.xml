@@ -20,11 +20,6 @@
 			<bean class="util.UTF8StringHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
-	<bean
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-		id="multipartResolver"></bean>
-
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		id="viewResolver">
@@ -35,20 +30,5 @@
 			name="suffix"
 			value=".jsp"></property>
 	</bean>
-
-<!-- 	<mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
-<bean
-		class="org.springframework.format.support.FormattingConversionServiceFactoryBean"
-		id="conversionService">
-		<property name="converters">
-			<set>
-				<ref bean="dateConvert" />
-			</set>
-		</property>
-
-	</bean>
-	<bean
-		class="converter.DateConvert"
-		id="dateConvert">
-	</bean>  -->
+	<import resource="spring-mvc-shiro.xml"/>
 </beans>

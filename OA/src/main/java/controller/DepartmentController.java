@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,17 +27,6 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentBiz departBiz;
 	/**
-	 * 获取所有部门列表
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(params="action=findAllDpeart")
-	@ResponseBody
-	public List<Department> findAllDpeart(ModelMap model){
-		List<Department> list=departBiz.findAllDepart();
-		return list; 
-	}
-	/**
 	 * 查询所有部门下拉列表
 	 * @return
 	 */
@@ -50,7 +41,6 @@ public class DepartmentController {
 	 * @param index
 	 * @return
 	 */
-	@RequiresRoles("ZJL")
 	@RequestMapping(params="action=findAllDepart_list")
 	public String findAllDepart_list(ModelMap model){
 		List<Department> departList=departBiz.findAllDepart_list();
@@ -66,7 +56,9 @@ public class DepartmentController {
 	@RequestMapping(params="action=findDepartById")
 	public String findRoleById(ModelMap model,Integer depart_id){
 		model.put("list", departBiz.findAllDepart_select());
-		model.put("depart", departBiz.findDepartById(depart_id));
+		Department dept = new Department();
+		dept.setDepart_id(depart_id);
+		model.put("depart", departBiz.findDepartById(dept));
 		return "sysManager/editbmUI";
 	}
 	/**
@@ -77,15 +69,17 @@ public class DepartmentController {
 	 * @return
 	 */
 	@RequestMapping(params="action=addDepart")
-	public String addRole(ModelMap model,String depart_name,String depart_description,Integer depart_pid){
+	public String addDept(ModelMap model,HttpServletRequest request,String depart_name,String depart_description,Integer depart_pid){
 		Department depart=new Department();
 		depart.setDepart_name(depart_name);
 		depart.setDepart_description(depart_description);
 		depart.setDepart_pid(depart_pid==0?null:depart_pid);
 		int count = departBiz.addDepart(depart);
 		if(count>0){
+			request.getSession().setAttribute("msg", "添加部门成功");
 			return "redirect:depart.do?action=findAllDepart_list";
 		}else{
+			request.getSession().setAttribute("msg", "添加部门失败");
 			return "sysManager/addbmUI";
 		}
 	}
@@ -98,12 +92,14 @@ public class DepartmentController {
 	 * @return
 	 */
 	@RequestMapping(params="action=editDepart")
-	public String updateRole(ModelMap model,Integer depart_id,String depart_name,String depart_description,Integer depart_pid){
+	public String updateRole(ModelMap model,HttpServletRequest request,Integer depart_id,String depart_name,String depart_description,Integer depart_pid){
 		Department depart=new Department(depart_id, depart_name, depart_description, depart_pid);
 		int count = departBiz.updateDepart(depart);
 		if(count>0){
+			request.getSession().setAttribute("msg", "修改部门成功");
 			return "redirect:depart.do?action=findAllDepart_list";
 		}else{
+			request.getSession().setAttribute("msg", "修改部门失败");
 			return "redirect:depart.do?action=findDepartById&id="+depart_id;
 		}
 	}
@@ -114,12 +110,14 @@ public class DepartmentController {
 	 * @return
 	 */
 	@RequestMapping(params="action=delDepartById")
-	public String delRole(ModelMap model,Integer depart_id){
+	public String delRole(ModelMap model,Integer depart_id,HttpServletRequest request){
 		Department department = new Department(depart_id,0);
-		int count = departBiz.updateDepart(department);
+		int count = departBiz.delDepart(department);
 		if(count>0){
+			request.getSession().setAttribute("msg", "删除部门成功");
 			return "redirect:depart.do?action=findAllDepart_list";
 		}else{
+			request.getSession().setAttribute("msg", "该部门下还有员工,不能删除");
 			return "sysManager/zzjg";
 		}
 	}

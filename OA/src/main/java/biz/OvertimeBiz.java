@@ -10,9 +10,30 @@ import model.Overtime;
  *
  */
 public interface OvertimeBiz {
-	List<Overtime> findAllOvertime(Map map);//全部查询
+	/**
+	 * 显示全部加班人员的申请单
+	 * @param map
+	 * @return
+	 */
+	List<Overtime> findAllOvertime(Map map);
 	int findAllOvertime_count(Map map);
-	int addOvertime(Overtime o);// 加班申请
-	Overtime findOvertimeById(int oi_id);// id查询
-	List<Overtime> findOvertimeBylike(Overtime o);//根据模糊查询
+	/**
+	 * 加班申请
+	 * @param o
+	 * @return
+	 */
+	int addOvertime(Overtime o);
+	/**
+	 * 展示加班的详细申请单
+	 * @param oi_id
+	 * @return
+	 */
+	Overtime findOvertimeById(int oi_id);
+	/**
+	 * 根据条件进行模糊查询
+	 * @param o
+	 * @return
+	 */
+	List<Overtime> findOvertimeBylike(Map map);
+	int findOvertimeBylike_count(Map map);
 }

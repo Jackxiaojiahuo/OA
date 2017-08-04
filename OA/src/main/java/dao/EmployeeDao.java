@@ -57,8 +57,10 @@ public interface EmployeeDao {
 	List<Employee> findAllEmployee(Map map);//全部查询
 	int findAllEmployee_count(Map map);
 	Employee findEmployeeById(int emp_id);//id查询
-	List<Employee> findEmployeeState(String emp_state);//根据在职状态查询
-	List<Employee> findEmployeeBylike(Employee emp);//根据模糊查询
+	List<Employee> findEmployeeState(Map map);//根据在职状态查询
+	int findEmployeeState_count(Map map);
+	List<Employee> findEmployeeBylike(Map map);//根据模糊查询
+	int findEmployeeBylike_count(Map map);
 	int findBycode(String emp_code);
 	int addEmp(Employee emp);//新增员工
 	int delEmployee(int emp_id);//删除员工

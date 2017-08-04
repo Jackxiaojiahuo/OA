@@ -77,8 +77,12 @@ public class RoleBizImpl implements RoleBiz {
 	 * 删除角色信息
 	 */
 	@Override
-	public int delRole(Integer role_id) {
-		return dao.delRole(role_id);
+	public int delRole(Role role) {
+		return dao.updateRole(role);
+	}
+	@Override
+	public Role findRoleByName(Role role) {
+		return dao.findRoleByPara(role);
 	}
 
 }

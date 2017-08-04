@@ -18,7 +18,9 @@ import model.Entry;
 public class EntryBizImpl implements EntryBiz{
 	@Autowired
 	private EntryDao enDao;
-	//全部查询
+	/**
+	 * 显示全部入职人员的申请单
+	 */
 	@Override
 	public List<Entry> findAllEntry(Map map) {
 		return enDao.findAllEntry(map);
@@ -27,12 +29,16 @@ public class EntryBizImpl implements EntryBiz{
 	public int findAllEntry_count(Map map) {
 		return enDao.findAllEntry_count(map);
 	}
-	//申请
+	/**
+	 * 入职申请
+	 */
 	@Override
 	public int addEntry(Entry e) {
 		return enDao.addEntry(e);
 	}
-	//根据id查询
+	/**
+	 * 展示入职人员的详细申请单
+	 */
 	@Override
 	public Entry findEntryById(int et_id) {
 		return enDao.findEntryById(et_id);

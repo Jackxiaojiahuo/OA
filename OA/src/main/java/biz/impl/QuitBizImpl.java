@@ -18,7 +18,9 @@ import model.Quit;
 public class QuitBizImpl implements QuitBiz{
 	@Autowired
 	private QuitDao quitDao;
-	//全部查询
+	/**
+	 * 显示全部离职人员的申请单
+	 */
 	@Override
 	public List<Quit> findAllQuit(Map map) {
 		return quitDao.findAllQuit(map);
@@ -27,12 +29,16 @@ public class QuitBizImpl implements QuitBiz{
 		public int findAllQuit_count(Map map) {
 			return quitDao.findAllQuit_count(map);
 		}
-	//离职申请
+	/**
+	 * 离职申请
+	 */
 	@Override
 	public int addQuit(Quit q) {
 		return quitDao.addQuit(q);
 	}
-	//根据id查询离职名单
+	/**
+	 * 展示离职人员的详细申请单
+	 */
 	@Override
 	public Quit findQuitById(int q_id) {
 		return quitDao.findQuitById(q_id);

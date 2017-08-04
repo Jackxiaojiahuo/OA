@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="dao.BoardroomReserveDao">
+	<!-- 查询会议室记录 -->
+	<resultMap type="Employee" id="rm">
+	<id property="emp_id" column="emp_id"/>
+	<result property="emp_code" column="emp_code"/>
+	<result property="emp_name" column="emp_name"/>
+	<result property="emp_sex" column="emp_sex"/>
+	<result property="emp_state" column="emp_state"/>
+	<result property="emp_mobile" column="emp_mobile"/>
+	<result property="emp_email" column="emp_email"/>
+	<result property="emp_birth" column="emp_birth"/>
+	<result property="emp_join" column="emp_join"/>
+	<result property="emp_formal" column="emp_formal"/>
+	<result property="emp_leave" column="emp_leave"/>
+	<result property="emp_description" column="emp_description"/>
+	<result property="emp_icon" column="emp_icon"/>
+	<result property="depart_id" column="depart_id"/>
+	<result property="emp_pwd" column="emp_pwd"/>
+	<result property="emp_icon" column="emp_icon"/>
+	<result property="emp_status" column="emp_status"/>
+	<result property="emp_phone" column="emp_phone"/>
+	<result property="emp_qq" column="emp_qq"/>
+	<association property="dept" column="depart_id"
+	javaType="Department" select="getAllDepartmentById">
+	</association>
+</resultMap>
+<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<select id="getEmp" parameterType="Integer" resultMap="rm">
+		select * from employee where emp_id=#{emp_id}
+	</select>
+	<select id="getBoard" parameterType="Integer" resultType="boardroom">
+		select * from boardroom where id=#{board_id}
+	</select>
+	<resultMap id="selectAll" type="boardroomreserve">
+		<id property="id" column="id"/>
+		<result property="subject" column="subject"/>
+		<result property="applicationDate" column="applicationDate"/>
+		<result property="beginTime" column="beginTime"/>
+		<result property="endTime" column="endTime"/>
+		<result property="reason" column="reason"/>
+		<result property="description" column="description"/>
+		<result property="state" column="state"/>
+		<association property="emp" column="emp_id" javaType="employee" select="getEmp">
+		</association>
+		<association property="board" column="board_id" javaType="boardroom" select="getBoard">
+		</association>
+	</resultMap>
+	<select id="findBoardroomReserve" resultMap="selectAll" parameterType="boardroomreserve">
+		select * from boardroomreserve
+		<where>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+			<if test="board_id!=null">
+				and board_id=#{board_id}
+			</if>
+			<if test="emp_id!=null">
+				and emp_id=#{emp_id}
+			</if>
+		</where>
+		ORDER BY beginTime DESC
+		<if test="id==null">
+			limit #{curpage},#{pagesize}
+		</if>
+	</select>
+	<select id="findAllCount" resultType="Integer" parameterType="boardroom">
+		select ceil(count(id)/${pagesize}) from boardroomreserve
+		<where>
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+			<if test="board_id!=null">
+				and board_id=#{board_id}
+			</if>
+			<if test="emp_id!=null">
+				and emp_id=#{emp_id}
+			</if>
+		</where>
+	</select>
+    <!-- 添加会议室记录 -->
+    <insert id="addBoardroomReserve" parameterType="boardroomreserve">
+        insert into boardroomreserve (id,subject,applicationDate,beginTime,endTime,reason,description,emp_id,board_id,state)
+        value (null,#{subject},#{applicationDate},#{beginTime},#{endTime},#{reason},#{description},#{emp_id},#{board_id},#{state}})
+    </insert>
+    <!-- 修改会议室记录信息 -->
+    <update id="updateBoardroomReserve" parameterType="boardroomreserve">
+        update boardroomreserve 
+        <set>
+        	<if test="state!=null">
+        		state=#{state},
+        	</if>
+        </set>
+         where id=#{id}
+    </update>
+</mapper>

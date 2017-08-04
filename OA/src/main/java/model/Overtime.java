@@ -1,21 +1,65 @@
 package model;
-/*
+/**
  * 加班
+ * @author caohaoran
+ *
  */
 public class Overtime {
-	private Integer oi_id;//id
-	private String oi_theme;//主题
-	private String oi_priority;//优先级
-	private String oi_shopdate;//结束时间
-	private String oi_applydate;//申请时间
-	private String oi_cdate;//加班：从
-	private String oi_ddate;//加班：到
-	private String oi_hour;//小时
-	private String oi_day;//天
-	private String oi_reason;//加班事由
-	private Integer depart_id;//
-	public Department dept;//部门
-	public Employee em;//员工
+	/**
+	 * 
+	 */
+	private Integer oi_id;
+	/**
+	 * 主题
+	 */
+	private String oi_theme;
+	/**
+	 * 优先级
+	 */
+	private String oi_priority;
+	/**
+	 * 结束时间
+	 */
+	private String oi_shopdate;
+	/**
+	 * 申请时间
+	 */
+	private String oi_applydate;
+	/**
+	 * 加班：从
+	 */
+	private String oi_cdate;
+	/**
+	 * 加班：到
+	 */
+	private String oi_ddate;
+	/**
+	 * 小时
+	 */
+	private String oi_hour;
+	/**
+	 * 天
+	 */
+	private String oi_day;
+	/**
+	 * 加班事由
+	 */
+	private String oi_reason;
+	/**
+	 * 
+	 */
+	private Integer depart_id;
+	/**
+	 * 部门
+	 */
+	public Department dept;
+	/**
+	 * 员工
+	 */
+	public Employee em;
+	/**
+	 * 
+	 */
 	private Integer emp_id;
 	
 	public Integer getEmp_id() {

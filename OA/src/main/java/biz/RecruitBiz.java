@@ -10,8 +10,29 @@ import model.Recruit;
  *
  */
 public interface RecruitBiz {
-	List<Recruit> findAllRecruit(Map map);//全部查询
+	/**
+	 * 显示全部招聘人员的申请信息
+	 * @param map
+	 * @return
+	 */
+	List<Recruit> findAllRecruit(Map map);
 	int findAllRecruit_count(Map map);
-	int addRecruit(Recruit r);//招聘申请
-	Recruit findRecruiteById(int re_id);//id查询
+	/**
+	 * 招聘申请
+	 * @param r
+	 * @return
+	 */
+	int addRecruit(Recruit r);
+	/**
+	 * 审批处理
+	 * @param r
+	 * @return
+	 */
+	int updateRecruit(Recruit r);
+	/**
+	 * 展示招聘人员的详细申请单
+	 * @param re_id
+	 * @return
+	 */
+	Recruit findRecruiteById(int re_id);
 }

@@ -27,8 +27,8 @@ public class UserOnlineBizImpl implements UserOnlineBiz {
 	 * @return
 	 */
 	@Override
-	public int delUserOnline(Integer id) {
-		return uoDao.delUserOnline(id);
+	public int delUserOnline(String sessionId) {
+		return uoDao.delUserOnline(sessionId);
 	}
 	/**
 	 * 获取所有在线用户
@@ -38,13 +38,4 @@ public class UserOnlineBizImpl implements UserOnlineBiz {
 	public List<UserOnline> findAllUserOnline() {
 		return uoDao.findAllUserOnline();
 	}
-	/**
-	 * 统计所有在线用户数量
-	 * @return
-	 */
-	@Override
-	public int findAllUserOnline_count() {
-		return uoDao.findAllUserOnline_count();
-	}
-
 }

@@ -139,14 +139,16 @@ public class EmployeeController {
 	 * @return
 	 */
 	@RequestMapping(params = "action=updateRoleForEmp")
-	public String updateRoleForEmp(ModelMap model, Integer emp_id, String[] role_ids) {
+	public String updateRoleForEmp(ModelMap model, Integer emp_id, String[] role_ids,HttpServletRequest request) {
 		List<EmployeeRole> list = new ArrayList<EmployeeRole>();
 		for (String role_id : role_ids) {
 			list.add(new EmployeeRole(emp_id, Integer.valueOf(role_id)));
 		}
 		if (empRoleBiz.updateRoleForEmp(emp_id, list) > 0) {
+			request.getSession().setAttribute("msg", "角色修改成功");
 			return "redirect:emp.do?action=findEmpRight";
 		} else {
+			request.getSession().setAttribute("msg", "角色修改失败");
 			return "sysManager/addJsForEmp";
 		}
 	}
@@ -167,7 +169,7 @@ public class EmployeeController {
 	 */
 	@RequestMapping(params="action=updateZT")
 	public String updateZT(ModelMap model,String emp_icon,String status,
-			String description,String phone,String mobile,String email,String qq,String emp_id){
+			String description,String phone,String mobile,String email,String qq,String emp_id,HttpServletRequest request){
 		Employee emp=new Employee();
 		emp.setEmp_id(Integer.valueOf(emp_id));
 		emp.setEmp_icon(emp_icon);
@@ -178,8 +180,10 @@ public class EmployeeController {
 		emp.setEmp_email(email);
 		emp.setEmp_qq(qq);
 		if(empBiz.upEmp(emp)>0){
+			request.getSession().setAttribute("msg", "修改信息成功");
 			return "redirect:emp.do?action=showInfo&emp_id="+emp_id;
 		}else{
+			request.getSession().setAttribute("msg", "修改信息失败");
 			return "grsz/zzzt";
 		}
 	}
@@ -214,9 +218,16 @@ public class EmployeeController {
 	/**
 	 * 曹浩然代码
 	 */
-	// 全部查询
-	@RequestMapping(params = "action=Emplist")
-	public String findAllEmp(ModelMap model, Integer num, Integer index, Integer state) {
+	/**
+	 * 显示全部员工的信息
+	 * @param model
+	 * @param num
+	 * @param index
+	 * @param state
+	 * @return
+	 */
+	@RequestMapping(params="action=Emplist")
+	public String findAllEmp(ModelMap model,Integer num,Integer index,Integer state){
 		int zzstate = empBiz.zzstate("在职");
 		model.put("zzstate", zzstate);
 		int systate = empBiz.systate("试用");
@@ -225,105 +236,189 @@ public class EmployeeController {
 		model.put("txstate", txstate);
 		int lzstate = empBiz.lzstate("离职");
 		model.put("lzstate", lzstate);
-		num = num == null ? 0 : num;
-		model.put("num", num);
-		if (num == 0) {
-			index = index == null ? 1 : index;
-			Map map = new HashMap();
-			Page page = new Page(index, 10);
-			map.put("index", (index - 1) * 10);
-			map.put("size", 10);
-			List<Employee> list = empBiz.findAllEmployee(map);
+		num=num==null?0:num;
+		model.put("num",num);
+		index=index==null?1:index;
+		Map map=new HashMap();
+		Page page=new Page(index,10);
+		map.put("index", (index-1)*10);
+		map.put("size", 10);
+		String emp_state=null;
+		List<Employee> list=null;
+		if(num==0){
+			list=empBiz.findAllEmployee(map);
 			page.setCount(empBiz.findAllEmployee_count(map));
 			model.put("page", page);
 			model.put("list", list);
-		} else if (num == 1) {
-			String emp_state = null;
-			switch (state) {
-			case 0:
-				emp_state = "在职";
-				break;
-			case 1:
-				emp_state = "试用";
-				break;
-			case 2:
-				emp_state = "退休";
-				break;
-			case 3:
-				emp_state = "离职";
-				break;
+		}else if(num==1){
+				map.put("emp_state", "在职");
+				list = empBiz.findEmployeeState(map);
+				page.setCount(empBiz.findEmployeeState_count(map));
+				model.put("page", page);
+				model.put("list", list);
+		}else if(num==2){
+				map.put("emp_state", "试用");
+				list = empBiz.findEmployeeState(map);
+				page.setCount(empBiz.findEmployeeState_count(map));
+				model.put("page", page);
+				model.put("list", list);
+		}else if(num==3){
+				map.put("emp_state", "退休");
+				list = empBiz.findEmployeeState(map);
+				page.setCount(empBiz.findEmployeeState_count(map));
+				model.put("page", page);
+				model.put("list", list);
+		}else if(num==4){
+				map.put("emp_state", "离职");
+				list = empBiz.findEmployeeState(map);
+				page.setCount(empBiz.findEmployeeState_count(map));
+				model.put("page", page);
+				model.put("list", list);
 			}
-			List<Employee> list = empBiz.findEmployeeState(emp_state);
-			model.put("list", list);
-		}
 		return "hr/yggl";
 	}
-
-	// 新增员工
-	@RequestMapping(params = "action=add")
-	public String addEmp(String emp_code, String emp_name, String emp_sex, String emp_state, String emp_mobile,
-			String emp_email, String emp_birth, String emp_join, String emp_formal, String emp_leave,
-			String emp_description, String emp_icon, String emp_status, String emp_phone, String emp_qq) {
-		Employee e = new Employee(null, emp_code, emp_name, emp_sex, emp_state, emp_mobile, emp_email, emp_birth,
-				emp_join, emp_formal, emp_leave, emp_description, emp_icon, null, null, emp_status, emp_phone, emp_qq);
+	/**
+	 * 新增员工
+	 * @param emp_code
+	 * @param emp_name
+	 * @param emp_sex
+	 * @param emp_state
+	 * @param emp_mobile
+	 * @param emp_email
+	 * @param emp_birth
+	 * @param emp_join
+	 * @param emp_formal
+	 * @param emp_leave
+	 * @param emp_description
+	 * @param emp_icon
+	 * @param emp_status
+	 * @param emp_phone
+	 * @param emp_qq
+	 * @param state_id
+	 * @return
+	 */
+	@RequestMapping(params="action=add")
+	public String addEmp(String emp_code,String emp_name,String emp_sex,
+			String emp_state,String emp_mobile,String emp_email,String emp_birth,
+			String emp_join,String emp_formal,String emp_leave,String emp_description,
+			String emp_icon,String emp_status,String emp_phone,String emp_qq,Integer state_id){
+		Employee e=new Employee(null, emp_code,emp_name,emp_sex,
+				emp_state,emp_mobile,emp_email,emp_birth==""?null:emp_birth,emp_join==""?null:emp_join,
+				emp_formal==""?null:emp_formal,emp_leave==""?null:emp_leave,emp_description,emp_icon,null,"000000",
+				emp_status,emp_phone,emp_qq,0);
 		empBiz.addEmp(e);
 		return "redirect:emp.do?action=Emplist";
 	}
-
-	// 根据 姓名 工号 模糊 查询
-	@RequestMapping(params = "action=cz")
-	public String findEmpLike(ModelMap model, String names, String count) {
-		Employee e = new Employee();
-		List<Employee> list = null;
-		if (names.equals("emp_name")) {
-			e.setEmp_name(count);
-		} else if (names.equals("emp_code")) {
-			e.setEmp_code(count);
+	/**
+	 * 根据提供的条件进行查询
+	 * @param model
+	 * @param names
+	 * @param count
+	 * @param index
+	 * @return
+	 */
+	@RequestMapping(params="action=cz")
+	public String findEmpLike(ModelMap model,String names,String count,Integer index){
+		index=index==null?1:index;
+		Map map=new HashMap();
+		Page page=new Page(index,10);
+		map.put("index", (index-1)*10);
+		map.put("size", 10);
+		List<Employee> list=null;
+		if(count.equals("")){
+			page.setCount(0);
+		}else{
+		//姓名
+		if(names.equals("emp_name")){
+			map.put("emp_name", count);
+			page.setCount(empBiz.findEmployeeBylike_count(map));
+			//工号
+		}else if(names.equals("emp_code")){
+			map.put("emp_code", count);
+			page.setCount(empBiz.findEmployeeBylike_count(map));
 		}
-		list = empBiz.findEmployeeBylike(e);
+		list=empBiz.findEmployeeBylike(map);
+		}
+		model.put("page", page);
+		model.put("names", names);
+		model.put("count", count);
 		model.put("list", list);
 		return "hr/info/czyg";
 	}
-
-	// 删除员工
-	@RequestMapping(params = "action=del")
-	public String delEmp(Integer emp_id) {
+	/**
+	 * 删除员工
+	 * @param emp_id
+	 * @return
+	 */
+	@RequestMapping(params="action=del")
+	public String delEmp(Integer emp_id){
 		empBiz.delEmployee(emp_id);
 		return "redirect:emp.do?action=Emplist";
 	}
-
-	// 更新员工信息
-	@RequestMapping(params = "action=update")
-	public String updateEmp(Integer emp_id, String emp_code, String emp_name, String emp_sex, String emp_state,
-			String emp_mobile, String emp_email, String emp_birth, String emp_join, String emp_formal, String emp_leave,
-			String emp_description, String emp_icon, String emp_status, String emp_phone, String emp_qq) {
-		Employee e = new Employee(emp_id, emp_code, emp_name, emp_sex, emp_state, emp_mobile, emp_email, emp_birth,
-				emp_join, emp_formal, emp_leave, emp_description, emp_icon, null, null, emp_status, emp_phone, emp_qq);
+	/**
+	 * 修改员工的信息
+	 * @param emp_id
+	 * @param emp_code
+	 * @param emp_name
+	 * @param emp_sex
+	 * @param emp_state
+	 * @param emp_mobile
+	 * @param emp_email
+	 * @param emp_birth
+	 * @param emp_join
+	 * @param emp_formal
+	 * @param emp_leave
+	 * @param emp_description
+	 * @param emp_icon
+	 * @param emp_status
+	 * @param emp_phone
+	 * @param emp_qq
+	 * @param state_id
+	 * @return
+	 */
+	@RequestMapping(params="action=update")
+	public String updateEmp(Integer emp_id,String emp_code,String emp_name,String emp_sex,
+			String emp_state,String emp_mobile,String emp_email,String emp_birth,
+			String emp_join,String emp_formal,String emp_leave,String emp_description,
+			String emp_icon,String emp_status,String emp_phone,String emp_qq,Integer state_id){
+		
+		Employee e=new Employee(emp_id, emp_code,emp_name,emp_sex,
+				emp_state,emp_mobile,emp_email,emp_birth==""?null:emp_birth,emp_join==""?null:emp_join,
+				emp_formal==""?null:emp_formal,emp_leave==""?null:emp_leave,emp_description,emp_icon,null,null,
+				emp_status,emp_phone,emp_qq,0);
 		empBiz.updateEmployee(e);
-		return "redirect:emp.do?action=zs";
+		return "redirect:emp.do?action=zs&emp_id="+emp_id;
 	}
-
-	// 展示员工信息
-	@RequestMapping(params = "action=zs")
-	public String zsEmp(ModelMap model, Integer emp_id, String id) {
-		emp_id = emp_id == null ? 0 : emp_id;
-		id = id == null ? null : id;
+	/**
+	 * 展示员工的信息
+	 * @param model
+	 * @param emp_id
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(params="action=zs")
+	public String zsEmp(ModelMap model,Integer emp_id,String id){
+		emp_id=emp_id==null?0:emp_id;
+		id=id==null?null:id;
 		Employee e = empBiz.findEmployeeById(emp_id);
 		model.put("e", e);
-		if ("id".equals(id)) {
+		if("id".equals(id)){		
 			return "hr/info/xgyg";
-		} else {
+		}else{
 			return "hr/info/zsyg";
 		}
 	}
-
-	// 判断工号是否已存在
-	@RequestMapping(params = "action=gh")
+	/**
+	 * 判断工号是否已存在
+	 * @param emp_code
+	 * @return
+	 */
+	@RequestMapping(params="action=gh")
 	@ResponseBody
-	public String ghEmp(String emp_code) {
-		if (empBiz.findBycode(emp_code) > 0) {
+	public String ghEmp(String emp_code){
+		if(empBiz.findBycode(emp_code)>0){
 			return "1";
-		} else {
+		}else{
 			return "0";
 		}
 	}

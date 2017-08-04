@@ -17,23 +17,9 @@
  <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
  <script language="JavaScript" src="jquery-ui.min.js"></script>
    <script>
-  function checkname(){
-  	  var name=$("input[name=emp_id]").val();
-  	  var nameid=$("#nameid");
-  		if(name==""){//检测姓名是否为空
-  			nameid.show();
-  			return false;
-  			}
-  		nameid.hide();
-  		return true;
-    }
-    
     function check(){
-	if(checkname()){
 		document.forms[0].submit();
-	}
   	  	}
-
 </script>
  <script>
      jQuery(function($){  
@@ -149,7 +135,7 @@
     <tr valign="top">
       <td id="colloaForm"><div class="formTaskflowContainer">
             <form class="formTaskflow" action="../../recruit.do?action=zp" method="post">
-            <input type="hidden" name="sq" value="4">
+            <input type="hidden" name="sq" value="3">
             <table class="tableForm" style="table-layout: fixed;" cellspacing="0" cellpadding="0" align="center" border="0">
               <colgroup>
               <col width="60">
@@ -191,7 +177,10 @@
                 <tbody>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请人</td>
-                    <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key=""><input id="e.dbf.operatorSource" class="fieldEditable" value="${q.em.emp_name } "name="emp_id"><input type="hidden" name="emp_id" value="${q.em.emp_id }"><span id="nameid" style="color:red; display: none;" >不能为空</span></td>
+                    <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key="">
+                    <input id="e.dbf.operatorSource" class="fieldEditable"
+                     value="${s_emp.emp_name }"><input type="hidden" name="emp_id" value="${s_emp.emp_id }">
+                     </td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请日期</td>
                     <td id="dbf.time2" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
                       <div><input type="text" id="sqDate" name="q_applydate"></div></td>
@@ -252,7 +241,7 @@
                       信息系统已经变更（请人事专员或系统管理员在本系统的【员工管理】模块中变更员工信息）</td>
                   </tr>
                       <tr style="text-align: right;">
-                  <td colspan="4" dbf.type="" dbf.source=""><a class="button" onclick="check()">保存</a><a class="button">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
+                  <td colspan="4" dbf.type="" dbf.source=""><a class="button" onclick="check()">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -263,13 +252,6 @@
               <col width="60">
               <col>
               </colgroup>
-              <tbody>
-             <!--    <tr>
-                  <td style="text-align: right;">&nbsp;附件:</td>
-                  <td id="attachments" dbf.source="files"><img class="fieldGetValueBySource" id="fu" src="../css/fieldSource.gif">
-                    <div id="e.attachments">&nbsp;</div></td>
-                </tr> -->
-              </tbody>
             </table>
           </form>
         </div>

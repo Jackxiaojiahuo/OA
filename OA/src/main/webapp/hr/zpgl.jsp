@@ -109,7 +109,7 @@
 				<td>
 					<a href="../recruit.do?action=zszp&re_id=${r.re_id }&zs=0"><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">${r.re_theme }</a>
 				</td>
-				<td>${r.re_name }</td>
+				<td>${r.em.emp_name }</td>
 				<td>${r.dept.depart_name }</td>
 				<td>${r.re_post }</td>
 				<td>${r.re_number }</td>
@@ -123,7 +123,7 @@
 					<td>
 					<a href="../recruit.do?action=zszp&et_id=${e.et_id }&zs=1"><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0"><span style="color: red;">${e.et_theme }</span></a>
 					</td>
-					<td>${e.et_name }</td>
+					<td>${e.em.emp_name }</td>
 					<td>${e.et_joindate }</td>
 					<td>${e.dept.depart_name }</td>
 					<td>${e.et_post }</td>

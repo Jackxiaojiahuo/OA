@@ -1,22 +1,69 @@
 package model;
-/*
- * 请休假
+/**
+ *请休假
+ * @author caohaoran
+ *
  */
 public class Furlough {
-	private Integer fg_id;//id
-	private String fg_theme;//主题
-	private String fg_priority;//优先级
-	private String fg_shopdate;//结束时间
-	private String fg_applydate;//申请时间
-	private String fg_cdate;//休假：从
-	private String fg_ddate;//休假：到
-	private String fg_hour;//小时
-	private String fg_day;//天
-	private String fg_type;//请休假类型
-	private String fg_reason;//请休假事由
-	private Integer depart_id;//
-	public Department dept;//部门
-	public Employee em;//员工
+	/**
+	 * 编号
+	 */
+	private Integer fg_id;
+	/**
+	 * 主题
+	 */
+	private String fg_theme;
+	/**
+	 * 优先级
+	 */
+	private String fg_priority;
+	/**
+	 * 结束时间
+	 */
+	private String fg_shopdate;
+	/**
+	 * 申请时间
+	 */
+	private String fg_applydate;
+	/**
+	 * 休假：从
+	 */
+	private String fg_cdate;
+	/**
+	 * 休假：到
+	 */
+	private String fg_ddate;
+	/**
+	 * 小时
+	 */
+	private String fg_hour;
+	/**
+	 *天
+	 */
+	private String fg_day;
+	/**
+	 * 请休假类型
+	 */
+	private String fg_type;
+	/**
+	 *请休假事由 
+	 */
+	private String fg_reason;
+	/**
+	 * 部门编号
+	 */
+	private Integer depart_id;
+	/**
+	 * 部门表
+	 */
+	public Department dept;
+	/**
+	 * 员工表
+	 */
+	public Employee em;
+	/**
+	 *员工编号
+	 */
 	private Integer emp_id;
 	public Furlough(Integer fg_id, String fg_theme, String fg_priority, String fg_shopdate,
 			String fg_applydate, String fg_cdate, String fg_ddate, String fg_hour, String fg_day, String fg_type,

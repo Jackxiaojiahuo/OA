@@ -4,11 +4,36 @@ import java.util.List;
 import java.util.Map;
 
 import model.Furlough;
-
+/**
+ *请休假接口
+ * @author caohaoran
+ *
+ */
 public interface FurloughDao {
-	List<Furlough> findAllFurlough(Map map);//全部查询
+	/**
+	 * 显示全部请休假的申请单
+	 * @param map
+	 * @return
+	 */
+	List<Furlough> findAllFurlough(Map map);
 	int findAllFurlough_count(Map map);
-	int addFurlough(Furlough f);// 请休假申请
-	Furlough findFurloughById(int fg_id);// id查询
-	List<Furlough> findFurloughBylike(Furlough f);//根据模糊查询
+	/**
+	 * 请休假的申请
+	 * @param f
+	 * @return
+	 */
+	int addFurlough(Furlough f);
+	/**
+	 * 展示请休假的申请单
+	 * @param fg_id
+	 * @return
+	 */
+	Furlough findFurloughById(int fg_id);
+	/**
+	 * 根据提供的条件进行查询
+	 * @param f
+	 * @return
+	 */
+	List<Furlough> findFurloughBylike(Map map);
+	int findFurloughBylike_count(Map map);
 }

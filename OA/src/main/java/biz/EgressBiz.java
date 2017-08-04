@@ -11,9 +11,30 @@ import model.Egress;
  *
  */
 public interface EgressBiz {
-	List<Egress> findAllEgress(Map map);//全部查询
+	/**
+	 * 显示全部外出人员的申请单
+	 * @param map
+	 * @return
+	 */
+	List<Egress> findAllEgress(Map map);
 	int findAllEgress_count(Map map);
-	int addEgress(Egress e);// 外出申请
-	Egress findEgressById(int eg_id);// id查询
-	List<Egress> findEgressBylike(Egress e);//根据模糊查询
+	/**
+	 * 外出的申请
+	 * @param e
+	 * @return
+	 */
+	int addEgress(Egress e);
+	/**
+	 * 展示外出人员的详细申请单
+	 * @param eg_id
+	 * @return
+	 */
+	Egress findEgressById(int eg_id);
+	/**
+	 *根据条件进行模糊查询 
+	 * @param e
+	 * @return
+	 */
+	List<Egress> findEgressBylike(Map map);
+	int findEgressBylike_count(Map map);
 }

@@ -47,7 +47,7 @@
           <tbody>
             <tr>
               <td><h1><img style="cursor: pointer;" src="css/menu.png"> 会议室管理</h1></td>
-              <td id="oWorkflowList" align="right"><span id="oWorkflowList1"><a class="button1 button1L" href="info/hyydcx.html">✚ 会议室预定</a><a class="button1 button1M" href="info/hyydcx.html">会议室预定查询</a></span><a class="button1 button1R" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a></td>
+              <td id="oWorkflowList" align="right"><span id="oWorkflowList1"><a class="button1 button1L" href="info/hysyd.jsp">✚ 会议室预定</a><a class="button1 button1M" href="info/hyydcx.html">会议室预定查询</a></span><a class="button1 button1R" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a></td>
             </tr>
           </tbody>
         </table>
@@ -73,96 +73,25 @@
               </tr>
             </thead>
             <tbody>
+            <c:forEach var="b" items="${list }">
               <tr>
-                <td><a href="info/zshysyd.html"><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-李萌-1000758</a></td>
-                <td>李萌&nbsp;</td>
-                <td>销售部&nbsp;</td>
-                <td>二号会议室</td>
-                <td>2016/4/29 9:30 ~ <br>
-                  2016/4/29 11:00</td>
+                <td><a href="../bs.do?action=findBs&id=${b.id }"><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">${b.subject }</a></td>
+                <td>${b.emp.emp_name }&nbsp;</td>
+                <td>${b.emp.dept.depart_name }&nbsp;</td>
+                <td>${b.board.name }</td>
+                <td>${b.beginTime } ~ <br>
+                  ${b.endTime }</td>
               </tr>
-              <tr>
-                <td><a><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-李萌-1000213</a></td>
-                <td>李萌&nbsp;</td>
-                <td>销售部&nbsp;</td>
-                <td>三号会议室</td>
-                <td>2016/4/13 13:30 ~ <br>
-                  2016/4/13 15:00</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定#0406#1000051</a></td>
-                <td>李浩&nbsp;</td>
-                <td>技术部&nbsp;</td>
-                <td>二号会议室</td>
-                <td>2016/4/13 8:00 ~ <br>
-                  2016/4/13 10:00</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-吴燕-1000200</a></td>
-                <td>吴燕&nbsp;</td>
-                <td>人事部&nbsp;</td>
-                <td>一号会议室</td>
-                <td>2016/4/12 10:00 ~ <br>
-                  2016/4/12 11:30</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-王刚-1000199</a></td>
-                <td>王刚&nbsp;</td>
-                <td>销售部&nbsp;</td>
-                <td>二号会议室</td>
-                <td>2016/4/11 9:00 ~ <br>
-                  2016/4/11 10:30</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-王萍-1000124</a></td>
-                <td>王萍&nbsp;</td>
-                <td>人事部&nbsp;</td>
-                <td>三号会议室</td>
-                <td>2016/4/11 9:00 ~ <br>
-                  2016/4/11 17:30</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: rgb(51, 51, 51);" class="fa fa-trash-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-张倩-1000116</a></td>
-                <td>张倩&nbsp;</td>
-                <td>北京分公司&nbsp;</td>
-                <td>一号会议室</td>
-                <td>2016/4/10 9:00 ~ <br>
-                  2016/4/10 10:00</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: orange;" class="fa fa-calendar-minus-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-严必行-1000202</a></td>
-                <td>严必行&nbsp;</td>
-                <td>财务部&nbsp;</td>
-                <td>一号会议室</td>
-                <td>2016/4/8 15:00 ~ <br>
-                  2016/4/8 17:00</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: rgb(60, 188, 60);" class="fa fa-calendar-check-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-陈莹-1000167</a></td>
-                <td>陈莹&nbsp;</td>
-                <td>人事部&nbsp;</td>
-                <td>一号会议室</td>
-                <td>2016/4/8 10:00 ~ <br>
-                  2016/4/8 12:00</td>
-              </tr>
-              <tr>
-                <td><a><i style="color: rgb(60, 188, 60);" class="fa fa-calendar-check-o fa-lg"></i><img src="css/priority0.gif" border="0">会议室预定-李萌-1000114</a></td>
-                <td>李萌&nbsp;</td>
-                <td>销售部&nbsp;</td>
-                <td>三号会议室</td>
-                <td>2016/4/7 11:00 ~ <br>
-                  2016/4/7 12:00</td>
-              </tr>
+             </c:forEach>
             </tbody>
           </table>
-          <script language="javaScript">/* Code removed by ScrapBook */</script>
            <div>
 	          <ul class="pagination">
-			    <li><a href="../board.do?action=findBoard&curpage=1">首页</a></li>
-			    <li class="previous"><a href="../board.do?action=findBoard&curpage=${board.curpage eq 1 ? 1 : board.curpage-1 }">上一页</a></li>
-			    <li><a>第 ${board.curpage }/${board.maxpage } 页</a></li>
-			    <li class="next"><a href="../board.do?action=findBoard&curpage=${board.curpage+1 gt board.maxpage ? board.maxpage : board.curpage+1 }">下一页</a></li>
-			    <li><a href="../board.do?action=findBoard&curpage=${board.maxpage }">末页</a></li>
+			    <li><a href="../bs.do?action=findBs&curpage=1">首页</a></li>
+			    <li class="previous"><a href="../bs.do?action=findBs&curpage=${page.curpage eq 1 ? 1 : page.curpage-1 }">上一页</a></li>
+			    <li><a>第 ${page.curpage }/${page.maxpage } 页</a></li>
+			    <li class="next"><a href="../bs.do?action=findBs&curpage=${page.curpage+1 gt page.maxpage ? page.maxpage : page.curpage+1 }">下一页</a></li>
+			    <li><a href="../bs.do?action=findBs&curpage=${page.maxpage }">末页</a></li>
 				</ul>
           </div>
         </div></td>

@@ -18,7 +18,9 @@ import model.Become;
 public class BecomeBizImpl implements BecomeBiz{
 	@Autowired
 	private BecomeDao beDao;
-	//全部查询
+	/**
+	 * 显示全部转正申请的申请信息
+	 */
   	@Override
 	public List<Become> findAllBecome(Map map) {
 		return beDao.findAllBecome(map);
@@ -27,12 +29,16 @@ public class BecomeBizImpl implements BecomeBiz{
 	public int findAllBecome_count(Map map) {
 		return beDao.findAllBecome_count(map);
 	}
-  	//转正申请
+  	/**
+  	 * 转正申请
+  	 */
 	@Override
 	public int addBecome(Become b) {
 		return beDao.addBecome(b);
 	}
-	//根据id查询
+	/**
+	 * 展示转正的详细申请单
+	 */
 	@Override
 	public Become findBecomeById(int b_id) {
 		return beDao.findBecomeById(b_id);

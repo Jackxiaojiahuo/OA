@@ -79,7 +79,7 @@
 								<tbody>
 									<tr>
 										<td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请人</td>
-										<td id="dbf.operator" dbf.type="required" dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name" dbf.key="1000060">${b.b_name }</td>
+										<td id="dbf.operator" dbf.type="required" dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name" dbf.key="1000060">${b.em.emp_name }</td>
 										<td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请日期</td>
 										<td id="dbf.time2" dbf.type="date,required" dbf.source="date">${b.b_applydate }</td>
 									</tr>
@@ -139,8 +139,7 @@
 							<script language="javaScript">
 								/* Code removed by ScrapBook */
 							</script>
-							<a class="button1 button1L" title="刷新" href="javascript:location.reload()"><i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span>
-							<a class="button1 button1R" title="关闭" href="javascript:history.back()"><i class="fa fa-times-circle fa-lg"></i></a>
+							<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
 						</div>
 						<table style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0">
 							<colgroup>

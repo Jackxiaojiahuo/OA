@@ -17,21 +17,8 @@
  <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
  <script language="JavaScript" src="jquery-ui.min.js"></script>
    <script>
-  function checkname(){
-  	  var name=$("input[name=et_name]").val();
-  	  var nameid=$("#nameid");
-  		if(name==""){//检测姓名是否为空
-  			nameid.show();
-  			return false;
-  			}
-  		nameid.hide();
-  		return true;
-    }
-    
     function check(){
-	if(checkname()){
 		document.forms[0].submit();
-	}
   	  	}
 </script>
  <script>
@@ -171,21 +158,21 @@
                 <tbody>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职人</td>
-                    <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key=""><input id="e.dbf.operatorSource" class="fieldEditable" name="et_name"><span id="nameid" style="color:red; display: none;" >不能为空</span></td>
+                    <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key="">
+                    <input id="e.dbf.operatorSource" class="fieldEditable"
+                     value="${s_emp.emp_name }"><input type="hidden" name="emp_id" value="${s_emp.emp_id }"></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职日期</td>
                     <td id="dbf.time0" dbf.type="date,required" dbf.source="date"><!--img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
                       <div><input type="text" id="rzDate" name="et_joindate"></div></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职部门</td>
-                  <td class="select_box">
-                	<select name="depart_id">
-                			<option value="0">请选择</option>
- 							<c:forEach items="${list }" var="list">
- 							<option value="${list.depart_id }">${list.depart_name }</option>
- 							</c:forEach>
-                			</select>
-               		</td>
+                  <td class="select_box"><select name="depart_id">
+													<option value="0">请选择</option>
+													<c:forEach items="${bm }" var="bm">
+														<option value="${bm.depart_id }">${bm.depart_name }</option>
+													</c:forEach>
+											</select></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职岗位</td>
                     <td id="dbf.positionX" dbf.type="required"><input id="e.dbf.positionX" class="fieldEditable" name="et_post"></td>
                   </tr>
@@ -208,7 +195,7 @@
                     <td id="备注" colspan="3" dbf.type="" dbf.source=""><input id="e.工作" class="fieldEditable" name="et_remarks"></td>
                   </tr>
                    <tr style="text-align: right;">
-                  <td colspan="4" dbf.type="" dbf.source=""><a class="button" onclick="check()">保存</a><a class="button">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
+                  <td colspan="4" dbf.type="" dbf.source=""><a class="button" onclick="check()">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -219,13 +206,13 @@
               <col width="60">
               <col>
               </colgroup>
-              <tbody>
-                <!-- <tr>
+              <!--<tbody>
+                 <tr>
                   <td style="text-align: right;">&nbsp;附件:</td>
                   <td id="attachments" dbf.source="files"><img class="fieldGetValueBySource" id="fu" src="../css/fieldSource.gif">
                     <div id="e.attachments">&nbsp;</div></td>
-                </tr> -->
-              </tbody>
+                </tr> 
+              </tbody>-->
             </table>
           </form>
         </div>

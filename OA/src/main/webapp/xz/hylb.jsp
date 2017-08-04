@@ -57,7 +57,7 @@
         <div style="width:200px;border:1px rgb(221, 221, 221) solid;border-radius: 5px;float: left;padding: 30px 0px 25px;">
         <ul class="nav nav-pills nav-stacked" >
 		  <li class="active"><a href="javascript:location.reload()">会议室列表</a></li>
-		  <li><a href="hyyd.jsp">会议室预定</a></li>
+		  <li><a href="../bs.do?action=findBs">会议室预定</a></li>
 		</ul>
         <!-- <a class="textHighlight" href="hylb.html"><img src="css/folder.png" border="0">会议室列表</a>
         <a href="hyyd.html" border="0"><img src="css/folder.png" border="0">会议室预定</a> --></div>
@@ -113,7 +113,7 @@
 	<script>
 		var msg = '${msg}';
 		var dlg=BootstrapDialog.show({
-			"title" : "提示",
+			"title" : "提示信息",
 			"message" : msg,
 			"type" : BootstrapDialog.TYPE_SUCCESS
 		});

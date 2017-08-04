@@ -75,6 +75,7 @@
 	<result property="emp_description" column="emp_description"/>
 	<result property="emp_icon" column="emp_icon"/>
 	<result property="depart_id" column="depart_id"/>
+	<result property="state_id" column="state_id"/>
 	<result property="emp_pwd" column="emp_pwd"/>
 	<result property="emp_icon" column="emp_icon"/>
 	<result property="emp_status" column="emp_status"/>
@@ -90,75 +91,89 @@
 	</select>
 	<!--全部查询-->
   <select id="findAllEmployee" resultMap="rm" parameterType="map">
-		select * from Employee where emp_state!='离职' limit #{index},#{size}
+		select * from Employee where emp_state!='离职' and emp_name!='管理员' and state_id=0 limit #{index},#{size}
 	</select>
 	<select id="findAllEmployee_count" resultType="Integer" parameterType="map">
-		select count(*) from Employee where emp_state!='离职'
+		select count(*) from Employee where emp_state!='离职' and emp_name!='管理员' and state_id=0
 	</select>
 	 <!--根据 姓名  工号  模糊  查找-->
-  <select id="findEmployeeBylike" parameterType="Employee" resultMap="rm">
-		select * from Employee 
+  <select id="findEmployeeBylike" parameterType="map" resultMap="rm">
+		select * from Employee
 		<where>
+			state_id=0
 			<if test="emp_name!=null">
-			emp_name like '%${emp_name}%'
+			and emp_name like CONCAT('%', #{emp_name} ,'%')
 			</if>
 			<if test="emp_code!=null">
-			emp_code like '%${emp_code}%'
+			and emp_code like '%${emp_code}%'
 			</if>
-		</where> 
+		</where>
+		limit #{index},#{size} 
+	</select>
+	<select id="findEmployeeBylike_count" resultType="Integer" parameterType="map">
+		select count(*) from Employee
+		<where>
+			state_id=0
+			<if test="emp_name!=null">
+			and emp_name like CONCAT('%', #{emp_name} ,'%')
+			</if>
+			<if test="emp_code!=null">
+			and emp_code like '%${emp_code}%'
+			</if>
+		</where>
 	</select>
   	<!--根据id查询 --> 
   <select id="findEmployeeById" parameterType="int" resultMap="rm">
-  	select * from Employee where emp_id=#{emp_id}
+  	select * from Employee where emp_id=#{emp_id} and state_id=0
   </select>
   <!-- 新增员工 
   -->
   <insert id="addEmp">
   	insert into Employee(emp_code,emp_name,emp_sex,emp_state,
   	emp_mobile,emp_email,emp_birth,emp_join,emp_formal,emp_leave,
-  	emp_description,emp_icon,emp_status,emp_phone,emp_qq) values(#{emp_code},#{emp_name},#{emp_sex},
-  	#{emp_state},#{emp_mobile},#{emp_email},#{emp_birth},#{emp_join},#{emp_formal},#{emp_leave},#{emp_description},#{emp_icon},#{emp_status},#{emp_phone},#{emp_qq})
+  	emp_description,emp_icon,emp_status,emp_phone,emp_qq,state_id) values(#{emp_code},#{emp_name},#{emp_sex},
+  	#{emp_state},#{emp_mobile},#{emp_email},#{emp_birth},#{emp_join},#{emp_formal},#{emp_leave},#{emp_description},#{emp_icon},#{emp_status},#{emp_phone},#{emp_qq},0)
   </insert>
-  <!-- 根据在职状态查询 -->
-  <select id="findEmployeeState" parameterType="String" resultMap="rm">
-  	select * from Employee where emp_state like '%${value}%'
-  </select>
   <!--删除员工-->
-   <delete id="delEmployee">
-  	delete from Employee where emp_id=#{emp_id} 
-  </delete>
-  <!-- 	private String emp_code;//工号
-	private String emp_name;//姓名
-	private String emp_sex;//性别
-	private String emp_state;//在职状态
-	private String emp_mobile;//手机号
-	private String emp_email;//电子邮件
-	private String emp_birth;//出生日期
-	private String emp_join;//入职日期
-	private String emp_formal;//转正日期
-	private String emp_leave;//离职日期
-	private String emp_description;//描述 -->
+   <update id="delEmployee">
+  	update Employee set state_id=1 where emp_id=#{emp_id}
+  </update>
 	<!-- 修改-->
   <update id="updateEmployee" >
 	update Employee set emp_code=#{emp_code},emp_name=#{emp_name},
 	emp_sex=#{emp_sex},emp_state=#{emp_state},emp_mobile=#{emp_mobile},
 	emp_email=#{emp_email},emp_birth=#{emp_birth},emp_join=#{emp_join},
 	emp_formal=#{emp_formal},emp_leave=#{emp_leave},emp_description=#{emp_description},emp_status=#{emp_status},emp_phone=#{emp_phone},
-	emp_qq=#{emp_qq} where emp_id=#{emp_id}
+	emp_qq=#{emp_qq},state_id=0 where emp_id=#{emp_id}
 	</update>
-    <select id="zzstate" resultType="int">
-   select count(*) from Employee where emp_state=#{emp_state}
+  <select id="zzstate" resultType="int">
+   select count(*) from Employee where emp_state=#{emp_state} and state_id=0
    </select>
      <select id="systate" resultType="int">
-   select count(*) from Employee where emp_state=#{emp_state}
+   select count(*) from Employee where emp_state=#{emp_state} and state_id=0
    </select>
      <select id="txstate" resultType="int">
-   select count(*) from Employee where emp_state=#{emp_state}
+   select count(*) from Employee where emp_state=#{emp_state} and state_id=0
    </select>
      <select id="lzstate" resultType="int">
-   select count(*) from Employee where emp_state=#{emp_state}
+   select count(*) from Employee where emp_state=#{emp_state} and state_id=0
    </select>
    <select id="findBycode" resultType="int">
-   select count(*) from Employee where emp_code=#{emp_code}
+   select count(*) from Employee where emp_code=#{emp_code} and state_id=0
+   </select>
+   	<!-- 根据在职状态查询 -->
+  <select id="findEmployeeState" parameterType="map" resultMap="rm">
+ 	select * from Employee
+  		<where>
+			state_id=0
+			<if test="emp_state!=null">
+			and emp_state like CONCAT('%', #{emp_state} ,'%')
+			</if>
+		</where>
+		limit #{index},#{size} 
+  </select>
+   <select id="findEmployeeState_count" resultType="Integer" parameterType="map">
+   	select count(*) from Employee where emp_state=#{emp_state} and state_id=0
    </select>
 </mapper>
+

@@ -137,8 +137,6 @@
 							<col width="60">
 							<col>
 						</colgroup>
-						<tbody>
-						</tbody>
 					</table>
 					<div>&nbsp;</div>
 					<div style="margin: 20px 0px;" align="right">

@@ -46,7 +46,7 @@
 		depart_id,emp_id) values(#{oi_theme},#{oi_priority},#{oi_shopdate},#{oi_applydate},#{oi_cdate},#{oi_ddate},#{oi_hour},
 		#{oi_day},#{oi_reason},#{depart_id},#{emp_id})
 	</insert>
-	<select id="findOvertimeBylike" parameterType="Overtime" resultMap="rm">
+	<select id="findOvertimeBylike" parameterType="map" resultMap="rm">
 		select * from overtime 
 		<where>
 			<if test="oi_theme!=null">
@@ -55,6 +55,18 @@
 			<if test="oi_cdate!=null">
 			oi_cdate like '%${oi_cdate}%'
 			</if>
-		</where> 
+		</where>
+		limit #{index},#{size}
+	</select>
+	<select id="findOvertimeBylike_count" resultType="Integer" parameterType="map">
+		select count(*) from overtime 
+		<where>
+			<if test="oi_theme!=null">
+			oi_theme like '%${oi_theme}%'
+			</if>
+			<if test="oi_cdate!=null">
+			oi_cdate like '%${oi_cdate}%'
+			</if>
+		</where>
 	</select>
 </mapper>

@@ -23,16 +23,23 @@ public class EmployeeBizImpl implements EmployeeBiz {
 	/**
 	 * 曹浩然代码
 	 */
+	/**
+	 * 展示全部员工的信息
+	 */
 	@Override
 	public List<Employee> findAllEmployee(Map map) {
 		return empDao.findAllEmployee(map);
 	}
-
+	/**
+	 * 员工总计
+	 */
 	@Override
 	public int findAllEmployee_count(Map map) {
 		return empDao.findAllEmployee_count(map);
 	}
-
+	/**
+	 * 根据员工的工号进行查询
+	 */
 	@Override
 	public int findBycode(String emp_code) {
 		return empDao.findBycode(emp_code);
@@ -43,10 +50,14 @@ public class EmployeeBizImpl implements EmployeeBiz {
 	}
 
 	@Override
-	public List<Employee> findEmployeeState(String emp_state) {
-		return empDao.findEmployeeState(emp_state);
+	public List<Employee> findEmployeeState(Map map) {
+		return empDao.findEmployeeState(map);
 	}
-
+	@Override
+	public int findEmployeeState_count(Map map) {
+		// TODO Auto-generated method stub
+		return empDao.findEmployeeState_count(map);
+	}
 
 	@Override
 	public int addEmp(Employee emp) {
@@ -61,7 +72,7 @@ public class EmployeeBizImpl implements EmployeeBiz {
 
 	@Override
 	public int updateEmployee(Employee emp) {
-		emp.setEmp_pwd(ShiroKit.md5(emp.getEmp_pwd(), emp.getEmp_code()));
+//		emp.setEmp_pwd(ShiroKit.md5(emp.getEmp_pwd(), emp.getEmp_code()));
 		return empDao.updateEmployee(emp);
 	}
 
@@ -85,8 +96,13 @@ public class EmployeeBizImpl implements EmployeeBiz {
 		return empDao.lzstate(emp_state);
 	}
 	@Override
-	public List<Employee> findEmployeeBylike(Employee emp){
-		return empDao.findEmployeeBylike(emp);
+	public List<Employee> findEmployeeBylike(Map map){
+		return empDao.findEmployeeBylike(map);
+	}
+	@Override
+	public int findEmployeeBylike_count(Map map) {
+		// TODO Auto-generated method stub
+		return empDao.findEmployeeBylike_count(map);
 	}
 	
 	

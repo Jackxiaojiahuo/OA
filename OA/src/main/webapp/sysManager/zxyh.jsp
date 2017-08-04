@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/sysManager/";
@@ -23,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <td id="colloaContent"><table border="0" cellpadding="0" cellspacing="0">
           <tbody>
             <tr>
-              <td><h1><img style="cursor: pointer;" src="css/menu.png"> 在线用户 [<span id="oTotal">${uoCount }</span>]</h1></td>
+              <td><h1><img style="cursor: pointer;" src="css/menu.png"> 在线用户 [<span id="oTotal">${fn:length(uoList) }</span>]</h1></td>
               <td id="oAppStarted" class="textGray"></td>
               <td align="right"><a href="../login.do?action=uo" class="button1 button1A" title="刷新">&nbsp;<i class="fa fa-bolt fa-lg"></i></a></td>
             </tr>
@@ -38,6 +39,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		          ${uo.ip }<br>
 		          ${uo.intoTime }</span>
 	        </c:forEach>
+	  <%--       <br>
+	        <%=session.getId() %>
+	        <br>
+	        <c:forEach var="s" items="${sessions }">
+	        	${s.id }<br>
+	        </c:forEach>
+	        sessionCount:${sessionCount } --%>
          </div>
         </td>
     </tr>

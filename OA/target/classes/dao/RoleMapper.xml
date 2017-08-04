@@ -21,10 +21,6 @@
     	</set> 
     	 where role_id=#{role_id}    
     </update>
-    <!-- 删除角色信息 -->
-    <delete id="delRole" parameterType="Integer">
-        delete from role where role_id=#{role_id}
-    </delete>
     <!-- 查询角色列表 -->
     <select id="findAllRole" parameterType="map" resultType="role">
 		select * from role
@@ -35,10 +31,6 @@
     <!-- 查询角色列表数量 -->
     <select id="findAllRole_count" resultType="int">
         select count(*) from role
-    </select>
-    <!-- 根据编号查询角色 -->
-    <select id="findRoleById" parameterType="Integer" resultType="role">
-		select * from role where role_id=#{role_id}        
     </select>
     <!-- 条件查询 -->
     <select id="findRoleByPara" resultType="role" parameterType="role">

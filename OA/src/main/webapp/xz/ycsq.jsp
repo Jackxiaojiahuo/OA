@@ -191,7 +191,7 @@
 	<script>
 		var msg = '${msg}';
 		var dlg=BootstrapDialog.show({
-			"title" : "提示",
+			"title" : "提示信息",
 			"message" : msg,
 			"type" : BootstrapDialog.TYPE_SUCCESS
 		});

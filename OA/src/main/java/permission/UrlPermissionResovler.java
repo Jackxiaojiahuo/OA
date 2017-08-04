@@ -9,7 +9,7 @@ public class UrlPermissionResovler implements PermissionResolver {
 	@Override
 	public Permission resolvePermission(String permissionString) {
 		if(permissionString.startsWith("/")) {//如果url是/开头,返回自定义permission
-			System.out.println("url>>>>>>>>>>>>>");
+//			System.out.println("url>>>>>>>>>>>>>");
 			return new UrlPermission(permissionString);
 		}
 		System.out.println("wild>>>>>>>>>>>>>");

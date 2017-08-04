@@ -33,6 +33,10 @@ public class UserOnline implements Serializable{
 	 * jsp显示时间
 	 */
 	private String intoTime;
+	/**
+	 * sessionId
+	 */
+	private String sessionId;
 	public UserOnline() {
 		super();
 	}
@@ -45,6 +49,18 @@ public class UserOnline implements Serializable{
 		this.emp_id = emp_id;
 		this.emp = emp;
 		this.intoTime = intoTime;
+	}
+
+	public UserOnline(Integer id, String ip, Date startTime, Integer emp_id, Employee emp, String intoTime,
+			String sessionId) {
+		super();
+		this.id = id;
+		this.ip = ip;
+		this.startTime = startTime;
+		this.emp_id = emp_id;
+		this.emp = emp;
+		this.intoTime = intoTime;
+		this.sessionId = sessionId;
 	}
 
 	public Integer getId() {
@@ -84,6 +100,14 @@ public class UserOnline implements Serializable{
 
 	public void setIntoTime(String intoTime) {
 		this.intoTime = intoTime;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 	
 }

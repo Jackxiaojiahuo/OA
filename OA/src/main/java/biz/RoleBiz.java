@@ -27,6 +27,8 @@ public interface RoleBiz {
 	 * @return
 	 */
 	Role findRoleById(Role role);
+	
+	Role findRoleByName(Role role);
 	/**
 	 * 添加角色
 	 */
@@ -38,5 +40,5 @@ public interface RoleBiz {
 	/**
 	 * 删除角色信息
 	 */
-	int delRole(Integer role_id);
+	int delRole(Role role);
 }

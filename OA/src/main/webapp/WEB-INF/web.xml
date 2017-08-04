@@ -15,7 +15,7 @@
 	<servlet>
 		<servlet-name>initServlet</servlet-name>
 		<servlet-class>util.InitServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>0</load-on-startup>
 	</servlet>
 	
   <context-param>
@@ -28,14 +28,9 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-  <servlet>
-    <servlet-name>mvc</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>mvc</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
+  <listener>
+  	<listener-class>listener.MySessionListener1</listener-class>
+  </listener>
   <filter>
     <filter-name>char</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -48,18 +43,7 @@
     <filter-name>char</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-    <!-- druid数据连接池 -->
-    <servlet>
-        <servlet-name>DruidStatView</servlet-name>
-        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DruidStatView</servlet-name>
-        <url-pattern>/druid/*</url-pattern>
-    </servlet-mapping>
-    
-    <!-- shiro过滤器 ,DelegatingFilterProxy通过代理模式将spring容器中的bean和filter关联起来 -->
+  <!-- shiro过滤器 ,DelegatingFilterProxy通过代理模式将spring容器中的bean和filter关联起来 -->
     <filter>
 	    <filter-name>shiroFilter</filter-name>
 	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -73,4 +57,33 @@
 	    <filter-name>shiroFilter</filter-name>
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	 <servlet>
+    <servlet-name>mvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+            	classpath:spring-mvc.xml
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mvc</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+    <!-- druid数据连接池 -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+    
+	<session-config>  
+         <session-timeout>1</session-timeout>  
+    </session-config>  
 </web-app>

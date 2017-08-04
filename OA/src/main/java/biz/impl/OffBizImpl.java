@@ -18,7 +18,9 @@ import model.Off;
 public class OffBizImpl implements OffBiz{
 	@Autowired
 	private OffDao offDao;
-	//全部查询
+	/**
+	 * 显示全部调休人员的申请单
+	 */
 	@Override
 	public List<Off> findAllOff(Map map) {
 		return offDao.findAllOff(map);
@@ -27,20 +29,31 @@ public class OffBizImpl implements OffBiz{
 	public int findAllOff_count(Map map) {
 		return offDao.findAllOff_count(map);
 	}
-	//申请
+	/**
+	 * 调休申请
+	 */
 	@Override
 	public int addOff(Off o) {
 	return offDao.addOff(o);
 	}
-	//根据id查询
+	/**
+	 * 展示调休人员的详细申请单
+	 */
 	@Override
 	public Off findOffById(int of_id) {
 		return offDao.findOffById(of_id);
 	}
-	//根据模糊条件查询
+	/**
+	 * 根据提供的条件进行查询
+	 */
 	@Override
-	public List<Off> findOffBylike(Off o) {
-		return offDao.findOffBylike(o);
+	public List<Off> findOffBylike(Map map) {
+		return offDao.findOffBylike(map);
+	}
+	@Override
+	public int findOffBylike_count(Map map) {
+		// TODO Auto-generated method stub
+		return offDao.findOffBylike_count(map);
 	}
 
 }

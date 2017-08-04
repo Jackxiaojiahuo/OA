@@ -18,7 +18,7 @@
 <script>
 	$(function() {
 		$('#colloaMenu2 a').click(function() {
-			$(this).siblings().removeClass('textHighlight');
+			$(this).removeClass('textHighlight');
 			$(this).addClass('textHighlight');
 		});
 	});
@@ -40,7 +40,7 @@
 										test="${num==0 }">
 										<span id="oWorkflowList1"><a class="button1 button1L"
 											href="info/ccsq.jsp?sq=0">✚ 出差申请*</a><a
-											class="button1 button1M" href="info/cccx.jsp">查找</a></span><a class="button1 button1R" title="刷新"
+											class="button1 button1M" href="info/cccx.jsp?">查找</a></span><a class="button1 button1R" title="刷新"
 											href="javascript:location.reload()">&nbsp;<i
 											class="fa fa-bolt fa-lg"></i></a>
 									</c:if> <c:if test="${num==1 }">

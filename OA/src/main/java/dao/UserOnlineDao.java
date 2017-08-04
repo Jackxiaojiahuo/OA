@@ -21,15 +21,10 @@ public interface UserOnlineDao {
 	 * @param id
 	 * @return
 	 */
-	int delUserOnline(Integer id);
+	int delUserOnline(String sessionId);
 	/**
 	 * 获取所有在线用户
 	 * @return
 	 */
 	List<UserOnline> findAllUserOnline();
-	/**
-	 * 统计所有在线用户数量
-	 * @return
-	 */
-	int findAllUserOnline_count();
 }

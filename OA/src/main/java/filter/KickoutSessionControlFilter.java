@@ -6,6 +6,8 @@ import java.util.LinkedList;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
@@ -22,6 +24,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     private String kickoutUrl; //踢出后到的地址
     private boolean kickoutAfter = false; //踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
     private int maxSession = 1; //同一个帐号最大会话数 默认1
+    public static Integer isOut=0;
 
     private SessionManager sessionManager;
     private Cache<String, Deque<Serializable>> cache;
@@ -53,12 +56,15 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+    	System.out.println("Kickout拦截器");
+    	String url=((HttpServletRequest)request).getRequestURL()+"";
+    	String action=url.substring(url.lastIndexOf("/"));
+    	//System.out.println("url:"+action);
         Subject subject = getSubject(request, response);
-        if(!subject.isAuthenticated()) {
-            //如果没有登录，直接进行之后的流程
-            return true;
+        if(!subject.isAuthenticated()&&!action.equals("login.do")) {
+        	WebUtils.issueRedirect(request, response, "/login/loginRe2.html");
+            return false;
         }
-
         Session session = subject.getSession();
         Employee emp=(Employee) subject.getPrincipal();
         String username =emp.getEmp_name() ;
@@ -105,7 +111,6 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             WebUtils.issueRedirect(request, response, kickoutUrl);
             return false;
         }
-
         return true;
     }
 }

@@ -40,12 +40,12 @@ public class UserRealm extends AuthorizingRealm {
 		List<Resource> reses = empService.listAllResource(eid);
 		List<String> permissions = new ArrayList<String>();
 		for(Resource r:reses) {
-			System.out.println(r.getR_url()+">>>>>>>>>>>>>>>>>>>>>>>r.getR_url()");
+//			System.out.println(r.getR_url()+">>>>>>>>>>>>>>>>>>>>>>>r.getR_url()");
 			permissions.add(r.getR_url());//添加的是自定义的userpermission,调用UrlPermissionResovler类的resolvePermission方法
 		}
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.setStringPermissions(new HashSet<String>(permissions));
-		System.out.println("userRealMMMMMMMMMMMMMMMMM");
+//		System.out.println("userRealM");
 		return info;//调用ResourceCheckFilter类的isAccessAllowed方法
 	}
 		

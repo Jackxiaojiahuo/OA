@@ -3,7 +3,6 @@ package dao;
 import java.util.List;
 import java.util.Map;
 
-import model.Entry;
 import model.Quit;
 
 public interface QuitDao {

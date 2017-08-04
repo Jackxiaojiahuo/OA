@@ -151,6 +151,7 @@
 			<tr valign="top">
 				<td id="colloaForm"><div class="formTaskflowContainer">
 						<form class="formTaskflow" action="../../work.do?action=kqsq" method="post">
+						<input type="hidden" name="sq" value="1">
 							<table class="tableForm" style="table-layout: fixed;"
 								cellspacing="0" cellpadding="0" align="center" border="0">
 								<colgroup>
@@ -208,7 +209,9 @@
 									<tbody>
 										<tr>
 											 <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请人</td>
-                    						 <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key=""><input id="e.dbf.operatorSource" class="fieldEditable" value="${b.em.emp_name }" name="emp_id"><input type="hidden" name="emp_id" value="${b.em.emp_id }">
+                    <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key="">
+                    <input id="e.dbf.operatorSource" class="fieldEditable" value="${s_emp.emp_name }"><input type="hidden" name="emp_id" value="${s_emp.emp_id }">
+                     </td>
 											<td style="text-align: center;"><span
 												style="color: rgb(255, 0, 0);">*</span>所属部门</td>
 											<td class="select_box"><select name="depart_id">
@@ -280,7 +283,7 @@
 												否</td>
 										</tr>
 										<tr style="text-align: right;">
-                  <td colspan="6" dbf.type="" dbf.source=""><a class="button" onclick="check()">保存</a><a class="button">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
+                  <td colspan="6" dbf.type="" dbf.source=""><a class="button" onclick="check()">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
                   </tr>
 									</tbody>
 								</table>
@@ -292,8 +295,6 @@
 									<col width="60">
 									<col>
 								</colgroup>
-								<tbody>
-								</tbody>
 							</table>
 						</form>
 					</div>

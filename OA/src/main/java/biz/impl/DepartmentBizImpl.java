@@ -58,8 +58,8 @@ public class DepartmentBizImpl implements DepartmentBiz {
 	 * 根据id查找部门
 	 */
 	@Override
-	public Department findDepartById(Integer depart_id) {
-		return departDao.findDepartById(depart_id);
+	public Department findDepartById(Department depart) {
+		return departDao.findDepartById(depart);
 	}
 	/**
 	 * 添加部门
@@ -79,8 +79,13 @@ public class DepartmentBizImpl implements DepartmentBiz {
 	 * 删除部门信息
 	 */
 	@Override
-	public int delDepart(Integer depart_id) {
-		return departDao.delDepart(depart_id);
+	public int delDepart(Department depart) {
+		return departDao.updateDepart(depart);
+	}
+	
+	@Override
+	public Department findDepartByName(Department depart) {
+		return departDao.findDepartById(depart);
 	}
 	
 

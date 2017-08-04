@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -68,14 +70,16 @@ public class RoleController {
 	 * @return
 	 */
 	@RequestMapping(params="action=addRole")
-	public String addRole(ModelMap model,String role_name,String role_description){
+	public String addRole(ModelMap model,HttpServletRequest request,String role_name,String role_description){
 		Role role=new Role();
 		role.setRole_name(role_name);
 		role.setRole_description(role_description);
 		int count = roleBiz.addRole(role);
 		if(count>0){
+			request.getSession().setAttribute("msg", "添加角色成功");
 			return "redirect:role.do?action=findAllRole";
 		}else{
+			request.getSession().setAttribute("msg", "添加角色失败");
 			return "sysManager/addjsUI";
 		}
 	}
@@ -88,12 +92,14 @@ public class RoleController {
 	 * @return
 	 */
 	@RequestMapping(params="action=editRole")
-	public String updateRole(ModelMap model,Integer role_id,String role_name,String role_description){
+	public String updateRole(ModelMap model,HttpServletRequest request,Integer role_id,String role_name,String role_description){
 		Role role=new Role(role_id, role_name,role_description);
 		int count = roleBiz.updateRole(role);
 		if(count>0){
+			request.getSession().setAttribute("msg", "修改角色成功");
 			return "redirect:role.do?action=findAllRole";
 		}else{
+			request.getSession().setAttribute("msg", "修改角色失败");
 			return "redirect:role.do?findRoleById.do&id="+role_id;
 		}
 	}
@@ -104,15 +110,17 @@ public class RoleController {
 	 * @return
 	 */
 	@RequestMapping(params="action=delRoleById")
-	public String delRole(ModelMap model,Integer role_id){
+	public String delRole(ModelMap model,HttpServletRequest request,Integer role_id){
 		Role role = new Role();
 		role.setRole_id(role_id);
 		role.setRole_statu(0);
 		System.out.println("删除角色"+role_id);
 		int count = roleBiz.updateRole(role);
 		if(count>0){
+			request.getSession().setAttribute("msg", "删除角色成功");
 			return "redirect:role.do?action=findAllRole";
 		}else{
+			request.getSession().setAttribute("msg", "删除角色失败");
 			return "sysManager/gwjs";
 		}
 	}

@@ -6,9 +6,7 @@
 <resultMap type="Recruit" id="rm">
 	<id property="re_id" column="re_id"/>
 	<result property="re_theme" column="re_theme"/>
-	<result property="re_priority" column="re_priority"/>
-	<result property="re_shopdate" column="re_shopdate"/>
-	<result property="re_name" column="re_name"/>
+	<result property="emp_id" column="emp_id"/>
 	<result property="re_post" column="re_post"/>
 	<result property="re_applydate" column="re_applydate"/>
 	<result property="re_number" column="re_number"/>
@@ -21,21 +19,31 @@
 	<result property="re_lb" column="re_lb"/>
 	<result property="re_req" column="re_req"/>
 	<result property="depart_id" column="depart_id"/>
+	<result property="eaa_state" column="eaa_state"/>
+	<result property="eaa_conclusion" column="eaa_conclusion"/>
+	<result property="eaa_date" column="eaa_date"/>
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
-</resultMap>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+</resultMap> 
+<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
 	<select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
 	<!--全部查询-->
   <select id="findAllRecruit"  resultMap="rm" parameterType="map">
-    select * from Recruit limit #{index},#{size}
+    select * from Recruit where eaa_state!=1 limit #{index},#{size}
   </select>
   <!--全部查询-->
   <select id="findAllRecruit_count"  resultType="Integer" parameterType="map">
-    select count(*) from Recruit 
+    select count(*) from Recruit where eaa_state!=1
   </select>
     	<!--根据id查询 --> 
   <select id="findRecruiteById" parameterType="int" resultMap="rm">
@@ -43,10 +51,21 @@
   </select>
 	<!-- 招聘申请 -->
    <insert id="addRecruit">
-  	insert into Recruit(re_theme,re_priority,re_shopdate,re_name,
-  	re_post,re_applydate,re_number,re_positiondate,re_reason,
-  	re_duty,re_age,re_sex,re_experience,re_lb,re_req,depart_id) values(#{re_theme},#{re_priority},#{re_shopdate},
-  	#{re_name},#{re_post},#{re_applydate},#{re_number},#{re_positiondate},
-  	#{re_reason},#{re_duty},#{re_age},#{re_sex},#{re_experience},#{re_lb},#{re_req},#{depart_id})
+  	insert into Recruit(re_theme,emp_id,re_post,re_applydate,re_number,re_positiondate,re_reason,re_duty,re_age,re_sex,re_experience,re_lb,
+  	re_req,depart_id,eaa_state,eaa_date,eaa_conclusion) values(#{re_theme},
+  	#{emp_id},#{re_post},#{re_applydate},#{re_number},#{re_positiondate},#{re_reason},#{re_duty},#{re_age},#{re_sex},#{re_experience},#{re_lb},#{re_req},#{depart_id},0,sysdate(),#{eaa_conclusion})
   </insert>
+ <update id="updateRecruit">
+		update recruit 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			re_id=#{re_id}
+		</where>
+</update>
 </mapper>

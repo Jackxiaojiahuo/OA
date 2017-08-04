@@ -1,22 +1,69 @@
 package model;
-/*
+/**
  * 出差
+ * @author caohaoran
+ *
  */
 public class Travel {
-	private Integer tv_id;//id
-	private String tv_theme;//主题
-	private String tv_priority;//优先级
-	private String tv_applydate;//申请时间
-	private String tv_cdate;//出差：从
-	private String tv_ddate;//出差：到
-	private String tv_termini;//目的地
-	private String tv_reason;//出差事由
-	private String tv_traffic;//交通工具
-	private String tv_report;//出差报告
-	private String tv_result;//出差结果
+	/**
+	 * 编号
+	 */
+	private Integer tv_id;
+	/**
+	 * 主题
+	 */
+	private String tv_theme;
+	/**
+	 * 优先级
+	 */
+	private String tv_priority;
+	/**
+	 * 申请时间
+	 */
+	private String tv_applydate;
+	/**
+	 *出差：从 
+	 */
+	private String tv_cdate;
+	/**
+	 * 出差：到
+	 */
+	private String tv_ddate;
+	/**
+	 * 目的地
+	 */
+	private String tv_termini;
+	/**
+	 * 出差事由
+	 */
+	private String tv_reason;
+	/**
+	 * 交通工具
+	 */
+	private String tv_traffic;
+	/**
+	 * 出差报告
+	 */
+	private String tv_report;
+	/**
+	 * 出差结果
+	 */
+	private String tv_result;
+	/**
+	 * 部门编号
+	 */
 	private Integer depart_id;
-	public Department dept;//部门
-	public Employee em;//员工
+	/**
+	 * 部门
+	 */
+	public Department dept;
+	/**
+	 * 员工
+	 */
+	public Employee em;
+	/**
+	 * 员工编号
+	 */
 	private Integer emp_id;
 	
 	public Travel() {

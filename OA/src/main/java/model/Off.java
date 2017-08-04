@@ -1,20 +1,69 @@
 package model;
-//调休
+/**
+ *调休 
+ * @author caohaoran
+ *
+ */
 public class Off {
-	private Integer of_id;//id
-	private String of_theme;//主题
-	private String of_priority;//优先级
-	private String of_shopdate;//结束时间
-	private String of_applydate;//申请时间
-	private String of_cdate;//调休：从
-	private String of_ddate;//调休：到
-	private String of_hour;//小时
-	private String of_day;//天
-	private String of_reason;//调休事由
-	private String of_agent;//工作代理人
-	private Integer depart_id;//
-	public Department dept;//部门
-	public Employee em;//员工
+	/**
+	 * 编号
+	 */
+	private Integer of_id;
+	/**
+	 * 主题
+	 */
+	private String of_theme;
+	/**
+	 * 优先级
+	 */
+	private String of_priority;
+	/**
+	 * 结束时间
+	 */
+	private String of_shopdate;
+	/**
+	 * 申请时间
+	 */
+	private String of_applydate;
+	/**
+	 * 调休：从
+	 */
+	private String of_cdate;
+	/**
+	 * 调休：到
+	 */
+	private String of_ddate;
+	/**
+	 * 小时
+	 */
+	private String of_hour;
+	/**
+	 * 天
+	 */
+	private String of_day;
+	/**
+	 * 调休事由
+	 */
+	private String of_reason;
+	/**
+	 * 工作代理人
+	 */
+	private String of_agent;
+	/**
+	 * 部门编号
+	 */
+	private Integer depart_id;
+	/**
+	 * 部门表
+	 */
+	public Department dept;
+	/**
+	 * 员工表
+	 */
+	public Employee em;
+	/**
+	 * 员工编号
+	 */
 	private Integer emp_id;
 	public Off(Integer of_id, String of_theme, String of_priority, String of_shopdate, String of_applydate,
 			String of_cdate, String of_ddate, String of_hour, String of_day, String of_reason, String of_agent,

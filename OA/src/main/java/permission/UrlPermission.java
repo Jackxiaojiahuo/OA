@@ -27,9 +27,9 @@ public class UrlPermission implements Permission {
 		if(!(p instanceof UrlPermission)) return false;
 		UrlPermission up = (UrlPermission)p;//用户的权限
 		// /admin/role/**
-		System.out.println("urlpermission+>>>>>>>>>>>>>");
+//		System.out.println("urlpermission+>>>>>>>>>>>>>");
 		PatternMatcher patternMatcher = new AntPathMatcher();
-		System.out.println(this.getUrl()+","+up.getUrl()+","+patternMatcher.matches(this.getUrl(), up.getUrl()));
+//		System.out.println(this.getUrl()+","+up.getUrl()+","+patternMatcher.matches(this.getUrl(), up.getUrl()));
 		return patternMatcher.matches(this.getUrl(), up.getUrl());//匹配用户角色对应的url与操作的url
 	}
 

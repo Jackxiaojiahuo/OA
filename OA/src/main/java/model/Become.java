@@ -1,23 +1,78 @@
 package model;
-
+/**
+ * 转正表
+ * @author caohaoran
+ *
+ */
 public class Become {
-	private Integer b_id;//ID
-	private String b_theme;//主题
-	private String b_priority;//优先级
-	private String b_shopdate;//结束时间
-	private String b_applydate;//申请日期
-	private String b_post;//申请岗位
-	private String b_joindate;//入职日期
-	private String b_become;//转正日期
-	private String b_content;//试用期主要工作内容
-	private String b_achievement;//*试用期主要工作成绩
-	private String b_problem;//试用期存在的问题
-	private String b_imagine;//对存在问题的改进设想
-	private String b_comment;//*主管评语
-	public Department dept;//部门
+	/**
+	 * 编号
+	 */
+	private Integer b_id;
+	/**
+	 * 主题
+	 */
+	private String b_theme;
+	/**
+	 * 优先级
+	 */
+	private String b_priority;
+	/**
+	 * 结束时间
+	 */
+	private String b_shopdate;
+	/**
+	 * 申请日期
+	 */
+	private String b_applydate;
+	/**
+	 * 申请岗位
+	 */
+	private String b_post;
+	/**
+	 * 入职日期
+	 */
+	private String b_joindate;
+	/**
+	 * 转正日期
+	 */
+	private String b_become;
+	/**
+	 * 试用期主要工作内容
+	 */
+	private String b_content;
+	/**
+	 * 试用期主要工作成绩
+	 */
+	private String b_achievement;
+	/**
+	 * 试用期存在的问题
+	 */
+	private String b_problem;
+	/**
+	 * 对存在问题的改进设想
+	 */
+	private String b_imagine;
+	/**
+	 * 主管评语
+	 */
+	private String b_comment;
+	/**
+	 * 部门表
+	 */
+	public Department dept;
+	/**
+	 * 部门编号
+	 */
 	private Integer depart_id;
+	/**
+	 * 员工编号
+	 */
 	private Integer emp_id;
-	public Employee em;//员工
+	/**
+	 * 员工表
+	 */
+	public Employee em;
 	
 	public Become() {
 		super();

@@ -6,7 +6,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/sysManager/";
 %>	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -15,7 +15,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="css/colloa.ico">
 <link rel="stylesheet" href="css/zzjg_font-awesome.min.css">
 <link rel="stylesheet" href="css/zzjg_view.css">
-<script src="../js/jquery-1.8.3.min.js"></script>
+<link href="../js/bootstarp/core/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../js/bootstarp/dialog/css/bootstrap-dialog.css"
+	type="text/css" rel="stylesheet" />
+<script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js"
+	type="text/javascript"></script>
+<script src="../js/bootstarp/dialog/js/bootstrap-dialog.js"
+	type="text/javascript"></script>
 </head>
 <body>
 <table style="min-width: 120px; width: 100%; height: 100%;" border="0" cellpadding="0" cellspacing="0">
@@ -49,4 +57,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </table>
 </tr></tbody></table>
 </body>
+<c:if test="${msg ne null }">
+	<script>
+		var msg = '${msg}';
+		var dlg=BootstrapDialog.show({
+			"title" : "提示信息",
+			"message" : msg,
+			"type" : BootstrapDialog.TYPE_SUCCESS
+		});
+		setTimeout(function(){
+		    dlg.close();
+		},1000);
+	</script>
+	<%
+		session.removeAttribute("msg");
+	%>
+</c:if>
 </html>

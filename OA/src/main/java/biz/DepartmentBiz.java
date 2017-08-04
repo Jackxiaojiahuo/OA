@@ -29,7 +29,13 @@ public interface DepartmentBiz {
 	 * @param id
 	 * @return
 	 */
-	Department findDepartById(Integer depart_id);
+	Department findDepartById(Department depart);
+	/**
+	 * 根据名称查找部门
+	 * @param depart
+	 * @return
+	 */
+	Department findDepartByName(Department depart);
 	/**
 	 * 添加部门
 	 */
@@ -41,5 +47,5 @@ public interface DepartmentBiz {
 	/**
 	 * 删除部门信息
 	 */
-	int delDepart(Integer depart_id);
+	int delDepart(Department depart);
 }

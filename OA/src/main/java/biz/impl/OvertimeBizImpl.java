@@ -18,7 +18,9 @@ import model.Overtime;
 public class OvertimeBizImpl implements OvertimeBiz{
 	@Autowired
 	private OvertimeDao overtimeDao;
-	//全部查询
+	/**
+	 * 显示全部加班人员的申请单
+	 */
 	@Override
 	public List<Overtime> findAllOvertime(Map map) {
 		return overtimeDao.findAllOvertime(map);
@@ -27,20 +29,31 @@ public class OvertimeBizImpl implements OvertimeBiz{
 	public int findAllOvertime_count(Map map) {
 		return overtimeDao.findAllOvertime_count(map);
 	}
-	//加班申请
+	/**
+	 * 加班申请
+	 */
 	@Override
 	public int addOvertime(Overtime o) {
 		return overtimeDao.addOvertime(o);
 	}
-	//根据id查询
+	/**
+	 * 展示加班人员的详细申请单
+	 */
 	@Override
 	public Overtime findOvertimeById(int oi_id) {
 		return overtimeDao.findOvertimeById(oi_id);
 	}
-	//根据模糊查询
+	/**
+	 * 根据提供的条件进行查询
+	 */
 	@Override
-	public List<Overtime> findOvertimeBylike(Overtime o) {
-		return overtimeDao.findOvertimeBylike(o);
+	public List<Overtime> findOvertimeBylike(Map map) {
+		return overtimeDao.findOvertimeBylike(map);
+	}
+	@Override
+	public int findOvertimeBylike_count(Map map) {
+		// TODO Auto-generated method stub
+		return overtimeDao.findOvertimeBylike_count(map);
 	}
 
 }

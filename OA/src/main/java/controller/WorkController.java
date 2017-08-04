@@ -37,7 +37,13 @@ public class WorkController {
 		private FurloughBiz fhBiz;
 		@Autowired
 		private OffBiz ofBiz;
-		//全部查询
+		/**
+		 * 显示 出差 外出  加班 请休假 调休的全部申请单
+		 * @param model
+		 * @param num
+		 * @param index
+		 * @return
+		 */
 		@RequestMapping(params="action=Wklist")
 		public String findAllWk(ModelMap model,Integer num,Integer index){
 			num=num==null?0:num;
@@ -95,13 +101,71 @@ public class WorkController {
 			}
 			return "hr/kqgl";
 		}
-		//申请
+		/**
+		 * 出差 外出 加班 请休假 调休申请
+		 * @param emp_id
+		 * @param depart_id
+		 * @param tv_theme
+		 * @param tv_priority
+		 * @param tv_applydate
+		 * @param tv_cdate
+		 * @param tv_ddate
+		 * @param tv_termini
+		 * @param tv_reason
+		 * @param tv_traffic
+		 * @param tv_report
+		 * @param tv_result
+		 * @param oi_theme
+		 * @param oi_priority
+		 * @param oi_shopdate
+		 * @param oi_applydate
+		 * @param oi_cdate
+		 * @param oi_ddate
+		 * @param oi_hour
+		 * @param oi_day
+		 * @param oi_reason
+		 * @param fg_theme
+		 * @param fg_priority
+		 * @param fg_shopdate
+		 * @param fg_applydate
+		 * @param fg_cdate
+		 * @param fg_ddate
+		 * @param fg_hour
+		 * @param fg_day
+		 * @param fg_type
+		 * @param fg_reason
+		 * @param of_theme
+		 * @param of_priority
+		 * @param of_shopdate
+		 * @param of_applydate
+		 * @param of_cdate
+		 * @param of_ddate
+		 * @param of_hour
+		 * @param of_day
+		 * @param of_reason
+		 * @param of_agent
+		 * @param eg_theme
+		 * @param eg_priority
+		 * @param eg_shopdate
+		 * @param eg_applydate
+		 * @param eg_egress
+		 * @param eg_return
+		 * @param eg_hour
+		 * @param eg_day
+		 * @param eg_site
+		 * @param eg_reason
+		 * @param eg_send
+		 * @param eg_advance
+		 * @param sq
+		 * @return
+		 */
 		@RequestMapping(params="action=kqsq")
-		public String sqWk(String tv_theme,
+		
+		
+		public String sqWk(Integer emp_id,
+				Integer depart_id,String tv_theme,
 				String tv_priority,
-				Integer emp_id,
 				String tv_applydate,
-				Integer depart_id,
 				String tv_cdate,
 				String tv_ddate,
 				String tv_termini,
@@ -109,18 +173,6 @@ public class WorkController {
 				String tv_traffic,
 				String tv_report,
 				String tv_result,
-				String eg_theme,
-				String eg_priority,
-				String eg_shopdate,
-				String eg_applydate,
-				String eg_egress,
-				String eg_return,
-				String eg_hour,
-				String eg_day,
-				String eg_site,
-				String eg_reason,
-				String eg_send,
-				String eg_advance,
 				String oi_theme,
 				String oi_priority,
 				String oi_shopdate,
@@ -148,30 +200,52 @@ public class WorkController {
 				String of_hour,
 				String of_day,
 				String of_reason,
-				String of_agent,Integer sq){
+				String of_agent,String eg_theme,
+				String eg_priority,
+				String eg_shopdate,
+				String eg_applydate,
+				String eg_egress,
+				String eg_return,
+				String eg_hour,
+				String eg_day,
+				String eg_site,
+				String eg_reason,
+				String eg_send,
+				String eg_advance,Integer sq){
 			sq=sq==null?0:sq;
 			if(sq==0){
-				Travel t=new Travel(null,tv_theme,tv_priority,tv_applydate,tv_cdate,tv_ddate,tv_termini,tv_reason,tv_traffic,tv_report,tv_result,depart_id,null, null, emp_id);
+				Travel t=new Travel(null,tv_theme,tv_priority,tv_applydate==""?null:tv_applydate,tv_cdate==""?null:tv_cdate,tv_ddate==""?null:tv_ddate,tv_termini,tv_reason,tv_traffic,tv_report,tv_result,depart_id,null, null, emp_id);
 				tlBiz.addTravel(t);
 				return "redirect:work.do?action=Wklist&num=0";
 			}else if(sq==1){
-				Egress e=new Egress(null, eg_theme,eg_priority,eg_shopdate,eg_applydate,eg_egress,eg_return,eg_hour,eg_day,eg_site,eg_reason,eg_send,eg_advance,emp_id,null, null, depart_id);
+				Egress e=new Egress(null, eg_theme,eg_priority,eg_shopdate==""?null:eg_shopdate,eg_applydate==""?null:eg_applydate,eg_egress==""?null:eg_egress,eg_return==""?null:eg_return,eg_hour,eg_day,eg_site,eg_reason,eg_send,eg_advance,emp_id,null, null, depart_id);
 				esBiz.addEgress(e);
 				return "redirect:work.do?action=Wklist&num=1";
 			}else if(sq==2){
-				Overtime o=new Overtime(null, oi_theme,oi_priority,oi_shopdate,oi_applydate,oi_cdate,oi_ddate,oi_hour,oi_day,oi_reason,emp_id,null, null, depart_id);
+				Overtime o=new Overtime(null, oi_theme,oi_priority,oi_shopdate==""?null:oi_shopdate,oi_applydate==""?null:oi_applydate,oi_cdate==""?null:oi_cdate,oi_ddate==""?null:oi_ddate,oi_hour,oi_day,oi_reason,emp_id,null, null, depart_id);
 				oeBiz.addOvertime(o);
 				return "redirect:work.do?action=Wklist&num=2";
 			}else if(sq==3){
-				Furlough f=new Furlough(null, fg_theme,fg_priority,fg_shopdate,fg_applydate,fg_cdate,fg_ddate,fg_hour,fg_day,fg_type,fg_reason,emp_id,null, null, depart_id);
+				Furlough f=new Furlough(null, fg_theme,fg_priority,fg_shopdate==""?null:fg_shopdate,fg_applydate==""?null:fg_applydate,fg_cdate==""?null:fg_cdate,fg_ddate==""?null:fg_ddate,fg_hour,fg_day,fg_type,fg_reason,emp_id,null, null, depart_id);
 				fhBiz.addFurlough(f);
 				return "redirect:work.do?action=Wklist&num=3";
 			}else{
-				Off of=new Off(null, of_theme,of_priority,of_shopdate,of_applydate,of_cdate,of_ddate,of_hour,of_day,of_reason,of_agent,emp_id,null, null, depart_id);
+				Off of=new Off(null, of_theme,of_priority,of_shopdate==""?null:of_shopdate,of_applydate==""?null:of_applydate,of_cdate==""?null:of_cdate,of_ddate==""?null:of_ddate,of_hour,of_day,of_reason,of_agent,emp_id,null, null, depart_id);
 				ofBiz.addOff(of);
 				return "redirect:work.do?action=Wklist&num=4";
 			}
 		}
+		/**
+		 * 展示出差 外出 加班 请休假  调休 的详细申请单
+		 * @param model
+		 * @param zs
+		 * @param tv_id
+		 * @param eg_id
+		 * @param oi_id
+		 * @param fg_id
+		 * @param of_id
+		 * @return
+		 */
 		@RequestMapping(params="action=kqzs")
 		public String zsWk(ModelMap model,Integer zs,Integer tv_id,Integer eg_id,Integer oi_id,Integer fg_id,Integer of_id){
 			zs=zs==null?0:zs;
@@ -203,76 +277,120 @@ public class WorkController {
 				return "hr/info/zstx";
 			}
 		}
+		/**
+		 * 根据提供的条件进行查询
+		 * @param op
+		 * @param names
+		 * @param count
+		 * @param model
+		 * @param index
+		 * @return
+		 */
 		@RequestMapping(params="action=kqcz")
-		public String czWk(String op,String names,String count,ModelMap model){
+		public String czWk(String op,String names,String count,ModelMap model,Integer index){
+			index=index==null?1:index;
+			Map map=new HashMap();
+			Page page=new Page(index,10);
+			map.put("index", (index-1)*10);
+			map.put("size", 10);
 			if(op.equals("cc")){
-				Travel t = new Travel();
 				List<Travel> list = null;
-				if (count.equals("")) {
-				} else {
+				if(count.equals("")){
+					page.setCount(0);
+				}else{
 					if (names.equals("tv_theme")) {
-						t.setTv_theme(count);
-
+						map.put("tv_theme", count);
+						page.setCount(tlBiz.findTravelBylike_count(map));
 					} else if (names.equals("tv_termini")) {
-						t.setTv_termini(count);
+						map.put("tv_termini", count);
+						page.setCount(tlBiz.findTravelBylike_count(map));
 					}
-					list = tlBiz.findTravelBylike(t);
+					list = tlBiz.findTravelBylike(map);
 				}
+				model.put("page", page);
+				model.put("names", names);
+				model.put("count", count);
 				model.put("list", list);
 				return "hr/info/cccx";
 			}else if(op.equals("wc")){
-				Egress e=new Egress();
 				List<Egress> list=null;
 				if(count.equals("")){
+					page.setCount(0);
 				}else{
 					if(names.equals("eg_theme")){
-						e.setEg_theme(count);
+						map.put("eg_theme", count);
+						Integer tgressBylike_count = esBiz.findEgressBylike_count(map);
+						page.setCount(tgressBylike_count);
 					}else if(names.equals("eg_site")){
-						e.setEg_site(count);
+						map.put("eg_site", count);
+						Integer tgressBylike_count = esBiz.findEgressBylike_count(map);
+						page.setCount(tgressBylike_count);
 					}
-					list=esBiz.findEgressBylike(e);
+					list=esBiz.findEgressBylike(map);
 				}
 				model.put("list", list);
+				model.put("names", names);
+				model.put("count", count);
+				model.put("page", page);
 				return "hr/info/wccz";
 			}else if(op.equals("jb")){
-				Overtime o=new Overtime();
 				List<Overtime> list=null;
 				if(count.equals("")){
+					page.setCount(0);
 				}else{
 					if(names.equals("oi_theme")){
-						o.setOi_theme(count);
+						map.put("oi_theme", count);
+						Integer overtimeBylike_count = oeBiz.findOvertimeBylike_count(map);
+						page.setCount(overtimeBylike_count);
 					}else if(names.equals("oi_cdate")){
-						o.setOi_cdate(count);
+						map.put("oi_cdate", count);
+						Integer overtimeBylike_count = oeBiz.findOvertimeBylike_count(map);
+						page.setCount(overtimeBylike_count);
 					}
-					list=oeBiz.findOvertimeBylike(o);
+					list=oeBiz.findOvertimeBylike(map);
 				}
 				model.put("list", list);
+				model.put("names", names);
+				model.put("count", count);
+				model.put("page", page);
 				return "hr/info/jbcz";
 			}else if(op.equals("qxj")){
-				Furlough f=new Furlough();
 				List<Furlough> list=null;
 				if(count.equals("")){
+					page.setCount(0);
 				}else{
 					if(names.equals("fg_type")){
-						f.setFg_type(count);
+						map.put("fg_type", count);
+						Integer furloughBylike_count = fhBiz.findFurloughBylike_count(map);
+						page.setCount(furloughBylike_count);
 					}
-					list=fhBiz.findFurloughBylike(f);
+					list=fhBiz.findFurloughBylike(map);
 				}
 				model.put("list", list);
+				model.put("names", names);
+				model.put("count", count);
+				model.put("page", page);
 				return "hr/info/qxjcz";
 			}else{
-				Off o=new Off();
 				List<Off> list=null;
 				if(count.equals("")){
+					page.setCount(0);
 				}else{
 					if(names.equals("of_theme")){
-						o.setOf_theme(count);
+						map.put("of_theme", count);
+						Integer offBylike_count = ofBiz.findOffBylike_count(map);
+						page.setCount(offBylike_count);
 					}else if(names.equals("of_cdate")){
-						o.setOf_cdate(count);
+						map.put("of_cdate", count);
+						Integer offBylike_count = ofBiz.findOffBylike_count(map);
+						page.setCount(offBylike_count);
 					}
-					list=ofBiz.findOffBylike(o);
+					list=ofBiz.findOffBylike(map);
 				}
 				model.put("list", list);
+				model.put("names", names);
+				model.put("count", count);
+				model.put("page", page);
 				return "hr/info/txcz";
 			}
 		}

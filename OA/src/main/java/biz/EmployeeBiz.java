@@ -58,18 +58,64 @@ public interface EmployeeBiz {
 	/**
 	 * 曹浩然代码
 	 */
-	List<Employee> findAllEmployee(Map map);//全部查询
+	/**
+	 *显示全部员工的信息
+	 * @param map
+	 * @return
+	 */
+	List<Employee> findAllEmployee(Map map);
 	int findAllEmployee_count(Map map);
-	Employee findEmployeeById(int emp_id);//id查询
-	List<Employee> findEmployeeState(String emp_state);//根据在职状态查询
+	/**
+	 * 展示员工的详细信息
+	 * @param emp_id
+	 * @return
+	 */
+	Employee findEmployeeById(int emp_id);
+	/**
+	 * 根据员工的工号进行查询
+	 * @param emp_code
+	 * @return
+	 */
 	int findBycode(String emp_code);
-	int addEmp(Employee emp);//新增员工
-	int delEmployee(int emp_id);//删除员工
-	int updateEmployee(Employee e);//修改
-	//查询行数
+	/**
+	 * 新增员工
+	 * @param emp
+	 * @return
+	 */
+	int addEmp(Employee emp);
+	/**
+	 * 删除员工
+	 * @param emp_id
+	 * @return
+	 */
+	int delEmployee(int emp_id);
+	/**
+	 * 修改员工的信息
+	 * @param e
+	 * @return
+	 */
+	int updateEmployee(Employee e);
+	/**
+	 * 根据在职状态进行查询
+	 * @param emp_state
+	 * @return
+	 */
+	List<Employee> findEmployeeState(Map map);
+	int findEmployeeState_count(Map map);
+	/**
+	 * 查询各个在职状态的个数
+	 * @param emp_state
+	 * @return
+	 */
 	int zzstate(String emp_state);
 	int systate(String emp_state);
 	int txstate(String emp_state);
 	int lzstate(String emp_state);
-	List<Employee> findEmployeeBylike(Employee emp);//根据模糊查询
+	/**
+	 * 根据条件进行模糊查询
+	 * @param emp
+	 * @return
+	 */
+	List<Employee> findEmployeeBylike(Map map);//根据模糊查询
+	int findEmployeeBylike_count(Map map);
 }

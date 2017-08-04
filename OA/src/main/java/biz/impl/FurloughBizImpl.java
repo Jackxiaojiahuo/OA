@@ -18,7 +18,9 @@ import model.Furlough;
 public class FurloughBizImpl implements FurloughBiz{
 	@Autowired
 	private FurloughDao furDao;
-	//全部查询
+	/**
+	 * 显示全部请休假人员的申请单
+	 */
 	@Override
 	public List<Furlough> findAllFurlough(Map map) {
 		return furDao.findAllFurlough(map);
@@ -27,20 +29,31 @@ public class FurloughBizImpl implements FurloughBiz{
 	public int findAllFurlough_count(Map map) {
 		return furDao.findAllFurlough_count(map);
 	}
-	//申请
+	/**
+	 * 请休假申请
+	 */
 	@Override
 	public int addFurlough(Furlough f) {
 		return furDao.addFurlough(f);
 	}
-	//根据id查询
+	/**
+	 * 展示请休假人员的详细申请单
+	 */
 	@Override
 	public Furlough findFurloughById(int fg_id) {
 		return furDao.findFurloughById(fg_id);
 	}
-	//根据模糊条件查询
+	/**
+	 * 根据提供的条件进行查询
+	 */
 	@Override
-	public List<Furlough> findFurloughBylike(Furlough f) {
-		return furDao.findFurloughBylike(f);
+	public List<Furlough> findFurloughBylike(Map map) {
+		return furDao.findFurloughBylike(map);
+	}
+	@Override
+	public int findFurloughBylike_count(Map map) {
+		// TODO Auto-generated method stub
+		return furDao.findFurloughBylike_count(map);
 	}
 
 }

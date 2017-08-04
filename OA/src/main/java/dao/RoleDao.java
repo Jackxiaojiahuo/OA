@@ -34,8 +34,5 @@ public interface RoleDao {
 	 * 修改角色信息
 	 */
 	int updateRole(Role role);
-	/**
-	 * 删除角色信息
-	 */
-	int delRole(Integer role_id);
+
 }

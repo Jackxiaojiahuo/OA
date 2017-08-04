@@ -15,7 +15,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="css/yhgl_font-awesome.min.css">
 <link rel="stylesheet" href="css/yhgl_view.css">
 <link rel="stylesheet" href="../zTreeStyle/zTreeStyle.css" type="text/css">
-<script src="../js/jquery-1.8.3.min.js"></script>
+<link href="../js/bootstarp/core/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../js/bootstarp/dialog/css/bootstrap-dialog.css"
+	type="text/css" rel="stylesheet" />
+<script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js"
+	type="text/javascript"></script>
+<script src="../js/bootstarp/dialog/js/bootstrap-dialog.js"
+	type="text/javascript"></script>
 <script type="text/javascript" src="../js/jquery.ztree.core.js"></script>
 <script src="js/nav.js"></script>
 <script>
@@ -32,7 +40,7 @@ var setting = {
 	$(function(){
 		var content="[";
 		var id="";
-		$.post("../depart.do?action=findAllDpeart",
+		$.post("../param.do?action=findAllDpeart",
 				function(data){
 					$.each(data,function(index,item){
 						content+="{";
@@ -119,9 +127,19 @@ var setting = {
 			   url: "../emp.do?action=initPwd&op=init",
 			   data: "emp_id="+emp_id+"&emp_code="+emp_code,
 			   success: function(msg){
-			     alert( msg );
+			     show( msg );
 			   }
 			});
+	}
+	function show(msg){
+		var dlg=BootstrapDialog.show({
+			"title" : "提示信息",
+			"message" : msg,
+			"type" : BootstrapDialog.TYPE_SUCCESS
+		});
+		setTimeout(function(){
+		    dlg.close();
+		},2000);
 	}
 </script>
 </head>
@@ -212,4 +230,20 @@ var setting = {
         </table>
 </tr></tbody></table>
 </body>
+<c:if test="${msg ne null }">
+	<script>
+		var msg = '${msg}';
+		var dlg=BootstrapDialog.show({
+			"title" : "提示信息",
+			"message" : msg,
+			"type" : BootstrapDialog.TYPE_SUCCESS
+		});
+		setTimeout(function(){
+		    dlg.close();
+		},1000);
+	</script>
+	<%
+		session.removeAttribute("msg");
+	%>
+</c:if>
 </html>

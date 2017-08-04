@@ -26,7 +26,7 @@ public interface DepartmentDao {
 	 * @param id
 	 * @return
 	 */
-	Department findDepartById(Integer depart_id);
+	Department findDepartById(Department depart);
 	/**
 	 * 添加部门
 	 */
@@ -35,8 +35,4 @@ public interface DepartmentDao {
 	 * 修改部门信息
 	 */
 	int updateDepart(Department depart);
-	/**
-	 * 删除部门信息
-	 */
-	int delDepart(Integer depart_id);
 }

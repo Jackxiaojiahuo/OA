@@ -10,8 +10,23 @@ import model.Become;
  *
  */
 public interface BecomeBiz{
-	List<Become> findAllBecome(Map map);//全部查询
+	/**
+	 * 显示全部转正人员的申请单
+	 * @param map
+	 * @return
+	 */
+	List<Become> findAllBecome(Map map);
 	int findAllBecome_count(Map map);
-	int addBecome(Become b);//转正申请
-	Become findBecomeById(int b_id);//id查询
+	/**
+	 * 转正申请
+	 * @param b
+	 * @return
+	 */
+	int addBecome(Become b);
+	/**
+	 * 展示转正人员的详细申请单
+	 * @param b_id
+	 * @return
+	 */
+	Become findBecomeById(int b_id);
 }

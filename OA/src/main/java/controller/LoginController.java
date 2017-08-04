@@ -1,9 +1,8 @@
 package controller;
 
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,9 +11,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -56,14 +57,15 @@ public class LoginController {
 				UserOnline uo=new UserOnline();
 				uo.setIp(request.getRemoteAddr());
 				uo.setEmp_id(emp.getEmp_id());
-				uoBiz.delUserOnline(emp.getEmp_id());//删除掉在线用户表数据
+				uo.setSessionId(session.getId());
 				uoBiz.addUserOnline(uo);//添加在线用户数据
 				Session session2 = subject.getSession();
 				List<Department> bm = departBiz.findAllDepart_select();
 				session.setAttribute("bm", bm);
 				System.out.println("登录用户的id>>>"+emp.getEmp_id());
-				System.out.println("登录用户的sessionid>>>"+session.getId());
-				System.out.println("sessionId>>>>>>>>>>>"+session2.getId());
+				System.out.println("登录用户>>>"+session.getId());
+				System.out.println("shiro:>>>>>>>>>>>"+session2.getId());
+				System.out.println("session数量:"+sessionDAO.getActiveSessions().size());
 				System.out.println("登录成功");
 				return "index";
 //				return "redirect:/admin/index.do?action=index";
@@ -80,31 +82,37 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(params="action=exit")
-	public String logout(HttpServletRequest request){
+	public String logout(HttpSession sessions){
 		Subject subject = SecurityUtils.getSubject();
-		Employee emp=(Employee)subject.getPrincipal();
-		System.out.println("退出用户的编号>>>>>>>>"+emp.getEmp_id());
+//		Employee emp=(Employee)subject.getPrincipal();
+//		System.out.println("退出用户的编号>>>>>>>>"+emp.getEmp_id());
 		Session session = subject.getSession();
-		System.out.println("退出的用户>>>>>>>>>>>"+session.getId());
-		System.out.println("退出用户的sessionid>>>"+request.getSession().getId());
-		uoBiz.delUserOnline(emp.getEmp_id());
+		Collection<Session> list =  sessionDAO.getActiveSessions();
+		System.out.println("session数量:"+list.size());
+		System.out.println("                  >>"+list.toArray().toString());
+		System.out.println("退出的用户>>>>>>>>>>>"+sessions.getId());
+		System.out.println("退出用户,shiro:>>>"+session.getId());
 		subject.logout();
-		return "redirect:login/login.jsp";
+		return "login/login";
 	}
 	/**
 	 * 查看在线用户列表
 	 * @param model
 	 * @return
 	 */
+	@Autowired
+    private SessionDAO sessionDAO;
 	@RequestMapping(params="action=uo")
 	public String findAllUo(ModelMap model){
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Collection<Session> sessions =  sessionDAO.getActiveSessions();
 		List<UserOnline> list = uoBiz.findAllUserOnline();
 		for (UserOnline userOnline : list) {
 			userOnline.setIntoTime(sdf.format(userOnline.getStartTime()));
 		}
+		model.put("sessions", sessions);
+		model.put("sessionCount", sessions.size());
 		model.put("uoList", list);
-		model.put("uoCount", uoBiz.findAllUserOnline_count());
 		return "sysManager/zxyh";
 	}
 }

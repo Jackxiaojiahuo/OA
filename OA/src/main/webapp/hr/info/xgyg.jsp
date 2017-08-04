@@ -228,7 +228,7 @@ function check(){
                   出差
                   <input id="dbf.jobStatus" value="离岗" name="emp_status" autocomplete="off" type="radio">
                   离岗</td>
-               <td><input type="hidden" name="emp_id"  value="${e.emp_id }"></td>
+                  <td><input type="hidden" name="emp_id"  value="${e.emp_id }"></td>
                 </tr>
                 <tr>
                 <td class="fieldLable">描述</td>

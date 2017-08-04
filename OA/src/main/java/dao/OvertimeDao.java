@@ -3,13 +3,37 @@ package dao;
 import java.util.List;
 import java.util.Map;
 
-import model.Furlough;
 import model.Overtime;
-
+/**
+ * 加班接口
+ * @author caohaoran
+ *
+ */
 public interface OvertimeDao {
-	List<Overtime> findAllOvertime(Map map);//全部查询
+	/**
+	 * 显示全部的加班申请单
+	 * @param map
+	 * @return
+	 */
+	List<Overtime> findAllOvertime(Map map);
 	int findAllOvertime_count(Map map);
-	int addOvertime(Overtime o);// 加班申请
-	Overtime findOvertimeById(int oi_id);// id查询
-	List<Overtime> findOvertimeBylike(Overtime o);//根据模糊查询
+	/**
+	 * 加班申请
+	 * @param o
+	 * @return
+	 */
+	int addOvertime(Overtime o);
+	/**
+	 * 展示加班申请单
+	 * @param oi_id
+	 * @return
+	 */
+	Overtime findOvertimeById(int oi_id);
+	/**
+	 * 根据提供的条件进行查询
+	 * @param map
+	 * @return
+	 */
+	List<Overtime> findOvertimeBylike(Map map);
+	int findOvertimeBylike_count(Map map);
 }

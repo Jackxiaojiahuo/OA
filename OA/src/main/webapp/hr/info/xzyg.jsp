@@ -272,7 +272,7 @@ $(document).ready(function() {
                   <input id="dbf.jobStatus" value="试用" name="emp_state" autocomplete="off" type="radio">
                   试用
                   <input id="dbf.jobStatus" value="退休" name="emp_state" autocomplete="off" type="radio">
-                  退休
+                  退休	
                   <input id="dbf.jobStatus" value="离职" name="emp_state" autocomplete="off" type="radio">
                   离职</td>
               </tr>
@@ -300,8 +300,8 @@ $(document).ready(function() {
                 <td class="fieldLable">转正日期</td>
                 <td id="dbf.jobStartTime" dbf.source="date,editable" dbf.type="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
                   <div class="fieldEditable" contenteditable="true"><input type="text" id="zzDate" name="emp_formal"></div></td>
-                <td class="fieldLable">离职日期</td>
-                <td id="dbf.jobEndTime" dbf.source="date,editable" subform="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                  <td class="fieldLable">离职日期</td>
+                <td id="dbf.jobJoinTime" dbf.source="date,editable" dbf.type="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
                   <div class="fieldEditable" contenteditable="true"><input type="text" id="lzDate" name="emp_leave"></div></td>
               </tr>
               <tr>

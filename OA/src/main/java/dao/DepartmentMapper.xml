@@ -43,8 +43,16 @@
     	<result property="depart_pid" column="depart_pid"/>
     	<result property="depart_statu" column="depart_statu"/>
     </resultMap>
-    <select id="findDepartById" resultMap="findParent" parameterType="Integer">
-        select * from department where depart_id=#{depart_id}
+    <select id="findDepartById" resultMap="findParent" parameterType="department">
+        select * from department 
+        <where>
+        	<if test="depart_id!=null">
+        		and depart_id=#{depart_id}
+        	</if>
+        	<if test="depart_name!=null">
+        		and depart_name=#{depart_name}
+        	</if>
+        </where>
     </select>
     
     

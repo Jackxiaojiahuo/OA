@@ -41,19 +41,25 @@
 
     <!-- 会话验证调度器 -->
     <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
+    	<!-- 设置调度时间间隔，单位毫秒，默认就是1小时 -->
         <property name="sessionValidationInterval" value="1800000"/>
+        <!-- 设置会话验证调度器进行会话验证时的会话管理器 -->
         <property name="sessionManager" ref="sessionManager"/>
     </bean>
-
+	<bean id="sessionListerer" class="listener.MySessionListener"></bean>
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+    	<!-- 设置全局会话超时时间，默认30分钟，即如果30分钟内没有访问会话将过期 1800000 -->
         <property name="globalSessionTimeout" value="1800000"/>
         <property name="deleteInvalidSessions" value="true"/>
+        <!-- 是否开启会话验证器，默认是开启的 -->
         <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <!-- 设置会话验证调度器 -->
         <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
         <property name="sessionDAO" ref="sessionDAO"/>
         <property name="sessionIdCookieEnabled" value="true"/>
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionListeners" ref="sessionListerer"></property>
     </bean>
     
 	 <!-- 安全管理器 -->
@@ -102,6 +108,7 @@
 	        <value>
 	        	/login.do=anon
 				/login/login.jsp=anon
+				/param.do=anon
 				/index.jsp=kickout,authc
 	        	/*.do =kickout,authc,resourceCheckFilter
 	        </value>

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Jack
  *
  */
-public class BoardroomReserve implements Serializable {
+public class BoardroomReserve extends PageBean implements Serializable {
 	/**
 	 * 预定编号
 	 */
@@ -17,10 +17,6 @@ public class BoardroomReserve implements Serializable {
 	 * 预定主题
 	 */
 	private String subject;
-	/**
-	 * 优先级
-	 */
-	private String level;
 	/**
 	 * 申请日期
 	 */
@@ -51,14 +47,17 @@ public class BoardroomReserve implements Serializable {
 	 */
 	private Boardroom board;
 	private Integer board_id;
+	/**
+	 * 状态
+	 */
+	private String state;
 
-	public BoardroomReserve(Integer id, String subject, String level, String applicationDate, String beginTime,
+	public BoardroomReserve(Integer id, String subject,  String applicationDate, String beginTime,
 			String endTime, String reason, String description, Employee emp, Integer emp_id, Boardroom board,
 			Integer board_id) {
 		super();
 		this.id = id;
 		this.subject = subject;
-		this.level = level;
 		this.applicationDate = applicationDate;
 		this.beginTime = beginTime;
 		this.endTime = endTime;
@@ -70,9 +69,26 @@ public class BoardroomReserve implements Serializable {
 		this.board_id = board_id;
 	}
 
+	public BoardroomReserve(Integer id, String subject, String applicationDate, String beginTime, String endTime,
+			String reason, String description, Employee emp, Integer emp_id, Boardroom board, Integer board_id,
+			String state) {
+		super();
+		this.id = id;
+		this.subject = subject;
+		this.applicationDate = applicationDate;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+		this.reason = reason;
+		this.description = description;
+		this.emp = emp;
+		this.emp_id = emp_id;
+		this.board = board;
+		this.board_id = board_id;
+		this.state = state;
+	}
+
 	public BoardroomReserve() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {
@@ -91,13 +107,6 @@ public class BoardroomReserve implements Serializable {
 		this.subject = subject;
 	}
 
-	public String getLevel() {
-		return level;
-	}
-
-	public void setLevel(String level) {
-		this.level = level;
-	}
 
 	public String getApplicationDate() {
 		return applicationDate;
@@ -170,5 +179,15 @@ public class BoardroomReserve implements Serializable {
 	public void setBoard_id(Integer board_id) {
 		this.board_id = board_id;
 	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
 
 }

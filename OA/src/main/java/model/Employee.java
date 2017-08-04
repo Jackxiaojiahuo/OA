@@ -1,28 +1,96 @@
 package model;
-
-import java.io.Serializable;
-
-//员工
-public class Employee implements Serializable {
-	private Integer emp_id;//编号
-	private String emp_code;//工号
-	private String emp_name;//姓名
-	private String emp_sex;//性别
-	private String emp_state;//在职状态
-	private String emp_mobile;//手机号
-	private String emp_email;//电子邮件
-	private String emp_birth;//出生日期
-	private String emp_join;//入职日期
-	private String emp_formal;//转正日期
-	private String emp_leave;//离职日期
-	private String emp_description;//描述
-	private String emp_icon;//头像
-	private Integer depart_id;//部门
-	private String emp_pwd;//密码
-	private String emp_status;//个人状态
+/**
+ * 员工表
+ * @author caohaoran
+ *
+ */
+public class Employee {
+	/**
+	 * 编号
+	 */
+	private Integer emp_id;
+	/**
+	 * 工号
+	 */
+	private String emp_code;
+	/**
+	 * 姓名
+	 */
+	private String emp_name;
+	/**
+	 * 性别
+	 */
+	private String emp_sex;
+	/**
+	 * 在职状态
+	 */
+	private String emp_state;
+	/**
+	 * 手机号
+	 */
+	private String emp_mobile;
+	/**
+	 * 电子邮件
+	 */
+	private String emp_email;
+	/**
+	 * 出生日期
+	 */
+	private String emp_birth;
+	/**
+	 * 入职日期
+	 */
+	private String emp_join;
+	/**
+	 * 转正日期
+	 */
+	private String emp_formal;
+	/**
+	 * 离职日期
+	 */
+	private String emp_leave;
+	/**
+	 * 描述
+	 */
+	private String emp_description;
+	/**
+	 * 头像
+	 */
+	private String emp_icon;
+	/**
+	 * 部门编号
+	 */
+	private Integer depart_id;
+	/**
+	 * 密码
+	 */
+	private String emp_pwd;
+	/**
+	 * 个人状态
+	 */
+	private String emp_status;
+	/**
+	 * 固定电话
+	 */
 	private String emp_phone;
+	/**
+	 * QQ
+	 */
 	private String emp_qq;
+	/**
+	 * 部门表
+	 */
 	public Department dept;
+	/**
+	 * 在职状态
+	 */
+	private Integer state_id;
+	public Integer getState_id() {
+		return state_id;
+	}
+	public void setState_id(Integer state_id) {
+		this.state_id = state_id;
+	}
 	public String getEmp_status() {
 		return emp_status;
 	}
@@ -53,7 +121,7 @@ public class Employee implements Serializable {
 	}
 	public Employee(Integer emp_id, String emp_code, String emp_name, String emp_sex, String emp_state,
 			String emp_mobile, String emp_email, String emp_birth, String emp_join, String emp_formal, String emp_leave,
-			String emp_description, String emp_icon, Integer depart_id, String emp_pwd,String emp_status,String emp_phone,String emp_qq) {
+			String emp_description, String emp_icon, Integer depart_id, String emp_pwd,String emp_status,String emp_phone,String emp_qq,Integer state_id) {
 		super();
 		this.emp_id = emp_id;
 		this.emp_code = emp_code;
@@ -73,6 +141,7 @@ public class Employee implements Serializable {
 		this.emp_status=emp_status;
 		this.emp_phone=emp_phone;
 		this.emp_qq=emp_qq;
+		this.state_id=state_id;
 	}
 	public String getEmp_pwd() {
 		return emp_pwd;

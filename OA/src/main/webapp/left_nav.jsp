@@ -179,7 +179,7 @@
 						</a> --></span> 
 						</shiro:hasPermission>
 						</shiro:authenticated>
-						<a class="indent0ex" href="login/login.jsp" target="_parent" id="exit"> <img src="css/blank16.gif"
+						<a class="indent0ex" href="login.do?action=exit" target="_parent" id="exit"> <img src="css/blank16.gif"
 							border="0"> <img src="css/exit.png" border="0" width="24px">
 							安全注销
 						</a>

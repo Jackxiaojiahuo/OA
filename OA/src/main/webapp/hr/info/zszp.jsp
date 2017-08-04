@@ -15,6 +15,9 @@
 		<link rel="shortcut icon" href="colloa.ico">
 		<link rel="stylesheet" href="../css/zs.min.css">
 		<link rel="stylesheet" href="../css/zs.css">
+		<link rel="stylesheet" href="../css/sq.css">
+		 <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
+		 <script language="JavaScript" src="jquery-ui.min.js"></script>
 		<script>
 			function aa() {
 				var CheckAll = document.getElementById('All');
@@ -29,7 +32,16 @@
 					};
 				};
 			};
-			aa()
+			aa();
+			function check(id){
+			if(id==1){
+				$("input[name=eaa_state]").val("1");
+			}
+			if(id==2){
+				$("input[name=eaa_state]").val("2");
+			}
+				document.forms[0].submit();
+			}
 		</script>
 		<style>
 			/* Code tidied up by ScrapBook */
@@ -53,19 +65,12 @@
 								<tr>
 									<td style="text-align: right;">&nbsp;<span style="color: rgb(255, 0, 0);">*</span>主题:</td>
 									<td id="dbf.subject" dbf.type="required">${r.re_theme }</td>
-									<td style="text-align: right;">&nbsp;优先级:</td>
-									<td>${r.re_priority }</td>
-								</tr>
-								<tr>
 									<td style="text-align: right;">&nbsp;步骤:</td>
-									<td><span id="mapping.dbf.procXSource">主管审批</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人: <span id="mapping.dbf.responsorSource">陈杰,吴燕,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人: <span id="mapping.dbf.participantsSource"></span></td>
-									<td style="text-align: right;">&nbsp;结束时间:</td>
-									<td id="dbf.endTime" dbf.type="date" dbf.source="date,editable">${r.re_shopdate }</td>
+									<td><span id="mapping.dbf.procXSource">主管审批</span></td>
 								</tr>
 							</tbody>
 						</table>
 						<div>
-							<div style="text-align: center;">&nbsp;</div>
 							<div style="text-align: center;"><span style="font-size: 20px;"><strong>招聘申请单</strong></span></div>
 						</div>
 						<div>
@@ -79,7 +84,7 @@
 								<tbody>
 									<tr>
 										<td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请人</td>
-										<td id="dbf.operator" dbf.type="required" dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name" dbf.key="1000077">${r.re_name }</td>
+										<td id="dbf.operator" dbf.type="required" dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name" dbf.key="1000060">${r.em.emp_name }</td>
 										<td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>所属部门</td>
 										<td id="dbf.division" dbf.type="required" dbf.source="form.fieldSource.division" dbf.key="1000006">${r.dept.depart_name }</td>
 									</tr>
@@ -125,23 +130,22 @@
 							</table>
 						</div>
 						<div>&nbsp;</div>
-						<table class="tableForm" style="table-layout: fixed;" align="center" border="0" cellpadding="0" cellspacing="0">
-							<colgroup>
-								<col width="60">
-								<col>
-							</colgroup>
-							<tbody>
-								<!-- <tr>
-									<td style="text-align: right;">&nbsp;附件:</td>
-									<td id="attachments" dbf.source="files">&nbsp;</td>
-								</tr> -->
-							</tbody>
+						<form class="formTaskflow" action="../../recruit.do?action=zppzsp&sp=0" method="post">
+						<table class="tableListBorder" style="table-layout: fixed;" align="center" border="0" cellpadding="0" cellspacing="0">
+								 <tr>
+									<input type="hidden" name="re_id"  value="${r.re_id }">
+									<input type="hidden" name="eaa_state">
+									<input type="hidden" name="eaa_date">
+									<td style="text-align: center;">审批意见</td>
+									<td id="审批说明" style="height: 80px;" colspan="5.5"><input id="e.dbf.description" class="fieldEditable" name="eaa_conclusion"></td>
+								</tr> 
 						</table>
+						</form>
 						<div style="margin: 20px 0px;" align="right">
 							<script language="javaScript">
 								/* Code removed by ScrapBook */
 							</script>
-							<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
+							<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(1)">结束审批</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(2)">退回</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
 						</div>
 						<table style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0">
 							<colgroup>
@@ -150,25 +154,25 @@
 								<col>
 							</colgroup>
 							<tbody>
-								<tr valign="top">
+									<tr valign="top">
 									<td class="boxBorder">
 										<div style="padding: 2px 10px;">
 											<div style="float: right;">
-												<a href="zszp_lct.html">› 显示流程图</a>
+												<!-- <a href="zszp_lct.html">› 显示流程图</a> -->
 											</div>【处理过程】</div>
-										<div style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);"><img src="../css/userX0.gif"> 刘峰 <span class="textGray">(2016/4/7 15:12)</span></div>
-										<div style="padding: 0px 10px 5px 30px;">[<b>提交主管审批</b>] </div>
+										<div style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);"><img src="../css/userX0.gif">${r.em.emp_name }<span class="textGray"> (${r.eaa_date })</span></div>
+										<div style="padding: 0px 10px 5px 30px;">[<b>${r.eaa_conclusion }</b>] </div>
 									</td>
 									<td></td>
 									<td>
-										<div class="boxBorder">
+										<!-- <div class="boxBorder">
 											<div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【父事务】</div>
 
 										</div>
 										<div class="boxBorder">
 											<div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
 
-										</div>
+										</div> -->
 									</td>
 								</tr>
 							</tbody>

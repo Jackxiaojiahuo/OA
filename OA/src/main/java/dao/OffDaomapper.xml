@@ -62,8 +62,20 @@
 		of_reason,of_agent,depart_id,emp_id) values (#{of_theme},#{of_priority},#{of_shopdate},#{of_applydate},#{of_cdate},#{of_ddate},
 		#{of_hour},#{of_day},#{of_reason},#{of_agent},#{depart_id},#{emp_id})
 	</insert>
-	<select id="findOffBylike" parameterType="Off" resultMap="rm">
+	<select id="findOffBylike" parameterType="map" resultMap="rm">
 		select * from off
+		<where>
+			<if test="of_theme!=null">
+				of_theme like '%${of_theme}%'
+			</if>
+			<if test="of_cdate">
+				of_cdate like '%${of_cdate}%'
+			</if>
+		</where>
+		limit #{index},#{size}
+	</select>
+	<select id="findOffBylike_count" resultType="Integer" parameterType="map">
+		select count(*) from off
 		<where>
 			<if test="of_theme!=null">
 				of_theme like '%${of_theme}%'

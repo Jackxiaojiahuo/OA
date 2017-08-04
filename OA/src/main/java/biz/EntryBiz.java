@@ -10,9 +10,24 @@ import model.Entry;
  *
  */
 public interface EntryBiz {
-	List<Entry> findAllEntry(Map map);//全部查询
+	/**
+	 * 显示全部入职人员的申请单
+	 * @param map
+	 * @return
+	 */
+	List<Entry> findAllEntry(Map map);
 	int findAllEntry_count(Map map);
-	int addEntry(Entry e);//入职申请
-	Entry findEntryById(int et_id);//id查询
+	/**
+	 * 入职申请
+	 * @param e
+	 * @return
+	 */
+	int addEntry(Entry e);
+	/**
+	 * 展示入职人员的详细申请单
+	 * @param et_id
+	 * @return
+	 */
+	Entry findEntryById(int et_id);
 	
 }

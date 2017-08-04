@@ -1,35 +1,100 @@
 package model;
-//招聘
+
+
+/**
+ * 招聘
+ * @author caohaoran
+ *
+ */
 public class Recruit {
-	private Integer re_id;//id
-	private String re_theme;//主题
-	private String re_priority;//等级
-	private String re_shopdate;//结束时间
-	private String re_name;//申请人
-	private String re_post;//需求岗位
-	private String re_applydate;//申请时间
-	private Integer re_number;//需求人数
-	private String re_positiondate;//希望到岗日期
-	private String re_reason;//招聘原因说明
-	private String re_duty;//工作内容及职责
-	private String re_age;//年龄
-	private String re_sex;//性别
-	private String re_experience;//工作经验
-	private String re_lb;//行业背景
-	private String re_req;//其他要求
-	private Integer depart_id;//部门
+	/**
+	 * 编号
+	 */
+	private Integer re_id;
+	/**
+	 * 主题
+	 */
+	private String re_theme;
+	/**
+	 * 申请人
+	 */
+	private Integer emp_id;
+	/**
+	 * 需求岗位
+	 */
+	private String re_post;
+	/**
+	 * 申请时间
+	 */
+	private String re_applydate;
+	/**
+	 * 需求人数
+	 */
+	private Integer re_number;
+	/**
+	 * 希望到岗日期
+	 */
+	private String re_positiondate;
+	/**
+	 * 招聘原因说明
+	 */
+	private String re_reason;
+	/**
+	 *工作内容及职责 
+	 */
+	private String re_duty;
+	/**
+	 * 年龄
+	 */
+	private String re_age;
+	/**
+	 * 性别
+	 */
+	private String re_sex;
+	/**
+	 * 工作经验
+	 */
+	private String re_experience;
+	/**
+	 * 行业背景
+	 */
+	private String re_lb;
+	/**
+	 *其他要求 
+	 */
+	private String re_req;
+	/**
+	 *部门编号
+	 */
+	private Integer depart_id;
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
+	/**
+	 *部门实体类 
+	 */
 	public Department dept;
-	
-	public Recruit(Integer re_id, String re_theme, String re_priority, String re_shopdate, String re_name,
+	/**
+	 * 员工表
+	 */
+	public Employee em;
+	public Recruit(Integer re_id, String re_theme, Integer emp_id,
 			String re_post, String re_applydate, Integer re_number, String re_positiondate, String re_reason,
 			String re_duty, String re_age, String re_sex, String re_experience, String re_lb, String re_req,
-			Integer depart_id, Department dept) {
+			Integer depart_id, Department dept,Integer eaa_state,String eaa_conclusion,String eaa_date,Employee em) {
 		super();
 		this.re_id = re_id;
 		this.re_theme = re_theme;
-		this.re_priority = re_priority;
-		this.re_shopdate = re_shopdate;
-		this.re_name = re_name;
+		this.emp_id = emp_id;
 		this.re_post = re_post;
 		this.re_applydate = re_applydate;
 		this.re_number = re_number;
@@ -43,18 +108,28 @@ public class Recruit {
 		this.re_req = re_req;
 		this.depart_id = depart_id;
 		this.dept = dept;
+		this.eaa_state=eaa_state;
+		this.eaa_conclusion=eaa_conclusion;
+		this.eaa_date=eaa_date;
+		this.em=em;
 	}
-	public String getRe_name() {
-		return re_name;
+	public Integer getEmp_id() {
+		return emp_id;
 	}
-	public void setRe_name(String re_name) {
-		this.re_name = re_name;
+	public void setEmp_id(Integer emp_id) {
+		this.emp_id = emp_id;
 	}
 	public Department getDept() {
 		return dept;
 	}
 	public void setDept(Department dept) {
 		this.dept = dept;
+	}
+	public Employee getEm() {
+		return em;
+	}
+	public void setEm(Employee em) {
+		this.em = em;
 	}
 	public Recruit() {
 		super();
@@ -71,18 +146,6 @@ public class Recruit {
 	}
 	public void setRe_theme(String re_theme) {
 		this.re_theme = re_theme;
-	}
-	public String getRe_priority() {
-		return re_priority;
-	}
-	public void setRe_priority(String re_priority) {
-		this.re_priority = re_priority;
-	}
-	public String getRe_shopdate() {
-		return re_shopdate;
-	}
-	public void setRe_shopdate(String re_shopdate) {
-		this.re_shopdate = re_shopdate;
 	}
 	public Integer getDepart_id() {
 		return depart_id;
@@ -155,6 +218,24 @@ public class Recruit {
 	}
 	public void setRe_req(String re_req) {
 		this.re_req = re_req;
+	}
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+	public String getEaa_date() {
+		return eaa_date;
+	}
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
 	}
 	
 }                                

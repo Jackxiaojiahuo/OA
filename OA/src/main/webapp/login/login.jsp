@@ -14,20 +14,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="css/colloa.ico">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/view.css">
+<link href="../js/bootstarp/core/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../js/bootstarp/dialog/css/bootstrap-dialog.css"
+	type="text/css" rel="stylesheet" />
+<script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js"
+	type="text/javascript"></script>
+<script src="../js/bootstarp/dialog/js/bootstrap-dialog.js"
+	type="text/javascript"></script>
 <style>
 #error{
 color:red;}
 </style>
-<script src="../js/jquery-1.8.3.min.js"></script>
 <script>
 	function login(){
 		document.forms[0].submit();
 	}
-	$(function(){//判断session中是否有值
-		var login=$("#login").val();
-		if(login!="")
-			location="../login.do?action=exit";
-	});
 </script>
 </head>
 <body id="colloaBody">
@@ -36,7 +39,6 @@ color:red;}
 			<tr height="35px">
 				<td style="color: white;">&nbsp;</td>
 			</tr>
-			<input type="hidden" id="login" value="${s_emp.emp_name}">
 			<tr>
 				<td id="colloaLogin" align="center">
 					<div id="colloaName">
@@ -97,42 +99,25 @@ color:red;}
 		</tbody>
 	</table>
 	<script language="Javascript">
-		function lang(sValue) {
-			setCookie("colloaV8.viewType", sValue);
-			location.reload(true);
-		}
-		/* function skin(sValue) {
-			setCookie("profile.skin", sValue);
-			location.reload(true);
-		} */
-		function login1() {
-			if (document.forms[0].username.value.length == 0)
-				document.forms[0].username.focus();
-			else if (document.forms[0].password.value.length == 0)
-				document.forms[0].password.focus();
-			else if (document.getElementById("imgValidationCode")
-					&& document.forms[0].validationCode.value.length < 4)
-				document.forms[0].validationCode.focus();
-			else {
-				var s = ajax("command.aspx?system.login", document.forms[0]);
-				if (s.length > 0) {
-					oInform.innerHTML = "* " + $translate(s);
-					if (document.getElementById("imgValidationCode")) {
-						document.forms[0].validationCode.value = "";
-						document.getElementById("imgValidationCode").src = "validationCode.aspx?"
-								+ Math.random();
-					}
-					document.forms[0].password.value = "";
-					document.forms[0].password.focus();
-				} else {
-					location.reload(true);
-				}
+	function show(msg){
+		var dlg=BootstrapDialog.show({
+			"title" : "提示信息",
+			"message" : msg,
+			"type" : BootstrapDialog.TYPE_SUCCESS
+		});
+		setTimeout(function(){
+		    dlg.close();
+		},2000);
+	}
+		$(function(){
+			var url=window.location.href;
+			var par=url.substr(url.indexOf("?")+4);
+			if(par=="1"){
+				show("登录超时,重新登录");
+			}else if(par=="0"){
+				show("你的账号已在另一地点登录");
 			}
-		}
-		if (navigator.userAgent.indexOf("MSIE") >= 0
-				&& navigator.userAgent.indexOf("Trident") < 0) {
-			alert("您使用的IE浏览器版本较老。要获得最佳的界面效果，请使用最新版本的浏览器");
-		}
+		});	
 	</script>
 </body>
 </html>

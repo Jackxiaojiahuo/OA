@@ -8,7 +8,7 @@
 	<result property="et_theme" column="et_theme"/>
 	<result property="et_priority" column="et_priority"/>
 	<result property="et_shopdate" column="et_shopdate"/>
-	<result property="et_name" column="et_name"/>
+	<result property="emp_id" column="emp_id"/>
 	<result property="et_joindate" column="et_joindate"/>
 	<result property="et_post" column="et_post"/>
 	<result property="et_birth" column="et_birth"/>
@@ -19,7 +19,14 @@
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
-</resultMap>
+	<association property="em" column="emp_id"
+	javaType="Employee" select="getAllEmployeeById">
+	</association>
+</resultMap> 
+	<select id="getAllEmployeeById" resultType="Employee">
+		select * from
+		employee where emp_id=#{emp_id}
+	</select>
 <select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
@@ -34,8 +41,8 @@
 		select * from entry where et_id=#{et_id}
 	</select>
 	<insert id="addEntry">
-		insert into entry(et_theme,et_priority,et_shopdate,et_name,
+		insert into entry(et_theme,et_priority,et_shopdate,emp_id,
 		et_joindate,et_post,et_birth,et_sex,et_life,et_remarks,depart_id) values(#{et_theme},#{et_priority},#{et_shopdate},
-		#{et_name},#{et_joindate},#{et_dept},#{et_post},#{et_birth},#{et_sex},#{et_life},#{et_remarks},#{depart_id})
+		#{emp_id},#{et_joindate},#{et_post},#{et_birth},#{et_sex},#{et_life},#{et_remarks},#{depart_id})
 	</insert>
 </mapper>

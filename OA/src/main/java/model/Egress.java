@@ -1,22 +1,77 @@
 package model;
-//外出
+/**
+ *外出 表
+ * @author caohaoran
+ *
+ */
 public class Egress {
-	private Integer eg_id;//id
-	private String eg_theme;//主题
-	private String eg_priority;//优先级
-	private String eg_shopdate;//结束时间
-	private String eg_applydate;//申请时间
-	private String eg_egress;//外出时间
-	private String eg_return;//返回时间
-	private String eg_hour;//小时
-	private String eg_day;//天
-	private String eg_site;//外出地点
-	private String eg_reason;//事由及说明
-	private String eg_send;//是否需要派车
-	private String eg_advance;//是否提前申请
-	private Integer depart_id;//
-	public Department dept;//部门
-	public Employee em;//员工
+	/**
+	 *编号 
+	 */
+	private Integer eg_id;
+	/**
+	 * 主题
+	 */
+	private String eg_theme;
+	/**
+	 * 优先级
+	 */
+	private String eg_priority;
+	/**
+	 * 结束时间
+	 */
+	private String eg_shopdate;
+	/**
+	 * 申请时间
+	 */
+	private String eg_applydate;
+	/**
+	 * 外出时间
+	 */
+	private String eg_egress;
+	/**
+	 * 返回时间
+	 */
+	private String eg_return;
+	/**
+	 * 小时
+	 */
+	private String eg_hour;
+	/**
+	 * 天
+	 */
+	private String eg_day;
+	/**
+	 * 外出地点
+	 */
+	private String eg_site;
+	/**
+	 * 事由及说明
+	 */
+	private String eg_reason;
+	/**
+	 * 是否需要派车
+	 */
+	private String eg_send;
+	/**
+	 * 是否提前申请
+	 */
+	private String eg_advance;
+	/**
+	 * 部门的编号
+	 */
+	private Integer depart_id;
+	/**
+	 * 部门表
+	 */
+	public Department dept;
+	/**
+	 * 员工表
+	 */
+	public Employee em;
+	/**
+	 * 员工的编号
+	 */
 	private Integer emp_id;
 	
 	public Integer getEmp_id() {
