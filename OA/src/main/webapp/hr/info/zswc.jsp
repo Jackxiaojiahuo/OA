@@ -14,6 +14,9 @@
 <link rel="shortcut icon" href="colloa.ico">
 <link rel="stylesheet" href="../css/zs.min.css">
 <link rel="stylesheet" href="../css/zs.css">
+<link rel="stylesheet" href="../css/sq.css">
+<script src="jquery-1.8.2.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="jquery-ui.min.js"></script>
 <script>
 	function aa() {
 		var CheckAll = document.getElementById('All');
@@ -29,7 +32,16 @@
 			;
 		};
 	};
-	aa()
+	aa();
+	function check(id){
+		if(id==1){
+			$("input[name=eaa_state]").val("1");
+		}
+		if(id==2){
+			$("input[name=eaa_state]").val("2");
+		}
+			document.forms[0].submit();
+		}
 </script>
 <style>
 /* Code tidied up by ScrapBook */
@@ -56,21 +68,16 @@
 								<td style="text-align: right;">&nbsp;<span
 									style="color: rgb(255, 0, 0);">*</span>主题:
 								</td>
-								<td id="dbf.subject" dbf.type="required">${e.eg_theme }</td>
-								<td style="text-align: right;">&nbsp;优先级:</td>
-								<td>${e.eg_priority }</td>
+								<td id="dbf.subject" dbf.type="required" colspan="5">${e.eg_theme }</td>
 							</tr>
 							<tr>
 								<td style="text-align: right;">&nbsp;步骤:</td>
-								<td><span id="mapping.dbf.procXSource">填单人知悉</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人:
-									<span id="mapping.dbf.responsorSource">季道晓,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人:
-									<span id="mapping.dbf.participantsSource"></span></td>
+								<td colspan="3"><span id="mapping.dbf.procXSource">主管审批</span></td>
 								<td style="text-align: right;">&nbsp;结束时间:</td>
 								<td id="dbf.endTime" dbf.type="date" dbf.source="date,editable">${e.eg_shopdate }</td>
 							</tr>
 						</tbody>
 					</table>
-					<div style="text-align: center;">&nbsp;</div>
 					<div style="text-align: center;">
 						<span style="font-size: 20px;"><strong>外出申请单</strong></span>
 					</div>
@@ -143,8 +150,19 @@
 						</table>
 					</div>
 					<div>&nbsp;</div>
+					<form class="formTaskflow" action="../../work.do?action=kqsp&sp=1" method="post">
+						<table class="tableListBorder" style="table-layout: fixed;" align="center" border="0" cellpadding="0" cellspacing="0">
+								 <tr>
+									<input type="hidden" name="eg_id"  value="${e.eg_id }">
+									<input type="hidden" name="eaa_state">
+									<input type="hidden" name="eaa_date">
+									<td style="text-align: center;">审批意见</td>
+									<td id="审批说明" style="height: 80px;" colspan="5.5"><input id="e.dbf.description" class="fieldEditable" name="eaa_conclusion"></td>
+								</tr> 
+						</table>
+						</form>
 					<div style="margin: 20px 0px;" align="right">
-						<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
+					<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(1)">结束审批</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(2)">退回</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
 					</div>
 					<table style="table-layout: fixed;" border="0" cellpadding="0"
 						cellspacing="0">
@@ -158,38 +176,21 @@
 								<td class="boxBorder">
 									<div style="padding: 2px 10px;">
 										<div style="float: right;">
-											<a href="zswc_lct.html">› 显示流程图</a>
+											<!-- <a href="zswc_lct.html">› 显示流程图</a> -->
 										</div>
 										【处理过程】
 									</div>
 									<div
 										style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);">
-										<img src="../css/userX0.gif"> 季道晓 <span class="textGray">(2016/4/12
-											15:29)</span>
+										<img src="../css/userX0.gif">${e.em.emp_name } <span class="textGray">(${e.eaa_date })</span>
 									</div>
 									<div style="padding: 0px 10px 5px 30px;">
-										[<b>提交审批</b>]
-									</div>
-									<div
-										style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);">
-										<img src="../css/userX0.gif"> 李萌 <span class="textGray">(2016/4/13
-											14:32)</span>
-									</div>
-									<div style="padding: 0px 10px 5px 30px;">
-										[<b>通过并转领导审批</b>]
-									</div>
-									<div
-										style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);">
-										<img src="../css/userX0.gif"> 王刚 <span class="textGray">(2016/4/19
-											17:37)</span>
-									</div>
-									<div style="padding: 0px 10px 5px 30px;">
-										[<b>通过</b>]
+										[<b>${e.eaa_conclusion }</b>]
 									</div>
 								</td>
 								<td></td>
 								<td>
-									<div class="boxBorder">
+									<!-- <div class="boxBorder">
 										<div
 											style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【父事务】</div>
 
@@ -198,7 +199,7 @@
 										<div
 											style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
 
-									</div>
+									</div> -->
 								</td>
 							</tr>
 						</tbody>

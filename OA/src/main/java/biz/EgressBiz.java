@@ -25,6 +25,12 @@ public interface EgressBiz {
 	 */
 	int addEgress(Egress e);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateEgress(Egress e);
+	/**
 	 * 展示外出人员的详细申请单
 	 * @param eg_id
 	 * @return

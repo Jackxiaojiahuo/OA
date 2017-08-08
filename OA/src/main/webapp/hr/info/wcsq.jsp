@@ -18,22 +18,38 @@
 <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
 <script language="JavaScript" src="jquery-ui.min.js"></script>
 <script>
-	/* 	function checkname() {
-	 var name = $("input[name=emp_id]").val();
-	 var nameid = $("#nameid");
-	 if (name == "") {//检测姓名是否为空
-	 nameid.show();
-	 return false;
-	 }
-	 nameid.hide();
-	 return true;
-	 } */
-
-	function check() {
-		//if (checkname()) {
-		document.forms[0].submit();
-		//}
+function checkapplydate(){
+	  var applydate=$("input[name='eg_applydate']").val();
+	  var applydateid=$("#applydateid");
+		if(applydate==""){
+			applydateid.show();
+			return false;
+		}
+		return true;
+}
+function checkegress(){
+	  var egress=$("input[name='eg_egress']").val();
+	  var egressid=$("#egressid");
+		if(egress==""){
+			egressid.show();
+			return false;
+		}
+		return true;
+}
+function checkreturn(){
+	  var returns=$("input[name='eg_return']").val();
+	  var returnid=$("#returnid");
+		if(returns==""){
+			returnid.show();
+			return false;
+		}
+		return true;
+}
+function check(){
+	if(checkapplydate()&checkegress()&checkreturn()){
+	document.forms[0].submit();
 	}
+}
 </script>
 <script>
 	jQuery(function($) {
@@ -97,6 +113,7 @@
 			//dayNamesMin: ['日','一','二','三','四','五','六'],  
 			onSelect : function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+				$("#applydateid").hide();
 			}
 		});
 	});
@@ -118,6 +135,7 @@
 			//dayNamesMin: ['日','一','二','三','四','五','六'],  
 			onSelect : function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+				$("#egressid").hide();
 			}
 		});
 	});
@@ -139,6 +157,7 @@
 			//dayNamesMin: ['日','一','二','三','四','五','六'],  
 			onSelect : function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+				$("#returnid").hide();
 			}
 		});
 	});
@@ -165,25 +184,15 @@
 										<td style="text-align: right;">&nbsp;<span
 											style="color: rgb(255, 0, 0);">*</span>主题:
 										</td>
-										<td id="dbf.subject" dbf.type="required"><input
-											id="e.dbf.subject" class="fieldEditable" name="eg_theme"></td>
-										<td style="text-align: right;">&nbsp;优先级:</td>
-										<td><input id="dbf.priority" value="低" name="eg_priority"
-											autocomplete="off" type="radio"> 低 <input
-											id="dbf.priority" checked="" value="中" name="eg_priority"
-											autocomplete="off" type="radio"> 中 <input
-											id="dbf.priority" value="高" name="eg_priority"
-											autocomplete="off" type="radio"> 高</td>
+										<td id="dbf.subject" dbf.type="required" colspan="5"><input
+											id="e.dbf.subject" class="fieldEditable" name="eg_theme" value="外出申请-${s_emp.emp_name }"><input type="hidden" name="emp_id" value="${s_emp.emp_id }"></td>
 									</tr>
 									<tr>
 										<td style="text-align: right;">&nbsp;步骤:</td>
-										<td><span id="mapping.dbf.procXSource">填单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人:
-											<span id="mapping.dbf.responsorSource">李萌,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人:
-											<span id="mapping.dbf.participantsSource"></span></td>
+										<td><span id="mapping.dbf.procXSource" colspan="3">填单</span></td>
 										<td style="text-align: right;">&nbsp;结束时间:</td>
 										<td id="dbf.endTime" dbf.type="date"
 											dbf.source="date,editable">
-											<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
 											<div class="fieldEditable" contenteditable="true">
 												<input type="text" id="selectDate" name="eg_shopdate">
 											</div>
@@ -191,7 +200,6 @@
 									</tr>
 								</tbody>
 							</table>
-							<div style="text-align: center;">&nbsp;</div>
 							<div style="text-align: center;">
 								<span style="font-size: 20px;"><strong>外出申请单</strong></span>
 							</div>
@@ -214,18 +222,15 @@
                      </td>
 											<td style="text-align: center;"><span
 												style="color: rgb(255, 0, 0);">*</span>所属部门</td>
-											<td class="select_box"><select name="depart_id">
-													<option value="0">请选择</option>
-													<c:forEach items="${bm }" var="bm">
-														<option value="${bm.depart_id }">${bm.depart_name }</option>
-													</c:forEach>
-											</select></td>
+											<td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key="">
+                    <input id="e.dbf.operatorSource" class="fieldEditable"
+                     value="${s_emp.dept.depart_name }"><input type="hidden" name="depart_id" value="${s_emp.dept.depart_id }"></td>
 											<td style="text-align: center;"><span
 												style="color: rgb(255, 0, 0);">*</span>申请时间</td>
 											<td id="dbf.time2" dbf.type="date,required" dbf.source="date">
 												<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
 												<div>
-													<input type="text" id="sqDate" name="eg_applydate">
+													<input type="text" id="sqDate" name="eg_applydate" onblur="checkapplydate()" placeholder="请输入申请时间" /><span id="applydateid" style="color:red; display: none;">不能为空</span>
 												</div>
 											</td>
 										</tr>
@@ -236,7 +241,7 @@
 												dbf.source="datetime,editable">
 												<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
 												<div class="fieldEditable" contenteditable="true">
-													<input type="text" id="wcDate" name="eg_egress">
+													<input type="text" id="wcDate" name="eg_egress" onblur="checkegress()" placeholder="请输入外出时间" /><span id="egressid" style="color:red; display: none;">不能为空</span>
 												</div>
 											</td>
 											<td style="text-align: center;"><span
@@ -245,7 +250,7 @@
 												dbf.source="datetime,editable">
 												<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
 												<div class="fieldEditable" contenteditable="true">
-													<input type="text" id="fhDate" name="eg_return">
+													<input type="text" id="fhDate" name="eg_return" onblur="checkreturn()" placeholder="请输入返回时间" /><span id="returnid" style="color:red; display: none;">不能为空</span>
 												</div>
 											</td>
 											<td style="text-align: center;" dbf.type="date,required"
@@ -305,7 +310,7 @@
 							<col width="2%">
 							<col>
 						</colgroup>
-						<tbody>
+					<!-- 	<tbody>
 							<tr valign="top">
 								<td class="boxBorder"><div style="padding: 2px 10px;">
 										<div style="float: right;">
@@ -323,7 +328,7 @@
 											style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
 									</div></td>
 							</tr>
-						</tbody>
+						</tbody> -->
 					</table></td>
 			</tr>
 		</tbody>

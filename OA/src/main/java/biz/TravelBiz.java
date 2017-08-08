@@ -24,6 +24,12 @@ public interface TravelBiz {
 	 */
 	int addTravel(Travel t);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateTravel(Travel t);
+	/**
 	 * 展示出差人员的详细申请单
 	 * @param tv_id
 	 * @return

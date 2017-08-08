@@ -24,6 +24,12 @@ public interface FurloughDao {
 	 */
 	int addFurlough(Furlough f);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateFurlough(Furlough f);
+	/**
 	 * 展示请休假的申请单
 	 * @param fg_id
 	 * @return

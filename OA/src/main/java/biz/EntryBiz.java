@@ -24,6 +24,12 @@ public interface EntryBiz {
 	 */
 	int addEntry(Entry e);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateEntry(Entry e);
+	/**
 	 * 展示入职人员的详细申请单
 	 * @param et_id
 	 * @return

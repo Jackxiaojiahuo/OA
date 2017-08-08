@@ -55,5 +55,13 @@ public class FurloughBizImpl implements FurloughBiz{
 		// TODO Auto-generated method stub
 		return furDao.findFurloughBylike_count(map);
 	}
+	/**
+	 * 审批处理
+	 */
+	@Override
+	public int updateFurlough(Furlough f) {
+		// TODO Auto-generated method stub
+		return furDao.updateFurlough(f);
+	}
 
 }

@@ -43,5 +43,13 @@ public class BecomeBizImpl implements BecomeBiz{
 	public Become findBecomeById(int b_id) {
 		return beDao.findBecomeById(b_id);
 	}
+	/**
+	 * 审批处理
+	 */
+	@Override
+	public int updateBecome(Become b) {
+		// TODO Auto-generated method stub
+		return beDao.updateBecome(b);
+	}
 
 }

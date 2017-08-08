@@ -24,6 +24,12 @@ public interface BecomeBiz{
 	 */
 	int addBecome(Become b);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateBecome(Become b);
+	/**
 	 * 展示转正人员的详细申请单
 	 * @param b_id
 	 * @return

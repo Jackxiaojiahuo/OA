@@ -33,8 +33,8 @@ public class OffBizImpl implements OffBiz{
 	 * 调休申请
 	 */
 	@Override
-	public int addOff(Off o) {
-	return offDao.addOff(o);
+	public int addOff(Off of) {
+		return offDao.addOff(of);
 	}
 	/**
 	 * 展示调休人员的详细申请单
@@ -54,6 +54,14 @@ public class OffBizImpl implements OffBiz{
 	public int findOffBylike_count(Map map) {
 		// TODO Auto-generated method stub
 		return offDao.findOffBylike_count(map);
+	}
+	/**
+	 * 审批处理
+	 */
+	@Override
+	public int updateOff(Off of) {
+		// TODO Auto-generated method stub
+		return offDao.updateOff(of);
 	}
 
 }

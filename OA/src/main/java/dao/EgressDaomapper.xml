@@ -6,7 +6,6 @@
 	<resultMap type="Egress" id="rm">
 	<id property="eg_id" column="eg_id"/>
 	<result property="eg_theme" column="eg_theme"/>
-	<result property="eg_priority" column="eg_priority"/>
 	<result property="eg_shopdate" column="eg_shopdate"/>
 	<result property="eg_applydate" column="eg_applydate"/>
 	<result property="eg_egress" column="eg_egress"/>
@@ -19,6 +18,9 @@
 	<result property="eg_advance" column="eg_advance"/>
 	<result property="depart_id" column="depart_id"/>
 	<result property="emp_id" column="emp_id"/>
+	<result property="eaa_state" column="eaa_state"/>
+	<result property="eaa_conclusion" column="eaa_conclusion"/>
+	<result property="eaa_date" column="eaa_date"/>
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
@@ -26,38 +28,42 @@
 	javaType="Employee" select="getAllEmployeeById">
 	</association>
 	</resultMap>
+	<!--部门全部查  -->
 	<select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
+	<!--员工全部查  -->
 	<select id="getAllEmployeeById" resultType="Employee">
 		select * from
 		employee where emp_id=#{emp_id}
 	</select>
-		<!--  全部查询-->
+		<!--  外出全部查询-->
 	<select id="findAllEgress" resultMap="rm" parameterType="map">
-		select * from egress limit #{index},#{size}
+		select * from egress where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
 	</select>
 	<select id="findAllEgress_count" resultType="Integer" parameterType="map">
-		select count(*) from egress
+		select count(*) from egress where eaa_state!=1 order by eaa_date desc
 	</select>
 	<select id="findEgressById" parameterType="int" resultMap="rm">
 		select * from egress where eg_id=#{eg_id}
 	</select>
+	<!--外出申请  -->
 	<insert id="addEgress">
-		insert into egress(eg_theme,eg_priority,eg_shopdate,eg_applydate,eg_egress,eg_return,
-		eg_hour,eg_day,eg_site,eg_reason,eg_send,eg_advance,depart_id,emp_id) values(#{eg_theme},#{eg_priority},#{eg_shopdate},#{eg_applydate},#{eg_egress},
-		#{eg_return},#{eg_hour},#{eg_day},#{eg_site},#{eg_reason},#{eg_send},#{eg_advance},#{depart_id},#{emp_id})
+		insert into egress(eg_theme,eg_shopdate,eg_applydate,eg_egress,eg_return,
+		eg_hour,eg_day,eg_site,eg_reason,eg_send,eg_advance,depart_id,emp_id,eaa_state,eaa_date,eaa_conclusion) values(#{eg_theme},#{eg_shopdate},#{eg_applydate},#{eg_egress},
+		#{eg_return},#{eg_hour},#{eg_day},#{eg_site},#{eg_reason},#{eg_send},#{eg_advance},#{depart_id},#{emp_id},0,sysdate(),#{eaa_conclusion})
 	</insert>
 	<!--根据提供的条件查询  -->
 	<select id="findEgressBylike" parameterType="map" resultMap="rm">
 		select * from egress
 		<where>
+			eaa_state!=1
 			<if test="eg_theme!=null">
-				eg_theme like '%${eg_theme}%'
+				and eg_theme like '%${eg_theme}%'
 			</if>
 			<if test="eg_site!=null">
-				eg_site like '%${eg_site}%'
+				and eg_site like '%${eg_site}%'
 			</if>
 		</where>
 		limit #{index},#{size} 
@@ -65,12 +71,27 @@
 	<select id="findEgressBylike_count" resultType="Integer" parameterType="map">
 		select count(*) from egress
 		<where>
+			eaa_state!=1
 			<if test="eg_theme!=null">
-				eg_theme like '%${eg_theme}%'
+				and eg_theme like '%${eg_theme}%'
 			</if>
 			<if test="eg_site!=null">
-				eg_site like '%${eg_site}%'
+				and eg_site like '%${eg_site}%'
 			</if>
 		</where>
 	</select>
+	<!--审批  -->
+	 <update id="updateEgress">
+		update egress 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			eg_id=#{eg_id}
+		</where>
+</update>
 </mapper>

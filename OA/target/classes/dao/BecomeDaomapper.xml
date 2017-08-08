@@ -6,7 +6,6 @@
 <resultMap type="Become" id="rm">
 	<id property="b_id" column="b_id"/>
 	<result property="b_theme" column="b_theme"/>
-	<result property="b_priority" column="b_priority"/>
 	<result property="b_shopdate" column="b_shopdate"/>
 	<result property="b_applydate" column="b_applydate"/>
 	<result property="b_post" column="b_post"/>
@@ -19,6 +18,9 @@
 	<result property="b_comment" column="b_comment"/>
 	<result property="depart_id" column="depart_id"/>
 	<result property="emp_id" column="emp_id"/>
+	<result property="eaa_state" column="eaa_state"/>
+	<result property="eaa_conclusion" column="eaa_conclusion"/>
+	<result property="eaa_date" column="eaa_date"/>
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
@@ -34,22 +36,37 @@
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
-		<!--  全部查询-->
+		<!-- 全部查询 并分页-->
 	<select id="findAllBecome" resultMap="rm" parameterType="map">
-		select * from become limit #{index},#{size}
+		select * from become where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
 	</select>
+	<!-- 计算总数 -->
 	<select id="findAllBecome_count" resultType="Integer" parameterType="map">
-		select count(*) from become
+		select count(*) from become where eaa_state!=1 order by eaa_date desc
 	</select>
-		<!-- 根据id查询 -->
+		<!-- 展示转正申请单 -->
 	<select id="findBecomeById" parameterType="int" resultMap="rm">
 		select * from become where b_id=#{b_id}
 	</select>
 	<!-- 转正申请 -->
 	<insert id="addBecome">
-		insert into become(b_theme,b_priority,b_shopdate,b_applydate,
-		b_post,b_joindate,b_become,b_content,b_achievement,b_problem,b_imagine,b_comment,depart_id,emp_id) values(#{b_theme},
-		#{b_priority},#{b_shopdate},#{b_applydate},#{b_post},#{b_joindate},
-		#{b_become},#{b_content},#{b_achievement},#{b_problem},#{b_imagine},#{b_comment},#{depart_id},#{emp_id})
+		insert into become(b_theme,b_shopdate,b_applydate,
+		b_post,b_joindate,b_become,b_content,b_achievement,b_problem,b_imagine,b_comment,depart_id,emp_id,eaa_state,eaa_date,eaa_conclusion) values(#{b_theme},
+		#{b_shopdate},#{b_applydate},#{b_post},#{b_joindate},
+		#{b_become},#{b_content},#{b_achievement},#{b_problem},#{b_imagine},#{b_comment},#{depart_id},#{emp_id},0,sysdate(),#{eaa_conclusion})
 	</insert>
+		<!--审批  -->
+	 <update id="updateBecome">
+		update become 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			b_id=#{b_id}
+		</where>
+</update>
 </mapper>

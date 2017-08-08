@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 离职
  * @author caohaoran
  *
  */
-public class Quit {
+public class Quit implements Serializable{
 	/**
 	 * 编号
 	 */
@@ -13,10 +16,6 @@ public class Quit {
 	 * 主题
 	 */
 	private String q_theme;
-	/**
-	 * 优先级
-	 */
-	private String q_priority;
 	/**
 	 * 结束时间
 	 */
@@ -69,18 +68,28 @@ public class Quit {
 	 * 部门编号
 	 */
 	private Integer depart_id;
-	
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
 	public Quit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Quit(Integer q_id, String q_theme, String q_priority, String q_shopdate, String q_applydate, String q_post,
+	public Quit(Integer q_id, String q_theme, String q_shopdate, String q_applydate, String q_post,
 			String q_joindate, String q_quit, String q_type, String q_reason, String q_transfer, String q_opinion,
-			Department dept, Employee em, Integer emp_id, Integer depart_id) {
+			Department dept, Employee em, Integer emp_id, Integer depart_id,Integer eaa_state,String eaa_conclusion,String eaa_date) {
 		super();
 		this.q_id = q_id;
 		this.q_theme = q_theme;
-		this.q_priority = q_priority;
 		this.q_shopdate = q_shopdate;
 		this.q_applydate = q_applydate;
 		this.q_post = q_post;
@@ -94,6 +103,9 @@ public class Quit {
 		this.em = em;
 		this.emp_id = emp_id;
 		this.depart_id = depart_id;
+		this.eaa_state=eaa_state;
+		this.eaa_conclusion=eaa_conclusion;
+		this.eaa_date=eaa_date;
 	}
 	public Integer getEmp_id() {
 		return emp_id;
@@ -107,8 +119,6 @@ public class Quit {
 	public void setEm(Employee em) {
 		this.em = em;
 	}
-
-	
 	public Integer getDepart_id() {
 		return depart_id;
 	}
@@ -132,12 +142,6 @@ public class Quit {
 	}
 	public void setQ_theme(String q_theme) {
 		this.q_theme = q_theme;
-	}
-	public String getQ_priority() {
-		return q_priority;
-	}
-	public void setQ_priority(String q_priority) {
-		this.q_priority = q_priority;
 	}
 	public String getQ_shopdate() {
 		return q_shopdate;
@@ -192,6 +196,24 @@ public class Quit {
 	}
 	public void setQ_opinion(String q_opinion) {
 		this.q_opinion = q_opinion;
+	}
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+	public String getEaa_date() {
+		return eaa_date;
+	}
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
 	}
 	
 }

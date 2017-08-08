@@ -24,6 +24,12 @@ public interface QuitBiz {
 	 */
 	int addQuit(Quit q);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateQuit(Quit q);
+	/**
 	 * 展示离职人员的详细申请单
 	 * @param q_id
 	 * @return

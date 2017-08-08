@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -162,22 +163,22 @@
 												<td>${e.em.emp_name }</td>
 												<td>${e.dept.depart_name }</td>
 												<td>${e.eg_site }</td>
-												<td>${e.eg_egress }/${e.eg_return }</td>
+												<td>${fn:substring(e.eg_egress, 0, fn:length(e.eg_egress)-5)}/${fn:substring(e.eg_return, 0, fn:length(e.eg_return)-5)}</td>
 											</tr>
 										</c:forEach>
 									</c:when>
 									<c:when test="${num==2 }">
-										<c:forEach var="o" items="${list }">
+										<c:forEach var="ot" items="${list }">
 											<tbody>
 												<td><a
-													href="../work.do?action=kqzs&oi_id=${o.oi_id }&zs=2"><i
+													href="../work.do?action=kqzs&oi_id=${ot.oi_id }&zs=2"><i
 														style="color: orange;"
 														class="fa fa-calendar-minus-o fa-lg"></i><img
-														src="css/priority0.gif" border="0">${o.oi_theme }</a></td>
-												<td>${o.em.emp_name }</td>
-												<td>${o.dept.depart_name }</td>
-												<td>${o.oi_cdate }/${o.oi_ddate }</td>
-												<td>${o.oi_day }天${o.oi_hour }时</td>
+														src="css/priority0.gif" border="0">${ot.oi_theme }</a></td>
+												<td>${ot.em.emp_name }</td>
+												<td>${ot.dept.depart_name }</td>
+												<td>${fn:substring(ot.oi_cdate, 0, fn:length(ot.oi_cdate)-5)}/${fn:substring(ot.oi_ddate, 0, fn:length(ot.oi_ddate)-5)}</td>
+												<td>${ot.oi_day }天${ot.oi_hour }时</td>
 											</tbody>
 										</c:forEach>
 									</c:when>

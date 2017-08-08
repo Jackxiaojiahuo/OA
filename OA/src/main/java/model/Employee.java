@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author caohaoran
  *
  */
-public class Employee implements Serializable {
+public class Employee implements Serializable{
 	/**
 	 * 编号
 	 */

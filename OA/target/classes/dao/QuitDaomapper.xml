@@ -6,7 +6,6 @@
 <resultMap type="Quit" id="rm">
 	<id property="q_id" column="q_id"/>
 	<result property="q_theme" column="q_theme"/>
-	<result property="q_priority" column="q_priority"/>
 	<result property="q_shopdate" column="q_shopdate"/>
 	<result property="q_applydate" column="q_applydate"/>
 	<result property="q_post" column="q_post"/>
@@ -18,6 +17,9 @@
 	<result property="q_opinion" column="q_opinion"/>
 	<result property="depart_id" column="depart_id"/>
 	<result property="emp_id" column="emp_id"/>
+	<result property="eaa_state" column="eaa_state"/>
+	<result property="eaa_conclusion" column="eaa_conclusion"/>
+	<result property="eaa_date" column="eaa_date"/>
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
@@ -25,26 +27,47 @@
 	javaType="Employee" select="getAllEmployeeById">
 	</association>
 </resultMap>
-<select id="getAllEmployeeById" resultType="Employee">
+		<!--员工表全查  -->
+	<select id="getAllEmployeeById" resultType="Employee">
 		select * from
 		employee where emp_id=#{emp_id}
 	</select>
-<select id="getAllDepartmentById" resultType="Department">
+	<!--部门表全查  -->
+	<select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
+	<!--离职表全查并分页  -->
 	<select id="findAllQuit" resultMap="rm" parameterType="map">
-		select * from quit limit #{index},#{size}
+		select * from quit where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
 	</select>
+	<!--求总计  -->
 		<select id="findAllQuit_count" resultType="Integer" parameterType="map">
-		select count(*) from quit
+		select count(*) from quit where eaa_state!=1  order by eaa_date desc
 	</select>
+	<!-- 展示详细信息 -->  
 	<select id="findQuitById" parameterType="int" resultMap="rm">
 		select * from quit where q_id=#{q_id}
 	</select>
+	<!--离职申请  -->
 	<insert id="addQuit">
-		insert into quit(q_theme,q_priority,q_shopdate,
-		q_applydate,q_post,q_joindate,q_quit,q_type,q_reason,q_transfer,q_opinion,depart_id,emp_id) values(#{q_theme},#{q_priority},#{q_shopdate},
-		#{q_applydate},#{q_post},#{q_joindate},#{q_quit},#{q_type},#{q_reason},#{q_transfer},#{q_opinion},#{depart_id},#{emp_id})
+		insert into quit(q_theme,q_shopdate,
+		q_applydate,q_post,q_joindate,q_quit,q_type,q_reason,q_transfer,q_opinion,depart_id,emp_id,eaa_state,eaa_conclusion,eaa_date) values(#{q_theme},#{q_shopdate},
+		#{q_applydate},#{q_post},#{q_joindate},#{q_quit},#{q_type},#{q_reason},#{q_transfer},#{q_opinion},#{depart_id},#{emp_id},0,#{eaa_conclusion},sysdate())
 	</insert>
+		<!--审批  -->
+	 <update id="updateQuit">
+		update quit 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			q_id=#{q_id}
+		</where>
+	</update>
+
 </mapper>

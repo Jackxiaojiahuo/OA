@@ -55,5 +55,13 @@ public class EgressBizImpl implements EgressBiz{
 		// TODO Auto-generated method stub
 		return egrDao.findEgressBylike_count(map);
 	}
+	/**
+	 * 审批处理
+	 */
+	@Override
+	public int updateEgress(Egress e) {
+		// TODO Auto-generated method stub
+		return egrDao.updateEgress(e);
+	}
 
 }

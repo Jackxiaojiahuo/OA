@@ -182,6 +182,7 @@ public class RecruitController {
 	 */
 	@RequestMapping(params="action=zp")
 	public String sqRe(String re_theme,
+			String re_shopdate,
 			String re_post,
 			String re_applydate,
 			Integer re_number,
@@ -195,7 +196,7 @@ public class RecruitController {
 			String re_req,
 			Integer depart_id,
 			String et_theme,
-			String et_priority,
+			String et_name,
 			String et_shopdate,
 			String et_joindate,
 			String et_post,
@@ -204,7 +205,6 @@ public class RecruitController {
 			String et_life,
 			String et_remarks,
 			String b_theme,
-			String b_priority,
 			String b_shopdate,  
 			String b_applydate,   
 			String b_post,
@@ -217,7 +217,6 @@ public class RecruitController {
 			String b_comment,
 			Integer emp_id,
 			String q_theme,
-			String q_priority,
 			String q_shopdate,
 			String q_applydate,
 			String q_post,
@@ -229,32 +228,45 @@ public class RecruitController {
 			String q_opinion,Integer sq,Integer eaa_state,String eaa_conclusion,String eaa_date){
 		sq=sq==null?0:sq;
 		if(sq==0){
-			Recruit r=new Recruit(re_number,re_theme,emp_id,re_post,re_applydate==""?null:re_applydate,re_number,re_positiondate==""?null:re_positiondate,re_reason,
+			Recruit r=new Recruit(re_number,re_theme,re_shopdate==""?null:re_shopdate,emp_id,re_post,re_applydate==""?null:re_applydate,
+					re_number,re_positiondate==""?null:re_positiondate,re_reason,
 					re_duty,re_age,re_sex,re_experience,re_lb, re_req,depart_id, null,0,"提交主管审批",eaa_date,null);
 			ruBiz.addRecruit(r);
 			return "redirect:recruit.do?action=Relist&num=0";
 		}else if(sq==1){
-			Entry e=new Entry(null, et_theme,et_priority,et_shopdate==""?null:et_shopdate,emp_id,et_joindate==""?null:et_joindate,et_post,et_birth==""?null:et_birth,et_sex,et_life,et_remarks,null, depart_id,null);
+			Entry e=new Entry(null, et_theme,et_shopdate==""?null:et_shopdate,emp_id,et_name,et_joindate==""?null:et_joindate,
+					et_post,et_birth==""?null:et_birth,et_sex,et_life,et_remarks,null, depart_id,0,"提交主管审批",eaa_date,null);
 			eyBiz.addEntry(e);
 			return "redirect:recruit.do?action=Relist&num=1";
 		}else if(sq==2){
-			Become b=new Become(null, b_theme,b_priority,b_shopdate==""?null:b_shopdate,b_applydate==""?null:b_applydate,b_post,b_joindate==""?null:b_joindate,b_become==""?null:b_become,b_content,b_achievement,b_problem,b_imagine,b_comment,null, depart_id,emp_id, null);
+			Become b=new Become(null, b_theme,b_shopdate==""?null:b_shopdate,b_applydate==""?null:b_applydate,
+					b_post,b_joindate==""?null:b_joindate,b_become==""?null:b_become,
+					b_content,b_achievement,b_problem,b_imagine,b_comment,null, depart_id,emp_id,null,0,eaa_date,"提交主管审批");
 			beBiz.addBecome(b);
 			return "redirect:recruit.do?action=Relist&num=2";
 		}else{
-			Quit q=new Quit(null, q_theme,q_priority,q_shopdate==""?null:q_shopdate,
-					q_applydate==""?null:q_applydate,q_post,q_joindate==""?null:q_joindate,q_quit==""?null:q_quit,q_type,q_reason,q_transfer,q_opinion, null, null, depart_id,emp_id);
+			Quit q=new Quit(null, q_theme,q_shopdate==""?null:q_shopdate,
+					q_applydate==""?null:q_applydate,q_post,q_joindate==""?null:q_joindate,q_quit==""?null:q_quit,
+					q_type,q_reason,q_transfer,q_opinion, null, null, depart_id,emp_id,0,"提交主管审批",eaa_date);
 			qtBiz.addQuit(q);
 			return "redirect:recruit.do?action=Relist&num=3";
 		}
 	}
 	@RequestMapping(params="action=zppzsp")
-	public String spRe(Recruit r,Integer sp){
+	public String spRe(Recruit r,Entry e,Become b,Quit q,Integer sp){
 		sp=sp==null?0:sp;
 		if(sp==0){
 			ruBiz.updateRecruit(r);
 			return "redirect:recruit.do?action=Relist&num=0";
+		}else if(sp==1){
+			eyBiz.updateEntry(e);
+			return "redirect:recruit.do?action=Relist&num=1";
+		}else if(sp==2){
+			beBiz.updateBecome(b);
+			return "redirect:recruit.do?action=Relist&num=2";
+		}else{
+			qtBiz.updateQuit(q);
+			return "redirect:recruit.do?action=Relist&num=3";
 		}
-		return "";
 	}
 }

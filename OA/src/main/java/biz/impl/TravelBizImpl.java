@@ -55,5 +55,13 @@ public class TravelBizImpl implements TravelBiz{
 		// TODO Auto-generated method stub
 		return traDao.findTravelBylike_count(map);
 	}
+	/**
+	 * 审批处理
+	 */
+	@Override
+	public int updateTravel(Travel t) {
+		// TODO Auto-generated method stub
+		return traDao.updateTravel(t);
+	}
 
 }

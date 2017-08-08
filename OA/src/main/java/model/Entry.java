@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  *入职 
  * @author caohaoran
  *
  */
-public class Entry {
+public class Entry implements Serializable{
 	/**
 	 *编号
 	 */
@@ -14,10 +17,6 @@ public class Entry {
 	 */
 	private String et_theme;
 	/**
-	 * 状态
-	 */
-	private String et_priority;
-	/**
 	 * 结束时间
 	 */
 	private String et_shopdate;
@@ -25,6 +24,10 @@ public class Entry {
 	 * 申请人
 	 */
 	private Integer emp_id;
+	/**
+	 * 入职人
+	 */
+	private String et_name;
 	/**
 	 * 入职日期
 	 */
@@ -61,14 +64,26 @@ public class Entry {
 	 * 部门的编号
 	 */
 	private Integer depart_id;
-	public Entry(Integer et_id, String et_theme, String et_priority, String et_shopdate,Integer emp_id, String et_joindate,
-			String et_post, String et_birth, String et_sex, String et_life, String et_remarks, Department dept,Integer depart_id,Employee em) {
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
+	public Entry(Integer et_id, String et_theme, String et_shopdate,Integer emp_id,String et_name, String et_joindate,
+			String et_post, String et_birth, String et_sex, String et_life, String et_remarks, Department dept,Integer depart_id,Integer eaa_state,String eaa_conclusion,String eaa_date,Employee em) {
 		super();
 		this.et_id = et_id;
 		this.et_theme = et_theme;
-		this.et_priority = et_priority;
 		this.et_shopdate = et_shopdate;
-		this.emp_id = emp_id;
+		this.emp_id=emp_id;
+		this.et_name = et_name;
 		this.et_joindate = et_joindate;
 		this.et_post = et_post;
 		this.et_birth = et_birth;
@@ -77,13 +92,16 @@ public class Entry {
 		this.et_remarks = et_remarks;
 		this.dept = dept;
 		this.depart_id = depart_id;
-		this.em = em;
+		this.eaa_state=eaa_state;
+		this.eaa_date=eaa_date;
+		this.eaa_conclusion=eaa_conclusion;
+		this.em=em;
 	}
-	public Integer getEmp_id() {
-		return emp_id;
+	public String getEt_name() {
+		return et_name;
 	}
-	public void setEmp_id(Integer emp_id) {
-		this.emp_id = emp_id;
+	public void setEt_name(String et_name) {
+		this.et_name = et_name;
 	}
 	public Integer getDepart_id() {
 		return depart_id;
@@ -96,12 +114,6 @@ public class Entry {
 	}
 	public void setDept(Department dept) {
 		this.dept = dept;
-	}
-	public Employee getEm() {
-		return em;
-	}
-	public void setEm(Employee em) {
-		this.em = em;
 	}
 	public Entry() {
 		super();
@@ -119,12 +131,6 @@ public class Entry {
 	}
 	public void setEt_theme(String et_theme) {
 		this.et_theme = et_theme;
-	}
-	public String getEt_priority() {
-		return et_priority;
-	}
-	public void setEt_priority(String et_priority) {
-		this.et_priority = et_priority;
 	}
 	public String getEt_shopdate() {
 		return et_shopdate;
@@ -167,6 +173,36 @@ public class Entry {
 	}
 	public void setEt_remarks(String et_remarks) {
 		this.et_remarks = et_remarks;
+	}
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+	public String getEaa_date() {
+		return eaa_date;
+	}
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
+	}
+	public Integer getEmp_id() {
+		return emp_id;
+	}
+	public void setEmp_id(Integer emp_id) {
+		this.emp_id = emp_id;
+	}
+	public Employee getEm() {
+		return em;
+	}
+	public void setEm(Employee em) {
+		this.em = em;
 	}
 
 }

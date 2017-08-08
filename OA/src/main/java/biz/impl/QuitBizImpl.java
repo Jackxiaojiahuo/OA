@@ -43,5 +43,13 @@ public class QuitBizImpl implements QuitBiz{
 	public Quit findQuitById(int q_id) {
 		return quitDao.findQuitById(q_id);
 	}
+	/**
+	 * 审批处理
+	 */
+	@Override
+	public int updateQuit(Quit q) {
+		// TODO Auto-generated method stub
+		return quitDao.updateQuit(q);
+	}
 
 }

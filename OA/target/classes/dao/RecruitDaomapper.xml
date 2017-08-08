@@ -6,6 +6,7 @@
 <resultMap type="Recruit" id="rm">
 	<id property="re_id" column="re_id"/>
 	<result property="re_theme" column="re_theme"/>
+	<result property="re_shopdate" column="re_shopdate"/>
 	<result property="emp_id" column="emp_id"/>
 	<result property="re_post" column="re_post"/>
 	<result property="re_applydate" column="re_applydate"/>
@@ -39,11 +40,11 @@
 	</select>
 	<!--全部查询-->
   <select id="findAllRecruit"  resultMap="rm" parameterType="map">
-    select * from Recruit where eaa_state!=1 limit #{index},#{size}
+    select * from Recruit where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
   </select>
   <!--全部查询-->
   <select id="findAllRecruit_count"  resultType="Integer" parameterType="map">
-    select count(*) from Recruit where eaa_state!=1
+    select count(*) from Recruit where eaa_state!=1 order by eaa_date desc
   </select>
     	<!--根据id查询 --> 
   <select id="findRecruiteById" parameterType="int" resultMap="rm">
@@ -51,10 +52,11 @@
   </select>
 	<!-- 招聘申请 -->
    <insert id="addRecruit">
-  	insert into Recruit(re_theme,emp_id,re_post,re_applydate,re_number,re_positiondate,re_reason,re_duty,re_age,re_sex,re_experience,re_lb,
-  	re_req,depart_id,eaa_state,eaa_date,eaa_conclusion) values(#{re_theme},
+  	insert into Recruit(re_theme,re_shopdate,emp_id,re_post,re_applydate,re_number,re_positiondate,re_reason,re_duty,re_age,re_sex,re_experience,re_lb,
+  	re_req,depart_id,eaa_state,eaa_date,eaa_conclusion) values(#{re_theme},#{re_shopdate},
   	#{emp_id},#{re_post},#{re_applydate},#{re_number},#{re_positiondate},#{re_reason},#{re_duty},#{re_age},#{re_sex},#{re_experience},#{re_lb},#{re_req},#{depart_id},0,sysdate(),#{eaa_conclusion})
   </insert>
+  <!-- 审批 -->
  <update id="updateRecruit">
 		update recruit 
 		<set>

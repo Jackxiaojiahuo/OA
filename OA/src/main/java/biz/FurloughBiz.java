@@ -24,6 +24,12 @@ public interface FurloughBiz {
 	 */
 	int addFurlough(Furlough f);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateFurlough(Furlough f);
+	/**
 	 *展示请休假人员的详细申请单
 	 * @param fg_id
 	 * @return

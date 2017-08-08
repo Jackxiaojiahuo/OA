@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 加班
  * @author caohaoran
  *
  */
-public class Overtime {
+public class Overtime implements Serializable{
 	/**
 	 * 
 	 */
@@ -13,10 +16,6 @@ public class Overtime {
 	 * 主题
 	 */
 	private String oi_theme;
-	/**
-	 * 优先级
-	 */
-	private String oi_priority;
 	/**
 	 * 结束时间
 	 */
@@ -61,7 +60,18 @@ public class Overtime {
 	 * 
 	 */
 	private Integer emp_id;
-	
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
 	public Integer getEmp_id() {
 		return emp_id;
 	}
@@ -85,12 +95,6 @@ public class Overtime {
 	}
 	public void setOi_theme(String oi_theme) {
 		this.oi_theme = oi_theme;
-	}
-	public String getOi_priority() {
-		return oi_priority;
-	}
-	public void setOi_priority(String oi_priority) {
-		this.oi_priority = oi_priority;
 	}
 	public String getOi_shopdate() {
 		return oi_shopdate;
@@ -146,17 +150,35 @@ public class Overtime {
 	public void setDept(Department dept) {
 		this.dept = dept;
 	}
+	
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+	public String getEaa_date() {
+		return eaa_date;
+	}
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
+	}
 	public Overtime() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Overtime(Integer oi_id, String oi_theme, String oi_priority, String oi_shopdate, String oi_applydate,
+	public Overtime(Integer oi_id, String oi_theme, String oi_shopdate, String oi_applydate,
 			String oi_cdate, String oi_ddate, String oi_hour, String oi_day, String oi_reason, Integer depart_id,
-			Department dept, Employee em, Integer emp_id) {
+			Department dept, Employee em, Integer emp_id,Integer eaa_state,String eaa_conclusion,String eaa_date) {
 		super();
 		this.oi_id = oi_id;
 		this.oi_theme = oi_theme;
-		this.oi_priority = oi_priority;
 		this.oi_shopdate = oi_shopdate;
 		this.oi_applydate = oi_applydate;
 		this.oi_cdate = oi_cdate;
@@ -168,6 +190,9 @@ public class Overtime {
 		this.dept = dept;
 		this.em = em;
 		this.emp_id = emp_id;
+		this.eaa_state=eaa_state;
+		this.eaa_conclusion=eaa_conclusion;
+		this.eaa_date=eaa_date;
 	}
 	
 }

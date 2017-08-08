@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  *外出 表
  * @author caohaoran
  *
  */
-public class Egress {
+public class Egress implements Serializable{
 	/**
 	 *编号 
 	 */
@@ -13,10 +16,6 @@ public class Egress {
 	 * 主题
 	 */
 	private String eg_theme;
-	/**
-	 * 优先级
-	 */
-	private String eg_priority;
 	/**
 	 * 结束时间
 	 */
@@ -73,7 +72,18 @@ public class Egress {
 	 * 员工的编号
 	 */
 	private Integer emp_id;
-	
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
 	public Integer getEmp_id() {
 		return emp_id;
 	}
@@ -97,12 +107,6 @@ public class Egress {
 	}
 	public void setEg_theme(String eg_theme) {
 		this.eg_theme = eg_theme;
-	}
-	public String getEg_priority() {
-		return eg_priority;
-	}
-	public void setEg_priority(String eg_priority) {
-		this.eg_priority = eg_priority;
 	}
 	public String getEg_shopdate() {
 		return eg_shopdate;
@@ -176,13 +180,31 @@ public class Egress {
 	public void setDept(Department dept) {
 		this.dept = dept;
 	}
-	public Egress(Integer eg_id, String eg_theme, String eg_priority, String eg_shopdate, String eg_applydate,
+	
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+	public String getEaa_date() {
+		return eaa_date;
+	}
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
+	}
+	public Egress(Integer eg_id, String eg_theme, String eg_shopdate, String eg_applydate,
 			String eg_egress, String eg_return, String eg_hour, String eg_day, String eg_site, String eg_reason,
-			String eg_send, String eg_advance, Integer depart_id, Department dept, Employee em, Integer emp_id) {
+			String eg_send, String eg_advance, Integer depart_id, Department dept, Employee em, Integer emp_id,Integer eaa_state,String eaa_conclusion,String eaa_date) {
 		super();
 		this.eg_id = eg_id;
 		this.eg_theme = eg_theme;
-		this.eg_priority = eg_priority;
 		this.eg_shopdate = eg_shopdate;
 		this.eg_applydate = eg_applydate;
 		this.eg_egress = eg_egress;
@@ -197,6 +219,9 @@ public class Egress {
 		this.dept = dept;
 		this.em = em;
 		this.emp_id = emp_id;
+		this.eaa_state=eaa_state;
+		this.eaa_conclusion=eaa_conclusion;
+		this.eaa_date=eaa_date;
 	}
 	public Egress() {
 		super();

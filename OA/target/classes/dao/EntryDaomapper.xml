@@ -6,9 +6,9 @@
 <resultMap type="Entry" id="rm">
 	<id property="et_id" column="et_id"/>
 	<result property="et_theme" column="et_theme"/>
-	<result property="et_priority" column="et_priority"/>
 	<result property="et_shopdate" column="et_shopdate"/>
 	<result property="emp_id" column="emp_id"/>
+	<result property="et_name" column="et_name"/>
 	<result property="et_joindate" column="et_joindate"/>
 	<result property="et_post" column="et_post"/>
 	<result property="et_birth" column="et_birth"/>
@@ -16,6 +16,9 @@
 	<result property="et_life" column="et_life"/>
 	<result property="et_remarks" column="et_remarks"/>
 	<result property="depart_id" column="depart_id"/>
+	<result property="eaa_state" column="eaa_state"/>
+	<result property="eaa_conclusion" column="eaa_conclusion"/>
+	<result property="eaa_date" column="eaa_date"/>
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
@@ -23,26 +26,46 @@
 	javaType="Employee" select="getAllEmployeeById">
 	</association>
 </resultMap> 
-	<select id="getAllEmployeeById" resultType="Employee">
+<!-- 员工全部查 -->
+<select id="getAllEmployeeById" resultType="Employee">
 		select * from
 		employee where emp_id=#{emp_id}
 	</select>
+<!-- 部门全部查 -->
 <select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
+	<!-- 根据审批状态！=1 进行全部查并 分页 -->
 	<select id="findAllEntry" resultMap="rm" parameterType="map">
-		select * from entry limit #{index},#{size}
+		select * from entry where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
 	</select>
+	<!-- 查审批状态！=1 的全部数量 -->
 	<select id="findAllEntry_count" resultType="Integer" parameterType="map">
-		select count(*) from entry
+		select count(*) from entry where eaa_state!=1 order by eaa_date desc
 	</select>
+	<!-- 展示入职 -->
 	<select id="findEntryById" parameterType="int" resultMap="rm">
 		select * from entry where et_id=#{et_id}
 	</select>
+	<!--申请  -->
 	<insert id="addEntry">
-		insert into entry(et_theme,et_priority,et_shopdate,emp_id,
-		et_joindate,et_post,et_birth,et_sex,et_life,et_remarks,depart_id) values(#{et_theme},#{et_priority},#{et_shopdate},
-		#{emp_id},#{et_joindate},#{et_post},#{et_birth},#{et_sex},#{et_life},#{et_remarks},#{depart_id})
+		insert into entry(et_theme,et_shopdate,et_name,emp_id,
+		et_joindate,et_post,et_birth,et_sex,et_life,et_remarks,depart_id,eaa_state,eaa_date,eaa_conclusion) values(#{et_theme},#{et_shopdate},
+		#{et_name},#{emp_id},#{et_joindate},#{et_post},#{et_birth},#{et_sex},#{et_life},#{et_remarks},#{depart_id},0,sysdate(),#{eaa_conclusion})
 	</insert>
+	<!--审批  -->
+	 <update id="updateEntry">
+		update entry 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			et_id=#{et_id}
+		</where>
+</update>
 </mapper>

@@ -23,7 +23,13 @@ public interface OffDao {
 	 * @param o
 	 * @return
 	 */
-	int addOff(Off o);
+	int addOff(Off of);
+	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateOff(Off of);
 	/**
 	 * 展示调休的申请单
 	 * @param of_id

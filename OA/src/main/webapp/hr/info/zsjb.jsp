@@ -14,6 +14,9 @@
 <link rel="shortcut icon" href="colloa.ico">
 <link rel="stylesheet" href="../css/zs.min.css">
 <link rel="stylesheet" href="../css/zs.css">
+<link rel="stylesheet" href="../css/sq.css">
+<script src="jquery-1.8.2.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="jquery-ui.min.js"></script>
 <script>
 	function aa() {
 		var CheckAll = document.getElementById('All');
@@ -29,7 +32,16 @@
 			;
 		};
 	};
-	aa()
+	aa();
+	function check(id){
+		if(id==1){
+			$("input[name=eaa_state]").val("1");
+		}
+		if(id==2){
+			$("input[name=eaa_state]").val("2");
+		}
+			document.forms[0].submit();
+		}
 </script>
 <style>
 /* Code tidied up by ScrapBook */
@@ -56,21 +68,16 @@
 								<td style="text-align: right;">&nbsp;<span
 									style="color: rgb(255, 0, 0);">*</span>主题:
 								</td>
-								<td id="dbf.subject" dbf.type="required">${o.oi_theme }</td>
-								<td style="text-align: right;">&nbsp;优先级:</td>
-								<td>${o.oi_priority }</td>
+								<td id="dbf.subject" dbf.type="required" colspan="5">${ot.oi_theme }</td>
 							</tr>
 							<tr>
 								<td style="text-align: right;">&nbsp;步骤:</td>
-								<td><span id="mapping.dbf.procXSource">填单人知悉</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人:
-									<span id="mapping.dbf.responsorSource">李华林,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人:
-									<span id="mapping.dbf.participantsSource"></span></td>
+								<td  colspan="3"><span id="mapping.dbf.procXSource">主管审批</span></td>
 								<td style="text-align: right;">&nbsp;结束时间:</td>
-								<td id="dbf.endTime" dbf.type="date" dbf.source="date,editable">${o.oi_shopdate }</td>
+								<td id="dbf.endTime" dbf.type="date" dbf.source="date,editable">${ot.oi_shopdate }</td>
 							</tr>
 						</tbody>
 					</table>
-					<div style="text-align: center;">&nbsp;</div>
 					<div style="text-align: center;">
 						<span style="font-size: 20px;"><strong>加班申请单</strong></span>
 					</div>
@@ -91,49 +98,60 @@
 										style="color: rgb(255, 0, 0);">*</span>申请人</td>
 									<td id="dbf.operator" dbf.type="required"
 										dbf.source="editable,prompt:select sid,name from userX where stype=0 and statusX>0 and name like '%[!prompt]%' order by name"
-										dbf.key="1000104">${o.em.emp_name }</td>
+										dbf.key="1000104">${ot.em.emp_name }</td>
 									<td style="text-align: center;"><span
 										style="color: rgb(255, 0, 0);">*</span>所属部门</td>
 									<td id="dbf.division" dbf.type="required!0,required"
-										dbf.source="form.fieldSource.division" dbf.key="1000009">${o.dept.depart_name }</td>
+										dbf.source="form.fieldSource.division" dbf.key="1000009">${ot.dept.depart_name }</td>
 									<td style="text-align: center;" dbf.type="date"
 										dbf.source="datetime,editable"><span
 										style="color: rgb(255, 0, 0);">*</span>申请时间</td>
-									<td id="dbf.time2" dbf.type="date,required" dbf.source="date">${o.oi_applydate }</td>
+									<td id="dbf.time2" dbf.type="date,required" dbf.source="date">${ot.oi_applydate }</td>
 								</tr>
 								<tr>
 									<td style="text-align: center;"><span
 										style="color: rgb(255, 0, 0);">*</span>加班时间</td>
 									<td id="dbf.time0" dbf.type="date,required"
-										dbf.source="datetime,editable">${o.oi_cdate }</td>
+										dbf.source="datetime,editable">${ot.oi_cdate }</td>
 									<td style="width: 102px; text-align: center;">～</td>
 									<td id="dbf.time1" dbf.type="date,required"
-										dbf.source="datetime,editable">${o.oi_ddate }</td>
+										dbf.source="datetime,editable">${ot.oi_ddate }</td>
 									<td style="text-align: center;" dbf.type="date,required"
 										dbf.source="datetime,editable">&nbsp;<span
 										style="color: rgb(255, 0, 0);">*</span>共计时长
 									</td>
 									<td dbf.type="date,required" dbf.source="datetime,editable"><input
-										disabled="" id="dbf.number3" style="width: 40px;" value="${o.oi_day }"
+										disabled="" id="dbf.number3" style="width: 40px;" value="${ot.oi_day }"
 										name="dbf.number3" dbf.type="number,required"> 天 <input
-										disabled="" id="dbf.number4" style="width: 40px;" value="${o.oi_hour }"
+										disabled="" id="dbf.number4" style="width: 40px;" value="${ot.oi_hour }"
 										name="dbf.number4" dbf.type="amount,required"> 小时</td>
 								</tr>
 								<tr>
 									<td style="text-align: center;"><span
 										style="color: rgb(255, 0, 0);">*</span>加班事由</td>
 									<td id="加班事由" style="height: 80px;" colspan="5"
-										dbf.type="required" dbf.source="">${o.oi_reason }</td>
+										dbf.type="required" dbf.source="">${ot.oi_reason }</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div>&nbsp;</div>
+					<form class="formTaskflow" action="../../work.do?action=kqsp&sp=2" method="post">
+						<table class="tableListBorder" style="table-layout: fixed;" align="center" border="0" cellpadding="0" cellspacing="0">
+								 <tr>
+									<input type="hidden" name="oi_id"  value="${ot.oi_id }">
+									<input type="hidden" name="eaa_state">
+									<input type="hidden" name="eaa_date">
+									<td style="text-align: center;">审批意见</td>
+									<td id="审批说明" style="height: 80px;" colspan="5.5"><input id="e.dbf.description" class="fieldEditable" name="eaa_conclusion"></td>
+								</tr> 
+						</table>
+						</form>
 					<div style="margin: 20px 0px;" align="right">
 						<script language="javaScript">
 							/* Code removed by ScrapBook */
 						</script>
-					<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
+					<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(1)">结束审批</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(2)">退回</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
 					</div>
 					<table style="table-layout: fixed;" border="0" cellpadding="0"
 						cellspacing="0">
@@ -147,30 +165,21 @@
 								<td class="boxBorder">
 									<div style="padding: 2px 10px;">
 										<div style="float: right;">
-											<a href="zsjb_lct.html">› 显示流程图</a>
+											<!-- <a href="zsjb_lct.html">› 显示流程图</a> -->
 										</div>
 										【处理过程】
 									</div>
 									<div
 										style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);">
-										<img src="../css/userX0.gif"> 李华林 <span class="textGray">(2016/4/12
-											16:54)</span>
+										<img src="../css/userX0.gif">${ot.em.emp_name } <span class="textGray">(${ot.eaa_date })</span>
 									</div>
 									<div style="padding: 0px 10px 5px 30px;">
-										[<b>提交审批</b>]
-									</div>
-									<div
-										style="padding: 5px 10px 0px; border-top: 1px dotted rgb(221, 221, 221);">
-										<img src="../css/userX0.gif"> 李浩 <span class="textGray">(2016/4/19
-											17:31)</span>
-									</div>
-									<div style="padding: 0px 10px 5px 30px;">
-										[<b>通过</b>]
+										[<b>${ot.eaa_conclusion }</b>]
 									</div>
 								</td>
 								<td></td>
 								<td>
-									<div class="boxBorder">
+									<!-- <div class="boxBorder">
 										<div
 											style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【父事务】</div>
 
@@ -179,7 +188,7 @@
 										<div
 											style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
 
-									</div>
+									</div> -->
 								</td>
 							</tr>
 						</tbody>

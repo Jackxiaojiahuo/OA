@@ -43,5 +43,10 @@ public class EntryBizImpl implements EntryBiz{
 	public Entry findEntryById(int et_id) {
 		return enDao.findEntryById(et_id);
 	}
+	@Override
+	public int updateEntry(Entry e) {
+		// TODO Auto-generated method stub
+		return enDao.updateEntry(e);
+	}
 
 }

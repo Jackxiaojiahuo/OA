@@ -53,19 +53,62 @@ public interface EmployeeDao {
 	 * 曹浩然代码
 	 * 
 	 */
-	
-	List<Employee> findAllEmployee(Map map);//全部查询
+	/**
+	 * 显示全部的员工
+	 * @param map
+	 * @return
+	 */
+	List<Employee> findAllEmployee(Map map);
 	int findAllEmployee_count(Map map);
-	Employee findEmployeeById(int emp_id);//id查询
-	List<Employee> findEmployeeState(Map map);//根据在职状态查询
+	/**
+	 * 展示员工的详细信息
+	 * @param emp_id
+	 * @return
+	 */
+	Employee findEmployeeById(int emp_id);
+	/**
+	 * 根据在职状态查询显示信息
+	 * @param map
+	 * @return
+	 */
+	List<Employee> findEmployeeState(Map map);
 	int findEmployeeState_count(Map map);
-	List<Employee> findEmployeeBylike(Map map);//根据模糊查询
+	/**
+	 * 根据提供的条件进行模糊查询
+	 * @param map
+	 * @return
+	 */
+	List<Employee> findEmployeeBylike(Map map);
 	int findEmployeeBylike_count(Map map);
+	/**
+	 * 工号是否存在判断
+	 * @param emp_code
+	 * @return
+	 */
 	int findBycode(String emp_code);
-	int addEmp(Employee emp);//新增员工
-	int delEmployee(int emp_id);//删除员工
-	int updateEmployee(Employee e);//修改
-	//查询行数
+	/**
+	 * 新增员工申请
+	 * @param emp
+	 * @return
+	 */
+	int addEmp(Employee emp);
+	/**
+	 * 删除员工
+	 * @param emp_id
+	 * @return
+	 */
+	int delEmployee(int emp_id);
+	/**
+	 * 修改员工的信息
+	 * @param e
+	 * @return
+	 */
+	int updateEmployee(Employee e);
+	/**
+	 * 根据在职状态查各个状态的总人数
+	 * @param emp_state
+	 * @return
+	 */
 	int zzstate(String emp_state);
 	int systate(String emp_state);
 	int txstate(String emp_state);

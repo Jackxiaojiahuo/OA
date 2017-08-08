@@ -185,7 +185,7 @@ public class EmployeeController {
 	public String findAllEmp(ModelMap model,Integer num,Integer index,Integer state){
 		int zzstate = empBiz.zzstate("在职");
 		model.put("zzstate", zzstate);
-		int systate = empBiz.systate("试用");
+		int systate = empBiz.systate("试用期");
 		model.put("systate", systate);
 		int txstate = empBiz.txstate("退休");
 		model.put("txstate", txstate);
@@ -212,7 +212,7 @@ public class EmployeeController {
 				model.put("page", page);
 				model.put("list", list);
 		}else if(num==2){
-				map.put("emp_state", "试用");
+				map.put("emp_state", "试用期");
 				list = empBiz.findEmployeeState(map);
 				page.setCount(empBiz.findEmployeeState_count(map));
 				model.put("page", page);
@@ -256,10 +256,10 @@ public class EmployeeController {
 	public String addEmp(String emp_code,String emp_name,String emp_sex,
 			String emp_state,String emp_mobile,String emp_email,String emp_birth,
 			String emp_join,String emp_formal,String emp_leave,String emp_description,
-			String emp_icon,String emp_status,String emp_phone,String emp_qq,Integer state_id){
+			String emp_icon,String emp_status,String emp_phone,String emp_qq,Integer state_id,Integer depart_id){
 		Employee e=new Employee(null, emp_code,emp_name,emp_sex,
 				emp_state,emp_mobile,emp_email,emp_birth==""?null:emp_birth,emp_join==""?null:emp_join,
-				emp_formal==""?null:emp_formal,emp_leave==""?null:emp_leave,emp_description,emp_icon,null,"000000",
+				emp_formal==""?null:emp_formal,emp_leave==""?null:emp_leave,emp_description,emp_icon,depart_id,"000000",
 				emp_status,emp_phone,emp_qq,0);
 		empBiz.addEmp(e);
 		return "redirect:emp.do?action=Emplist";
@@ -335,11 +335,11 @@ public class EmployeeController {
 	public String updateEmp(Integer emp_id,String emp_code,String emp_name,String emp_sex,
 			String emp_state,String emp_mobile,String emp_email,String emp_birth,
 			String emp_join,String emp_formal,String emp_leave,String emp_description,
-			String emp_icon,String emp_status,String emp_phone,String emp_qq,Integer state_id){
+			String emp_icon,String emp_status,String emp_phone,String emp_qq,Integer state_id,Integer depart_id){
 		
 		Employee e=new Employee(emp_id, emp_code,emp_name,emp_sex,
 				emp_state,emp_mobile,emp_email,emp_birth==""?null:emp_birth,emp_join==""?null:emp_join,
-				emp_formal==""?null:emp_formal,emp_leave==""?null:emp_leave,emp_description,emp_icon,null,null,
+				emp_formal==""?null:emp_formal,emp_leave==""?null:emp_leave,emp_description,emp_icon,depart_id,null,
 				emp_status,emp_phone,emp_qq,0);
 		empBiz.updateEmployee(e);
 		return "redirect:emp.do?action=zs&emp_id="+emp_id;

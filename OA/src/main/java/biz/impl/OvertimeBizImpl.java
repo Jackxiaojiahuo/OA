@@ -33,8 +33,8 @@ public class OvertimeBizImpl implements OvertimeBiz{
 	 * 加班申请
 	 */
 	@Override
-	public int addOvertime(Overtime o) {
-		return overtimeDao.addOvertime(o);
+	public int addOvertime(Overtime ot) {
+		return overtimeDao.addOvertime(ot);
 	}
 	/**
 	 * 展示加班人员的详细申请单
@@ -54,6 +54,14 @@ public class OvertimeBizImpl implements OvertimeBiz{
 	public int findOvertimeBylike_count(Map map) {
 		// TODO Auto-generated method stub
 		return overtimeDao.findOvertimeBylike_count(map);
+	}
+	/**
+	 * 审批处理
+	 */
+	@Override
+	public int updateOvertime(Overtime ot) {
+		// TODO Auto-generated method stub
+		return overtimeDao.updateOvertime(ot);
 	}
 
 }

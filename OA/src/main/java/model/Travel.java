@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 出差
  * @author caohaoran
  *
  */
-public class Travel {
+public class Travel implements Serializable{
 	/**
 	 * 编号
 	 */
@@ -14,9 +17,9 @@ public class Travel {
 	 */
 	private String tv_theme;
 	/**
-	 * 优先级
+	 * 结束时间
 	 */
-	private String tv_priority;
+	private String tv_shopdate;
 	/**
 	 * 申请时间
 	 */
@@ -65,18 +68,29 @@ public class Travel {
 	 * 员工编号
 	 */
 	private Integer emp_id;
-	
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
 	public Travel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Travel(Integer tv_id, String tv_theme, String tv_priority, String tv_applydate, String tv_cdate,
+	public Travel(Integer tv_id, String tv_theme,String tv_shopdate,String tv_applydate, String tv_cdate,
 			String tv_ddate, String tv_termini, String tv_reason, String tv_traffic, String tv_report, String tv_result,
-			Integer depart_id, Department dept, Employee em, Integer emp_id) {
+			Integer depart_id, Department dept, Employee em, Integer emp_id,Integer eaa_state,String eaa_conclusion,String eaa_date) {
 		super();
 		this.tv_id = tv_id;
 		this.tv_theme = tv_theme;
-		this.tv_priority = tv_priority;
+		this.tv_shopdate=tv_shopdate;
 		this.tv_applydate = tv_applydate;
 		this.tv_cdate = tv_cdate;
 		this.tv_ddate = tv_ddate;
@@ -89,6 +103,9 @@ public class Travel {
 		this.dept = dept;
 		this.em = em;
 		this.emp_id = emp_id;
+		this.eaa_state=eaa_state;
+		this.eaa_conclusion=eaa_conclusion;
+		this.eaa_date=eaa_date;
 	}
 	public Integer getEmp_id() {
 		return emp_id;
@@ -107,12 +124,6 @@ public class Travel {
 	}
 	public void setTv_theme(String tv_theme) {
 		this.tv_theme = tv_theme;
-	}
-	public String getTv_priority() {
-		return tv_priority;
-	}
-	public void setTv_priority(String tv_priority) {
-		this.tv_priority = tv_priority;
 	}
 	public String getTv_applydate() {
 		return tv_applydate;
@@ -179,6 +190,30 @@ public class Travel {
 	}
 	public void setEm(Employee em) {
 		this.em = em;
+	}
+	public String getTv_shopdate() {
+		return tv_shopdate;
+	}
+	public void setTv_shopdate(String tv_shopdate) {
+		this.tv_shopdate = tv_shopdate;
+	}
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+	public String getEaa_date() {
+		return eaa_date;
+	}
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
 	}
 
 	

@@ -17,9 +17,38 @@
  <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
  <script language="JavaScript" src="jquery-ui.min.js"></script>
    <script>
+   function checkapplydate(){
+		  var applydate=$("input[name='q_applydate']").val();
+		  var applydateid=$("#applydateid");
+			if(applydate==""){
+				applydateid.show();
+				return false;
+			}
+			return true;
+	}
+	function checkjoindate(){
+		  var joindate=$("input[name='q_joindate']").val();
+		  var joindateid=$("#joindateid");
+			if(joindate==""){
+				joindateid.show();
+				return false;
+			}
+			return true;
+	}
+	function checkquit(){
+		  var quit=$("input[name='q_quit']").val();
+		  var quitid=$("#quitid");
+			if(quit==""){
+				quitid.show();
+				return false;
+			}
+			return true;
+	}
     function check(){
+    	if(checkapplydate()&checkjoindate()&checkquit()){
 		document.forms[0].submit();
-  	  	}
+    	}
+  	}
 </script>
  <script>
      jQuery(function($){  
@@ -82,6 +111,7 @@
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#applydateid").hide();
             }  
             });  
         });
@@ -103,6 +133,7 @@
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#joindateid").hide();
             }  
             });  
         }); 
@@ -124,6 +155,7 @@
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#quitid").hide();
             }  
             });  
         }); 
@@ -146,21 +178,14 @@
               <tbody>
                 <tr>
                   <td style="text-align: right;">&nbsp;<span style="color: rgb(255, 0, 0);">*</span>主题:</td>
-                  <td id="dbf.subject" dbf.type="required"><input id="e.dbf.subject" class="fieldEditable" name="q_theme"></td>
-                  <td style="text-align: right;">&nbsp;优先级:</td>
-                  <td><input id="dbf.priority" value="低" name="q_priority" autocomplete="off" type="radio">
-                    低
-                    <input id="dbf.priority" checked="" value="中" name="q_priority" autocomplete="off" type="radio">
-                    中
-                    <input id="dbf.priority" value="高" name="q_priority" autocomplete="off" type="radio">
-                    高</td>
+                  <td id="dbf.subject" dbf.type="required" colspan="5"><input id="e.dbf.subject" class="fieldEditable" name="q_theme" value="离职申请-${s_emp.emp_name }"><input type="hidden" name="emp_id" value="${s_emp.emp_id }"></td>
                 </tr>
                 <tr>
                   <td style="text-align: right;">&nbsp;步骤:</td>
-                  <td><span id="mapping.dbf.procXSource">填单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人: <span id="mapping.dbf.responsorSource">李萌,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人: <span id="mapping.dbf.participantsSource"></span></td>
+                  <td colspan="3"><span id="mapping.dbf.procXSource">填单</span></td>
                   <td style="text-align: right;">&nbsp;结束时间:</td>
                   <td id="dbf.endTime" dbf.type="date" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                    <div class="fieldEditable" contenteditable="true"><input type="text" id="selectDate" name="q_shopdate"></div></td>
+                    <div class="fieldEditable" contenteditable="true"><input type="text" id="selectDate" name="q_shopdate" placeholder="请输入结束时间" /></div></td>
                 </tr>
               </tbody>
             </table>
@@ -183,28 +208,23 @@
                      </td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请日期</td>
                     <td id="dbf.time2" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="sqDate" name="q_applydate"></div></td>
+                      <div><input type="text" id="sqDate" name="q_applydate" onblur="checkapplydate()" placeholder="请输入申请日期" /><span id="applydateid" style="color:red; display: none;">不能为空</span></div></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>所属部门</td>
-                  <td class="select_box">
-                			<select name="depart_id">
-                			<option value="0">请选择</option>
- 							<c:forEach items="${list }" var="list">
- 							<option value="${list.depart_id }">${list.depart_name }</option>
- 							</c:forEach>
-                			</select>
-               		</td>
+                  <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key="">
+                    <input id="e.dbf.operatorSource" class="fieldEditable"
+                     value="${s_emp.dept.depart_name }"><input type="hidden" name="depart_id" value="${s_emp.dept.depart_id }"></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>工作岗位</td>
                     <td id="dbf.positionX" dbf.type="required" dbf.source="" dbf.key=""><input id="e.dbf.positionX" class="fieldEditable" name="q_post"></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职日期</td>
                     <td id="入职日期" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="rzDate" name="q_joindate"></div></td>
+                      <div><input type="text" id="rzDate" name="q_joindate" onblur="checkjoindate()" placeholder="请输入入职日期" /><span id="joindateid" style="color:red; display: none;">不能为空</span></div></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>预计离职日期</td>
                     <td id="dbf.time0" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="lzDate" name="q_quit"></div></td>
+                      <div><input type="text" id="lzDate" name="q_quit" onblur="checkquit()" placeholder="请输入预计离职日期" /><span id="quitid" style="color:red; display: none;">不能为空</span></div></td>
                   </tr>
                   <tr>
                     <td style="height: 80px; text-align: center;" dbf.type="" dbf.source=""><span style="color: rgb(255, 0, 0);">*</span>离职类型</td>
@@ -246,13 +266,6 @@
                 </tbody>
               </table>
             </div>
-            <div>&nbsp;</div>
-            <table class="tableForm" style="table-layout: fixed;" cellspacing="0" cellpadding="0" align="center" border="0">
-              <colgroup>
-              <col width="60">
-              <col>
-              </colgroup>
-            </table>
           </form>
         </div>
         <table style="table-layout: fixed;" cellspacing="0" cellpadding="0" border="0">
@@ -261,20 +274,6 @@
           <col width="2%">
           <col>
           </colgroup>
-          <tbody>
-            <tr valign="top">
-              <td class="boxBorder"><div style="padding: 2px 10px;">
-                  <div style="float: right;"><a href="lzsq_lct.html">› 显示流程图</a></div>
-                  【处理过程】</div></td>
-              <td></td>
-              <td><div class="boxBorder">
-                  <div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【父事务】</div>
-                </div>
-                <div class="boxBorder">
-                  <div style="padding: 2px 10px; border-bottom: 1px dotted rgb(221, 221, 221); margin-bottom: 5px;">【子事务】</div>
-                </div></td>
-            </tr>
-          </tbody>
         </table></td>
     </tr>
   </tbody>

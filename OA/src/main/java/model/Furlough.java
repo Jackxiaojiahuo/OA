@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  *请休假
  * @author caohaoran
  *
  */
-public class Furlough {
+public class Furlough implements Serializable{
 	/**
 	 * 编号
 	 */
@@ -13,10 +16,6 @@ public class Furlough {
 	 * 主题
 	 */
 	private String fg_theme;
-	/**
-	 * 优先级
-	 */
-	private String fg_priority;
 	/**
 	 * 结束时间
 	 */
@@ -65,13 +64,24 @@ public class Furlough {
 	 *员工编号
 	 */
 	private Integer emp_id;
-	public Furlough(Integer fg_id, String fg_theme, String fg_priority, String fg_shopdate,
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
+	public Furlough(Integer fg_id, String fg_theme, String fg_shopdate,
 			String fg_applydate, String fg_cdate, String fg_ddate, String fg_hour, String fg_day, String fg_type,
-			String fg_reason, Integer depart_id, Department dept, Employee em, Integer emp_id) {
+			String fg_reason, Integer depart_id, Department dept, Employee em, Integer emp_id,Integer eaa_state,String eaa_conclusion,String eaa_date) {
 		super();
 		this.fg_id = fg_id;
 		this.fg_theme = fg_theme;
-		this.fg_priority = fg_priority;
 		this.fg_shopdate = fg_shopdate;
 		this.fg_applydate = fg_applydate;
 		this.fg_cdate = fg_cdate;
@@ -84,6 +94,9 @@ public class Furlough {
 		this.dept = dept;
 		this.em = em;
 		this.emp_id = emp_id;
+		this.eaa_state=eaa_state;
+		this.eaa_conclusion=eaa_conclusion;
+		this.eaa_date=eaa_date;
 	}
 	
 	public Integer getEmp_id() {
@@ -111,12 +124,6 @@ public class Furlough {
 	}
 	public void setFg_theme(String fg_theme) {
 		this.fg_theme = fg_theme;
-	}
-	public String getFg_priority() {
-		return fg_priority;
-	}
-	public void setFg_priority(String fg_priority) {
-		this.fg_priority = fg_priority;
 	}
 	public String getFg_shopdate() {
 		return fg_shopdate;
@@ -178,6 +185,30 @@ public class Furlough {
 	public void setDept(Department dept) {
 		this.dept = dept;
 	}
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+
+	public String getEaa_date() {
+		return eaa_date;
+	}
+
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
+	}
+
 	public Furlough() {
 		super();
 		// TODO Auto-generated constructor stub

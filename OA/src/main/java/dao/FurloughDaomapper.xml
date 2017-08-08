@@ -6,7 +6,6 @@
 <resultMap type="Furlough" id="rm">
 	<id property="fg_id" column="fg_id"/>
 	<result property="fg_theme" column="fg_theme"/>
-	<result property="fg_priority" column="fg_priority"/>
 	<result property="fg_shopdate" column="fg_shopdate"/>
 	<result property="fg_applydate" column="fg_applydate"/>
 	<result property="fg_cdate" column="fg_cdate"/>
@@ -17,6 +16,9 @@
 	<result property="fg_reason" column="fg_reason"/>
 	<result property="depart_id" column="depart_id"/>
 	<result property="emp_id" column="emp_id"/>
+	<result property="eaa_state" column="eaa_state"/>
+	<result property="eaa_conclusion" column="eaa_conclusion"/>
+	<result property="eaa_date" column="eaa_date"/>
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
@@ -24,35 +26,40 @@
 	javaType="Employee" select="getAllEmployeeById">
 	</association>
 	</resultMap>
+	<!--部门全部查  -->
 	<select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
+	<!-- 员工全部查 -->
 	<select id="getAllEmployeeById" resultType="Employee">
 		select * from
 		employee where emp_id=#{emp_id}
 	</select>
-		<!--  全部查询-->
+		<!--  请休假全部查询-->
 	<select id="findAllFurlough" resultMap="rm" parameterType="map">
-		select * from furlough limit #{index},#{size}
+		select * from furlough where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
 	</select>
 	<select id="findAllFurlough_count" resultType="Integer" parameterType="map">
-		select count(*) from furlough
+		select count(*) from furlough where eaa_state!=1 order by eaa_date desc
 	</select>
-	
+	<!--展示请休假  -->
 	<select id="findFurloughById" parameterType="int" resultMap="rm">
 		select * from furlough where fg_id=#{fg_id}
 	</select>
+	<!-- 请休假申请 -->
 	<insert id="addFurlough">
-		insert into furlough(fg_theme,fg_priority,fg_shopdate,fg_applydate,fg_cdate,
-		fg_ddate,fg_hour,fg_day,fg_type,fg_reason,depart_id,emp_id) values(#{fg_theme},#{fg_priority},#{fg_shopdate},#{fg_applydate},#{fg_cdate},#{fg_ddate},
-		#{fg_hour},#{fg_day},#{fg_type},#{fg_reason},#{depart_id},#{emp_id})
+		insert into furlough(fg_theme,fg_shopdate,fg_applydate,fg_cdate,
+		fg_ddate,fg_hour,fg_day,fg_type,fg_reason,depart_id,emp_id,eaa_state,eaa_date,eaa_conclusion) values(#{fg_theme},#{fg_shopdate},#{fg_applydate},#{fg_cdate},#{fg_ddate},
+		#{fg_hour},#{fg_day},#{fg_type},#{fg_reason},#{depart_id},#{emp_id},0,sysdate(),#{eaa_conclusion})
 	</insert>
+	<!--根据提供的条件进行查询  -->
 	<select id="findFurloughBylike" parameterType="map" resultMap="rm">
 		select * from furlough
 		<where>
+			eaa_state!=1
 			<if test="fg_type!=null">
-			fg_type like '%${fg_type}%'
+			and fg_type like '%${fg_type}%'
 			</if>
 		</where>
 		limit #{index},#{size}
@@ -60,9 +67,24 @@
 	<select id="findFurloughBylike_count" resultType="Integer" parameterType="map">
 		select count(*) from furlough
 		<where>
+			eaa_state!=1
 			<if test="fg_type!=null">
-			fg_type like '%${fg_type}%'
+			and fg_type like '%${fg_type}%'
 			</if>
 		</where>
 	</select>
+	<!--审批  -->
+	 <update id="updateFurlough">
+		update furlough 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			fg_id=#{fg_id}
+		</where>
+</update>
 </mapper>

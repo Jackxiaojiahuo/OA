@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  *调休 
  * @author caohaoran
  *
  */
-public class Off {
+public class Off implements Serializable {
 	/**
 	 * 编号
 	 */
@@ -13,10 +16,6 @@ public class Off {
 	 * 主题
 	 */
 	private String of_theme;
-	/**
-	 * 优先级
-	 */
-	private String of_priority;
 	/**
 	 * 结束时间
 	 */
@@ -65,13 +64,24 @@ public class Off {
 	 * 员工编号
 	 */
 	private Integer emp_id;
-	public Off(Integer of_id, String of_theme, String of_priority, String of_shopdate, String of_applydate,
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
+	public Off(Integer of_id, String of_theme, String of_shopdate, String of_applydate,
 			String of_cdate, String of_ddate, String of_hour, String of_day, String of_reason, String of_agent,
-			Integer depart_id, Department dept, Employee em, Integer emp_id) {
+			Integer depart_id, Department dept, Employee em, Integer emp_id,Integer eaa_state,String eaa_conclusion,String eaa_date) {
 		super();
 		this.of_id = of_id;
 		this.of_theme = of_theme;
-		this.of_priority = of_priority;
 		this.of_shopdate = of_shopdate;
 		this.of_applydate = of_applydate;
 		this.of_cdate = of_cdate;
@@ -84,6 +94,9 @@ public class Off {
 		this.dept = dept;
 		this.em = em;
 		this.emp_id = emp_id;
+		this.eaa_state=eaa_state;
+		this.eaa_conclusion=eaa_conclusion;
+		this.eaa_date=eaa_date;
 	}
 	
 	public Integer getEmp_id() {
@@ -111,12 +124,6 @@ public class Off {
 	}
 	public void setOf_theme(String of_theme) {
 		this.of_theme = of_theme;
-	}
-	public String getOf_priority() {
-		return of_priority;
-	}
-	public void setOf_priority(String of_priority) {
-		this.of_priority = of_priority;
 	}
 	public String getOf_shopdate() {
 		return of_shopdate;
@@ -178,6 +185,30 @@ public class Off {
 	public void setDept(Department dept) {
 		this.dept = dept;
 	}
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+
+	public String getEaa_date() {
+		return eaa_date;
+	}
+
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
+	}
+
 	public Off() {
 		super();
 		// TODO Auto-generated constructor stub

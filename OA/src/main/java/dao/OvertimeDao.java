@@ -22,7 +22,13 @@ public interface OvertimeDao {
 	 * @param o
 	 * @return
 	 */
-	int addOvertime(Overtime o);
+	int addOvertime(Overtime ot);
+	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateOvertime(Overtime ot);
 	/**
 	 * 展示加班申请单
 	 * @param oi_id

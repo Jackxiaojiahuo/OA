@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 
 /**
  * 招聘
  * @author caohaoran
  *
  */
-public class Recruit {
+public class Recruit implements Serializable{
 	/**
 	 * 编号
 	 */
@@ -15,6 +16,10 @@ public class Recruit {
 	 * 主题
 	 */
 	private String re_theme;
+	/**
+	 * 结束时间
+	 */
+	private String re_shopdate;
 	/**
 	 * 申请人
 	 */
@@ -87,13 +92,14 @@ public class Recruit {
 	 * 员工表
 	 */
 	public Employee em;
-	public Recruit(Integer re_id, String re_theme, Integer emp_id,
+	public Recruit(Integer re_id, String re_theme, String re_shopdate,Integer emp_id,
 			String re_post, String re_applydate, Integer re_number, String re_positiondate, String re_reason,
 			String re_duty, String re_age, String re_sex, String re_experience, String re_lb, String re_req,
 			Integer depart_id, Department dept,Integer eaa_state,String eaa_conclusion,String eaa_date,Employee em) {
 		super();
 		this.re_id = re_id;
 		this.re_theme = re_theme;
+		this.re_shopdate=re_shopdate;
 		this.emp_id = emp_id;
 		this.re_post = re_post;
 		this.re_applydate = re_applydate;
@@ -146,6 +152,13 @@ public class Recruit {
 	}
 	public void setRe_theme(String re_theme) {
 		this.re_theme = re_theme;
+	}
+	
+	public String getRe_shopdate() {
+		return re_shopdate;
+	}
+	public void setRe_shopdate(String re_shopdate) {
+		this.re_shopdate = re_shopdate;
 	}
 	public Integer getDepart_id() {
 		return depart_id;

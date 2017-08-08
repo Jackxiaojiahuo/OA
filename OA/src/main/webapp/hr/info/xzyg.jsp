@@ -88,8 +88,26 @@
 		qqid.hide();
 			return true;
 		}
+  function checkbirth(){
+	  var birth=$("input[name='emp_birth']").val();
+	  var birthid=$("#birthid");
+		if(birth==""){
+			birthid.show();
+			return false;
+		}
+		return true;
+}
+function checkjoin(){
+	  var join=$("input[name='emp_join']").val();
+	  var joinid=$("#joinid");
+		if(join==""){
+			joinid.show();
+			return false;
+		}
+		return true;
+}
   function check(){
-	  if(checkname()&checkemail()&checkMobile()&checkPhone()&checkQQ()){
+	  if(checkname()&checkemail()&checkMobile()&checkPhone()&checkQQ()&checkbirth()&checkjoin()){
 			document.forms[0].submit();
 	  	}
 }
@@ -156,6 +174,7 @@ $(document).ready(function() {
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#birthid").hide();
             }  
             }); 
 	  }); 
@@ -177,6 +196,7 @@ $(document).ready(function() {
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#joinid").hide();
             }  
             });  
         });
@@ -256,7 +276,7 @@ $(document).ready(function() {
               </tr>
               <tr>
                 <td class="fieldLable"><b style="color: red;">*</b>姓名</td>
-                <td id="dbf.name" dbf.type="required,unique(userX)"><input id="e.dbf.name" class="fieldEditable" name="emp_name"><span id="nameid" style="color:red; display: none;" >不能为空</span></td>
+                <td id="dbf.name" dbf.type="required,unique(userX)"><input id="e.dbf.name" class="fieldEditable" name="emp_name" onblur="checkname()"><span id="nameid" style="color:red; display: none;" >不能为空</span></td>
                 <td class="fieldLable">工号</td>
                 <td id="dbf.jobSid"><input id="code" class="fieldEditable" name="emp_code"><span id="codeid" style="color:red; display: none;" ></span></td>
               </tr>
@@ -278,31 +298,31 @@ $(document).ready(function() {
               </tr>
               <tr>
                 <td class="fieldLable">移动电话</td>
-                <td id="dbf.mobile"><input id="e.dbf.mobile" class="fieldEditable" name="emp_mobile"><span id="mobileid" style="color:red; display: none;">不能为空</span></td>
+                <td id="dbf.mobile"><input id="e.dbf.mobile" class="fieldEditable" name="emp_mobile" onblur="checkMobile()"><span id="mobileid" style="color:red; display: none;">不能为空</span></td>
 				<td class="fieldLable">固定电话</td>
-                <td><input id="e.dbf.mobile" class="fieldEditable" name="emp_phone"><span id="phoneid" style="color:red; display: none;">不能为空</span></td>
+                <td><input id="e.dbf.mobile" class="fieldEditable" name="emp_phone" onblur="checkPhone()"><span id="phoneid" style="color:red; display: none;">不能为空</span></td>
 			</tr>                
               	<tr>  
                 <td class="fieldLable">电子邮件</td>
-                <td id="dbf.email"><input id="emp_email" class="fieldEditable"  name="emp_email"><span id="emailid" style="color:red; display: none;">不能为空</span></td>
+                <td id="dbf.email"><input id="emp_email" class="fieldEditable"  name="emp_email" onblur="checkemail()"><span id="emailid" style="color:red; display: none;">不能为空</span></td>
               	<td class="fieldLable">即时通信(QQ)</td>
-                <td id="dbf.mobile"><input id="e.dbf.mobile" class="fieldEditable" name="emp_qq"><span id="qqid" style="color:red; display: none;">不能为空</span></td>
+                <td id="dbf.mobile"><input id="e.dbf.mobile" class="fieldEditable" name="emp_qq" onblur="checkQQ()"><span id="qqid" style="color:red; display: none;">不能为空</span></td>
               </tr>
               <tr>
                 <td class="fieldLable">出生日期</td>
                 <td id="dbf.birthday" dbf.source="date,editable" dbf.type="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                  <div class="fieldEditable" contenteditable="true"><input type="text" id="csDate" name="emp_birth"></div></td>
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="csDate" name="emp_birth" onblur="checkbirth()" placeholder="请输入出生日期" /><span id="birthid" style="color:red; display: none;">不能为空</span></div></td>
                 <td class="fieldLable">入职日期</td>
                 <td id="dbf.jobJoinTime" dbf.source="date,editable" dbf.type="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                  <div class="fieldEditable" contenteditable="true"><input type="text" id="rzDate" name="emp_join"></div></td>
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="rzDate" name="emp_join" onblur="checkjoin()" placeholder="请输入入职日期" /><span id="joinid" style="color:red; display: none;">不能为空</span></div></td>
               </tr>
               <tr>
                 <td class="fieldLable">转正日期</td>
                 <td id="dbf.jobStartTime" dbf.source="date,editable" dbf.type="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                  <div class="fieldEditable" contenteditable="true"><input type="text" id="zzDate" name="emp_formal"></div></td>
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="zzDate" name="emp_formal" placeholder="请输入转正日期" /></div></td>
                   <td class="fieldLable">离职日期</td>
                 <td id="dbf.jobJoinTime" dbf.source="date,editable" dbf.type="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                  <div class="fieldEditable" contenteditable="true"><input type="text" id="lzDate" name="emp_leave"></div></td>
+                  <div class="fieldEditable" contenteditable="true"><input type="text" id="lzDate" name="emp_leave" placeholder="请输入离职日期" /></div></td>
               </tr>
               <tr>
                 <td class="fieldLable">附加描述</td>

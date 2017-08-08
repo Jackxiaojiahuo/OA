@@ -6,7 +6,6 @@
 <resultMap type="Off" id="rm">
 <id property="of_id" column="of_id"/>
 <result property="of_theme" column="of_theme"/>
-<result property="of_priority" column="of_priority"/>
 <result property="of_shopdate" column="of_shopdate"/>
 <result property="of_applydate" column="of_applydate"/>
 <result property="of_cdate" column="of_cdate"/>
@@ -17,6 +16,9 @@
 <result property="of_agent" column="of_agent"/>
 <result property="depart_id" column="depart_id"/>
 <result property="emp_id" column="emp_id"/>
+<result property="eaa_state" column="eaa_state"/>
+<result property="eaa_conclusion" column="eaa_conclusion"/>
+<result property="eaa_date" column="eaa_date"/>
 <association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
@@ -24,52 +26,43 @@
 	javaType="Employee" select="getAllEmployeeById">
 	</association>
 	</resultMap>
+	<!-- 部门全部查 -->
 	<select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
+	<!--员工全部查  -->
 	<select id="getAllEmployeeById" resultType="Employee">
 		select * from
 		employee where emp_id=#{emp_id}
 	</select>
-		<!--  全部查询-->
+		<!--  调休 全部查询-->
 	<select id="findAllOff" resultMap="rm" parameterType="map">
-		select * from off limit #{index},#{size}
+		select * from off where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
 	</select>
 	<select id="findAllOff_count" resultType="Integer" parameterType="map">
-		select count(*) from off
+		select count(*) from off where eaa_state!=1 order by eaa_date desc
 	</select>
+	<!-- 展示调休 -->
 	<select id="findOffById" parameterType="int" resultMap="rm">
 		select * from off where of_id=#{of_id}
 	</select>
-	<!--	private Integer of_id;//id
-	private String of_theme;//主题
-	private String of_priority;//优先级
-	private String of_shopdate;//结束时间
-	private String of_applydate;//申请时间
-	private String of_cdate;//调休：从
-	private String of_ddate;//调休：到
-	private String of_hour;//小时
-	private String of_day;//天
-	private String of_reason;//调休事由
-	private String of_agent;//工作代理人
-	private Integer depart_id;//
-	public Department dept;//部门
-	public Employee em;//员工
-	private Integer emp_id;  -->
+	<!--调休申请  -->
 	<insert id="addOff">
-		insert into off(of_theme,of_priority,of_shopdate,of_applydate,of_cdate,of_ddate,of_hour,of_day,
-		of_reason,of_agent,depart_id,emp_id) values (#{of_theme},#{of_priority},#{of_shopdate},#{of_applydate},#{of_cdate},#{of_ddate},
-		#{of_hour},#{of_day},#{of_reason},#{of_agent},#{depart_id},#{emp_id})
+		insert into off(of_theme,of_shopdate,of_applydate,of_cdate,of_ddate,of_hour,of_day,
+		of_reason,of_agent,depart_id,emp_id,eaa_state,eaa_date,eaa_conclusion) values (#{of_theme},#{of_shopdate},#{of_applydate},#{of_cdate},#{of_ddate},
+		#{of_hour},#{of_day},#{of_reason},#{of_agent},#{depart_id},#{emp_id},0,sysdate(),#{eaa_conclusion})
 	</insert>
+	<!--根据提供的条件进行查询并分页  -->
 	<select id="findOffBylike" parameterType="map" resultMap="rm">
 		select * from off
 		<where>
+			eaa_state!=1
 			<if test="of_theme!=null">
-				of_theme like '%${of_theme}%'
+			and	of_theme like '%${of_theme}%'
 			</if>
 			<if test="of_cdate">
-				of_cdate like '%${of_cdate}%'
+			and of_cdate like '%${of_cdate}%'
 			</if>
 		</where>
 		limit #{index},#{size}
@@ -77,12 +70,27 @@
 	<select id="findOffBylike_count" resultType="Integer" parameterType="map">
 		select count(*) from off
 		<where>
+			eaa_state!=1
 			<if test="of_theme!=null">
-				of_theme like '%${of_theme}%'
+				and of_theme like '%${of_theme}%'
 			</if>
 			<if test="of_cdate">
-				of_cdate like '%${of_cdate}%'
+				and of_cdate like '%${of_cdate}%'
 			</if>
 		</where>
 	</select>
+		<!--审批  -->
+	 <update id="updateOff">
+		update off 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			of_id=#{of_id}
+		</where>
+</update>
 </mapper>

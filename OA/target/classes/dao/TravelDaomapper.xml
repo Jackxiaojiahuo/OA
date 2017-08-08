@@ -6,7 +6,7 @@
 	<resultMap type="Travel" id="rm">
 	<id property="tv_id" column="tv_id"/>
 	<result property="tv_theme" column="tv_theme"/>
-	<result property="tv_priority" column="tv_priority"/>
+	<result property="tv_shopdate" column="tv_shopdate"/>
 	<result property="tv_applydate" column="tv_applydate"/>
 	<result property="tv_cdate" column="tv_cdate"/>
 	<result property="tv_ddate" column="tv_ddate"/>
@@ -17,6 +17,9 @@
 	<result property="tv_result" column="tv_result"/>
 	<result property="depart_id" column="depart_id"/>
 	<result property="emp_id" column="emp_id"/>
+	<result property="eaa_state" column="eaa_state"/>
+	<result property="eaa_conclusion" column="eaa_conclusion"/>
+	<result property="eaa_date" column="eaa_date"/>
 	<association property="dept" column="depart_id"
 	javaType="Department" select="getAllDepartmentById">
 	</association>
@@ -24,39 +27,43 @@
 	javaType="Employee" select="getAllEmployeeById">
 	</association>
 	</resultMap>
+	<!--部门全部查  -->
 	<select id="getAllDepartmentById" resultType="Department">
 		select * from
 		department where depart_id=#{depart_id}
 	</select>
+	<!--员工全部查  -->
 	<select id="getAllEmployeeById" resultType="Employee">
 		select * from
 		employee where emp_id=#{emp_id}
 	</select>
+	<!--出差全部查询 -->
 		<select id="findAllTravel" resultMap="rm" parameterType="map">
-		select * from travel limit #{index},#{size}
+		select * from travel where eaa_state!=1 order by eaa_date desc limit #{index},#{size}
 	</select>
 		<select id="findAllTravel_count" resultType="Integer" parameterType="map">
-		select count(*) from travel
+		select count(*) from travel where eaa_state!=1 order by eaa_date desc
 	</select>
-	<!-- 根据id查询 -->
+	<!-- 展示出差申请 -->
 	<select id="findTravelById" parameterType="int" resultMap="rm">
 		select * from travel where tv_id=#{tv_id}
 	</select>
 	<!-- 出差申请 -->
 	<insert id="addTravel">
-		insert into travel(tv_theme,tv_priority,tv_applydate,tv_cdate,tv_ddate,tv_termini,tv_reason,tv_traffic,
-		tv_report,tv_result,depart_id,emp_id) values(#{tv_theme},#{tv_priority},#{tv_applydate},#{tv_cdate},#{tv_ddate},#{tv_termini},
-		#{tv_reason},#{tv_traffic},#{tv_report},#{tv_result},#{depart_id},#{emp_id})
+		insert into travel(tv_theme,tv_shopdate,tv_applydate,tv_cdate,tv_ddate,tv_termini,tv_reason,tv_traffic,
+		tv_report,tv_result,depart_id,emp_id,eaa_state,eaa_date,eaa_conclusion) values(#{tv_theme},#{tv_shopdate},#{tv_applydate},#{tv_cdate},#{tv_ddate},#{tv_termini},
+		#{tv_reason},#{tv_traffic},#{tv_report},#{tv_result},#{depart_id},#{emp_id},0,sysdate(),#{eaa_conclusion})
 	</insert>
-	  	<!--根据主题查询 --> 
+	  	<!--根据提供的条件进行查询 --> 
   <select id="findTravelBylike" parameterType="map" resultMap="rm">
   	select * from travel
   	<where>
+  		eaa_state!=1
   		<if test="tv_theme!=null">
-  			tv_theme like '%${tv_theme}%'
+  			and tv_theme like '%${tv_theme}%'
   		</if>
   		<if test="tv_termini!=null">
-  			tv_termini like '%${tv_termini}%'
+  			and tv_termini like '%${tv_termini}%'
   		</if>
   	</where> 
   	limit #{index},#{size} 
@@ -64,12 +71,27 @@
     <select id="findTravelBylike_count" resultType="Integer" parameterType="map">
   	select count(*) from travel
   	<where>
+  		eaa_state!=1
   		<if test="tv_theme!=null">
-  			tv_theme like '%${tv_theme}%'
+  			and tv_theme like '%${tv_theme}%'
   		</if>
   		<if test="tv_termini!=null">
-  			tv_termini like '%${tv_termini}%'
+  			and tv_termini like '%${tv_termini}%'
   		</if>
   	</where> 
   </select>
+  <!--审批  -->
+	 <update id="updateTravel">
+		update travel 
+		<set>
+				eaa_state=#{eaa_state},
+			<if test="eaa_conclusion!=null">
+				eaa_conclusion=#{eaa_conclusion},
+			</if>
+				eaa_date=sysdate()
+		</set>
+		<where>
+			tv_id=#{tv_id}
+		</where>
+</update>
 </mapper>

@@ -72,7 +72,6 @@ public class EmployeeBizImpl implements EmployeeBiz {
 
 	@Override
 	public int updateEmployee(Employee emp) {
-//		emp.setEmp_pwd(ShiroKit.md5(emp.getEmp_pwd(), emp.getEmp_code()));
 		return empDao.updateEmployee(emp);
 	}
 

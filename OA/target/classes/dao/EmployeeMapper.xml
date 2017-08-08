@@ -139,8 +139,8 @@
   <insert id="addEmp">
   	insert into Employee(emp_code,emp_name,emp_sex,emp_state,
   	emp_mobile,emp_email,emp_birth,emp_join,emp_formal,emp_leave,
-  	emp_description,emp_icon,emp_status,emp_phone,emp_qq,state_id) values(#{emp_code},#{emp_name},#{emp_sex},
-  	#{emp_state},#{emp_mobile},#{emp_email},#{emp_birth},#{emp_join},#{emp_formal},#{emp_leave},#{emp_description},#{emp_icon},#{emp_status},#{emp_phone},#{emp_qq},0)
+  	emp_description,emp_icon,emp_status,emp_phone,emp_qq,state_id,depart_id) values(#{emp_code},#{emp_name},#{emp_sex},
+  	#{emp_state},#{emp_mobile},#{emp_email},#{emp_birth},#{emp_join},#{emp_formal},#{emp_leave},#{emp_description},#{emp_icon},#{emp_status},#{emp_phone},#{emp_qq},0,#{depart_id})
   </insert>
   <!--删除员工-->
    <update id="delEmployee">
@@ -152,7 +152,7 @@
 	emp_sex=#{emp_sex},emp_state=#{emp_state},emp_mobile=#{emp_mobile},
 	emp_email=#{emp_email},emp_birth=#{emp_birth},emp_join=#{emp_join},
 	emp_formal=#{emp_formal},emp_leave=#{emp_leave},emp_description=#{emp_description},emp_status=#{emp_status},emp_phone=#{emp_phone},
-	emp_qq=#{emp_qq},state_id=0 where emp_id=#{emp_id}
+	emp_qq=#{emp_qq},state_id=0,depart_id=#{depart_id} where emp_id=#{emp_id}
 	</update>
   <select id="zzstate" resultType="int">
    select count(*) from Employee where emp_state=#{emp_state} and state_id=0
@@ -184,4 +184,3 @@
    	select count(*) from Employee where emp_state=#{emp_state} and state_id=0
    </select>
 </mapper>
-

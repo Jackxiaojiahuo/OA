@@ -64,9 +64,13 @@
 							<tbody>
 								<tr>
 									<td style="text-align: right;">&nbsp;<span style="color: rgb(255, 0, 0);">*</span>主题:</td>
-									<td id="dbf.subject" dbf.type="required">${r.re_theme }</td>
+									<td id="dbf.subject" dbf.type="required" colspan="5">${r.re_theme }</td>
+								</Str>
+								<tr>
 									<td style="text-align: right;">&nbsp;步骤:</td>
-									<td><span id="mapping.dbf.procXSource">主管审批</span></td>
+									<td colspan="3"><span id="mapping.dbf.procXSource">主管审批</span></td>
+									<td style="text-align: right;">&nbsp;结束时间:</td>
+									<td>${r.re_shopdate }</td>
 								</tr>
 							</tbody>
 						</table>
@@ -142,9 +146,6 @@
 						</table>
 						</form>
 						<div style="margin: 20px 0px;" align="right">
-							<script language="javaScript">
-								/* Code removed by ScrapBook */
-							</script>
 							<a class="button1 button1L" title="刷新" href="javascript:location.reload()">&nbsp;<i class="fa fa-bolt fa-lg"></i></a><span id="oWorkflowList1"><a class="button1 button1M" onClick="window.print()">打印本页面</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(1)">结束审批</a></span><span id="oWorkflowList1"><a class="button1 button1M" onClick="check(2)">退回</a></span><a class="button1 button1R" title="关闭" href="javascript:history.back()">&nbsp;<i class="fa fa-times-circle fa-lg"></i></a>
 						</div>
 						<table style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0">

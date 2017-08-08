@@ -29,6 +29,12 @@ public interface EgressDao {
 	 */
 	int addEgress(Egress e);
 	/**
+	 * 审批处理
+	 * @param e
+	 * @return
+	 */
+	int updateEgress(Egress e);
+	/**
 	 * 展示外出的申请单
 	 * @param eg_id
 	 * @return

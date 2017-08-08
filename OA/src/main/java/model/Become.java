@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 转正表
  * @author caohaoran
  *
  */
-public class Become {
+public class Become implements Serializable {
 	/**
 	 * 编号
 	 */
@@ -13,10 +16,6 @@ public class Become {
 	 * 主题
 	 */
 	private String b_theme;
-	/**
-	 * 优先级
-	 */
-	private String b_priority;
 	/**
 	 * 结束时间
 	 */
@@ -73,18 +72,28 @@ public class Become {
 	 * 员工表
 	 */
 	public Employee em;
-	
+	/**
+	 * 审批状态
+	 */
+	private Integer eaa_state;
+	/**
+	 * 审批结局
+	 */
+	private String eaa_conclusion;
+	/**
+	 * 审批时间
+	 */
+	private String eaa_date;
 	public Become() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Become(Integer b_id, String b_theme, String b_priority, String b_shopdate, String b_applydate, String b_post,
+	public Become(Integer b_id, String b_theme, String b_shopdate, String b_applydate, String b_post,
 			String b_joindate, String b_become, String b_content, String b_achievement, String b_problem,
-			String b_imagine, String b_comment, Department dept, Integer depart_id, Integer emp_id, Employee em) {
+			String b_imagine, String b_comment, Department dept, Integer depart_id, Integer emp_id, Employee em,Integer eaa_state,String eaa_date,String eaa_conclusion) {
 		super();
 		this.b_id = b_id;
 		this.b_theme = b_theme;
-		this.b_priority = b_priority;
 		this.b_shopdate = b_shopdate;
 		this.b_applydate = b_applydate;
 		this.b_post = b_post;
@@ -99,6 +108,9 @@ public class Become {
 		this.depart_id = depart_id;
 		this.emp_id = emp_id;
 		this.em = em;
+		this.eaa_state=eaa_state;
+		this.eaa_date=eaa_date;
+		this.eaa_conclusion=eaa_conclusion;
 	}
 	public Integer getEmp_id() {
 		return emp_id;
@@ -135,12 +147,6 @@ public class Become {
 	}
 	public void setB_theme(String b_theme) {
 		this.b_theme = b_theme;
-	}
-	public String getB_priority() {
-		return b_priority;
-	}
-	public void setB_priority(String b_priority) {
-		this.b_priority = b_priority;
 	}
 	public String getB_shopdate() {
 		return b_shopdate;
@@ -201,6 +207,24 @@ public class Become {
 	}
 	public void setB_comment(String b_comment) {
 		this.b_comment = b_comment;
+	}
+	public Integer getEaa_state() {
+		return eaa_state;
+	}
+	public void setEaa_state(Integer eaa_state) {
+		this.eaa_state = eaa_state;
+	}
+	public String getEaa_conclusion() {
+		return eaa_conclusion;
+	}
+	public void setEaa_conclusion(String eaa_conclusion) {
+		this.eaa_conclusion = eaa_conclusion;
+	}
+	public String getEaa_date() {
+		return eaa_date;
+	}
+	public void setEaa_date(String eaa_date) {
+		this.eaa_date = eaa_date;
 	}
 
 }

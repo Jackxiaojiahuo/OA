@@ -17,9 +17,47 @@
 <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
 <script language="JavaScript" src="jquery-ui.min.js"></script>
 <script>
+function checkapplydate(){
+	  var applydate=$("input[name='b_applydate']").val();
+	  var applydateid=$("#applydateid");
+		if(applydate==""){
+			applydateid.show();
+			return false;
+		}
+		return true;
+}
+function checkjoindate(){
+	  var joindate=$("input[name='b_joindate']").val();
+	  var joindateid=$("#joindateid");
+		if(joindate==""){
+			joindateid.show();
+			return false;
+		}
+		return true;
+}
+function checkbecome(){
+	  var become=$("input[name='b_become']").val();
+	  var becomeid=$("#becomeid");
+		if(become==""){
+			becomeid.show();
+			return false;
+		}
+		return true;
+}
+function checkshopdate(){
+	  var shopdate=$("input[name='b_shopdate']").val();
+	  var shopdateid=$("#shopdateid");
+		if(shopdate==""){
+			shopdateid.show();
+			return false;
+		}
+		return true;
+}
 function check(){
-	document.forms[0].submit();
-	  	}
+	if(checkapplydate()&checkjoindate()&checkbecome()&checkshopdate()){
+		document.forms[0].submit();
+	}
+}
   	 </script>
 <script>
      jQuery(function($){  
@@ -61,6 +99,7 @@ function check(){
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#shopdateid").hide();
             }  
             }); 
 	  }); 
@@ -82,6 +121,7 @@ function check(){
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#applydateid").hide();
             }  
             });  
         });
@@ -103,6 +143,7 @@ function check(){
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#joindateid").hide();
             }  
             });  
         }); 
@@ -124,6 +165,7 @@ function check(){
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
+            	$("#becomeid").hide();
             }  
             });  
         }); 
@@ -146,23 +188,16 @@ function check(){
               <tbody>
                 <tr>
                   <td style="text-align: right;">&nbsp;<span style="color: rgb(255, 0, 0);">*</span>主题:</td>
-                  <td id="dbf.subject" dbf.type="required"><input id="e.dbf.subject" class="fieldEditable" value="" name="b_theme"></td>
-                  <td style="text-align: right;">&nbsp;优先级:</td>
-                  <td><input id="dbf.priority" value="低" name="b_priority" autocomplete="off" type="radio">
-                    低
-                    <input id="dbf.priority" checked="" value="中" name="b_priority" autocomplete="off" type="radio">
-                    中
-                    <input id="dbf.priority" value="高" name="b_priority" autocomplete="off" type="radio">
-                    高</td>
+                  <td id="dbf.subject" dbf.type="required" colspan="5"><input id="e.dbf.subject" class="fieldEditable" name="b_theme" value="转正申请-${s_emp.emp_name }"><input type="hidden" name="emp_id" value="${s_emp.emp_id }"></td>
                 </tr>
                 <tr>
                   <td style="text-align: right;">&nbsp;步骤:</td>
-                  <td><span id="mapping.dbf.procXSource">填单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人: <span id="mapping.dbf.responsorSource">李萌,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人: <span id="mapping.dbf.participantsSource"></span></td>
+                  <td colspan="3"><span id="mapping.dbf.procXSource">填单</span></td>
                   <td style="text-align: right;">&nbsp;结束时间:</td>
-                  <td id="dbf.endTime" dbf.type="date" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+                  <td id="dbf.endTime" dbf.type="date" dbf.source="date,editable" colspan="3"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
                     
                     <div class="fieldEditable" contenteditable="true">
-                      <input type="text" id="selectDate" name="b_shopdate">
+                      <input type="text" id="selectDate" name="b_shopdate" onblur="checkshopdate()" placeholder="请输入结束时间" /><span id="shopdateid" style="color:red; display: none;">不能为空</span>
                     </div></td>
                 </tr>
               </tbody>
@@ -188,17 +223,14 @@ function check(){
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请日期</td>
                     <td id="dbf.time2" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
                       <div>
-                        <input type="text" id="sqDate" name="b_applydate">
+                        <input type="text" id="sqDate" name="b_applydate" onblur="checkapplydate()" placeholder="请输入申请日期" /><span id="applydateid" style="color:red; display: none;">不能为空</span>
                       </div></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>所属部门</td>
-                    <td class="select_box"><select name="depart_id">
-													<option value="0">请选择</option>
-													<c:forEach items="${bm }" var="bm">
-														<option value="${bm.depart_id }">${bm.depart_name }</option>
-													</c:forEach>
-											</select></td>
+                    <td id="dbf.operatorSource" dbf.type="required" dbf.source="" dbf.key="">
+                    <input id="e.dbf.operatorSource" class="fieldEditable"
+                     value="${s_emp.dept.depart_name }"><input type="hidden" name="depart_id" value="${s_emp.dept.depart_id }"></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请岗位</td>
                     <td id="dbf.positionX" dbf.type="required" dbf.source=""><input id="e.dbf.positionX" class="fieldEditable" name="b_post"></td>
                   </tr>
@@ -207,11 +239,11 @@ function check(){
                     <td id="入职日期" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
                       
                       <div>
-                        <input type="text" id="rzDate" name="b_joindate">
+                        <input type="text" id="rzDate" name="b_joindate" onblur="checkjoindate()" placeholder="请输入入职日期" /><span id="joindateid" style="color:red; display: none;">不能为空</span>
                       </div></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>转正日期</td>
                     <td id="dbf.time0" dbf.type="date,required" dbf.source="date"><div>
-                        <input type="text" id="zzDate" name="b_become">
+                        <input type="text" id="zzDate" name="b_become" onblur="checkbecome()" placeholder="请输入转正日期" /><span id="becomeid" style="color:red; display: none;">不能为空</span>
                       </div></td>
                   </tr>
                   <tr>
@@ -269,8 +301,8 @@ function check(){
           <col width="2%">
           <col>
           </colgroup>
-          <tbody>
-            <tr valign="top">
+          <!--<tbody>
+             <tr valign="top">
               <td class="boxBorder"><div style="padding: 2px 10px;">
                   <div style="float: right;"><a href="zzsq_lct.html">› 显示流程图</a></div>
                   【处理过程】</div></td>
@@ -284,8 +316,8 @@ function check(){
             </tr>
           </tbody>
         </table></td>
-    </tr>
-  </tbody>
+    </tr> 
+  </tbody>-->
 </table>
 </body>
 </html>
