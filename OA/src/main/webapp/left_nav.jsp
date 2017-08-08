@@ -54,11 +54,12 @@
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 个人设置
 						</a>
-						<shiro:hasPermission name="/jiashi.do?action=index"> 
+						<%-- <shiro:hasPermission name="/jiashi.do?action=index"> 
 						<a style="display: block;" href="driver.jsp"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 管理驾驶舱
-						</a></shiro:hasPermission> </span>
+						</a></shiro:hasPermission>  --%>
+						</span>
 						<shiro:hasPermission name="/work">
 						<a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/gear.png" border="0"> 我的事务

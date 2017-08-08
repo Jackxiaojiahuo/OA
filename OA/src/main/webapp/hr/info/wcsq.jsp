@@ -189,7 +189,7 @@ function check(){
 									</tr>
 									<tr>
 										<td style="text-align: right;">&nbsp;步骤:</td>
-										<td><span id="mapping.dbf.procXSource" colspan="3">填单</span></td>
+										<td colspan="3"><span id="mapping.dbf.procXSource" >填单</span></td>
 										<td style="text-align: right;">&nbsp;结束时间:</td>
 										<td id="dbf.endTime" dbf.type="date"
 											dbf.source="date,editable">
