@@ -29,13 +29,13 @@ public class EmployeeRoleBizImpl implements EmployeeRoleBiz {
 	}
 
 	/**
-	 * 查看员工的所有角色
+	 * 查看员工角色表所有数据
 	 * 
 	 * @return
 	 */
 	@Override
-	public List<EmployeeRole> findAllEmployeeRole(Integer emp_id) {
-		return empRoleDao.findAllEmployeeRole(emp_id);
+	public List<EmployeeRole> findAllEmployeeRole(EmployeeRole er) {
+		return empRoleDao.findAllEmployeeRole(er);
 	}
 
 }

@@ -1,19 +1,20 @@
 package biz.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.ws.FaultAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import biz.EmployeeRoleBiz;
 import biz.RoleBiz;
 import dao.ResourceDao;
 import dao.RoleDao;
 import dao.RoleResourceDao;
-import model.Resource;
+import model.EmployeeRole;
 import model.Role;
-import model.RoleResource;
 
 /**
  * 角色业务实现类
@@ -32,6 +33,8 @@ public class RoleBizImpl implements RoleBiz {
 	private ResourceDao resDao;
 	@Autowired
 	private RoleResourceDao roleResDao;
+	@Autowired
+	private EmployeeRoleBiz employeeRoleBiz;
 	/**
 	 * 获取角色列表
 	 */
@@ -78,8 +81,16 @@ public class RoleBizImpl implements RoleBiz {
 	 */
 	@Override
 	public int delRole(Role role) {
+		EmployeeRole er=new EmployeeRole();
+		er.setRole_id(role.getRole_id());
+		if(employeeRoleBiz.findAllEmployeeRole(er).size()>0){
+			return -1;
+		}
 		return dao.updateRole(role);
 	}
+	/**
+	 * 根据角色名查找角色
+	 */
 	@Override
 	public Role findRoleByName(Role role) {
 		return dao.findRoleByPara(role);

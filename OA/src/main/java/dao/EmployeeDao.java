@@ -33,7 +33,7 @@ public interface EmployeeDao {
 	 * @param emp
 	 * @return
 	 */
-	Employee loadByEmpcode(String emp_code);
+	List<Employee> selectEmp(Employee emp);
 	/**
 	 * 根据员工编号查询所有资源
 	 * @return

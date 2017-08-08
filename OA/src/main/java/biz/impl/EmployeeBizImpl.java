@@ -150,7 +150,9 @@ public class EmployeeBizImpl implements EmployeeBiz {
 	 */
 	@Override
 	public Employee login(String emp_code) {
-		return empDao.loadByEmpcode(emp_code);
+		Employee employee = new Employee();
+		employee.setEmp_code(emp_code);
+		return empDao.selectEmp(employee).get(0);
 	}
 	/**
 	 * 根据员工编号查询所有资源
@@ -168,6 +170,15 @@ public class EmployeeBizImpl implements EmployeeBiz {
 	@Override
 	public int upEmp(Employee emp) {
 		return empDao.upEmp(emp);
+	}
+	/**
+	 * 查询某部门的员工
+	 * @param emp
+	 * @return
+	 */
+	@Override
+	public List<Employee> findCount(Employee emp){
+		return empDao.selectEmp(emp);
 	}
 	
 }

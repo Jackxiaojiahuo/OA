@@ -20,10 +20,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	color:red;
 }
 </style>
-  <script src="../js/jquery-1.8.3.min.js"></script>
-    <script src="../js/jquery.validate.js"></script>
-  <script src="../js/messages_zh.js"></script>
-   <script src="../js/check.js"></script>
+<link href="../js/bootstarp/core/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../js/bootstarp/fileinput/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+<script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../js/bootstarp/fileinput/js/fileinput.js" type="text/javascript"></script>
+<script src="../js/bootstarp/fileinput/js/locales/zh.js" type="text/javascript"></script>
+<script src="../js/jquery.validate.js"></script>
+<script src="../js/messages_zh.js"></script>
+<script src="../js/check.js"></script>
   <script>
 /*   $(function(){
 		$("#img").click(function(event){//点击显示头像图片div
@@ -152,8 +157,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	}
   </script>
 </head>
-<body id="colloaBody"><table style="min-width: 950px; width: 100%; height: 100%;" cellspacing="0" cellpadding="0" border="0"><tbody><tr valign="top"><td id="colloaForm">
-<form method="post" action="../emp.do?action=updateZT" id="myForm" onsubmit="return check()">
+<body id="colloaBody">
+<form class="form-block" method="post" action="../emp.do?action=updateZT" id="myForm" onsubmit="return check()">
+<table style="min-width: 950px; width: 100%; height: 100%;" cellspacing="0" cellpadding="0" border="0"><tbody><tr valign="top"><td id="colloaForm">
 <table style="table-layout: fixed;" summary="" cellspacing="0" cellpadding="0" border="0">
 <colgroup>
 <col width="170">
@@ -162,69 +168,78 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </colgroup><tbody>
 <tr valign="top">
 <td>
-<div class="boxBorderCaption" style="padding: 0px 30px;">设置个人头像</div>
-<div class="boxBorderContent" style="margin-bottom: 2px; height: 70px; padding: 20px 30px;" >
-<!-- <img class="fieldGetValueBySource" id="img" src="css/fieldSource.gif"> -->
-
-<div>
-<img src="../${s_emp.emp_icon }" id="icon" border="0">
-<div id="upd" style="position: absolute; z-index: 10; background-color: rgb(255, 255, 255); cursor: default; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; padding: 5px; overflow-x: hidden; overflow-y: auto; height: 250px; width: 556px; top: 170px; left: 41px; display: none;">
-<!-- <iframe src="fieldFile.aspx?type=.jpg|.jpeg|.gif|.png&field=oImg" style="width:100%;height:100px;" frameborder="0"> -->
-<form id="uploadForm" enctype="multipart/form-data" >
-	<input type="file" id="file" name="file"><br>
-	<input type="button" value="提交" onclick="doUpload()">
-</form>
+	<div class="boxBorderCaption" style="padding: 0px 30px;width:330px;" align="center">个人头像</div>
+	<div class="boxBorderContent"  style="width:330px;" align="center">
+		<img src="../${s_emp.emp_icon }" id="icon" border="0">
+	</div>
+	<div class="boxBorderCaption" style="padding: 0px 30px;width:330px;" align="center">上传头像</div>
+	<div style=" height: 710px; width:330px;" >
+		<input type="file" id="file" name="file" class="file" >
+		<p class="help-block">
+			支持jgp、jpeg、png、gif格式,大小不超过2M<br>
+			<span class="error">注:图片上传成功后需点击修改才能更换头像</span>
+		</p>
+	<div>
+	<!-- <img class="fieldGetValueBySource" id="img" src="css/fieldSource.gif"> -->
+	<%-- <img src="../${s_emp.emp_icon }" id="icon" border="0">
+	<div id="upd" style="position: absolute; z-index: 10; background-color: rgb(255, 255, 255); cursor: default; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; padding: 5px; overflow-x: hidden; overflow-y: auto; height: 250px; width: 556px; top: 170px; left: 41px; display: none;">
+	<!-- <iframe src="fieldFile.aspx?type=.jpg|.jpeg|.gif|.png&field=oImg" style="width:100%;height:100px;" frameborder="0"> -->
+	<!-- <form id="uploadForm" enctype="multipart/form-data" >
+		<input type="file" id="file" name="file"><br>
+		<input type="button" value="提交" onclick="doUpload()">
+	</form> -->
+	</div> --%>
+	<input type="hidden" name="emp_icon" id="emp_icon" value="${s_emp.emp_icon }">
+	<input type="hidden" name="emp_id" value="${s_emp.emp_id }">
+	</div></div>
+</td>
+<td>&nbsp;</td>
+<td>
+<div class="boxBorderCaption" style="padding: 0px 30px;width:700px;margin-left:150px;">修改个人信息</div>
+<div class="boxBorderContent" style="margin-bottom: 2px; height: 500px; width:700px;padding: 20px 30px;margin-left:150px;">
+<table class="tableForm" style="table-layout: fixed;" summary="" cellspacing="0" cellpadding="0" border="0">
+<colgroup>
+<col width="80">
+<col>
+</colgroup><tbody>
+	<tr>
+		<td><label><b style="color: red;">*</b>个人状态</label></td>
+		<td>
+			<input  id="zg" ${s_emp.emp_status eq '在岗'  ? 'checked' : '' } value="在岗" name="status"  type="radio">
+			<label for="zg"><img style="vertical-align: middle;" src="css/userXStatus0.png">在岗 </label>
+			<input id="cc" ${s_emp.emp_status eq '出差'  ? 'checked' : '' } value="出差" name="status"  type="radio">
+			<label for="cc"><img style="vertical-align: middle;" src="css/userXStatus10.png">出差 </label>
+			<input id="lg" ${s_emp.emp_status eq '离岗'  ? 'checked' : '' } value="离岗" name="status"  type="radio">
+			<label for="lg"><img style="vertical-align: middle;" src="css/userXStatus20.png">离岗</label>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><label>简短说明</label><input class="form-control" id="description" name="description" onblur="checkdes()"  value="${s_emp.emp_description }"><label class="error" ></label></td>
+	</tr>
+	<tr>
+		<td colspan="2"><label>固定电话</label><input id="phone" name="phone" onblur="checkphone()" class="form-control" value="${s_emp.emp_phone }"><label class="error" ></label></td>
+	</tr>
+	<tr>
+		<td colspan="2"><label>移动电话</label><input id="mobile" name="mobile" onblur="checkmobile()" class="form-control" value="${s_emp.emp_mobile }"><label class="error" ></label></td>
+	</tr>
+	<tr>
+		<td colspan="2"><label>电子消息</label><input id="email" name="email" onblur="checkemail()" class="form-control" value="${s_emp.emp_email }"><label class="error" ></label></td>
+	</tr>
+	<tr>
+		<td colspan="2"><label>即时通信(QQ)</label><input value="${s_emp.emp_qq }" onblur="checkqq()" id="qq" name="qq" class="form-control"><label class="error" ></label></td>
+	</tr>
+</tbody>
+</table>
 </div>
-<input type="hidden" name="emp_icon" id="emp_icon" value="${s_emp.emp_icon }">
-<input type="hidden" name="emp_id" value="${s_emp.emp_id }">
-</div></div></td>
-<td></td>
-<td>
-<div class="boxBorderCaption" style="padding: 0px 30px;">设置个人状态</div>
-<div class="boxBorderContent" style="margin-bottom: 2px; height: 70px; padding: 20px 30px;">
-<table class="tableForm" style="table-layout: fixed;" summary="" cellspacing="0" cellpadding="0" border="0">
-<colgroup>
-<col width="80">
-<col>
-</colgroup><tbody>
-<tr>
-<td class="fieldLable">&nbsp;个人状态</td>
-<td>
-<input id="zg" ${s_emp.emp_status eq '在岗'  ? 'checked' : '' } value="在岗" name="status"  type="radio">
-<label for="zg"><img style="vertical-align: middle;" src="css/userXStatus0.png">在岗 </label>
-<input id="cc" ${s_emp.emp_status eq '出差'  ? 'checked' : '' } value="出差" name="status"  type="radio">
-<label for="cc"><img style="vertical-align: middle;" src="css/userXStatus10.png">出差 </label>
-<input id="lg" ${s_emp.emp_status eq '离岗'  ? 'checked' : '' } value="离岗" name="status"  type="radio">
-<label for="lg"><img style="vertical-align: middle;" src="css/userXStatus20.png">离岗</label></td></tr>
-<tr>
-<td class="fieldLable">&nbsp;简短说明</td>
-<td id="dbf.selfMessage"><input id="description" name="description" onblur="checkdes()" class="fieldEditable" value="${s_emp.emp_description }"><label class="error" ></label></td></tr></tbody></table></div></td></tr></tbody></table>
-<table style="margin-left: 30px; width: 600px;" border="0">
-<tbody>
-<tr>
-<td id="oImg" class="textGray" >
-<!-- <input id="upb" class="fieldGetValueBySourceTemp" value=" 本地图片 " type="button"> (建议尺寸小于100px*100px) -->
-</td></tr></tbody></table><br>
-<div class="boxBorderCaption" style="padding: 0px 30px;">设置个人通讯方式</div>
-<div class="boxBorderContent" style="padding: 20px 30px;">
-<table class="tableForm" style="table-layout: fixed;" summary="" cellspacing="0" cellpadding="0" border="0">
-<colgroup>
-<col width="80">
-<col>
-<col width="100">
-<col width="360">
-</colgroup><tbody>
-<tr>
-<td class="fieldLable">固定电话</td>
-<td id="dbf.phone"><input id="phone" name="phone" onblur="checkphone()" class="fieldEditable" value="${s_emp.emp_phone }"><label class="error" ></label></td>
-<td class="fieldLable">移动电话</td>
-<td id="dbf.mobile"><input id="mobile" name="mobile" onblur="checkmobile()" class="fieldEditable" value="${s_emp.emp_mobile }"><label class="error" ></label></td></tr>
-<tr>
-<td class="fieldLable">电子消息</td>
-<td id="dbf.email"><input id="email" name="email" onblur="checkemail()" class="fieldEditable" value="${s_emp.emp_email }"><label class="error" ></label></td>
-<td class="fieldLable">即时通信(QQ)</td>
-<td id="dbf.imAddress"><input value="${s_emp.emp_qq }" onblur="checkqq()" id="qq" name="qq" class="fieldEditable"><label class="error" ></label></td></tr></tbody></table></div></form>
-<br><div id="_vWorkflowActionsShow" align="right"><a href="javascript:sub()" class="button">确定</a><a href="javascript:history.back()" class="button">取消</a></div><br></td></tr></tbody></table>
+	<div id="_vWorkflowActionsShow" align="center">
+		<input type="button"  onclick="sub()" class="btn btn-primary" value="修改">
+		<input type="button" onclick="location='../emp.do?action=showInfo&emp_id=${s_emp.emp_id }'" class="btn btn-primary" value="取消">
+	</div>
+</td></tr>
+
+</tbody></table>
+<br></td></tr></tbody></table>
+</form>
 <!-- <div id="picture" style="position: absolute; z-index: 10; background-color: rgb(255, 255, 255); cursor: default; border: 1px solid rgb(221, 221, 221); box-sizing: border-box; padding: 5px; overflow-x: hidden; overflow-y: auto; height: 250px; width: 350px; top: 172px; left: 40px; display: none;">
 <img id="0" style="cursor:pointer;" src="../upload/h1.png">
 <img id="0" style="cursor:pointer;" src="../upload/h2.png">
@@ -260,4 +275,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <img id="0" style="cursor:pointer;" src="../upload/h32.png">
 </div> -->
 </body>
+<script>
+$('#file').fileinput({
+	 "language": "zh",
+	 "showUpload":true,
+	 "showPreview":true,
+	 "allowedFileExtensions" : ['jpg', 'png','gif'],
+	 "maxFileSize": 2000,
+	 "showAjaxErrorDetails":false,
+	 "uploadUrl":"../param.do?action=upload"
+	 }).on('fileuploaded', function(event, data, previewId, index) {
+       //alert(' file = ' + data.response.fileName);
+       var returndata=data.response.fileName;
+       $("#icon").attr("src","../upload/"+returndata);
+       $("#emp_icon").val("upload/"+returndata);
+       //$(parent.parent.left.document).contents().find("#img_left").attr("src","upload/"+returndata);//改变左边框架头像
+   	 });
+</script>
 </html>

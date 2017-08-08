@@ -127,7 +127,7 @@
 								src="css/catalogue1.png" border="0"> 知识社区
 						</a></span>
 						</shiro:hasPermission>
-						<shiro:hasPermission name="/xz">
+					<%-- 	<shiro:hasPermission name="/xz">
 						 <a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/asset.png" border="0"> 行政管理
 						</a> <span><a style="display: none;" href="board.do?action=findBoard"
@@ -137,7 +137,7 @@
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 车辆管理
 						</a> </span>
-						</shiro:hasPermission>
+						</shiro:hasPermission> --%>
 						<shiro:hasPermission name="/hr">
 						 <a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/persons.png" border="0">

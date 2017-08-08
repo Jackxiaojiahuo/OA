@@ -41,8 +41,16 @@
 		update employee set emp_pwd=#{emp_pwd} where emp_id=#{emp_id}
 	</update>
 	<!-- 用户登录 -->
-	<select id="loadByEmpcode" resultMap="rm" parameterType="String">
-		select * from employee where emp_code=#{emp_code}
+	<select id="selectEmp" resultMap="rm" parameterType="employee">
+		select * from employee 
+		<where>
+			<if test="emp_code!=null">
+				 and emp_code=#{emp_code}
+			</if>
+			<if test="depart_id!=null">
+				and depart_id=#{depart_id}
+			</if>
+		</where>
 	</select>
 	<!-- 根据员工编号查询所有资源 -->
 	<select id="listAllResource" resultType="resource" parameterType="Integer">

@@ -50,6 +50,12 @@ public interface EmployeeBiz {
 	 * @return
 	 */
 	int upEmp(Employee emp);
+	/**
+	 * 查询某部门的员工
+	 * @param emp
+	 * @return
+	 */
+	List<Employee> findCount(Employee emp);
 	
 	
 	

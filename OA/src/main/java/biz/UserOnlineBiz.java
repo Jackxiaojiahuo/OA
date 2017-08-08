@@ -22,4 +22,8 @@ public interface UserOnlineBiz {
 	 * @return
 	 */
 	List<UserOnline> findAllUserOnline();
+	/**
+	 * 启动服务器清空表
+	 */
+	void delAll();
 }

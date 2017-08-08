@@ -104,6 +104,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <tbody>
     <tr valign="top">
       <td id="colloaForm">
+      <div class="textBig"><h2><img style="cursor: pointer;" src="css/menu.png">&nbsp;修改组织机构</h2></div>
+						<br>
       <div class="boxBorder" style="padding: 30px;">
 					  <form class="form-block" id="myForm" method="post"
 								action="../depart.do?action=editDepart" onsubmit="return check()">

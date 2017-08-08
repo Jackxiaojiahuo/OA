@@ -106,7 +106,7 @@
 		<tbody>
 			<tr valign="top">
 				<td id="colloaForm">
-				<div class="textBig"><h2><img style="cursor: pointer;" src="css/menu.png">&nbsp;登记会议室</h2></div>
+				<div class="textBig"><h2><img style="cursor: pointer;" src="css/menu.png">&nbsp;增加组织机构</h2></div>
 						<br>
 				<div class="boxBorder" style="padding: 30px;">
 					  <form class="form-block" id="myForm" method="post"

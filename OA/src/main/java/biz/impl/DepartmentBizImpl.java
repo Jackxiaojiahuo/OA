@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import biz.DepartmentBiz;
+import biz.EmployeeBiz;
 import dao.DepartmentDao;
 import model.Department;
+import model.Employee;
 /**
  * 部门业务实现类
  * @author Jack
@@ -21,12 +23,17 @@ public class DepartmentBizImpl implements DepartmentBiz {
 	 */
 	@Autowired
 	private DepartmentDao departDao;
+	@Autowired
+	private EmployeeBiz employeeBiz;
+	/**
+	 * 查询所有部门
+	 */
 	@Override
 	public List<Department> findAllDepart() {
 		return departDao.findAllDepart();
 	}
 	/**
-	 * 获取所有部门列表
+	 * 获取所有部门ztree
 	 */
 	@Override
 	public List<Department> findAllDepart_list() {
@@ -80,9 +87,16 @@ public class DepartmentBizImpl implements DepartmentBiz {
 	 */
 	@Override
 	public int delDepart(Department depart) {
+		Employee emp=new Employee();
+		emp.setDepart_id(depart.getDepart_id());
+		if(employeeBiz.findCount(emp).size()>0){
+			return -1;
+		}
 		return departDao.updateDepart(depart);
 	}
-	
+	/**
+	 * 根据名称查找部门
+	 */
 	@Override
 	public Department findDepartByName(Department depart) {
 		return departDao.findDepartById(depart);

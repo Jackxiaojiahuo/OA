@@ -14,12 +14,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="css/colloa.ico">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/view.css">
+  <link href="../js/bootstarp/core/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+ <script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js" type="text/javascript"></script>
 <style>
 .error {
 	color: red;
 }
 </style>
-<script src="../js/jquery-1.8.3.min.js"></script>
 <script>
 function checkdepart_name() {
 	var des = $("#roleName").val();
@@ -65,7 +67,9 @@ function check(){
   <tbody>
     <tr valign="top">
       <td id="colloaForm">
-		<form method="post" action="../role.do?action=addRole">
+      <div class="textBig"><h2><img style="cursor: pointer;" src="css/menu.png">&nbsp;增加角色</h2></div>
+						<br>
+		<form class="form-block" method="post" action="../role.do?action=addRole">
           <table class="tableForm" summary="" style="table-layout:fixed;" cellspacing="0" cellpadding="0" border="0">
             <colgroup>
             <col width="100">
@@ -73,24 +77,24 @@ function check(){
             </colgroup>
             <tbody>
               <tr>
-                <td>&nbsp;名称<b style="color: red;">*</b></td>
+                <td><label><b style="color: red;">*</b>名称</label></td>
                 <td id="dbf.name">
-                	<input id="roleName" name="role_name" required="required" class="fieldEditable" ><label
+                	<input  id="roleName" name="role_name" required="required" class="form-control" ><label
 										class="error"></label>
                 </td>
               </tr>
               <tr>
-                <td>&nbsp;描述</td>
+                <td><label><b style="color: red;">*</b>描述</label></td>
                 <td id="dbf.description">
-                <textarea id="roleDescription" name="role_description" class="fieldEditable" style="height: 200px;"></textarea><label
+                <textarea id="roleDescription" name="role_description" class="form-control" style="height: 200px;"></textarea><label
 										class="error"></label></td>
               </tr>
             </tbody>
           </table>
 		</form>
         <div id="_vWorkflowActionsShow" align="center">
-        	<a href="javascript:sub()" class="button">确定</a>
-        	<a class="button" href="javascript:history.back()">取消</a></div>
+        	<input type="button" onclick="sub()" class="btn btn-primary" value="确定">
+        	<input class="btn btn-primary" type="button" onclick="javascript:location='../role.do?action=findAllRole';" value="取消"></div>
         <br>
         </td>
     </tr>

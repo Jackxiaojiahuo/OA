@@ -115,13 +115,13 @@ public class RoleController {
 		role.setRole_id(role_id);
 		role.setRole_statu(0);
 		System.out.println("删除角色"+role_id);
-		int count = roleBiz.updateRole(role);
+		int count = roleBiz.delRole(role);
 		if(count>0){
 			request.getSession().setAttribute("msg", "删除角色成功");
 			return "redirect:role.do?action=findAllRole";
 		}else{
-			request.getSession().setAttribute("msg", "删除角色失败");
-			return "sysManager/gwjs";
+			request.getSession().setAttribute("msg", "角色下还有员工,不能删除");
+			return "redirect:role.do?action=findAllRole";
 		}
 	}
 }

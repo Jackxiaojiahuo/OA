@@ -27,4 +27,8 @@ public interface UserOnlineDao {
 	 * @return
 	 */
 	List<UserOnline> findAllUserOnline();
+	/**
+	 * 清空表
+	 */
+	void delAll();
 }

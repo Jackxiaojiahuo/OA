@@ -124,7 +124,7 @@ var setting = {
 		var emp_code=$(obj).attr("emp_code");
 		$.ajax({
 			   type: "POST",
-			   url: "../emp.do?action=initPwd&op=init",
+			   url: "../param.do?action=initPwd&op=init",
 			   data: "emp_id="+emp_id+"&emp_code="+emp_code,
 			   success: function(msg){
 			     show( msg );

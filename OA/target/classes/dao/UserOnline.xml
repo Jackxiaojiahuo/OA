@@ -24,4 +24,7 @@
 	<delete id="delUserOnline" parameterType="String">
 		delete from useronline where sessionId=#{sessionId}
 	</delete>
+	<update id="delAll">
+		truncate table useronline
+	</update>
 </mapper>

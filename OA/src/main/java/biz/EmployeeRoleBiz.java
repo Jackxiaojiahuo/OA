@@ -18,5 +18,5 @@ public interface EmployeeRoleBiz {
 	 * 查看员工的所有角色
 	 * @return
 	 */
-	List<EmployeeRole> findAllEmployeeRole(Integer emp_id);
+	List<EmployeeRole> findAllEmployeeRole(EmployeeRole er);
 }

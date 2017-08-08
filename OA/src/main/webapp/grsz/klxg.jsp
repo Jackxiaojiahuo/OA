@@ -6,7 +6,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/grsz/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -15,7 +15,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <link rel="shortcut icon" href="css/colloa.ico">
   <link rel="stylesheet" href="css/klxg_font-awesome.min.css">
   <link rel="stylesheet" href="css/klxg_view.css">
-  <script src="../js/jquery-1.8.3.min.js"></script>
+  <link href="../js/bootstarp/core/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+ <script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="../js/jquery.validate.js"></script>
   <script src="../js/messages_zh.js"></script>
   <script>
@@ -99,5 +101,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </tbody>
 </table>
 </div>
-</form><br><div id="_vWorkflowActionsShow" align="right"><a href="javascript:check()" class="button">确定</a><a class="button" href="javascript:history.back();">取消</a></div><br></td></tr></tbody></table></body>
+</form><br><div id="_vWorkflowActionsShow" align="center"><input type="button" onclick="check()" class="btn btn-primary" value="确定">
+<input class="btn btn-primary" type="button" onclick="javascript:location='../emp.do?action=showInfo&emp_id=${s_emp.emp_id }';" value="取消"></div><br></td></tr></tbody></table></body>
 </html>

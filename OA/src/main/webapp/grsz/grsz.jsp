@@ -6,7 +6,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/grsz/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -15,7 +15,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="shortcut icon" href="css/colloa.ico">
 <link rel="stylesheet" href="css/grsz_font-awesome.min.css">
 <link rel="stylesheet" href="css/grsz_view.css">
-  <script src="../js/jquery-1.8.3.min.js"></script>
+<link href="../js/bootstarp/core/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../js/bootstarp/dialog/css/bootstrap-dialog.css"
+	type="text/css" rel="stylesheet" />
+<script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../js/bootstarp/dialog/js/bootstrap-dialog.js"
+	type="text/javascript"></script>
   <script>
   	$(function(){
   		var path=$("#img_status").attr("src");
@@ -36,13 +42,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <tbody>
             <tr>
               <td><h1><img style="cursor: pointer;" src="css/menu.png"> 个人设置</h1><input type="hidden" value="${pwdmsg }" id="pwdmsg"></td>
-              <td id="oWorkflowList" align="right"><span id="oWorkflowList1"><a href="klxg.jsp"  class="button1 button1L">修改口令</a><a href="szzt.jsp"  class="button1 button1R">设置状态</a></span></td>
+              <td id="oWorkflowList" align="right"><span id="oWorkflowList1"><a href="klxg.jsp"  class="button1 button1L">修改密码</a><a href="szzt.jsp"  class="button1 button1R">修改个人信息</a></span></td>
             </tr>
           </tbody>
         </table>
         <br>
         <div class="boxBorder" style="padding: 30px;">
-          <div style="display: inline-block; vertical-align: top; margin: 0px 20px 20px 0px;"><img src="../${EMP.emp_icon }" border="0"></div>
+          <div style="display: inline-block; vertical-align: top; margin: 0px 20px 20px 0px;">
+          <img  src="../${EMP.emp_icon }" border="0">
+          <input type="hidden" id="headerIcon" value="${EMP.emp_icon }">
+          </div>
           <div style="display: inline-block; vertical-align: top;"><span class="textBig">${EMP.emp_name }</span> <br>
             <br>
             从属于：${EMP.dept.depart_name }<br>
@@ -67,4 +76,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tbody>
 </table>
 </body>
+<c:if test="${msg ne null }">
+	<script>
+		var msg = '${msg}';
+		if("修改信息成功"==msg){
+			$(parent.parent.left.document).contents().find("#img_left").attr("src", $("#headerIcon").val());//改变左边框架头像
+		}
+		var dlg=BootstrapDialog.show({
+			"title" : "提示信息",
+			"message" : msg,
+			"type" : BootstrapDialog.TYPE_SUCCESS
+		});
+		setTimeout(function(){
+		    dlg.close();
+		},1000);
+	</script>
+	<%
+		session.removeAttribute("msg");
+	%>
+</c:if>
 </html>

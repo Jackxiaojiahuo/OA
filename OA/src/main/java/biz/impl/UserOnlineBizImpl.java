@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import biz.UserOnlineBiz;
 import dao.UserOnlineDao;
 import model.UserOnline;
-@Service
+@Service("uoService")
 public class UserOnlineBizImpl implements UserOnlineBiz {
 	@Autowired
 	private UserOnlineDao uoDao;
@@ -37,5 +37,9 @@ public class UserOnlineBizImpl implements UserOnlineBiz {
 	@Override
 	public List<UserOnline> findAllUserOnline() {
 		return uoDao.findAllUserOnline();
+	}
+	@Override
+	public void delAll() {
+		uoDao.delAll();
 	}
 }

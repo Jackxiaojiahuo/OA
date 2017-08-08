@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,11 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,24 +66,6 @@ public class EmployeeController {
 	}
 
 	/**
-	 * 初始化密码ajax请求
-	 * 
-	 * @param emp_id
-	 * @return
-	 */
-	@RequestMapping(params = "action=initPwd")
-	@ResponseBody
-	public String updatePwdInit(Integer emp_id, String emp_code) {
-		String result = "初始化密码失败";
-		Employee emp = new Employee();
-		emp.setEmp_id(emp_id);
-		emp.setEmp_pwd(ShiroKit.md5("000000", emp_code));
-		if (empBiz.updatePwd(emp) > 0) {
-			result = "初始化密码成功";
-		}
-		return result;
-	}
-	/**
 	 * 修改密码
 	 * @param model
 	 * @param session
@@ -126,7 +104,9 @@ public class EmployeeController {
 	@RequestMapping(params = "action=findAllRoleForEmp")
 	public String findAllRole(ModelMap model, Integer emp_id) {
 		model.put("map", empBiz.toJsForEmp(emp_id));
-		model.put("empRole", empRoleBiz.findAllEmployeeRole(emp_id));
+		EmployeeRole er=new EmployeeRole();
+		er.setEmp_id(emp_id);
+		model.put("empRole", empRoleBiz.findAllEmployeeRole(er));
 		return "sysManager/addJsForEmp";
 	}
 
@@ -184,33 +164,8 @@ public class EmployeeController {
 			return "redirect:emp.do?action=showInfo&emp_id="+emp_id;
 		}else{
 			request.getSession().setAttribute("msg", "修改信息失败");
-			return "grsz/zzzt";
+			return "redirect:emp.do?action=showInfo&emp_id="+emp_id;
 		}
-	}
-	/**
-	 * ajax上传图片
-	 * @param request
-	 * @param file
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping(params="action=upload")
-	public String upload(HttpServletRequest request, @RequestParam MultipartFile file ) {
-		String fileName=file.getOriginalFilename();
-		try {
-			Date date = new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-			Random random = new Random();
-			int nextInt = random.nextInt(1000);
-			fileName=sdf.format(date)+nextInt+fileName;
-			File toFile = FileIO.createFile(fileName, request);
-			FileIO.writeFile(file.getBytes(), toFile);
-			System.out.println("文件名:"+file.getOriginalFilename());
-		} catch (Exception e) {
-			e.printStackTrace();
-			fileName=e.getMessage();
-		}
-		return fileName;
 	}
 	
 	

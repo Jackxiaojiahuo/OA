@@ -118,7 +118,7 @@ public class DepartmentController {
 			return "redirect:depart.do?action=findAllDepart_list";
 		}else{
 			request.getSession().setAttribute("msg", "该部门下还有员工,不能删除");
-			return "sysManager/zzjg";
+			return "redirect:depart.do?action=findAllDepart_list";
 		}
 	}
 }

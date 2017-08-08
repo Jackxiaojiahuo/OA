@@ -1,10 +1,13 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  * 员工表
  * @author caohaoran
  *
  */
-public class Employee {
+public class Employee implements Serializable {
 	/**
 	 * 编号
 	 */
