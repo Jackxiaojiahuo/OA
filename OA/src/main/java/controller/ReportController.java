@@ -139,16 +139,8 @@ public class ReportController {
 				
 				Report r = new Report();
 				List<Report> list = null;
-				if(name==null){
-					if (names.equals("report_create_name")) {
-						r.setReport_create_name(count);
-					} else if(names.equals("report_name")){
-						r.setReport_name(count);
-					}
-				}else{
-					r.setReport_create_name(count);
-					r.setReport_name(count);
-				}
+				r.setReport_create_name(count);
+				r.setReport_name(count);
 				list=reportBiz.findReportBylike(r);
 				model.put("list", list);
 				if(name!=null){

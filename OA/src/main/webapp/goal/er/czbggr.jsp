@@ -42,7 +42,7 @@
 						<tbody>
 							<tr>
 								<td><span class="textBig">查找工作报告</span> <input 
-									name="pserson" value="${s_emp.emp_name }" type="hidden" >
+									id="pserson" value="${s_emp.emp_name }" type="hidden" >
 									<input name="field" checked="" value="report_name" type="radio">按报告名称
 									<br> <input class="textBig" style="width: 550px;"
 									id="words" maxlength="100" name="con"> <span

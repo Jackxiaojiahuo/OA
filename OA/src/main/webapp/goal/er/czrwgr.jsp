@@ -41,7 +41,7 @@
 						<tbody>
 							<tr>
 								<td><span class="textBig">查找工作任务</span> <input 
-									name="person" type="hidden" value="${s_emp.emp_name }" >
+									id="person" type="hidden" value="${s_emp.emp_name }" >
 									<input name="field" checked="" value="assignment_name" type="radio">按任务名称
 									<br> <input class="textBig" style="width: 550px;"
 									id="words" maxlength="100" name="con"><span class="textBig"

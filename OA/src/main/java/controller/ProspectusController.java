@@ -188,16 +188,8 @@ public class ProspectusController {
 			
 			Prospectus p = new Prospectus();
 			List<Prospectus> list = null;
-			if(name!=null){
-				p.setProspectus_create_name(name);
-				p.setProspectus_name(count);
-			}else{
-				if (names.equals("prospectus_create_name")) {
-					p.setProspectus_create_name(count);
-				} else if(names.equals("prospectus_name")){
-					p.setProspectus_name(count);
-				}
-			}
+			p.setProspectus_create_name(name);
+			p.setProspectus_name(count);
 			list=prospectusBiz.findprospectusBylike(p);
 			model.put("list", list);
 			if(name!=null){

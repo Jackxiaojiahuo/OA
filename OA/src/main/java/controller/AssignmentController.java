@@ -171,16 +171,8 @@ public class AssignmentController {
 			
 			Assignment a = new Assignment();
 			List<Assignment> list = null;
-			if(name==null){
-				if (names.equals("assignment_create_name")) {
-					a.setAssignment_create_name(count);
-				} else if(names.equals("assignment_name")){
-					a.setAssignment_name(count);
-				}
-			}else{
-				a.setAssignment_create_name(count);
-				a.setAssignment_name(count);
-			}
+			a.setAssignment_create_name(count);
+			a.setAssignment_name(count);
 			list=assignmentBiz.findAssignmentBylike(a);
 			model.put("list", list);
 			if(name!=null)
