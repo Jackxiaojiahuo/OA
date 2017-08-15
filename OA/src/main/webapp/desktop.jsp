@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +9,23 @@
 <link rel="shortcut icon" href="css/colloa.ico">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/view.css">
+<script src="js/bootstarp/jquery-3.1.0.js"></script>
+<script src="js/left_nav.js"></script>
+<script>
+	function goLeft(index,ci,url){
+		parent.left.changeLeft(index,ci);
+		//alert(url);
+		location=""+url+"";
+	}
+</script>
 </head>
+<c:if test="${gzjh eq null }">
+	<script>
+		location="desk.do?action=init&emp_id=${s_emp.emp_id }&emp_name=${s_emp.emp_name }";
+	</script>
+</c:if>
+<c:if test="${gzjh ne null }">
+
 <body>
 <table style="min-width: 120px; width: 100%; height: 100%;" border="0"
 	cellpadding="0" cellspacing="0">
@@ -37,7 +54,7 @@
 					<tbody>
 						<tr valign="top">
 							<td><a class="boxBorderCaption"
-								href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=110100&amp;name=%u5F85%u5904%u7406%u7684%u4E8B%u52A1">
+								href="javascript:goLeft(0,1,'')">
 									<div class="tipCount">17</div> 待处理的事务 ···
 							</a>
 								<div class="boxBorderContent">
@@ -106,11 +123,11 @@
 											style="color: red;">2016年第二季度财务工作任务</span></a>
 									</div>
 								</div> <a class="boxBorderCaption"
-								href="http://cloud.10oa.com/trial/view/catalogueEx.aspx?sid=150500&amp;name=%u7535%u5B50%u6D88%u606F&amp;ex.sid=150510&amp;ex.name=%u672A%u8BFB%u6D88%u606F">
+								href="javascript:goLeft(2,1,'weidu.html')">
 									<div class="tipCount">0</div> 未读消息 ···
 							</a>
 								<div class="boxBorderContent"></div> <a class="boxBorderCaption"
-								href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=135000&amp;name=%u6211%u7684%u5DE5%u4F5C%u65E5%u7A0B">我的工作日程
+								href="javascript:goLeft(1,6,'weidu.html')">我的工作日程
 									···</a>
 								<div class="boxBorderContent">
 									<table border="0" cellpadding="0" cellspacing="0">
@@ -175,13 +192,13 @@
 											<tr>
 												<td class="sepratorRight"><a
 													class="textHighlight textBig" style="display: block;"
-													href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=132000&amp;name=%u6211%u7684%u5DE5%u4F5C%u8BA1%u5212">36</a>我的工作计划</td>
+													href="javascript:goLeft(1,0,'pros.do?action=Prospectuslist&prospectus_create_name=${s_emp.emp_name }')">${gzjh }</a>我的工作计划</td>
 												<td class="sepratorRight"><a
 													class="textHighlight textBig" style="display: block;"
-													href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=133000&amp;name=%u6211%u7684%u5DE5%u4F5C%u4EFB%u52A1">127</a>我的工作任务</td>
+													href="javascript:goLeft(1,2,'assi.do?action=Assignmentlist&assignment_create_name=${s_emp.emp_name }')">${gzrw }</a>我的工作任务</td>
 												<td><a class="textHighlight textBig"
 													style="display: block;"
-													href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=134000&amp;name=%u6211%u7684%u5DE5%u4F5C%u62A5%u544A">21</a>我的工作报告</td>
+													href="javascript:goLeft(1,4,'repo.do?action=Reportlist&report_create_name=${s_emp.emp_name }')">${gzbg }</a>我的工作报告</td>
 											</tr>
 										</tbody>
 									</table>
@@ -196,11 +213,11 @@
 									<tbody>
 										<tr valign="top">
 											<td><a class="boxBorderCaption"
-												href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=151000&amp;name=%u4FE1%u606F%u516C%u544A">
+												href="javascript:goLeft(2,2,'weidu.html')">
 													<div class="tipCount">20</div> 信息公告 ···
 											</a>
 												<div class="boxBorderContent">
-													<div class="thumbnail1" id="thumbnail">
+													<!-- <div class="thumbnail1" id="thumbnail">
 														<a style="display: inline;"><img
 															title="10oa成功签约倍科电器，助力世界500强" style="width: 100%;"
 															src="css/customerBeko.jpg" border="0"></a><a
@@ -223,7 +240,7 @@
 													</div>
 													<script language="javascript">
 														/* Code removed by ScrapBook */
-													</script>
+													</script> -->
 													<div>
 														<span style="float: right; margin-left: 10px;"
 															class="textGray">4/28</span><a><i
@@ -287,7 +304,7 @@
 												</div></td>
 											<td></td>
 											<td><a class="boxBorderCaption"
-												href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=150100&amp;name=%u5185%u90E8%u901A%u8BAF%u5F55">
+												href="javascript:goLeft(2,0,'weidu.html')">
 													<div class="tipCount">77</div> 内部通讯录 ···
 											</a>
 												<div class="boxBorderContent" style="min-height: 0px;">
@@ -295,7 +312,7 @@
 														style="font-size: 120%; width: 75%; border-width: 0px 0px 1px; border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(238, 238, 238); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none;">
 													<i class="fa fa-search fa-lg" style="cursor: pointer;"></i>
 												</div> <a class="boxBorderCaption"
-												href="http://cloud.10oa.com/trial/view/catalogue.aspx?sid=155000&amp;name=%u77E5%u8BC6%u793E%u533A&amp;ex.stype=1000&amp;ex.sid=0&amp;ex.name=%u6211%u5173%u6CE8%u7684">
+												href="javascript:goLeft(2,4,'weidu.html')">
 													<div class="tipCount">16</div> 我关注的知识 ···
 											</a>
 												<div class="boxBorderContent">
@@ -360,14 +377,15 @@
 												</div>
 												<div class="boxBorderCaption">友情链接</div>
 												<div class="boxBorderContent">
-													<a href="http://cn.colloa.com/" target="_blank"><i
-														class="fa fa-external-link fa-lg"></i> Colloa 协同运营平台</a><br>
-													<a href="http://www.10oa.com/" target="_blank"><i
-														class="fa fa-external-link fa-lg"></i> 10oa 协同办公系统</a><br>
-													<span class="textGray"><i
-														class="fa fa-external-link fa-lg"></i> 在系统设置中自定义链接</span>
+													<a href="http://www.baidu.com/" target="_blank"><i
+														class="fa fa-external-link fa-lg"></i> 百度</a><br>
+													<a href="http://www.12306.cn/mormhweb//" target="_blank"><i
+														class="fa fa-external-link fa-lg"></i> 12306官网</a>
 												</div></td>
 										</tr>
 									</tbody>
 								</table>
-								</td></tr></tbody></table></td></tr></tbody></table></body></html>
+								</td></tr></tbody></table></td></tr></tbody></table>
+								</body>
+								</c:if>
+								</html>

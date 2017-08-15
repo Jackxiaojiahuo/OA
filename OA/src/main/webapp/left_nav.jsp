@@ -12,6 +12,23 @@
 <link rel="stylesheet" href="css/view.css">
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script src="js/left_nav.js"></script>
+<script>
+function changeLeft(index,ci){
+	$('.indent0').each(function(i){//循环隐藏不是点击事件的模块
+		if(i!=index){
+			$('.indent0:eq('+i+')').next('span').find('[style]').hide();//隐藏所有子模块
+			$('.indent0ex:first').next('span').find('[style]').hide();//将驾驶舱隐藏
+		}
+	});
+	$('.indent0:eq('+index+')').next('span').find('[style]').show();	//隐藏或展示其子模块
+	var children=$('.indent0:eq('+index+')').next('span').find('[style]')[ci];
+	//alert($(children).attr("href"));
+	//-----子模块高亮---------
+	$('a[style]').removeClass('textHighlight');//所有移除高亮样式
+	$(children).addClass('textHighlight');//给点击模块加高亮样式
+	$('.indent0ex:first').removeClass('textHighlight');//移除桌面模块高亮样式
+}
+</script>
 </head>
 <body id="colloaBody">
 	<table style="min-width: 120px; width: 100%; height: 100%;" border="0"
@@ -81,28 +98,29 @@
 						<a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/schedule.png" border="0">
 							目标管理
-						</a> <span><a style="display: none;" href="#"> <img
+						</a> <span><a style="display: none;" href="pros.do?action=Prospectuslist&prospectus_create_name=${s_emp.emp_name }"target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 我的工作计划
-						</a> <a style="display: none;" indent="1" href="#"> <img
+						</a> <a style="display: none;" indent="1" href="pros.do?action=Prospectuslist"target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 全部工作计划
-						</a> <a style="display: none;" href="#"> <img
+						</a>
+						 <a style="display: none;" href="assi.do?action=Assignmentlist&assignment_create_name=${s_emp.emp_name }" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 我的工作任务
-						</a> <a style="display: none;" href="#"> <img
+						</a> <a style="display: none;" href="assi.do?action=Assignmentlist" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 全部工作任务
-						</a> <a style="display: none;" href="#"> <img
+						</a> <a style="display: none;" href="repo.do?action=Reportlist&report_create_name=${s_emp.emp_name }" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 我的工作报告
-						</a> <a style="display: none;" href="#"> <img
+						</a> <a style="display: none;" href="repo.do?action=Reportlist"target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 全部工作报告
-						</a> <a style="display: none;" href="#"> <img
+						</a> <a style="display: none;" href="goal/wdgzrc.html" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 我的工作日程
-						</a> <a style="display: none;" href="#"> <img
+								src="css/catalogue1.png" border="0" > 我的工作日程
+						</a> <a style="display: none;" href="cale.do?action=Calendarlist"target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 全部工作日程
 						</a></span> 

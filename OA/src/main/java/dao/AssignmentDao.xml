@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.AssignmentDao">
+	<resultMap type="Assignment" id="rm">
+		<id property="assignment_id" column="assignment_id" />
+
+
+		<association property="dept" column="depart_id" javaType="Department"
+			select="getAllDepartmentById">
+		</association>
+
+	</resultMap>
+	<!-- 进行连接部门表 -->
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<!--全部查询 -->
+	<select id="findAllAssignment" resultMap="rm" parameterType="map">
+		select * from assignment 
+		<where>
+			<if test="pros_state!=null">
+				 and assi_state like '%${assi_state}%'
+			</if>
+			<if test="prospectus_classify!=null">
+				 and assignment_classify like '%${assignment_classify}%'
+			</if>
+			<if test="assignment_create_name!=null">
+				and assignment_create_name like '%${assignment_create_name}%'
+			</if>
+		</where> 
+		limit #{index},#{size}
+	</select>
+	<!-- 全部查询数量 -->
+	<select id="findAllAssignment_count" resultType="Integer"
+		parameterType="map">
+		select count(*) from assignment 
+		<where>
+			<if test="assi_state!=null">
+				 and assi_state like '%${assi_state}%'
+			</if>
+			<if test="assignment_classify!=null">
+				 and assignment_classify like '%${assignment_classify}%'
+			</if>
+			<if test="assignment_create_name!=null">
+				and assignment_create_name like '%${assignment_create_name}%'
+			</if>
+		</where>
+	</select>
+	<!--根据id查询 展示计划 -->
+	<select id="findAssignmentById" parameterType="int" resultMap="rm">
+		select * from assignment where assignment_id=#{assignment_id}
+	</select>
+	
+	<!-- 新增工作任务 
+	private String assi_state;//工作任务状态
+	private String assignment_name ;//任务名称
+	private String assignment_create_name ;//创建人姓名
+	private Integer depart_id; //外键 所属部门  （从属于）
+	private String assignment_create_time;//开始时间
+	private String assignment_terminal_time	;//结束时间
+	private String assignment_executor_name	 ;//任务执行人
+	private String assignment_workload;//工作量（实际天数）
+	private String assignment_budget;//预估天数
+	private String assignment_classify;//工作任务分类
+	private String assignment_explain;//任务说明
+	private String assignment_executor_fruit ;//执行结果
+	-->
+	<insert id="addAssignment">
+  	insert into assignment(
+  	assi_state,assignment_name,assignment_create_name,depart_id,
+  	assignment_create_time,assignment_terminal_time,
+  	assignment_executor_name,assignment_workload,
+  	assignment_budget,assignment_classify,
+  	assignment_explain,assignment_executor_fruit) 
+  	value (#{assi_state},#{assignment_name},#{assignment_create_name},
+  	#{depart_id},#{assignment_create_time},#{assignment_terminal_time},#{assignment_executor_name},
+  	#{assignment_workload},#{assignment_budget},#{assignment_classify},
+  	#{assignment_explain},#{assignment_executor_fruit})
+  </insert>
+	<!--根据 创建人，任务名称 模糊 查找 -->
+	<select id="findAssignmentBylike" parameterType="Assignment"
+		resultMap="rm">
+		select * from assignment
+		<where>
+			<if test="assignment_create_name!=null">
+				and assignment_create_name like '%${assignment_create_name}%'
+			</if>
+			<if test="assignment_name!=null">
+				and assignment_name like '%${assignment_name}%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据任务状态查询 -->
+	<select id="findAssignmentState" parameterType="map"
+		resultMap="rm">
+		select * from assignment 
+		<where>
+			<if test="assignment_create_name!=null">
+				and assignment_create_name=#{assignment_create_name}
+			</if>
+			<if test="assi_state!=null">
+				and assi_state  like '%${assi_state}%'
+			</if>
+		</where> 
+	</select>
+	<!-- 根据任务分类查询 -->
+	<select id="findAssignmentClassify" parameterType="map"
+		resultMap="rm">
+		select * from assignment 
+		<where>
+			<if test="assignment_create_name!=null">
+				and assignment_create_name=#{assignment_create_name}
+			</if>
+			<if test="assignment_classify!=null">
+				and assignment_classify  like '%${assignment_classify}%'
+			</if>
+		</where> 
+	</select>
+
+
+</mapper>
+  

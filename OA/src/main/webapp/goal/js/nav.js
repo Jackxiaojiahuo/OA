@@ -1,0 +1,23 @@
+﻿$(function(){
+		$('[indent=0]').toggle(//阿尔法集团点击事件
+			function(){
+				$(this).next("span").find("[indent=1]").show();//子公司显示
+				$(this).find('img').eq(0).attr('src','css/minus.gif');//图片变为减号
+			},function(){
+				$(this).next("span").find("[indent]").hide();//子公司隐藏
+				$(this).find('img').eq(0).attr('src','css/plus.gif');//图片变为加号
+				$("[as=all]").attr('src','css/plus.gif');//二级菜单图片变成加号
+			}
+		);
+		$('[as=all]').parent().click(
+			function(){
+			 //alert(($(this).next("span").find('[indent=2]')).get(0).style.display)
+				if(($(this).next("span").find('[indent=2]')).get(0).style.display=="none"){
+					$(this).next("span").find('[indent=2]').show();
+					$(this).find('[as=all]').attr('src','css/minus.gif');
+				}else{
+					$(this).next("span").find('[indent=2]').hide();
+					$(this).find('[as=all]').attr('src','css/plus.gif');
+				}
+			});
+		});

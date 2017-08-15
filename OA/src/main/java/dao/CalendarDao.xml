@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CalendarDao">
+	<resultMap type="Calendar" id="rm">
+		<id property="calendar_id" column="calendar_id" />
+
+
+		<association property="dept" column="depart_id" javaType="Department"
+			select="getAllDepartmentById">
+		</association>
+
+	</resultMap>
+	<!-- 进行连接部门表 -->
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<!--全部查询 -->
+	<select id="findAllCalendar" resultMap="rm" parameterType="map">
+		select * from calendar 
+		<!-- <where>
+			<if test="pros_state!=null">
+				 assi_state like '%${assi_state}%'
+			</if>
+			<if test="prospectus_classify!=null">
+				 assignment_classify like '%${assignment_classify}%'
+			</if>
+		</where>  -->
+		limit #{index},#{size}
+	</select>
+	<!-- 全部查询数量 -->
+	<select id="findAllCalendar_count" resultType="Integer"
+		parameterType="map">
+		select count(*) from calendar 
+		<!-- <where>
+			<if test="assi_state!=null">
+				 assi_state like '%${assi_state}%'
+			</if>
+			<if test="assignment_classify!=null">
+				 assignment_classify like '%${assignment_classify}%'
+			</if>
+		</where> -->
+	</select>
+	
+	<!-- 根据部门id分类查询 -->
+	 <select id="findCalendarById" parameterType="String"
+		resultMap="rm">
+		select * from calendar WHERE depart_id=${value}
+	</select> 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--根据id查询 展示计划 -->
+	<!-- <select id="findAssignmentById" parameterType="int" resultMap="rm">
+		select * from assignment where assignment_id=#{assignment_id}
+	</select> -->
+	
+	<!--根据 创建人，任务名称 模糊 查找 -->
+	<!-- <select id="findAssignmentBylike" parameterType="Assignment"
+		resultMap="rm">
+		select * from assignment
+		<where>
+			<if test="assignment_create_name!=null">
+				 assignment_create_name like '%${assignment_create_name}%'
+			</if>
+			<if test="assignment_name!=null">
+				 assignment_name like '%${assignment_name}%'
+			</if>
+		</where>
+	</select> -->
+
+
+	<!-- 根据任务分类查询 -->
+	<!-- <select id="findAssignmentClassify" parameterType="String"
+		resultMap="rm">
+		select * from assignment where assignment_classify like '%${value}%'
+	</select> -->
+
+
+</mapper>
+  

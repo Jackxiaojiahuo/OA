@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ReportDao">
+	<resultMap type="Report" id="rm">
+		<id property="report_id" column="report_id" />
+
+
+		<association property="dept" column="depart_id" javaType="Department"
+			select="getAllDepartmentById">
+		</association>
+
+	</resultMap>
+	<!-- 进行连接部门表 -->
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<!--全部查询 -->
+	<select id="findAllReport" resultMap="rm" parameterType="map">
+		select * from report 
+		<where>
+			<if test="repo_state!=null">
+				 repo_state like '%${repo_state}%'
+			</if>
+			<if test="report_classify!=null">
+				 report_classify like '%${report_classify}%'
+			</if>
+			<if test="report_create_name!=null">
+				and report_create_name like '%${report_create_name}%'
+			</if>
+		</where>
+		
+		 limit #{index},#{size}
+	</select>
+	<!-- 全部查询数量 -->
+	<select id="findAllReport_count" resultType="Integer"
+		parameterType="map">
+		select count(*) from report 
+		<where>
+			<if test="repo_state!=null">
+				 repo_state like '%${repo_state}%'
+			</if>
+			<if test="report_classify!=null">
+				 report_classify like '%${report_classify}%'
+			</if>
+			<if test="report_create_name!=null">
+				and report_create_name like '%${report_create_name}%'
+			</if>
+		</where>
+	</select>
+	<!--根据id查询 展示计划 -->
+	<select id="findReportById" parameterType="int" resultMap="rm">
+		select * from report where report_id=#{report_id}
+	</select>
+	<!--根据 创建人，报告名称 模糊 查找 -->
+	<select id="findReportBylike" parameterType="Report"
+		resultMap="rm">
+		select * from report
+		<where>
+			<if test="report_create_name!=null">
+				 report_create_name like '%${report_create_name}%'
+			</if>
+			<if test="report_name!=null">
+				 report_name like '%${report_name}%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据报告状态查询 -->
+	<select id="findReportState" parameterType="map"
+		resultMap="rm">
+		select * from report 
+		<where>
+			<if test="report_create_name!=null">
+				and report_create_name like '%${report_create_name}%'
+			</if>
+			<if test="repo_state!=null">
+				and repo_state like '%${repo_state}%'
+			</if>
+		</where>
+	</select>
+	<!-- 根据报告分类查询 -->
+	<select id="findReportClassify" parameterType="map"
+		resultMap="rm">
+		select * from report 
+		<where>
+			<if test="report_create_name!=null">
+				and report_create_name like '%${report_create_name}%'
+			</if>
+			<if test="report_classify!=null">
+				and report_classify like '%${report_classify}%'
+			</if>
+		</where>
+	</select>
+
+
+</mapper>
+  

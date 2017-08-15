@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ProspectusDao">
+	<!-- private Integer prospectus_id; //计划id private String prospectus_sort; 
+		// 工作计划状态 private String prospectus_name; //计划名称 private String prospectus_create_name; 
+		//计划创建人 private Integer depart_id; //外键 所属部门 （从属于） private String prospectus_create_time; 
+		//开始时间 private String prospectus_terminal_time;//结束时间 private String prospectus_review_name; 
+		//计划评审人 private String prospectus_executor_name;//计划执行人 private String prospectus_executor_time;//执行时间 
+		private String prospectus_classify;//工作计划分类（年度计划） private Integer prospectus_content_id; 
+		//计划内容id private String prospectus_content; //计划内容 private Department dept;//引用部门表 -->
+	<resultMap type="Prospectus" id="rm">
+		<id property="prospectus_id" column="prospectus_id" />
+		<association property="dept" column="depart_id" javaType="Department"
+			select="getAllDepartmentById">
+		</association>
+	</resultMap>
+	<!-- 进行连接部门表 -->
+	<select id="getAllDepartmentById" resultType="Department">
+		select * from
+		department where depart_id=#{depart_id}
+	</select>
+	<!--全部查询 -->
+	<select id="findAllprospectus" resultMap="rm" parameterType="map">
+		select * from Prospectus 
+		<where>
+			<if test="pros_state!=null">
+				and pros_state like '%${pros_state}%'
+			</if>
+			<if test="prospectus_classify!=null">
+				and prospectus_classify like '%${prospectus_classify}%'
+			</if>
+			<if test="prospectus_create_name!=null">
+				and prospectus_create_name = #{prospectus_create_name}
+			</if>
+		</where>
+		 limit
+		#{index},#{size}
+	</select>
+	<!-- 全部查询数量 -->
+	<select id="findAllprospectus_count" resultType="Integer"
+		parameterType="map">
+		select count(*) from Prospectus 
+		<where>
+			<if test="pros_state!=null">
+				and pros_state like '%${pros_state}%'
+			</if>
+			<if test="prospectus_classify!=null">
+				 and prospectus_classify like '%${prospectus_classify}%'
+			</if>
+			<if test="prospectus_create_name!=null">
+				and prospectus_create_name = #{prospectus_create_name}
+			</if>
+		</where>
+	</select>
+	<!--根据id查询 展示计划 -->
+	<select id="findprospectusById" parameterType="int" resultMap="rm">
+		select * from prospectus where prospectus_id=#{prospectus_id}
+	</select>
+	<!-- 制定工作计划
+	private Integer prospectus_id; //计划id
+	private String pros_state; // 工作计划状态
+	private String prospectus_name; //计划名称
+	private String prospectus_create_name; //计划创建人
+	private Integer depart_id; //外键 所属部门  （从属于）
+	private String prospectus_create_time; //开始时间
+	private String prospectus_terminal_time;//结束时间
+	private String prospectus_review_name; //计划评审人
+	private String prospectus_executor_name;//计划执行人
+	private String prospectus_executor_time;//执行时间
+	private String prospectus_classify;//工作计划分类（年度计划）
+	private Integer prospectus_content_id; //计划内容id
+	private String prospectus_content; //计划内容
+	
+	-->
+  <insert id="addProspectus">
+  	insert into prospectus(
+  	pros_state,prospectus_name,prospectus_create_name,depart_id,
+  	prospectus_create_time,prospectus_terminal_time,
+  	prospectus_review_name,prospectus_executor_name,
+  	prospectus_executor_time,prospectus_classify,
+  	prospectus_content_id,prospectus_content) 
+  	value (#{pros_state},#{prospectus_name},#{prospectus_create_name},
+  	#{depart_id},#{prospectus_create_time},#{prospectus_terminal_time},#{prospectus_review_name},
+  	#{prospectus_executor_name},#{prospectus_executor_time},#{prospectus_classify},
+  	#{prospectus_content_id},#{prospectus_content})
+  </insert>
+	<!--根据 创建人，计划名称 模糊 查找 -->
+	<select id="findprospectusBylike" parameterType="Prospectus"
+		resultMap="rm">
+		select * from prospectus
+		<where>
+			<if test="prospectus_create_name!=null">
+				 and prospectus_create_name like '%${prospectus_create_name}%'
+			</if>
+			<if test="prospectus_name!=null and prospectus_name!=''">
+				 and prospectus_name like '%${prospectus_name}%'
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据在计划状态查询 -->
+	<select id="findProspectusState" parameterType="map"
+		resultMap="rm">
+		select * from prospectus
+		<where>
+			<if test="pros_state!=null">
+				and pros_state like '%${pros_state}%'
+			</if>
+			<if test="prospectus_create_name!=null">
+				and prospectus_create_name = #{prospectus_create_name}
+			</if>
+		</where> 
+	</select>
+	<!-- 根据在计划分类查询 -->
+	<select id="findProspectusClassify" parameterType="map"
+		resultMap="rm">
+		select * from prospectus 
+		<where>
+			<if test="prospectus_classify!=null">
+				and prospectus_classify like '%${prospectus_classify}%'
+			</if>
+			<if test="prospectus_create_name!=null">
+				and prospectus_create_name = #{prospectus_create_name}
+			</if>
+		</where>
+	</select>
+	
+
+	<!-- <select id="zzstate" resultType="int"> select count(*) from Prospectus 
+		where pros_state=#{pros_state} </select> <select id="systate" resultType="int"> 
+		select count(*) from Prospectus where pros_state=#{pros_state} </select> 
+		<select id="txstate" resultType="int"> select count(*) from Prospectus where 
+		pros_state=#{pros_state} </select> <select id="lzstate" resultType="int"> 
+		select count(*) from Prospectus where pros_state=#{pros_state} </select> -->
+</mapper>
