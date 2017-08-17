@@ -108,51 +108,14 @@ public class WorkController {
 		@RequestMapping(params="action=kqsq")
 		
 		
-		public String sqWk(Integer emp_id,
-				Integer depart_id,String tv_theme,
-				String tv_shopdate,
-				String tv_applydate,
-				String tv_cdate,
-				String tv_ddate,
-				String tv_termini,
-				String tv_reason,
-				String tv_traffic,
-				String tv_report,
-				String tv_result,
-				String oi_theme,
-				String oi_shopdate,
-				String oi_applydate,
-				String oi_cdate,
-				String oi_ddate,
-				String oi_hour,
-				String oi_day,
-				String oi_reason,
-				String fg_theme,
-				String fg_shopdate,
-				String fg_applydate,
-				String fg_cdate,
-				String fg_ddate,
-				String fg_hour,
-				String fg_day,
-				String fg_type,
-				String fg_reason,String of_theme,
-				String of_shopdate,
-				String of_applydate,
-				String of_cdate,
-				String of_ddate,
-				String of_hour,
-				String of_day,
-				String of_reason,
-				String of_agent,String eg_theme,
-				String eg_shopdate,
-				String eg_applydate,
-				String eg_egress,
-				String eg_return,
-				String eg_hour,
-				String eg_day,
-				String eg_site,
-				String eg_reason,
-				String eg_send,
+		public String sqWk(Integer emp_id,Integer depart_id,String tv_theme,String tv_shopdate,String tv_applydate,String tv_cdate,
+				String tv_ddate,String tv_termini,String tv_reason,String tv_traffic,String tv_report,String tv_result,
+				String oi_theme,String oi_shopdate,String oi_applydate,String oi_cdate,String oi_ddate,String oi_hour,
+				String oi_day,String oi_reason,String fg_theme,String fg_shopdate,String fg_applydate,String fg_cdate,
+				String fg_ddate,String fg_hour,String fg_day,String fg_type,String fg_reason,String of_theme,String of_shopdate,
+				String of_applydate,String of_cdate,String of_ddate,String of_hour,String of_day,String of_reason,
+				String of_agent,String eg_theme,String eg_shopdate,String eg_applydate,String eg_egress,String eg_return,
+				String eg_hour,String eg_day,String eg_site,String eg_reason,String eg_send,
 				String eg_advance,Integer sq,Integer eaa_state,String eaa_conclusion,String eaa_date){
 			sq=sq==null?0:sq;
 			if(sq==0){
@@ -221,8 +184,9 @@ public class WorkController {
 		 * @return
 		 */
 		@RequestMapping(params="action=kqcz")
-		public String czWk(String op,String names,String count,ModelMap model,Integer index){
+		public String czWk(String op,String names,String count,ModelMap model,Integer index,Integer type){
 			index=index==null?1:index;
+			type=type==null?0:type;
 			Map map=new HashMap();
 			Page page=new Page(index,10);
 			map.put("index", (index-1)*10);
@@ -266,7 +230,11 @@ public class WorkController {
 				model.put("names", names);
 				model.put("count", count);
 				model.put("page", page);
-				return "hr/info/wccz";
+				if(type==1) {
+					return "work/work/dclsw_wccz";
+				}else {
+					return "hr/info/wccz";	
+				}
 			}else if(op.equals("jb")){
 				List<Overtime> list=null;
 				if(count.equals("")){

@@ -70,7 +70,7 @@ function check(){
 			.btn {
 				display: inline-block;
 				position: relative;
-				left: 30%;
+				left: 500px;
 				padding: 15px 12px;
 				margin-bottom: 0;
 				font-size: 14px;

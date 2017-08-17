@@ -1,0 +1,76 @@
+/* Code tidied up by ScrapBook */
+.cke_dialog { visibility: visible; }
+.cke_dialog_body { z-index: 1; background: rgb(234, 234, 234) none repeat scroll 0% 0%; border-width: 1px; border-style: solid; border-color: rgb(178, 178, 178) rgb(178, 178, 178) rgb(153, 153, 153); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; border-radius: 3px; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15); }
+.cke_dialog_title { font-weight: bold; font-size: 13px; cursor: move; position: relative; color: rgb(71, 71, 71); text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.75); border-bottom: 1px solid rgb(153, 153, 153); padding: 6px 10px; border-radius: 2px 2px 0px 0px; box-shadow: 0px 1px 0px rgb(255, 255, 255) inset; background: rgb(207, 209, 207) linear-gradient(to bottom, rgb(245, 245, 245), rgb(207, 209, 207)) repeat scroll 0% 0%; }
+@keyframes dialog_spinner {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+@keyframes dialog_spinner {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+.cke_dialog_contents { background-color: rgb(255, 255, 255); overflow: auto; padding: 15px 10px 5px; margin-top: 30px; border-top: 1px solid rgb(191, 191, 191); border-radius: 0px 0px 3px 3px; }
+.cke_dialog_contents_body { overflow: auto; padding: 17px 10px 5px; margin-top: 22px; }
+.cke_dialog_footer { text-align: right; position: relative; border: 0px none; outline: 1px solid rgb(191, 191, 191); box-shadow: 0px 1px 0px rgb(255, 255, 255) inset; border-radius: 0px 0px 2px 2px; background: rgb(207, 209, 207) linear-gradient(to bottom, rgb(235, 235, 235), rgb(207, 209, 207)) repeat scroll 0% 0%; }
+.cke_dialog .cke_resizer { margin-top: 22px; }
+.cke_dialog .cke_resizer_ltr { margin-right: 5px; }
+.cke_dialog_tabs { height: 24px; display: inline-block; margin: 5px 0px 0px; position: absolute; z-index: 2; left: 10px; }
+a.cke_dialog_tab { height: 16px; padding: 4px 8px; margin-right: 3px; display: inline-block; cursor: pointer; line-height: 16px; outline: 0px none; color: rgb(89, 89, 89); border: 1px solid rgb(191, 191, 191); border-radius: 3px 3px 0px 0px; background: rgb(212, 212, 212) linear-gradient(to bottom, rgb(250, 250, 250), rgb(237, 237, 237)) repeat scroll 0% 0%; }
+a.cke_dialog_tab:hover, a.cke_dialog_tab:focus { background: transparent linear-gradient(to bottom, rgb(235, 235, 235) 0px, rgb(223, 223, 223) 100%) repeat scroll 0% 0%; }
+a.cke_dialog_tab_selected { background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(56, 56, 56); border-bottom-color: rgb(255, 255, 255); cursor: default; filter: none; }
+.cke_single_page .cke_dialog_tabs { display: none; }
+.cke_single_page .cke_dialog_contents { padding-top: 5px; margin-top: 0px; border-top: 0px none; }
+a.cke_dialog_close_button { background-image: url("close.png"); background-repeat: no-repeat; background-position: 50% center; position: absolute; cursor: pointer; text-align: center; height: 20px; width: 20px; top: 4px; z-index: 5; opacity: 0.8; }
+.cke_dialog_close_button:hover { opacity: 1; }
+.cke_dialog_close_button span { display: none; }
+.cke_ltr .cke_dialog_close_button { right: 5px; }
+.cke_dialog_close_button { top: 4px; }
+.cke_dialog_ui_vbox table, .cke_dialog_ui_hbox table { margin: auto; }
+.cke_dialog_ui_vbox_child { padding: 5px 0px; }
+.cke_dialog_ui_hbox { width: 100%; }
+.cke_dialog_ui_hbox_first, .cke_dialog_ui_hbox_child, .cke_dialog_ui_hbox_last { vertical-align: top; }
+.cke_ltr .cke_dialog_ui_hbox_first, .cke_ltr .cke_dialog_ui_hbox_child { padding-right: 10px; }
+.cke_ltr .cke_dialog_footer_buttons .cke_dialog_ui_hbox_first, .cke_ltr .cke_dialog_footer_buttons .cke_dialog_ui_hbox_child { padding-right: 5px; }
+textarea.cke_dialog_ui_input_textarea { overflow: auto; resize: none; }
+input.cke_dialog_ui_input_text, input.cke_dialog_ui_input_password, textarea.cke_dialog_ui_input_textarea { background-color: rgb(255, 255, 255); border-width: 1px; border-style: solid; border-color: rgb(174, 179, 185) rgb(201, 204, 207) rgb(201, 204, 207); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; padding: 4px 6px; outline: 0px none; width: 100%; box-sizing: border-box; border-radius: 3px; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15) inset; }
+input.cke_dialog_ui_input_text:hover, input.cke_dialog_ui_input_password:hover, textarea.cke_dialog_ui_input_textarea:hover { border-width: 1px; border-style: solid; border-color: rgb(160, 166, 173) rgb(174, 179, 185) rgb(174, 179, 185); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; }
+input.cke_dialog_ui_input_text:focus, input.cke_dialog_ui_input_password:focus, textarea.cke_dialog_ui_input_textarea:focus, select.cke_dialog_ui_input_select:focus { outline: 0px none; border-width: 1px; border-style: solid; border-color: rgb(19, 146, 233) rgb(19, 159, 247) rgb(19, 159, 247); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; }
+a.cke_dialog_ui_button { display: inline-block; padding: 4px 0px; margin: 0px; text-align: center; color: rgb(51, 51, 51); vertical-align: middle; cursor: pointer; border-width: 1px; border-style: solid; border-color: rgb(182, 182, 182) rgb(182, 182, 182) rgb(153, 153, 153); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; border-radius: 3px; box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 0px 2px rgba(255, 255, 255, 0.15) inset, 0px 1px 0px rgba(255, 255, 255, 0.15) inset; background: rgb(228, 228, 228) linear-gradient(to bottom, rgb(255, 255, 255), rgb(228, 228, 228)) repeat scroll 0% 0%; }
+span.cke_dialog_ui_button { padding: 0px 10px; }
+a.cke_dialog_ui_button:hover { border-color: rgb(158, 158, 158); background: rgb(204, 204, 204) linear-gradient(to bottom, rgb(242, 242, 242), rgb(204, 204, 204)) repeat scroll 0% 0%; }
+a.cke_dialog_ui_button:focus, a.cke_dialog_ui_button:active { border-color: rgb(150, 150, 150); outline: 0px none; box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4) inset; }
+.cke_dialog_footer_buttons a.cke_dialog_ui_button span { color: inherit; font-size: 12px; font-weight: bold; line-height: 18px; padding: 0px 12px; }
+a.cke_dialog_ui_button_ok { color: rgb(255, 255, 255); text-shadow: 0px -1px 0px rgb(85, 131, 12); border-color: rgb(98, 166, 10) rgb(98, 166, 10) rgb(77, 146, 0); background: rgb(105, 177, 11) linear-gradient(to bottom, rgb(154, 215, 23), rgb(105, 177, 11)) repeat scroll 0% 0%; }
+a.cke_dialog_ui_button_ok:hover { border-color: rgb(91, 153, 9) rgb(91, 153, 9) rgb(71, 133, 0); background: transparent linear-gradient(to bottom, rgb(136, 190, 20) 0px, rgb(93, 156, 10) 100%) repeat scroll 0% 0%; }
+a.cke_dialog_ui_button span { text-shadow: 0px 1px 0px rgb(255, 255, 255); }
+a.cke_dialog_ui_button_ok span { text-shadow: 0px -1px 0px rgb(85, 131, 12); }
+span.cke_dialog_ui_button { cursor: pointer; }
+a.cke_dialog_ui_button_ok:focus, a.cke_dialog_ui_button_ok:active, a.cke_dialog_ui_button_cancel:focus, a.cke_dialog_ui_button_cancel:active { border-width: 2px; padding: 3px 0px; }
+a.cke_dialog_ui_button_ok:focus, a.cke_dialog_ui_button_ok:active { border-color: rgb(86, 140, 10); }
+a.cke_dialog_ui_button_ok:focus span, a.cke_dialog_ui_button_ok:active span, a.cke_dialog_ui_button_cancel:focus span, a.cke_dialog_ui_button_cancel:active span { padding: 0px 11px; }
+.cke_dialog_footer_buttons { display: inline-table; margin: 5px; width: auto; position: relative; vertical-align: middle; }
+div.cke_dialog_ui_input_select { display: table; }
+select.cke_dialog_ui_input_select { height: 25px; line-height: 25px; background-color: rgb(255, 255, 255); border-width: 1px; border-style: solid; border-color: rgb(174, 179, 185) rgb(201, 204, 207) rgb(201, 204, 207); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; padding: 3px 3px 3px 6px; outline: 0px none; border-radius: 3px; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15) inset; }
+.cke_dialog_ui_input_file { width: 100%; height: 25px; }
+.cke_dialog .cke_dark_background { background-color: rgb(222, 222, 222); }
+.cke_dialog .cke_centered { text-align: center; }
+.cke_dialog a.cke_btn_reset { float: right; background: transparent url("refresh.png") no-repeat scroll left top; width: 16px; height: 16px; border: 1px none; font-size: 1px; }
+.cke_dialog a.cke_btn_locked, .cke_dialog a.cke_btn_unlocked { float: left; width: 16px; height: 16px; background-repeat: no-repeat; border: 1px none; font-size: 1px; }
+.cke_dialog a.cke_btn_locked .cke_icon { display: none; }
+.cke_dialog a.cke_btn_locked { background-image: url("lock.png"); }
+.cke_dialog .ImagePreviewBox { border: 2px ridge black; overflow: scroll; height: 200px; width: 300px; padding: 2px; background-color: white; }
+.cke_dialog .ImagePreviewBox table td { white-space: normal; }
+.cke_dialog .ImagePreviewLoader { position: absolute; white-space: normal; overflow: hidden; height: 160px; width: 230px; margin: 2px; padding: 2px; opacity: 0.9; background-color: rgb(228, 228, 228); }
+.cke_dialog .FlashPreviewBox { white-space: normal; border: 2px ridge black; overflow: auto; height: 160px; width: 390px; padding: 2px; background-color: white; }
+.cke_dialog .cke_hand { cursor: pointer; }
+.cke_dialog_body .cke_label { display: none; }
+.cke_dialog_body label { display: inline; margin-bottom: auto; cursor: default; }
+.cke_dialog_body label.cke_required { font-weight: bold; }
+a.cke_smile { overflow: hidden; display: block; text-align: center; padding: 0.3em 0px; }
+a.cke_smile img { vertical-align: middle; }
+a.cke_smile, a.cke_specialchar { border: 1px solid transparent; }
+a.cke_smile:hover, a.cke_smile:focus, a.cke_smile:active, a.cke_specialchar:hover, a.cke_specialchar:focus, a.cke_specialchar:active { background: rgb(255, 255, 255) none repeat scroll 0% 0%; outline: 0px none; }
+a.cke_smile:hover, a.cke_specialchar:hover { border-color: rgb(136, 136, 136); }
+a.cke_smile:focus, a.cke_smile:active, a.cke_specialchar:focus, a.cke_specialchar:active { border-color: rgb(19, 159, 247); }
+.cke_dialog_ui_checkbox_input:focus, .cke_dialog_ui_radio_input:focus, .cke_btn_over { outline: 1px dotted rgb(105, 105, 105); }

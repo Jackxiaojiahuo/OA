@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
@@ -17,23 +18,23 @@
 <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
 <script>
 $(function() {
-	$('#btn').click(function() {
-		var s = $('input[name=field]:checked()').val();
-		var c = $('input[name=con]').val();
-		location.href='../../work.do?action=kqcz&names='+s+'&count='+c+'';
+	$('#btn').click(function(){
+		var s=$('input[name=field]:checked()').val();
+		var c=$('input[name=con]').val();
+		location.href='../../work.do?action=kqcz&op=tx&names='+s+'&count='+c+'';
 	});
 })
 function sub(num){
 	var s=$('input[name=field]:checked()').val();<!--是单选按钮是标题或发信人还是收件人-->
 	var c=$('input[name=con]').val();<!--记入输入的信息-->
 	if(num==1){
-		location.href='../../work.do?action=kqcz&names='+s+'&count='+c+'&index=1';
+		location.href='../../work.do?action=kqcz&op=tx&names='+s+'&count='+c+'&index=1';
 	}else if(num==2){
-		location.href='../../work.do?action=kqcz&names='+s+'&count='+c+'&index=${page.index-1 eq 0 ? 1 : page.index-1}';
+		location.href='../../work.do?action=kqcz&op=tx&names='+s+'&count='+c+'&index=${page.index-1 eq 0 ? 1 : page.index-1}';
 	}else if(num==3){
-		location.href='../../work.do?action=kqcz&names='+s+'&count='+c+'&index=${page.index+1 gt page.total ? page.total : page.index+1}';
+		location.href='../../work.do?action=kqcz&op=tx&names='+s+'&count='+c+'&index=${page.index+1 gt page.total ? page.total : page.index+1}';
 	}else if(num==4){
-		location.href='../../work.do?action=kqcz&names='+s+'&count='+c+'&index=${page.total}';
+		location.href='../../work.do?action=kqcz&op=tx&names='+s+'&count='+c+'&index=${page.total}';
 	}
 }
 </script>
@@ -47,9 +48,9 @@ function sub(num){
 						border="0">
 						<tbody>
 							<tr>
-								<td><span class="textBig">查找调休申请</span> <input checked=""
-									name="field" value="of_theme" type="radio">按主题 <input
-									name="field" value="of_cdate" dbf.type="datetime" type="radio">按调休开始时间<br>
+								<td><span class="textBig">查找调休申请</span> 
+								<input checked="checked"<c:if test="${names=='of_theme' }">checked="checked"</c:if> name="field" value="of_theme" type="radio"> 按主题 
+								<input name="field" <c:if test="${names=='of_cdate' }">checked="checked"</c:if> value="of_cdate" type="radio"> 按调休开始时间<br>
 								<input class="textBig" value="${count }" style="width: 550px;" id="words" maxlength="100" name="con">
                  <span class="textBig" id="to" style="display: none;"> ~ </span>
                  <input class="textBig" style="width: 270px; display: none;" id="words2" maxlength="100">
@@ -73,7 +74,7 @@ function sub(num){
 						<tbody>
 							<c:forEach items="${list }" var="of">
 								<tr>
-									<td><a href="../../work.do?action=kqzs&emp_id=${of.of_id }"><img src="../css/userX0.gif" border="0">${of.of_theme }</a></td>
+									<td><a href="../../work.do?action=kqzs&of_id=${of.of_id }&zs=4"><img src="../css/userX0.gif" border="0">${of.of_theme }</a></td>
 									<td>${of.em.emp_name }</td>
 									<td>${of.dept.depart_name }</td>
 									<td>${of.of_cdate }/${of.of_ddate }</td>

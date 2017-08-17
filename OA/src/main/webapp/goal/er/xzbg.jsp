@@ -298,7 +298,7 @@ function check(){
 															autocomplete="off" type="radio"> 其他</td>
 														<td style="text-align: center;">报告状态</td>
 														<td >&nbsp; <input id="报告状态" name="repo_state"
-											type="radio" checked="" value="执行中"> 转执行&nbsp;&nbsp;
+											type="radio" checked="" value="评审中"> 转评审&nbsp;&nbsp;
 
 											<input id="报告状态" name="repo_state" type="radio" value="已关闭">
 											直接关闭&nbsp;&nbsp; </td>

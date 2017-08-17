@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
@@ -74,16 +75,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="o" items="${list }">
+							<c:forEach var="ot" items="${list }">
 								<tbody>
 									<td>
-										 <a href="../../work.do?action=kqzs&emp_id=${o.oi_id }">
-										<img src="../css/userX0.gif" border="0">${o.oi_theme }</a>
+										 <a href="../../work.do?action=kqzs&oi_id=${ot.oi_id }&zs=2">
+										<img src="../css/userX0.gif" border="0">${ot.oi_theme }</a>
 									</td>
-									<td>${o.em.emp_name }</td>
-									<td>${o.dept.depart_name }</td>
-									<td>${o.oi_cdate }/${o.oi_ddate }</td>
-									<td>${o.oi_day }天${o.oi_hour }时</td>
+									<td>${ot.em.emp_name }</td>
+									<td>${ot.dept.depart_name }</td>
+									<td>${fn:substring(ot.oi_cdate, 0, fn:length(ot.oi_cdate)-5)}/${fn:substring(ot.oi_ddate, 0, fn:length(ot.oi_ddate)-5)}</td>
+									<td>${ot.oi_day }天${ot.oi_hour }时</td>
 								</tbody>
 							</c:forEach>
 						</tbody>

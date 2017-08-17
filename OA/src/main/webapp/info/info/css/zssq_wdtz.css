@@ -1,0 +1,24 @@
+/* Code tidied up by ScrapBook */
+html { height: 100%; }
+body { height: 100%; font-family: Microsoft Yahei,tahoma,arial,verdana,sans-serif; font-size: 12px; color: rgb(69, 69, 69); line-height: 2; -moz-text-size-adjust: none; }
+table { width: 100%; font-size: 12px; line-height: 2; }
+a { text-decoration: none; color: rgb(99, 139, 217); }
+a:hover { color: orange; }
+a.button { display: inline-block; margin: 0px 5px 5px 0px; padding: 0px 25px; background-image: url("bgButton.png"); border: 1px solid rgb(221, 221, 221); border-radius: 20px; }
+a.button1 { display: inline-block; text-align: center; padding: 3px 15px; background-image: url("bgButton.png"); border-top: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); }
+a.button1L { border-left: 1px solid rgb(221, 221, 221); border-radius: 5px 0px 0px 5px; }
+a.button1M { border-left: 1px solid rgb(221, 221, 221); }
+span.button1M { display: inline-block; text-align: center; padding: 3px 15px; border-top: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); border-left: 1px solid rgb(221, 221, 221); }
+a.button1R { border-left: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); border-radius: 0px 5px 5px 0px; }
+img { vertical-align: middle; }
+textarea { font-family: Microsoft Yahei,tahoma,arial,verdana,sans-serif; font-size: 12px; overflow: auto; }
+#colloaBody { margin: 0px; background-image: url("bg.jpg"); background-position: center center; background-attachment: fixed; background-size: cover; }
+#colloaForm { width: 950px; background-color: white; padding: 30px 40px; }
+.boxBorderCaption { display: block; font-size: 14px; color: rgb(69, 69, 69); background-image: url("bgButton.png"); border: 1px solid rgb(221, 221, 221); border-radius: 5px 5px 0px 0px; padding: 0px 15px 2px; }
+.boxBorderContent { min-height: 60px; border-left: 1px solid rgb(221, 221, 221); border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); border-radius: 0px 0px 5px 5px; padding: 10px 15px; margin-bottom: 20px; }
+.boxBorderTip { margin-top: 12px; width: 0px; height: 0px; border-right: 15px solid rgb(221, 221, 221); border-bottom: 10px solid transparent; }
+.boxBorder1Caption { display: block; font-size: 14px; background-image: url("bgButton.png"); border: 1px solid rgb(243, 229, 171); border-radius: 5px 5px 0px 0px; padding: 0px 15px 2px; }
+.boxBorder1Content { min-height: 60px; background-color: lightyellow; border-left: 1px solid rgb(243, 229, 171); border-right: 1px solid rgb(243, 229, 171); border-bottom: 1px solid rgb(243, 229, 171); border-radius: 0px 0px 5px 5px; padding: 10px 15px; margin-bottom: 20px; }
+.boxBorder1Tip { margin-top: 12px; width: 0px; height: 0px; border-left: 15px solid rgb(243, 229, 171); border-bottom: 10px solid transparent; }
+.fieldEditable { min-height: 24px; height: 100%; width: 100%; padding: 0px 3px; background-color: rgb(243, 250, 255); border: 0px none; line-height: 2; box-sizing: border-box; }
+.textBig { font-size: 20px; line-height: 1.2; }

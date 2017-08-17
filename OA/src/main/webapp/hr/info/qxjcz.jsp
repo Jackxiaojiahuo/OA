@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
@@ -17,9 +18,9 @@
 <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
 <script>
 $(function() {
-	$('#btn').click(function() {
-		var s = $('input[name=field]:checked()').val();
-		var c = $('input[name=con]').val();
+	$('#btn').click(function(){
+		var s=$('input[name=field]:checked()').val();
+		var c=$('input[name=con]').val();
 		location.href='../../work.do?action=kqcz&op=qxj&names='+s+'&count='+c+'';
 	});
 })
@@ -46,7 +47,7 @@ function sub(num){
           <tbody>
             <tr>
               <td><span class="textBig">查找请休假申请</span>
-				<input name="field" <c:if test="${names=='fg_type' }">checked="checked"</c:if> value="fg_type" type="radio"> 按请假类型<br>
+				<input name="field" checked="checked" <c:if test="${names=='fg_type' }">checked="checked"</c:if> value="fg_type" type="radio"> 按请假类型<br>
  <input class="textBig" value="${count }" style="width: 550px;" id="words" maxlength="100" name="con">
                  <span class="textBig" id="to" style="display: none;"> ~ </span>
                  <input class="textBig" style="width: 270px; display: none;" id="words2" maxlength="100">
@@ -70,7 +71,7 @@ function sub(num){
           <tbody>
              <c:forEach var="f" items="${list }">
 					<tbody>
-							<td><a href="../../work.do?action=kqzs&fg_id=${f.fg_id }"><img src="../css/userX0.gif" border="0">${f.fg_theme }</a></td>
+							<td><a href="../../work.do?action=kqzs&fg_id=${f.fg_id }&zs=3"><img src="../css/userX0.gif" border="0">${f.fg_theme }</a></td>
 							<td>${f.em.emp_name }</td>
 							<td>${f.dept.depart_name }</td>
 							<td>${f.fg_type }</td>

@@ -1,0 +1,12 @@
+/* Code tidied up by ScrapBook */
+html { height: 100%; }
+body { height: 100%; font-family: Segoe UI,PingFang SC,Microsoft Yahei,sans-serif; font-size: 12px; color: rgb(69, 69, 69); line-height: 2; -moz-text-size-adjust: none; }
+table { width: 100%; font-size: 12px; line-height: 2; }
+a { text-decoration: none; color: rgb(44, 135, 215); outline: medium none; }
+a:hover { color: orange; }
+a.button { display: inline-block; margin: 0px 5px 5px 0px; padding: 0px 25px; background-image: url("bgButton.png"); border: 1px solid rgb(217, 217, 217); border-radius: 20px; }
+img { vertical-align: middle; }
+input { font-family: Segoe UI,PingFang SC,Microsoft Yahei,sans-serif; font-size: 12px; }
+#colloaBody { margin: 0px; background-image: url("bg.jpg"); background-position: center top; background-attachment: fixed; background-size: cover; }
+#colloaForm { width: 950px; background-color: white; padding: 30px 40px; }
+.boxBorder { min-height: 120px; border: 1px solid rgb(217, 217, 217); border-radius: 5px; margin-bottom: 20px; }

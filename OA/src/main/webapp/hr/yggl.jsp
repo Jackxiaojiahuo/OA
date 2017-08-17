@@ -13,6 +13,13 @@
 <link rel="shortcut icon" href="colloa.ico">
 <link rel="stylesheet" href="css/syyg.min.css">
 <link rel="stylesheet" href="css/syyg.css">
+<link href="../js/bootstarp/core/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../js/bootstarp/dialog/css/bootstrap-dialog.css"
+	type="text/css" rel="stylesheet" />
+<script src="../js/bootstarp/jquery-3.1.0.js"></script>
+<script src="../js/bootstarp/core/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../js/bootstarp/dialog/js/bootstrap-dialog.js"
+	type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script src="js/nav.js"></script>
 </head>
@@ -103,45 +110,75 @@
 				<div style="padding: 20px 0px;">
 					 <a class="button1 button1L" href="../emp.do?action=Emplist&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../emp.do?action=Emplist&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
-					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../emp.do?action=Emplist&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../emp.do?action=Emplist&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1M">共有 
+									<c:choose>
+										<c:when test="${page!=null }">${page.count}条记录，第 ${page.index}/${page.total==0?1:page.total} 页</c:when>
+										<c:otherwise>0条记录，第1/1页</c:otherwise>
+									</c:choose>
+									
+									</span><a 
+					 class="button1 button1M" href="../emp.do?action=Emplist&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../emp.do?action=Emplist&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			 </div> 
 			 </c:when>
 			 <c:when test="${num==1 }">
 				<div style="padding: 20px 0px;">
 					 <a class="button1 button1L" href="../emp.do?action=Emplist&num=1&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../emp.do?action=Emplist&num=1&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
-					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../emp.do?action=Emplist&num=1&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../emp.do?action=Emplist&num=1&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1M">共有 
+									<c:choose>
+										<c:when test="${page!=null }">${page.count}条记录，第 ${page.index}/${page.total==0?1:page.total} 页</c:when>
+										<c:otherwise>0条记录，第1/1页</c:otherwise>
+									</c:choose>
+									
+									</span><a 
+					 class="button1 button1M" href="../emp.do?action=Emplist&num=1&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../emp.do?action=Emplist&num=1&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			 </div> 
 			 </c:when>
 			 <c:when test="${num==2 }">
 				<div style="padding: 20px 0px;">
 					 <a class="button1 button1L" href="../emp.do?action=Emplist&num=2&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../emp.do?action=Emplist&num=2&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
-					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../emp.do?action=Emplist&num=2&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../emp.do?action=Emplist&num=2&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1M">共有 
+									<c:choose>
+										<c:when test="${page!=null }">${page.count}条记录，第 ${page.index}/${page.total==0?1:page.total} 页</c:when>
+										<c:otherwise>0条记录，第1/1页</c:otherwise>
+									</c:choose>
+									
+									</span><a 
+					 class="button1 button1M" href="../emp.do?action=Emplist&num=2&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../emp.do?action=Emplist&num=2&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			 </div> 
 			 </c:when>
 			 <c:when test="${num==3 }">
 				<div style="padding: 20px 0px;">
 					 <a class="button1 button1L" href="../emp.do?action=Emplist&num=3&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../emp.do?action=Emplist&num=3&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
-					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../emp.do?action=Emplist&num=3&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../emp.do?action=Emplist&num=3&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1M">共有 
+									<c:choose>
+										<c:when test="${page!=null }">${page.count}条记录，第 ${page.index}/${page.total==0?1:page.total} 页</c:when>
+										<c:otherwise>0条记录，第1/1页</c:otherwise>
+									</c:choose>
+									
+									</span><a 
+					 class="button1 button1M" href="../emp.do?action=Emplist&num=3&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../emp.do?action=Emplist&num=3&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			 </div> 
 			 </c:when>
 			 <c:when test="${num==4 }">
 				<div style="padding: 20px 0px;">
 					 <a class="button1 button1L" href="../emp.do?action=Emplist&num=4&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../emp.do?action=Emplist&num=4&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
-					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../emp.do?action=Emplist&num=4&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../emp.do?action=Emplist&num=4&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1M">共有 
+									<c:choose>
+										<c:when test="${page!=null }">${page.count}条记录，第 ${page.index}/${page.total==0?1:page.total} 页</c:when>
+										<c:otherwise>0条记录，第1/1页</c:otherwise>
+									</c:choose>
+									
+									</span><a 
+					 class="button1 button1M" href="../emp.do?action=Emplist&num=4&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../emp.do?action=Emplist&num=4&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			 </div> 
 			 </c:when>
 			 </c:choose>

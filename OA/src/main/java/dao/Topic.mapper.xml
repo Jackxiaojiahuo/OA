@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TopicDao">
+	<resultMap type="Topic" id="rm1">
+		<id property="tId" column="t_Id"/>
+		<result property="tUId" column="t_UId"/>
+		<result property="tSId" column="t_SId"/>
+		<result property="tLabel" column="t_Label"/>
+		<result property="tTitle" column="t_Title"/>
+		<result property="tContent" column="t_Content"/>
+		<result property="tType" column="t_Type"/>
+		<result property="tTime" column="t_Time"/>
+		<result property="tReplyCount" column="t_ReplyCount"/>
+		<result property="tClickCoount" column="t_ClickCoount"/>
+		<result property="tLastReplyUseID" column="t_LastReplyUseID"/>
+		<result property="tLastReplayTime" column="t_LastReplayTime"/>
+		<result property="stateDel" column="stateDel"/>
+		<association property="epy" javaType="Employee">
+			<id property="emp_id" column="emp_id"/>
+			<result property="emp_code" column="emp_code"/>
+			<result property="emp_name" column="emp_name"/>
+			<result property="emp_sex" column="emp_sex"/>
+			<result property="emp_state" column="emp_state"/>
+			<result property="emp_mobile" column="emp_mobile"/>
+			<result property="emp_email" column="emp_email"/>
+			<result property="emp_birth" column="emp_birth"/>
+			<result property="emp_join" column="emp_join"/>
+			<result property="emp_formal" column="emp_formal"/>
+			<result property="emp_leave" column="emp_leave"/>
+			<result property="emp_description" column="emp_description"/>
+			<result property="emp_icon" column="emp_icon"/>
+			<result property="depart_id" column="depart_id"/>
+			<result property="emp_pwd" column="emp_pwd"/>
+		</association>
+		<!-- <collection property="r" ofType="Reply" column="t_Id" select="ReplyShowId">
+		</collection> -->
+		
+	</resultMap>
+	<resultMap type="Reply" id="rm2">
+		<id property="rId" column="r_Id"/>
+		<result property="rUId" column="r_UId"/>
+		<result property="rTId" column="r_TId"/>
+		<result property="rContent" column="r_Content"/>
+		<result property="rTime" column="r_Time"/>
+	</resultMap>
+	<select id="TopicShowTop" resultMap="rm1" parameterType="Topic">
+		select * from topic where t_Type=2 and stateDel=0
+	</select>
+	
+	<!-- 全部查询 -->
+	<select id="TopicShow" resultMap="rm1" parameterType="map">
+		select * from topic 
+		<where>
+			stateDel=0
+			<if test="tSId>0">
+					and t_SId=#{tSId}
+			</if>
+			<if test="tType>0">
+					and t_Type=#{tType}
+			</if>
+			<if test="tUId!=null">
+					and t_UId=#{tUId}
+			</if>
+			order by t_Time desc
+			limit #{index},#{size}
+		</where>
+	</select>
+	<select id="TopicShowCount" resultType="Integer" parameterType="map">
+		select count(*) from topic
+		<where>
+			stateDel=0
+			<if test="tSId>0">
+					 and t_SId=#{tSId}
+			</if>
+			<if test="tType>0">
+					and t_Type=#{tType}
+			</if>
+			<if test="tUId!=null">
+					and t_UId=#{tUId}
+			</if>
+		</where>
+		
+	</select>
+	
+	<!-- 查询发帖的详细信息 （ReplyShowId）-->
+	<select id="TopicShowId" resultMap="rm1">
+		select * from topic where t_Id=#{tId} and stateDel=0
+	</select>
+	<!--按主题查询  -->
+	<select id="TopicTitle" resultMap="rm1" parameterType="map">
+			select * from topic t,employee e WHERE t.t_UId=e.emp_code and t.t_Title like CONCAT('%',#{tTitle},'%') 
+			and stateDel=0 order by t_Time desc
+			limit #{index},#{size}
+	</select>
+	<select id="TopicTitleCount" resultType="Integer" parameterType="map">
+			select count(*) from topic t,employee e WHERE t.t_UId=e.emp_code and t.t_Title like CONCAT('%',#{tTitle},'%') and stateDel=0
+	</select>
+	
+	<!--按作者查询  -->
+	<select id="TopicUId" resultMap="rm1" parameterType="map">
+			select * from topic t,employee e WHERE t.t_UId=e.emp_code and 
+			e.emp_name like CONCAT('%',#{tUId},'%') and stateDel=0 order by t_Time desc
+			limit #{index},#{size}
+	</select>
+	<select id="TopicUIdCount" resultType="Integer" parameterType="map">
+			select count(*) from topic t,employee e WHERE t.t_UId=e.emp_code and e.emp_name like CONCAT('%',#{tUId},'%') and stateDel=0
+	</select>
+	
+	<!--按标签  -->
+	<select id="TopicLabel" resultMap="rm1" parameterType="map">
+			select * from topic t,employee e WHERE t.t_UId=e.emp_code 
+			and t.t_Label like  CONCAT('%',#{tLabel},'%') and stateDel=0
+			order by t_Time desc
+			limit #{index},#{size}
+	</select>
+	<select id="TopicLabelCount" resultType="Integer" parameterType="map">
+			select count(*) from topic t,employee e WHERE t.t_UId=e.emp_code and t.t_Label like  CONCAT('%',#{tLabel},'%') and stateDel=0
+	</select>
+	
+	<!-- 添加主帖子 -->
+	<insert id="TopicAdd">
+		insert into topic(t_UId,t_SId,t_Label,t_Title,t_Content,t_Time,stateDel)
+		 values(#{tUId},#{tSId},#{tLabel},#{tTitle},#{tContent},NOW(),0);
+	</insert>
+	<update id="TopicUp">
+		update topic set t_SId=#{tSId},t_Type=#{tType},t_ReplyCount=#{tReplyCount},t_ClickCoount=#{tClickCoount} where t_Id=#{tId}
+	</update>
+	<!-- 删除主贴  -->
+	<update id="TopicDel">
+		update topic set stateDel=1 where t_Id=#{id}
+	</update>
+	
+	<!-- 回帖信息 -->
+	<!-- 回帖信息查询 （TopicShowId）-->
+	<select id="ReplyShowId" resultMap="rm2" parameterType="map">
+		select * from reply where r_TId=#{id} ORDER BY r_Time ASC
+		limit #{index},#{size}
+	</select>
+	<!-- 查询回复数 -->
+	<select id="ReplyHf" parameterType="map" resultType="int">
+		select count(*) from reply where r_TId=${tId}
+	</select>
+	
+	<insert id="ReplyAdd" parameterType="Reply">
+		insert into reply VALUES(null,#{rUId},#{rTId},#{rContent},NOW())
+	</insert>	
+	<!-- 点击率 -->
+	<!-- 主贴的点击率点击率 -->
+	<select id="ClickShow" resultType="int" parameterType="Click"> 
+		select count(*) from click where t_Id=#{tId}
+	</select>
+	<!-- 查询点击率存在吗 -->
+	<select id="ClickUid" parameterType="Click" resultType="int">
+		select count(*) from click where u_Id=#{uId} and t_Id=#{tId}
+	</select>
+	<!-- 添加点击率信息 -->
+	<insert id="ClickAdd" parameterType="Click">
+		insert into click values(null,#{uId},#{tId},NOW());
+	</insert>
+</mapper>

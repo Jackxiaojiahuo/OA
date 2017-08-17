@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	String path = request.getContextPath();
@@ -71,11 +72,11 @@ function sub(num){
           <tbody>
            <c:forEach var="e" items="${list }">
 					<tr>
-							<td><a href="../../work.do?action=kqzs&emp_id=${e.eg_id }"><img src="../css/userX0.gif" border="0">${e.eg_theme }</a></td>
+							<td><a href="../../work.do?action=kqzs&eg_id=${e.eg_id }&zs=1"><img src="../css/userX0.gif" border="0">${e.eg_theme }</a></td>
 							<td>${e.em.emp_name }</td>
 							<td>${e.dept.depart_name }</td>
 							<td>${e.eg_site }</td>
-							<td>${e.eg_egress }/${e.eg_return }</td>
+							<td>${fn:substring(e.eg_egress, 0, fn:length(e.eg_egress)-5)}/${fn:substring(e.eg_return, 0, fn:length(e.eg_return)-5)}</td>
 					</tr>
 			</c:forEach>
           </tbody>

@@ -304,7 +304,7 @@ function check(){
 												转评审&nbsp;&nbsp; 
 												<input id="评审状态" name="pros_state" type="radio"  value="发布执行"> 发布执行&nbsp;&nbsp; 
 												<input id="评审状态" name="pros_state" type="radio" value="已关闭">
-											已关闭&nbsp;&nbsp; </td>
+											直接关闭&nbsp;&nbsp; </td>
 													</tr>
 													<tr>
 														<td style="text-align: center;">创建人</td>

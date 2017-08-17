@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="dao.NoticeDao">
+  <resultMap type="Notice" id="MyNotice">
+		<id property="noticeId" column="notice_id"/>
+		<result property="noticeState" column="notice_state"/>
+		<result property="noticePerson" column="notice_person"/>
+		<result property="noticePartake" column="notice_partake"/>
+		<result property="noticeType" column="notice_type"/>
+		<result property="noticeClassify" column="notice_classify"/>
+		<result property="noticeKeyword" column="notice_keyword"/>
+		<result property="noticeTitle" column="notice_title"/>
+		<result property="noticeContent" column="notice_content"/>
+		<result property="noticDate" column="notic_date"/>
+		<result property="noticDay" column="notic_day"/>
+		<result property="stateDel" column="stateDel"/>
+	</resultMap>
+<!--公告管理功能  -->
+	<!-- 根据id查询信息 -->
+	<select id="Noticeid" resultMap="MyNotice" >
+		SELECT * FROM notice n where n.notice_id=#{id} and stateDel=0
+	</select>
+	<!-- 全部查询或类别查询 -->
+	<select id="NoticeShow" resultMap="MyNotice" parameterType="map" >
+		SELECT * FROM notice n where stateDel=0
+		<if test="noticeClassify!=0 and noticeClassify!=null">
+		 and n.notice_classify=#{noticeClassify}
+		</if>
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+				and n.notice_state!='审核中' and n.notice_partake=#{noticePartake}
+			</otherwise>
+		</choose>
+		order by notic_date desc
+		limit #{index},#{size}
+	</select>
+	<select id="NoticeShowCount" resultType="Integer" parameterType="map" >
+		SELECT count(*) FROM notice n where stateDel=0
+		<if test="noticeClassify!=0 and noticeClassify!=null">
+		 and n.notice_classify=#{noticeClassify}
+		</if>
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+				and n.notice_partake=#{noticePartake}
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 添加公告 -->
+	<insert id="NoticeAdd" useGeneratedKeys="true" keyProperty="noticeId">
+		insert into notice values(#{noticeId},#{noticeState},#{noticePerson},#{noticePartake},
+		#{noticeType},#{noticeClassify},#{noticeKeyword},#{noticeTitle},
+		#{noticeContent},now(),null,0);
+	</insert>
+	<!-- 删除信息 -->
+	<update id="NoticeDel">
+		update notice set stateDel=1 where notice_id=#{id}
+	</update>
+	<!-- 按主题查询 -->
+	<select id="NoticTitle" resultMap="MyNotice" parameterType="map">
+		SELECT * FROM notice n where  n.notice_title like CONCAT('%',#{noticeTitle},'%') and stateDel=0
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+			 	and n.notice_state!='发布中'
+			</otherwise>
+		</choose>
+		order by notic_date desc
+		limit #{index},#{size}
+	</select>
+	<select id="NoticTitleCount" resultType="Integer" parameterType="map">
+		SELECT count(*) FROM notice n where n.notice_title like CONCAT('%',#{noticeTitle},'%') and stateDel=0
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+			 	and n.notice_state!='发布中'
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 按创建时间查询 -->
+	<select id="NoticDate" resultMap="MyNotice" parameterType="map">
+		SELECT * FROM notice n where n.notic_date like CONCAT('%',#{noticDate},'%') and stateDel=0
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+			 	and n.notice_state!='发布中'
+			</otherwise>
+		</choose>
+		order by notic_date desc
+		limit #{index},#{size}
+	</select>
+	<select id="NoticDateCount" resultType="Integer" parameterType="map">
+		SELECT count(*) FROM notice n where n.notic_date like CONCAT('%',#{noticDate},'%') and stateDel=0
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+			 	and n.notice_state!='发布中'
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 按更新时间查询 -->
+	<select id="NoticDay" resultMap="MyNotice" parameterType="map">
+		SELECT * FROM notice n where n.notic_day like CONCAT('%',#{noticDay},'%') and stateDel=0
+			<choose>
+				<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+				<when test="noticeState=='发布中'">
+					and n.notice_state=#{noticeState}
+				</when>
+				<otherwise>
+				 	and n.notice_state!='发布中'
+				</otherwise>
+			</choose>
+		order by notic_date desc
+		limit #{index},#{size}
+	</select>
+	<select id="NoticDayCount" resultType="Integer" parameterType="map">
+		SELECT count(*) FROM notice n where n.notic_day like CONCAT('%',#{noticDay},'%') and stateDel=0
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+			 	and n.notice_state!='发布中'
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 按关键字查询 -->
+	<select id="NoticeKeyword" resultMap="MyNotice" parameterType="map">
+		SELECT * FROM notice n where n.notice_keyword like CONCAT('%',#{noticeKeyword},'%') and stateDel=0
+			<choose>
+				<when test="noticeState=='审核中'">
+					and n.notice_state=#{noticeState}
+				</when>
+				<when test="noticeState=='发布中'">
+					and n.notice_state=#{noticeState}
+				</when>
+				<otherwise>
+				 	and n.notice_state!='发布中'
+				</otherwise>
+			</choose>
+		order by notic_date desc
+		limit #{index},#{size}
+	</select>
+	<select id="NoticeKeywordCount" resultType="Integer" parameterType="map">
+		SELECT count(*) FROM notice n where n.notice_keyword like CONCAT('%',#{noticeKeyword},'%') and stateDel=0
+		<choose>
+			<when test="noticeState=='审核中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<when test="noticeState=='发布中'">
+				and n.notice_state=#{noticeState}
+			</when>
+			<otherwise>
+			 	and n.notice_state!='发布中'
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 修改公告 -->
+	<update id="NoticeUpdate">
+		update notice 
+		<set>
+			<if test="noticeState!=null">
+				notice_state = #{noticeState},
+			</if>
+			<if test="noticeType!=null">
+				notice_type = #{noticeType},
+			</if>
+			<if test="noticeClassify!=null">
+				notice_classify = #{noticeClassify},
+			</if>
+			<if test="noticeKeyword!=null">
+				notice_keyword = #{noticeKeyword},
+			</if>
+			<if test="noticeTitle!=null">
+				notice_title = #{noticeTitle},
+			</if>
+			<if test="noticeContent!=null">
+				notice_content = #{noticeContent},
+			</if>
+			<if test="noticDate!=null">
+				notic_date = #{noticDate},
+			</if>
+			notic_day = now()
+		</set>
+		<where>
+			<if test="noticeId!=null">
+				notice_id = #{noticeId}
+			</if>
+		</where>
+	</update>
+<!-- 信息公告 -->
+	<!-- 查询主页记录行数 -->
+	<select id="one" resultType="Integer" >
+		select count(*) from notice where notice_state='发布中' and notice_classify=1 and stateDel=0
+	</select>
+	<select id="two" resultType="Integer" >
+		select count(*) from notice where notice_state='发布中' and notice_classify=2 and stateDel=0
+	</select>
+	<select id="three" resultType="Integer" >
+		select count(*) from notice where notice_state='发布中' and notice_classify=3 and stateDel=0
+	</select>
+	<select id="four" resultType="Integer">
+		select count(*) from notice where notice_state='发布中' and notice_classify=4 and stateDel=0
+	</select>
+	
+	<select id="NoticeUpdateDate" parameterType="Notice" resultType="Notice">
+		select * from notice
+		where notic_date between DATE_SUB(NOW(),INTERVAL 6 SECOND)
+		and now()
+		order by notic_date desc
+	</select>
+</mapper>

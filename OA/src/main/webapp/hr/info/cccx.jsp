@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <%
 	String path = request.getContextPath();
@@ -75,7 +76,7 @@
           <tbody>
               	<c:forEach var="t" items="${list }">
 					<tbody>
-							<td><a href="../../work.do?action=kqzs&tv_id=${t.tv_id }"><img src="../css/userX0.gif" border="0">${t.tv_theme }</a></td>
+							<td><a href="../../work.do?action=kqzs&tv_id=${t.tv_id }&zs=0"><img src="../css/userX0.gif" border="0">${t.tv_theme }</a></td>
 							<td>${t.em.emp_name }</td>
 							<td>${t.dept.depart_name }</td>
 							<td>${t.tv_termini }</td>

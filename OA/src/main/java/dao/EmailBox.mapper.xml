@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.EmailBoxDao">
+	<!-- 查询草稿、发信箱页面信息 -->
+	<select id="outboxShow" resultType="Outbox" parameterType="map">
+		select * from outbox where stateDel=0 and outbox_sender=#{outbox_sender} 
+		and send_state=#{send_state} order by outbox_date desc
+		 limit #{index},#{size}
+	</select>
+	<select id="">
+		select * from outbox
+		<where>
+			stateDel=0
+			<if test="send_id">
+				and send_id=#{send_id}
+			</if>
+			<if test="outbox_sender!=null">
+				and outbox_sender=#{outbox_sender}
+			</if>
+			<if test="send_state!=null">
+				and send_state=#{send_state}
+			</if>
+		</where>
+		order by outbox_date desc
+		limit #{index},#{size}
+	</select>
+	<!-- 根据id查询草稿、发信箱信息 -->
+	<select id="outboxId" resultType="Outbox">
+		select * from outbox where send_id=#{send_id}
+	</select>
+	<!-- 查询草稿、发信箱的记录数 -->
+	 <select id="outboxCount" parameterType="Outbox" resultType="int">
+		select count(*) from outbox where  stateDel=0 and outbox_sender=#{outbox_sender}
+		 and send_state=#{send_state}
+	</select>
+	<!-- 添加一条草稿、发送一条信件 -->
+	<insert id="outboxAdd" parameterType="Outbox" >
+		insert into outbox
+		values(null,#{outbox_sender},#{outbox_receiver},#{outbox_receiverName},#{outbox_title},#{outbox_content},now(),#{send_state},0)
+	</insert>
+	<!-- 修改草稿箱 -->
+	<update id="outboxUpdate" parameterType="Outbox">
+		UPDATE outbox 
+		set outbox_receiver=#{outbox_receiver},outbox_receiverName=#{outbox_receiverName},outbox_title=#{outbox_title},
+		outbox_content=#{outbox_content},outbox_date=now(),send_state=#{send_state} where send_id=#{send_id}
+	</update>
+	<!-- 删除草稿或发件信息 -->
+	<update id="outboxDel">
+		update outbox set stateDel=1 where send_id=#{send_id}
+	</update>
+	<!-- 查询已读、未读页面信息 -->
+	<select id="inboxShow" resultType="Inbox" parameterType="map">
+		select * from inbox where  stateDel=0 and inbox_receiver=#{inbox_receiver} 
+		and email_state=#{email_state} order by inbox_date desc 
+		limit #{index},#{size}
+	</select>
+	<!-- 根据id查询已读、未读页面信息 -->
+	<select id="inboxId" resultType="Inbox">
+		select * from inbox where receive_id=#{receive_id} 
+	</select>
+	<!--查询已读、未读页面记录数 -->
+	<select id="inboxCount" resultType="int" parameterType="Inbox">
+		select count(*) from inbox where stateDel=0 and email_state=#{email_state} 
+			and inbox_receiver=#{inbox_receiver}
+	</select>
+	<!--添加已读、未读 -->
+	<insert id="inboxAdd"  parameterType="Inbox"  >
+		INSERT into inbox VALUES(null,#{inbox_sender},#{inbox_senderName},
+		#{inbox_receiver},#{inbox_receiverName},#{inbox_title},now(),
+		#{inbox_content},0,0)
+	</insert>
+	<!-- 修改状态 -->
+	<update id="inboxUp" parameterType="Inbox">
+		update inbox set email_state=#{email_state} where receive_id=#{receive_id}
+	</update>
+	<!--删除已读、未读 -->
+	<update id="inboxDel"  parameterType="Integer">
+		update inbox set stateDel=1 where receive_id=#{receive_id}
+	</update>
+	<!-- 按主题和发件人查询收件箱 -->
+	<select id="inboxCondition" parameterType="map" resultType="Inbox">
+		select * from inbox 
+		<where>
+			<choose>
+				<when test="inbox_title!=null and inbox_title!=''">
+					inbox_title like CONCAT('%',#{inbox_title},'%')
+				</when>
+				<when test="inbox_senderName!=null and inbox_senderName!=''">
+					inbox_senderName like CONCAT('%',#{inbox_senderName},'%')
+				</when>
+			</choose>
+			and stateDel=0 and inbox_receiver=#{inbox_receiver}  order by inbox_date desc limit #{index},#{size}
+		</where> 
+	</select>
+	<select id="inboxConditionCount" parameterType="map" resultType="Integer">
+		select count(*) from inbox
+		<where>
+			<choose>
+				<when test="inbox_title!=null and inbox_title!=''">
+					inbox_title like CONCAT('%',#{inbox_title},'%')
+				</when>
+				<when test="inbox_senderName!=null and inbox_senderName!=''">
+					inbox_senderName like CONCAT('%',#{inbox_senderName},'%')
+				</when>
+			</choose>
+			and stateDel=0 and inbox_receiver=#{inbox_receiver}
+		</where> 
+	</select>
+	<!-- 按收件人查询发件箱 -->
+	<select id="outboxCondition" parameterType="map" resultType="Outbox">
+		select * from outbox where stateDel=0 and outbox_sender=#{outbox_sender} 
+		and outbox_receiverName like CONCAT('%',#{outbox_receiverName},'%') order by outbox_date desc
+		limit #{index},#{size}
+	</select>
+	<select id="outboxConditionCount" parameterType="map" resultType="Integer">
+		select count(*) from outbox where stateDel=0 and outbox_sender=#{outbox_sender} 
+		and outbox_receiverName like CONCAT('%',#{outbox_receiverName},'%') 
+	</select>
+	<select id="inboxDate" parameterType="Inbox" resultType="Inbox">
+		select * from inbox
+		<where>
+			<if test="inbox_receiver!=null">
+				inbox_receiver like CONCAT('%',#{inbox_receiver},'%') and
+			</if>
+				inbox_date between DATE_SUB(NOW(),INTERVAL 6 SECOND)
+				and now()
+		</where>
+		order by inbox_date desc
+	</select>
+</mapper>

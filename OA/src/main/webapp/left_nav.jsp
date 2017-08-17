@@ -80,19 +80,19 @@ function changeLeft(index,ci){
 						<shiro:hasPermission name="/work">
 						<a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/gear.png" border="0"> 我的事务
-						</a> <span> <a style="display: none;" href="work/xjlcsw.html"
+						</a> <span> <a style="display: none;" href="work/xjlcsw.jsp"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 新建流程事务
-						</a> <a style="display: none;" href="work/dclsw.html" target="right">
+						</a> <a style="display: none;" href="Notice.do?action=ShowSH" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 待处理的事务
-						</a> <a style="display: none;" href="work/yclsw.html" target="right">
+						</a> <!-- <a style="display: none;" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 已处理的事务
-						</a> <a style="display: none;" indent="1" href="work/wfqdsw.html"
+						</a> <a style="display: none;" indent="1" 
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 我发起的事务
-						</a></span> 
+						</a> --></span> 
 						</shiro:hasPermission>
 						<shiro:hasPermission name="/goal">
 						<a class="indent0" href="#"> <img src="css/plusFlag.gif"
@@ -143,19 +143,19 @@ function changeLeft(index,ci){
 						<a class="indent0" href="#"> <img src="css/plusFlag.gif"
 							border="0"> <img src="css/bulletin.png" border="0">
 							信息中心
-						</a> <span><a style="display: none;" href="info/nbtxl.html"
+						</a> <span><a style="display: none;" href="nbtxl.do?action=ss"
 							target="right"> <img src="css/blank16.gif" border="0">
 								<img src="css/catalogue1.png" border="0"> 内部通讯录
-						</a> <a style="display: none;" href="info/dzxx.html" target="right">
+						</a> <a style="display: none;" href="email.do?action=ss" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 电子消息
-						</a> <a style="display: none;" href="info/xxgg.html" target="right">
+						</a> <a style="display: none;" href="xxgg.do?action=ss&type=type" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 信息公告
-						</a> <a style="display: none;" href="info/gggl.html" target="right">
+						</a> <a style="display: none;" href="Notice.do?action=ss" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 公告管理
-						</a> <a style="display: none;" href="info/zssq.html" target="right">
+						</a> <a style="display: none;" href="Topic.do?action=ss" target="right">
 								<img src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 知识社区
 						</a></span>

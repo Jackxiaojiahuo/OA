@@ -222,8 +222,8 @@
 					 <a class="button1 button1L" href="../work.do?action=Wklist&num=0&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../work.do?action=Wklist&num=0&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
 					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../work.do?action=Wklist&num=0&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../work.do?action=Wklist&num=0&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1 button1M" href="../work.do?action=Wklist&num=0&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../work.do?action=Wklist&num=0&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			</div>
 			</c:when>
 			<c:when test="${num==1 }">
@@ -231,8 +231,8 @@
 					 <a class="button1 button1L" href="../work.do?action=Wklist&num=1&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../work.do?action=Wklist&num=1&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
 					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../work.do?action=Wklist&num=1&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../work.do?action=Wklist&num=1&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1 button1M" href="../work.do?action=Wklist&num=1&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../work.do?action=Wklist&num=1&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			</div>
 			</c:when>
 			<c:when test="${num==2 }">
@@ -240,8 +240,8 @@
 					 <a class="button1 button1L" href="../work.do?action=Wklist&num=2&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../work.do?action=Wklist&num=2&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
 					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../work.do?action=Wklist&num=2&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../work.do?action=Wklist&num=2&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1 button1M" href="../work.do?action=Wklist&num=2&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../work.do?action=Wklist&num=2&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			</div>
 			</c:when>
 			<c:when test="${num==3 }">
@@ -249,8 +249,8 @@
 					 <a class="button1 button1L" href="../work.do?action=Wklist&num=3&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../work.do?action=Wklist&num=3&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
 					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../work.do?action=Wklist&num=3&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../work.do?action=Wklist&num=3&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1 button1M" href="../work.do?action=Wklist&num=3&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../work.do?action=Wklist&num=3&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			</div>
 			</c:when>
 			<c:when test="${num==4 }">
@@ -258,8 +258,8 @@
 					 <a class="button1 button1L" href="../work.do?action=Wklist&num=4&index=1" title="首页">&nbsp;<i class="fa fa-step-backward"></i></a><a 
 					 class="button1 button1M" href="../work.do?action=Wklist&num=4&index=${page.index-1 eq 0 ? 1 : page.index-1}" title="上页">&nbsp;<i class="fa fa-backward"></i></a><span 
 					 class="button1M">共有 ${page.count}条记录，第 ${page.index}/${page.total} 页</span><a 
-					 class="button1 button1M" href="../work.do?action=Wklist&num=4&index=${page.index+1 gt page.total ? page.total : page.index+1}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
-					 class="button1 button1R" href="../work.do?action=Wklist&num=4&index=${page.total}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
+					 class="button1 button1M" href="../work.do?action=Wklist&num=4&index=${(page.index+1 gt page.total ? page.total : page.index+1)==0?1:(page.index+1 gt page.total ? page.total : page.index+1)}" title="下页">&nbsp;<i class="fa fa-forward"></i></a><a 
+					 class="button1 button1R" href="../work.do?action=Wklist&num=4&index=${(page.total)==0?1:(page.total)}" title="尾页">&nbsp;<i class="fa fa-step-forward"></i></a>		 
 			</div>
 			</c:when>
 			</c:choose>

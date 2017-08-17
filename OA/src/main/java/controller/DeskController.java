@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import biz.AssignmentBiz;
+import biz.EgressBiz;
+import biz.NoticeBiz;
 import biz.ProspectusBiz;
 import biz.ReportBiz;
 
@@ -29,6 +31,13 @@ public class DeskController {
 	private ProspectusBiz prospectusBiz;
 	@Autowired
 	private ReportBiz reportBiz;
+	/**
+	 * 公告
+	 */
+	@Autowired
+	private NoticeBiz nb;
+	@Autowired
+	private EgressBiz esBiz;
 	
 	@RequestMapping(params = "action=init")
 	public String initDesktop(ModelMap model,Integer emp_id,String emp_name){
