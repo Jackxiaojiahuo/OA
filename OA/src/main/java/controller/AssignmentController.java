@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import biz.AssignmentBiz;
 import model.Assignment;
 import model.Page;
-import model.Prospectus;
+
 
 
 /**
- * 全部查询全部工作任务Controller控制器
+ * 工作任务Controller控制器
  * @author Administrator
  *
  */
+
+
 @Controller
 @RequestMapping("assi.do")
 public class AssignmentController {
@@ -104,7 +106,7 @@ public class AssignmentController {
 				map.put("assignment_classify", "项目");
 				break;
 			}
-			// 根据计划分类查询
+			// 根据任务分类查询
 			List<Assignment> list = assignmentBiz.findAssignmentClassify(map);
 			page.setCount(assignmentBiz.findAllAssignment_count(map));
 			model.put("page", page);
@@ -115,7 +117,7 @@ public class AssignmentController {
 		return "goal/qbgzrw";
 	}
 	/**
-	 * 任务展示
+	 * 展示任务
 	 * @param model
 	 * @param assignment_id
 	 * @return
@@ -157,10 +159,11 @@ public class AssignmentController {
 				assignment_executor_name, assignment_workload,assignment_budget, assignment_classify,
 				assignment_explain, assignment_executor_fruit);
 		assignmentBiz.addAssignment(a);
+		
 		return "redirect:assi.do?action=Assignmentlist&num=0";
 	}
 	/**
-	 *  根据 计划名称  创建人模糊查询
+	 *  根据 任务名称  模糊查询
 	 * @param model
 	 * @param names
 	 * @param count
@@ -171,8 +174,15 @@ public class AssignmentController {
 			
 			Assignment a = new Assignment();
 			List<Assignment> list = null;
-			a.setAssignment_create_name(count);
-			a.setAssignment_name(count);
+			if(name!=null){
+				a.setAssignment_create_name(name);
+				a.setAssignment_name(count);
+			}else{
+				if(names.equals("assignment_create_name"))
+					a.setAssignment_create_name(count);
+				else
+					a.setAssignment_name(count);
+			}
 			list=assignmentBiz.findAssignmentBylike(a);
 			model.put("list", list);
 			if(name!=null)

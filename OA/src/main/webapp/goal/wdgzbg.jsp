@@ -33,7 +33,7 @@
 										<img style="cursor: pointer;" src="css/menu.png"> 我的工作报告
 									</h1></td>
 								<td align="right"><span id="oWorkflowList1"><a
-										href="../xz/xzbg.html" class="button1 button1L">✚ 撰写工作报告*</a><a
+										href="er/xzbg.jsp" class="button1 button1L">✚ 撰写工作报告*</a><a
 										href="er/czbggr.jsp" class="button1 button1M">查找</a></span><a
 									class="button1 button1R" title="刷新">&nbsp;<i
 										class="fa fa-bolt fa-lg"></i></a> <script language="javaScript">/* Code removed by ScrapBook */

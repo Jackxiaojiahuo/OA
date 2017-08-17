@@ -110,7 +110,7 @@
 				/login/login.jsp=anon
 				/param.do=anon
 				/index.jsp=kickout,authc
-	        	<!-- /*.do =kickout,authc,resourceCheckFilter -->
+	        	/*.do =kickout,authc,resourceCheckFilter
 	        </value>
 	    </property>
 	</bean>

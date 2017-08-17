@@ -10,12 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import biz.ReportBiz;
-import model.Assignment;
 import model.Page;
 import model.Report;
 
 /**
- * 全部查询全部工作报告Controller控制器
+ * 工作报告Controller控制器
  * @author Administrator
  *
  */
@@ -128,7 +127,35 @@ public class ReportController {
 			
 		}
 		/**
-		 *  根据 报告名称  创建人模糊查询
+		 * 撰写工作报告（新增）
+		 * private String repo_state;//工作报告状态
+	private String report_name;//报告名称
+	private String report_classify;//工作报告分类
+	private Integer report_content_id;//报告内容id
+	private String report_content;//报告内容
+	private String report_create_name ;//报告创建人
+	private String report_partake;//参与人
+	private Integer depart_id; //外键 所属部门  （从属于）
+	private String report_review_name ;//评审人
+	private String report_create_time;//创建时间
+		 */
+		@RequestMapping(params ="action=addrep")
+		public String addReport(String repo_state, String report_name, String report_classify,
+				Integer report_content_id, String report_content,
+				String report_create_name,
+				String report_partake, Integer depart_id, String report_review_name,
+				String report_create_time ) {
+			Report r = new Report(null, repo_state, report_name, report_classify, report_content_id, 
+					report_content,  report_create_name,
+					report_partake, depart_id,report_review_name, report_create_time);
+			reportBiz.addReport(r);
+			
+			return "redirect:repo.do?action=Reportlist&num=0";
+		}
+		
+		
+		/**
+		 *  根据 报告名称 模糊查询
 		 * @param model
 		 * @param names
 		 * @param count
@@ -139,8 +166,15 @@ public class ReportController {
 				
 				Report r = new Report();
 				List<Report> list = null;
-				r.setReport_create_name(count);
-				r.setReport_name(count);
+				if(name!=null){
+					r.setReport_name(count);
+					r.setReport_create_name(name);
+				}else{
+					if(names.equals("report_create_name"))
+						r.setReport_create_name(count);
+					else
+						r.setReport_name(count);
+				}
 				list=reportBiz.findReportBylike(r);
 				model.put("list", list);
 				if(name!=null){

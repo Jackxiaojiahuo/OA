@@ -17,7 +17,7 @@
 <link type="text/css" rel="stylesheet" href="jquery-ui.css"  />
  <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
  <script language="JavaScript" src="jquery-ui.min.js"></script>
-   <script>
+  <!--  <script>
    function checkapplydate(){
 		  var applydate=$("input[name='re_applydate']").val();
 		  var applydateid=$("#applydateid");
@@ -41,7 +41,34 @@
 		document.forms[0].submit();
 		}
   	}
-</script>
+</script> -->
+<style type="text/css">
+.btn-primary {
+				color: #fff;
+				background-color: #337ab7;
+				border-color: #2e6da4;
+			}
+			
+			.btn {
+				display: inline-block;
+				position: relative;
+				left: 30%;
+				padding: 15px 12px;
+				margin-bottom: 0;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 1.42857143;
+				text-align: center;
+				white-space: nowrap;
+				vertical-align: middle;
+				cursor: pointer;
+				-ms-user-select: none;
+				user-select: none;
+				background-image: none;
+				border: 1px solid transparent;
+				border-radius: 4px;
+			}
+</style>
  <script>
      jQuery(function($){  
         $.datepicker.regional['zh-CN'] = {  
@@ -105,7 +132,6 @@
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
             	//required="required" placeholder="请输入申请时间"
-            	$("#applydateid").hide();
             }  
             });  
         });
@@ -127,7 +153,6 @@
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
-            	$("#positiondateid").hide();
             }  
             });  
         }); 
@@ -157,7 +182,7 @@
                   <td colspan="3"><span id="mapping.dbf.procXSource">填单</span><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人: <span id="mapping.dbf.responsorSource">李萌,</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;参与人: <span id="mapping.dbf.participantsSource"></span> --></td>
                   <td style="text-align: right;">&nbsp;结束时间:</td>
                   <td id="dbf.endTime" dbf.type="date" dbf.source="date,editable"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="jsDate" name="re_shopdate" onblur="checkshopdate()" placeholder="请输入结束时间" /><span id="shopdateid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="jsDate" name="re_shopdate" onblur="checkshopdate()" placeholder="请输入结束时间" /></td>
                 </tr>
               </tbody>
             </table>
@@ -188,14 +213,14 @@
                     <td id="dbf.positionX" dbf.type="required"><input id="e.dbf.positionX" class="fieldEditable" name="re_post"></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请时间</td>
                     <td id="dbf.time2" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="sqDate" name="re_applydate" onblur="checkapplydate()" placeholder="请输入希望到岗日期"/><span id="applydateid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="sqDate" name="re_applydate" onblur="checkapplydate()" placeholder="请输入希望到岗日期" required/></div></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>需求人数</td>
                     <td id="dbf.number0" dbf.type="number,required" dbf.source=""><input id="e.dbf.number0" class="fieldEditable" value="0" step="1" name="re_number"></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>希望到岗日期</td>
                     <td id="dbf.time0" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="dgDate" name="re_positiondate" onblur="checkpositiondate()" placeholder="请输入希望到岗日期" /><span id="positiondateid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="dgDate" name="re_positiondate" onblur="checkpositiondate()" placeholder="请输入希望到岗日期" required/></div></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;">招聘原因说明</td>
@@ -226,11 +251,13 @@
                     <td style="text-align: center;">其他要求</td>
                     <td id="其他要求" colspan="3" dbf.type="" dbf.source=""><input id="e.dbf.description" class="fieldEditable" name="re_req"></td>
                   </tr>
-                  <tr style="text-align: right;">
+                  <!-- <tr style="text-align: right;">
                   <td colspan="4" dbf.source=""><a class="button" onclick="check()">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
+               <b class="btn"><input type="submit" class="btn btn-primary" value="提交主管审批"/>
+				<input type="button" class="btn btn-primary" value="取消" onclick="location='../../recruit.do?action=Relist&num=0'" /></b>
             </div>
             <div>&nbsp;</div>
             <table class="tableForm" style="table-layout: fixed;" cellspacing="0" cellpadding="0" align="center" border="0">

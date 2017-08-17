@@ -32,7 +32,7 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<td>&nbsp;步骤: <span id="mapping.dbf.procXSource">${r.repo_state }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人:${r.report_create_name }
+								<td>&nbsp;步骤: <span id="mapping.dbf.procXSource">详细工作报告<%-- ${r.repo_state } --%></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人:${r.report_create_name }
 									<span id="mapping.dbf.responsorSource"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- 参与人:
 									<span id="mapping.dbf.participantsSource"></span> --></td>
 								<!-- <td>&nbsp;优先级: <input id="dbf.priority" value="-1"
@@ -66,10 +66,10 @@
 							<tr>
 								<td style="text-align: center;">报告分类</td>
 								<td>${r.report_classify }</td>
-								<td style="text-align: center;">从属于</td>
+								<td style="text-align: center;">报告状态</td>
 								<td id="dbf.psid"
 									dbf.source="select sid,subject from taskX where modello='taskX.workPlan' and statusX=-10 and observer like '%251000046%25' order by endTime desc"
-									dbf.type="" dbf.key="0">${r.report_name }</td>
+									dbf.type="" dbf.key="0">${r.repo_state }</td>
 							</tr>
 							<tr>
 								<td style="text-align: center;">创建人</td>
@@ -85,7 +85,7 @@
 								<td id="dbf.text0" dbf.source="form.userX.users"
 									dbf.type="required" dbf.key="1000061,">${r.report_review_name }</td>
 							</tr>
-							<tr>
+							<%-- <tr>
 								<td id="tableDetail"
 									style=/* "height: 250px; */ vertical-align: top; padding: 10px;"
 									colspan="4" dbf.source="" dbf.type="html">
@@ -109,6 +109,11 @@
 										</tbody>
 									</table>
 								</td>
+							</tr> --%>
+							<tr>
+								<td style="text-align: center;">报告内容</td>
+								 <td style="height: 120px; vertical-align: top;" id="执行结果"
+									colspan="3" dbf.type="" dbf.source="">${r.report_content }</td> 
 							</tr>
 							<!-- <tr>
 								<td style="text-align: center;">附件</td>

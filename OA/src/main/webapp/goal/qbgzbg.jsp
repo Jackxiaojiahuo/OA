@@ -32,8 +32,8 @@
 								<td><h1>
 										<img style="cursor: pointer;" src="css/menu.png"> 全部工作报告
 									</h1></td>
-								<td align="right"><span id="oWorkflowList1"><a
-										href="../xz/xzbg.html" class="button1 button1L">✚ 撰写工作报告*</a><a
+								<td align="right"><a 
+              class="button1 button1L" title="后退">&lt;<span id="oWorkflowList1"><a
 										href="er/czbg.jsp" class="button1 button1M">查找</a></span><a
 									class="button1 button1R" title="刷新">&nbsp;<i
 										class="fa fa-bolt fa-lg"></i></a> <script language="javaScript">/* Code removed by ScrapBook */

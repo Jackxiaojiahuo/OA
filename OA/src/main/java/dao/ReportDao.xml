@@ -22,10 +22,10 @@
 		select * from report 
 		<where>
 			<if test="repo_state!=null">
-				 repo_state like '%${repo_state}%'
+				and repo_state like '%${repo_state}%'
 			</if>
 			<if test="report_classify!=null">
-				 report_classify like '%${report_classify}%'
+				and report_classify like '%${report_classify}%'
 			</if>
 			<if test="report_create_name!=null">
 				and report_create_name like '%${report_create_name}%'
@@ -40,10 +40,10 @@
 		select count(*) from report 
 		<where>
 			<if test="repo_state!=null">
-				 repo_state like '%${repo_state}%'
+				and repo_state like '%${repo_state}%'
 			</if>
 			<if test="report_classify!=null">
-				 report_classify like '%${report_classify}%'
+				and report_classify like '%${report_classify}%'
 			</if>
 			<if test="report_create_name!=null">
 				and report_create_name like '%${report_create_name}%'
@@ -54,16 +54,39 @@
 	<select id="findReportById" parameterType="int" resultMap="rm">
 		select * from report where report_id=#{report_id}
 	</select>
+	<!-- 新增工作报告
+	private String repo_state;//工作报告状态
+	private String report_name;//报告名称
+	private String report_classify;//工作报告分类
+	private Integer report_content_id;//报告内容id
+	private String report_content;//报告内容
+	private String report_create_name ;//报告创建人
+	private String report_partake;//参与人
+	private Integer depart_id; //外键 所属部门  （从属于）
+	private String report_review_name ;//评审人
+	private String report_create_time;//创建时间
+	
+	 -->
+	 <insert id="addReport">
+  	insert into report(
+  	repo_state,report_name,report_classify,report_content_id,
+  	report_content,report_create_name,
+  	report_partake,depart_id,
+  	report_review_name,report_create_time) 
+  	value (#{repo_state},#{report_name},#{report_classify},
+  	#{report_content_id},#{report_content},#{report_create_name},#{report_partake},
+  	#{depart_id},#{report_review_name},#{report_create_time})
+  </insert>
 	<!--根据 创建人，报告名称 模糊 查找 -->
 	<select id="findReportBylike" parameterType="Report"
 		resultMap="rm">
 		select * from report
 		<where>
 			<if test="report_create_name!=null">
-				 report_create_name like '%${report_create_name}%'
+				and report_create_name like '%${report_create_name}%'
 			</if>
 			<if test="report_name!=null">
-				 report_name like '%${report_name}%'
+				and report_name like '%${report_name}%'
 			</if>
 		</where>
 	</select>

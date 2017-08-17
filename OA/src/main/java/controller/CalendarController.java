@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import biz.CalendarBiz;
+import model.Calendar;
+import model.Page;
 /**
- * 全部查询工作日程Controller控制器
+ * 工作日程Controller控制器
  * @author Administrator
  *
  */
-
-import biz.CalendarBiz;
-import model.Assignment;
-import model.Calendar;
-import model.Page;
 @Controller
 @RequestMapping("cale.do")
 public class CalendarController {

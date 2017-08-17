@@ -6,6 +6,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/hr/info/";
 %>
+<!DOCTYPE html >
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -17,7 +18,7 @@
 <link type="text/css" rel="stylesheet" href="jquery-ui.css" />
 <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
 <script language="JavaScript" src="jquery-ui.min.js"></script>
-<script>
+<!-- <script>
 function checkapplydate(){
 	  var applydate=$("input[name='tv_applydate']").val();
 	  var applydateid=$("#applydateid");
@@ -50,7 +51,34 @@ function check(){
 	document.forms[0].submit();
 	}
 }
-</script>
+</script> -->
+<style type="text/css">
+.btn-primary {
+				color: #fff;
+				background-color: #337ab7;
+				border-color: #2e6da4;
+			}
+			
+			.btn {
+				display: inline-block;
+				position: relative;
+				left: 30%;
+				padding: 15px 12px;
+				margin-bottom: 0;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 1.42857143;
+				text-align: center;
+				white-space: nowrap;
+				vertical-align: middle;
+				cursor: pointer;
+				-ms-user-select: none;
+				user-select: none;
+				background-image: none;
+				border: 1px solid transparent;
+				border-radius: 4px;
+			}
+</style>
 <script>
 	jQuery(function($) {
 		$.datepicker.regional['zh-CN'] = {
@@ -113,7 +141,6 @@ function check(){
 			//dayNamesMin: ['日','一','二','三','四','五','六'],  
 			onSelect : function(selectedDate) { //选择日期后执行的操作 
 				//alert(selectedDate);
-				$("#applydateid").hide();
 			}
 		});
 	});
@@ -135,7 +162,6 @@ function check(){
 			//dayNamesMin: ['日','一','二','三','四','五','六'],  
 			onSelect : function(selectedDate) { //选择日期后执行的操作 
 				//alert(selectedDate);
-				$("#cdateid").hide();
 			}
 		});
 	});
@@ -157,7 +183,6 @@ function check(){
 			//dayNamesMin: ['日','一','二','三','四','五','六'],  
 			onSelect : function(selectedDate) { //选择日期后执行的操作 
 				//alert(selectedDate);
-				$("#ddateid").hide();
 			}
 		});
 	});
@@ -226,7 +251,7 @@ function check(){
 											<td id="dbf.time2" dbf.type="date,required" dbf.source="date">
 												<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
 												<div>
-													<input type="text" id="sqDate" name="tv_applydate" onblur="checkapplydate()" placeholder="请输入申请时间"/><span id="applydateid" style="color:red; display: none;">不能为空</span>
+													<input type="text" id="sqDate" name="tv_applydate" onblur="checkapplydate()" placeholder="请输入申请时间" required/>
 												</div>
 											</td>
 										</tr>
@@ -236,8 +261,7 @@ function check(){
 											<td id="dbf.time0" dbf.type="date,required"
 												dbf.source="datetime,editable">
 												<div class="fieldEditable" contenteditable="true">
-													<input type="text" id="ccDate" name="tv_cdate" onblur="checkcdate()" placeholder="请输入出差时间"/><br/>
-													<span id="cdateid" style="color:red; display: none;">不能为空</span>
+													<input type="text" id="ccDate" name="tv_cdate" onblur="checkcdate()" placeholder="请输入出差时间" required/><br/>
 												</div>
 											</td>
 											<td style="text-align: center;" dbf.type="" dbf.source="">~</td>
@@ -246,8 +270,7 @@ function check(){
 												<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
 
 												<div class="fieldEditable" contenteditable="true">
-													<input type="text" id="zDate" name="tv_ddate" onblur="checkddate()" placeholder="请输入出差时间"/><br/>
-													<span id="ddateid" style="color:red; display: none;">不能为空</span>
+													<input type="text" id="zDate" name="tv_ddate" onblur="checkddate()" placeholder="请输入出差时间" required/><br/>
 												</div>
 											</td>
 											<td style="text-align: center;"><span
@@ -283,11 +306,13 @@ function check(){
 												目标未达成
 											</td>
 										</tr>
-										  <tr style="text-align: right;">
+				<!-- 						  <tr style="text-align: right;">
                   <td colspan="6" dbf.type="" dbf.source=""><a class="button" onclick="check()">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
-                  </tr>
+                  </tr> -->
 									</tbody>
 								</table>
+							<b class="btn"><input type="submit" class="btn btn-primary" value="提交主管审批"/>
+				<input type="button" class="btn btn-primary" value="取消" onclick="location='../../work.do?action=Wklist&num=0'" /></b>
 							</div>
 							<div>&nbsp;</div>
 							<table class="tableForm" style="table-layout: fixed;"

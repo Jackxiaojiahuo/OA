@@ -1,26 +1,22 @@
 package controller;
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import biz.ProspectusBiz;
-import model.Employee;
 import model.Page;
 import model.Prospectus;
-
+/**
+ * 工作计划Controller控制器
+ * 
+ */
 @Controller
 @RequestMapping("pros.do")
 public class ProspectusController {
-	/**
-	 * 全部工作计划业务接口对象
-	 */
 	@Autowired
 	private ProspectusBiz prospectusBiz;
 	//全部查询全部工作计划
@@ -177,7 +173,7 @@ public class ProspectusController {
 	
 	
 	/**
-	 *  根据 计划名称  创建人模糊查询
+	 *  根据 计划名称  模糊查询
 	 * @param model
 	 * @param names
 	 * @param count
@@ -188,8 +184,15 @@ public class ProspectusController {
 			
 			Prospectus p = new Prospectus();
 			List<Prospectus> list = null;
-			p.setProspectus_create_name(name);
-			p.setProspectus_name(count);
+			if(name!=null){
+				p.setProspectus_create_name(name);
+				p.setProspectus_name(count);
+			}else{
+				if(names.equals("prospectus_create_name"))
+					p.setProspectus_create_name(count);
+				else
+					p.setProspectus_name(count);
+			}
 			list=prospectusBiz.findprospectusBylike(p);
 			model.put("list", list);
 			if(name!=null){

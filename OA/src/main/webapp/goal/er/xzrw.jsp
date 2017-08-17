@@ -20,33 +20,64 @@
 <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
 <script language="JavaScript" src="jquery-ui.min.js"></script>
 <script>
+/* 计划名称 */
 
-/* 开始时间 */
-function checkassignment_create_time(){
-	  var create=$("input[name='assignment_create_time']").val();
-	  var createid=$("#createid");
-		if(create==""){
+ function assignmentna(){
+	var aid = $("#aid").val();
+	if(aid == ""){
+		$("#assignmentnaid").html("任务名称不能为空");
+		return false;
+	}
+	
+	$("#assignmentnaid").html("");
+	return true;
+}
+
+$(function(){
+	$("#aid").blur(function(){
+	  assignmentna();
+    });
+    
+   
+
+$("#myform").submit(function(){
+	var flag1 = assignmentna();
+	
+	
+	if(flag1){
+		return true;
+	}else{
+		return false;
+	}
+ });
+
+});
+	/* 开始时间 */
+	function checkassignment_create_time() {
+		var create = $("input[name='assignment_create_time']").val();
+		var createid = $("#createid");
+		if (create == "") {
 			createid.show();
 			return false;
 		}
 		return true;
-}
-/* 结束时间 */
-function checkassignment_terminal_time(){
-	  var terminal=$("input[name='assignment_terminal_time']").val();
-	  var terminalid=$("#terminalid");
-		if(terminal==""){
+	}
+	/* 结束时间 */
+	function checkassignment_terminal_time() {
+		var terminal = $("input[name='assignment_terminal_time']").val();
+		var terminalid = $("#terminalid");
+		if (terminal == "") {
 			terminalid.show();
 			return false;
 		}
 		return true;
-}
-/*提交按钮  */
-function check(){
-	if(checkassignment_create_time()&checkassignment_terminal_time()/* &chkcreatena() */){
-	document.forms[0].submit();
 	}
-}
+	/*提交按钮  */
+	function check() {
+		if (checkassignment_create_time() & checkassignment_terminal_time() & assignmentna()) {
+			document.forms[0].submit();
+		}
+	}
 
 	$(function($) {
 		$.datepicker.regional['zh-CN'] = {
@@ -70,28 +101,28 @@ function check(){
 		};
 		$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 	});
-	
-	$(function(){ 
-	 $("#selectDate").datepicker({//添加日期选择功能  
-         numberOfMonths:1,//显示几个月  
-         showButtonPanel:true,//是否显示按钮面板  
-         dateFormat: 'yy-mm-dd',//日期格式  
-         clearText:"清除",//清除日期的按钮名称  
-         closeText:"关闭",//关闭选择框的按钮名称  
-         yearSuffix: '年', //年的后缀  
-         showMonthAfterYear:true,//是否把月放在年的后面  
-         //defaultDate:'2016-12-31',//默认日期  
-         minDate:'1900-01-01 00:00:00',//最小日期  
-         maxDate:'2099-12-31 23:59:59',//最大日期  
-         //monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
-         //dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
-         //dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
-         //dayNamesMin: ['日','一','二','三','四','五','六'],  
-         onSelect: function(selectedDate) {//选择日期后执行的操作 
+
+	$(function() {
+		$("#selectDate").datepicker({ //添加日期选择功能  
+			numberOfMonths : 1, //显示几个月  
+			showButtonPanel : true, //是否显示按钮面板  
+			dateFormat : 'yy-mm-dd', //日期格式  
+			clearText : "清除", //清除日期的按钮名称  
+			closeText : "关闭", //关闭选择框的按钮名称  
+			yearSuffix : '年', //年的后缀  
+			showMonthAfterYear : true, //是否把月放在年的后面  
+			//defaultDate:'2016-12-31',//默认日期  
+			minDate : '1900-01-01 00:00:00', //最小日期  
+			maxDate : '2099-12-31 23:59:59', //最大日期  
+			//monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],  
+			//dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],  
+			//dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],  
+			//dayNamesMin: ['日','一','二','三','四','五','六'],  
+			onSelect : function(selectedDate) { //选择日期后执行的操作 
 				//alert(selectedDate);
-         }  
-         }); 
-	  }); 
+			}
+		});
+	});
 	/* 开始时间日历 */
 	$(function() {
 		$("#ksDate").datepicker({ //添加日期选择功能  
@@ -138,9 +169,6 @@ function check(){
 			}
 		});
 	});
-
-
-
 </script>
 </head>
 
@@ -150,7 +178,8 @@ function check(){
 		<tbody>
 			<tr valign="top">
 				<td id="colloaForm"><div class="formTaskflowContainer">
-						<form class="formTaskflow" name="myform" action="../../assi.do?action=addass" method="post" >
+						<form class="formTaskflow" name="myform"
+							action="../../assi.do?action=addass" method="post">
 							<table class="tableForm" style="table-layout: fixed;"
 								cellspacing="0" cellpadding="0" border="0" align="center">
 								<colgroup>
@@ -171,7 +200,12 @@ function check(){
 									<tr>
 										<td id="dbf.subject"
 											style="font-size: 20px; font-weight: bold; text-align: center; line-height: 1;"
-											dbf.source="" dbf.type="required"><textarea id="e.dbf.subject" name="assignment_name" class="fieldEditable" style="height: 40px;  font-size: 20px; font-weight: bold; text-align: center;"></textarea></td>
+											dbf.source="" dbf.type="required"><textarea
+												id="aid" name="assignment_name"
+												class="fieldEditable"
+												style="height: 40px;  font-size: 20px; font-weight: bold; text-align: center;"></textarea>
+												<div id="assignmentnaid" ></div>
+												</td>
 									</tr>
 								</tbody>
 							</table>
@@ -186,69 +220,73 @@ function check(){
 								<tbody>
 									<tr>
 										<td style="text-align: center;">任务分类</td>
-										<td><input id="dbf.psid2" checked="" value="0"
-											name="dbf.psid2" autocomplete="off" type="radio">常规 <input
-											id="dbf.psid2" value="10" name="dbf.psid2" autocomplete="off"
-											type="radio">行政 <input id="dbf.psid2" value="20"
-											name="dbf.psid2" autocomplete="off" type="radio">人事 <input
-											id="dbf.psid2" value="30" name="dbf.psid2" autocomplete="off"
-											type="radio">财务 <input id="dbf.psid2" value="40"
-											name="dbf.psid2" autocomplete="off" type="radio">业务 <input
-											id="dbf.psid2" value="100" name="dbf.psid2"
-											autocomplete="off" type="radio">项目</td>
+										<td><input id="任务分类" value="常规类任务"
+											name="assignment_classify" autocomplete="off" type="radio">常规
+											<input id="任务分类" value="行政类任务" name="assignment_classify"
+											autocomplete="off" type="radio">行政 <input id="任务分类"
+											value="人事类任务" name="assignment_classify" autocomplete="off"
+											type="radio">人事 <input id="任务分类" value="财务类任务"
+											name="assignment_classify" autocomplete="off" type="radio">财务
+											<input id="任务分类" value="业务类任务" name="assignment_classify"
+											autocomplete="off" type="radio">业务 <input id="任务分类"
+											value="项目类任务" name="assignment_classify" autocomplete="off"
+											checked="" type="radio">项目</td>
 										<td style="text-align: center;">任务状态</td>
-														<td >&nbsp; 
-														 
-														 <input id="任务状态" name="assi_state" type="radio" checked="" value="执行中">
-												转执行&nbsp;&nbsp; 
-												 
-												<input id="任务状态" name="assi_state" type="radio" value="已关闭">
-											直接关闭&nbsp;&nbsp; </td>
+										<td>&nbsp; <input id="任务状态" name="assi_state"
+											type="radio" checked="" value="执行中"> 转执行&nbsp;&nbsp;
+
+											<input id="任务状态" name="assi_state" type="radio" value="已关闭">
+											直接关闭&nbsp;&nbsp;
+										</td>
 									</tr>
 									<tr>
 										<td style="text-align: center;">创建人</td>
-										<td>李萌</td>
+										<td><input id="cid" class="fieldEditable"
+											readonly="readonly" value="${s_emp.emp_name }"
+											name="assignment_create_name">
+											<div id="createnaid"></div></td>
 										<td style="text-align: center;">所属部门</td>
-										<td>销售部</td>
+										<td><input type="text" readonly="readonly"
+											value="${s_emp.dept.depart_name }" /> <input type="hidden"
+											name="depart_id" value="${s_emp.dept.depart_id}"></td>
 									</tr>
 									<tr>
 										<td style="text-align: center;"><strong><font
 												color="#ff0000">*</font></strong>开始时间</td>
 										<td id="dbf.startTime" dbf.source="date,editable"
-											dbf.type="date,required">
-											<input type="text" id="ksDate" name="assignment_create_time" onblur="checkassignment_create_time()" placeholder="请输入开始时间"/>
+											dbf.type="date,required"><input type="text" id="ksDate"
+											name="assignment_create_time"
+											onblur="checkassignment_create_time()" placeholder="请输入开始时间" />
 											<span id="createid" style="color:red; display: none;">不能为空</span>
-											
+
 											<!-- <div id="e.dbf.startTime" class="fieldEditable"
 												contenteditable="true">2017/3/14</div> --></td>
 										<td style="text-align: center;">结束时间</td>
 										<td id="dbf.endTime" dbf.source="date,editable"
-											dbf.type="date">
-											<input type="text" id="jsDate" name="assignment_terminal_time" onblur="checkassignment_terminal_time()" placeholder="请输入结束时间"/>
-											<span id="terminalid" style="color:red; display: none;">不能为空</span>
-											<!-- <img class="fieldGetValueBySource"
-											src="css/fieldSource.gif"> -->
-											<!-- <div id="e.dbf.endTime" class="fieldEditable"
+											dbf.type="date"><input type="text" id="jsDate"
+											name="assignment_terminal_time"
+											onblur="checkassignment_terminal_time()"
+											placeholder="请输入结束时间" /> <span id="terminalid"
+											style="color:red; display: none;">不能为空</span> <!-- <img class="fieldGetValueBySource"
+											src="css/fieldSource.gif"> --> <!-- <div id="e.dbf.endTime" class="fieldEditable"
 												contenteditable="true">&nbsp;</div> --></td>
 									</tr>
 									<tr>
 										<td style="text-align: center;"><strong><font
 												color="#ff0000">*</font></strong>执行人</td>
 										<td id="dbf.text1" dbf.source="form.fieldSource.userX0"
-											dbf.type="" dbf.key=""><img
-											class="fieldGetValueBySource" src="css/fieldSource.gif">
-											<div id="e.dbf.text1Source">&nbsp;</div></td>
+											dbf.type="" dbf.key=""><input id="e.dbf.positionX" class="fieldEditable" name="assignment_executor_name"></td>
 										<td style="text-align: center;">工作量</td>
-										<td>预估(人天) <input id="dbf.numberTotal"
+										<td><input id="e.dbf.positionX" class="fieldEditable" 	style="width: 60px;" name="assignment_workload">(天) <!-- <input id="dbf.numberTotal"
 											style="width: 60px;" value="0" name="dbf.numberTotal"
 											dbf.type="number">&nbsp;&nbsp;&nbsp;&nbsp;实际(人天) <input
 											id="dbf.number0" style="width: 60px;" value="0"
-											name="dbf.number0" dbf.type="number"></td>
+											name="dbf.number0" dbf.type="number"> --></td>
 									</tr>
 									<tr>
 										<td style="text-align: center;">任务说明</td>
 										<td id="任务说明" style="vertical-align: top;" colspan="3"
-											dbf.source="" dbf.type=""><textarea id="e.任务说明"
+											dbf.source="" dbf.type=""><textarea id="e.任务说明" name="assignment_explain"
 												class="fieldEditable" style="height: 120px;"></textarea></td>
 									</tr>
 									<tr>
@@ -256,8 +294,9 @@ function check(){
 <td id="attachments" colspan="3" dbf.source="files"></td></tr>
 <tr> -->
 										<td style="text-align: center;">执行结果</td>
-										<td id="执行结果" style="height: 120px; vertical-align: top;"
-											colspan="3" dbf.source="" dbf.type="">&nbsp;</td>
+										<td id="执行结果" style="height: 25px; vertical-align: top;"
+											colspan="3" dbf.source="" dbf.type=""><textarea id="e.任务说明" name="assignment_executor_fruit"
+												class="fieldEditable" style="height: 25px;"></textarea></td>
 									</tr>
 									<!-- <tr>
 <td style="text-align: center;">附件</td>
@@ -271,8 +310,9 @@ function check(){
 					</form> <script language="javaScript">/* Code removed by ScrapBook */
 					</script><br>
 					<div id="_vWorkflowActionsShow" align="right">
-						<a class="button" onclick="check()">保存</a><!-- <a class="button">转执行</a><a class="button">直接关闭任务</a> --><a
-							class="button" href="javascript:history.back()">取消</a>
+						<a class="button" onclick="check()">保存</a>
+						<!-- <a class="button">转执行</a><a class="button">直接关闭任务</a> -->
+						<a class="button" href="javascript:history.back()">取消</a>
 					</div> <br> <!-- <table style="table-layout: fixed;" cellspacing="0" cellpadding="0" border="0"><colgroup><col width="60%"><col width="2%"><col></colgroup><tbody><tr valign="top"><td class="boxBorder">
 <div style="padding: 2px 10px;"><div style="float: right;"><a href="../mg/lct/rwlc.html">› 显示流程图</a></div>【处理过程】</div>
 
@@ -285,7 +325,7 @@ function check(){
 
 </div>
 </td></tr></tbody></table> --></td>
-				<td>&nbsp;</td>
+				<!-- <td>&nbsp;</td> -->
 			</tr>
 		</tbody>
 	</table>

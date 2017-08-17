@@ -75,14 +75,14 @@ function sub(num){
           <tbody>
           	<c:forEach var="e" items="${list }">
 					<tbody>
-							<td><a href="../emp.do?action=zs&emp_id=${e.emp_id }"><img src="../css/userX0.gif" border="0">${e.emp_name }</a></td>
+							<td><a href="../../emp.do?action=zs&emp_id=${e.emp_id }"><img src="../css/userX0.gif" border="0">${e.emp_name }</a></td>
 							<td>${e.emp_sex }</td>
 							<td>${e.emp_code }</td>
 							<td>${e.dept.depart_name }</td>
 							<td>${e.emp_description }</td>
 							<td>${e.emp_join }</td>
 							<td>
-							<a class="buttonPortal" title="修改" href="info/xgyg.jsp">&nbsp;<i class="fa fa-eyedropper fa-lg"></i></a>
+							<a class="buttonPortal" title="修改" href="../../emp.do?action=zs&emp_id=${e.emp_id }&id=id">&nbsp;<i class="fa fa-eyedropper fa-lg"></i></a>
 							<a class="buttonPortal" title="删除" href="../../emp.do?action=del&emp_id=${e.emp_id }">&nbsp;<i class="fa fa-remove fa-lg"></i></a>&nbsp;</td>
 					</tbody>
 			</c:forEach>

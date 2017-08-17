@@ -21,16 +21,16 @@
 <script language="JavaScript" src="jquery-ui.min.js"></script>
 <script>
 
-/* 创建人 */
+/* 计划名称 */
 
- function chkcreatena(){
-	var cid = $("#cid").val();
-	if(cid == ""){
-		$("#createnaid").html("创建人不能为空");
+ function prospectusna(){
+	var pid = $("#pid").val();
+	if(pid == ""){
+		$("#prospectusnaid").html("计划名称不能为空");
 		return false;
 	}
 	
-	$("#createnaid").html("");
+	$("#prospectusnaid").html("");
 	return true;
 }
 /*计划内容  */
@@ -47,8 +47,8 @@ function chkcontentna(){
 
  
  $(function(){
-	$("#cid").blur(function(){
-	  chkcreatena();
+	$("#pid").blur(function(){
+	  prospectusna();
     });
     $("#conid").blur(function(){
 	  chkcontentna();
@@ -56,7 +56,7 @@ function chkcontentna(){
    
 
 $("#myform").submit(function(){
-	var flag1 = chkcreatena();
+	var flag1 = prospectusna();
 	var flag2 = chkcontentna();
 	
 	if(flag1&&flag2){
@@ -90,7 +90,7 @@ function checkprospectus_terminal_time(){
 }
 /*提交按钮  */
 function check(){
-	if(checkprospectus_create_time()&checkprospectus_terminal_time()&chkcreatena()){
+	if(checkprospectus_create_time()&checkprospectus_terminal_time()&prospectusna()&chkcontentna()){
 	document.forms[0].submit();
 	}
 }
@@ -259,10 +259,11 @@ function check(){
 							<table cellspacing="0" cellpadding="0" border="0">
 								<tbody>
 									<tr>
-										<td id="dbf.subject" style="height: 50px; vertical-align: top;
+										<td id="dbf.subject"
 											style="font-size: 20px; font-weight: bold; text-align: center; line-height: 1;"
 											dbf.source="" dbf.type="required">
-											 <textarea id="e.dbf.subject" name="prospectus_name" class="fieldEditable" style="height: 40px;  font-size: 20px; font-weight: bold; text-align: center;"></textarea> 
+											 <textarea id="pid" name="prospectus_name" class="fieldEditable" style="height: 40px;  font-size: 20px; font-weight: bold; text-align: center;"></textarea>
+											  <div id="prospectusnaid" ></div> 
 											<!-- <input id="e.dbf.positionX" class="fieldEditable" font-size: 150px; name="prospectus_name"  placeholder="请输入计划名称"> --></td>
 									</tr>
 								</tbody>
@@ -296,7 +297,7 @@ function check(){
 															autocomplete="off" type="radio"> 项目 <input
 															id="计划分类" checked="" value="其他计划" name="prospectus_classify"
 															autocomplete="off" type="radio"> 其他</td>
-														<td style="text-align: center;">评审状态</td>
+														<td style="text-align: center;">计划状态</td>
 														<td >&nbsp; 
 														 
 														 <input id="评审状态" name="pros_state" type="radio" checked="" value="评审中">
@@ -308,7 +309,7 @@ function check(){
 													<tr>
 														<td style="text-align: center;">创建人</td>
 														<td><input id="cid" class="fieldEditable" readonly="readonly" value="${s_emp.emp_name }" name="prospectus_create_name">
-															 <div id="createnaid" ></div></td>
+															   </td>
 														<td style="text-align: center;">所属部门</td>
 														<td >&nbsp; 
 														<input type="text"  readonly="readonly"  value="${s_emp.dept.depart_name }"/>
@@ -320,30 +321,30 @@ function check(){
 														<!-- <td><input id="e.dbf.positionX" class="fieldEditable" name="depart_id"></td> -->
 													</tr>
 													<tr>
-														<td style="text-align: center;">计划内容</td>
-														<td id="dbf.text0" dbf.source="form.fieldSource.userX0"
-															dbf.type="" dbf.key="">
-															<textarea id="conid" class="fieldEditable" name="prospectus_content" style="height: 25px;"></textarea>
-															<!-- <input id="conid" class="fieldEditable" name="prospectus_content"> -->
-															 <div id="contentnaid" ></div></td></td>
+														
 														<td style="text-align: center;"><strong><font
 																color="#ff0000">*</font></strong>执行时间</td>
 														<td id="dbf.time0" dbf.type="date" dbf.source="date">
 															<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
 															<div class="fieldEditable">
-																<input type="text" id="ksDate" name="prospectus_create_time" onblur="checkprospectus_create_time()" placeholder="请输入开始时间"/><span id="createid" style="color:red; display: none;">不能为空</span>
-																
-																<input type="text" id="jsDate" name="prospectus_terminal_time" onblur="checkprospectus_terminal_time()" placeholder="请输入结束时间"/><span id="terminalid" style="color:red; display: none;">不能为空</span>
-																
-																
-															</div>
-															
-																
-	
+																<input type="text" id="ksDate" name="prospectus_create_time" onblur="checkprospectus_create_time()" placeholder="请输入开始时间"/>
+																<span id="createid" style="color:red; display: none;">不能为空</span>
+															</div>	
+															<!-- <input type="text" id="jsDate" name="prospectus_terminal_time" onblur="checkprospectus_terminal_time()" placeholder="请输入结束时间"/>
+																<span id="terminalid" style="color:red; display: none;">不能为空</span> -->
 														</td>
+														<td style="text-align: center;"><strong><font
+																color="#ff0000"></font></strong>结束时间</td>
+														<td id="dbf.time0" dbf.type="date" dbf.source="date">
+															<!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
+															<div class="fieldEditable">
+																<input type="text" id="jsDate" name="prospectus_terminal_time" onblur="checkprospectus_terminal_time()" placeholder="请输入结束时间"/>
+																<span id="terminalid" style="color:red; display: none;">不能为空</span>
+															</div>	
 															
-															
+														</td>		
 													</tr>
+													
 													<!-- <tr>
 														<td style="text-align: center;"><span
 															style="color: rgb(255, 0, 0);">*</span>开始时间</td>
@@ -373,238 +374,19 @@ function check(){
 														<td id="dbf.text1" dbf.source="form.fieldSource.userX"
 															dbf.type="required" dbf.key=""><input id="e.dbf.positionX" class="fieldEditable" name="prospectus_executor_name"></td>
 													</tr>
-								<!-- <tr>
+								  <tr>
 								<td style="text-align: center;">计划内容</td>
-								 <td id="dbf.subject" style="height: 100px; vertical-align: top;
-											style="font-size: 20px;  line-height: 1;"
-											dbf.source="" dbf.type="required"><input id="e.dbf.positionX" class="fieldEditable" name="prospectus_name" ></td>
-							</tr> -->
+														<td id="dbf.text0" colspan="3" dbf.source="form.fieldSource.userX0"
+															dbf.type="" dbf.key="">
+															<textarea id="conid" class="fieldEditable" name="prospectus_content" style="height: 80px;"></textarea>
+															<!-- <input id="conid" class="fieldEditable" name="prospectus_content"> -->
+															 <div id="contentnaid" ></div></td>
+							</tr> 
 													
-													<tr>
 													
-														<%-- <td id="content" style="vertical-align: top;"
-															dbf.source="" dbf.type="html"><link rel="stylesheet"
-																type="text/css" href="bjq/dist/css/wangEditor.min.css">
-															<style type="text/css">
-#editor-trigger {
-	height: 300px;
-	/*max-height: 500px;*/
-}
-
-.container {
-	width: 1018px;
-	margin: 0 auto;
-	position: relative;
-}
-</style>
-															<div id="editor-container" class="container">
-																<div id="editor-trigger">
-																	<table align="center" border="0" style="border: inset"
-																		cellpadding="0" cellspacing="0"
-																		class="tableListBorder">
-																		<colgroup>
-																			<col width="60" />
-																			<col />
-																			<col width="200" />
-																			<col width="200" />
-																		</colgroup>
-																		<tbody>
-																			<tr>
-																				<td style="TEXT-ALIGN: center">序号</td>
-																				<td style="TEXT-ALIGN: center">计划事项</td>
-																				<td style="TEXT-ALIGN: center; WIDTH: 96px">执行人</td>
-																				<td style="TEXT-ALIGN: center; WIDTH: 130px">执行时间</td>
-																			</tr>
-																			<tr>
-																				<td dbf.source="" dbf.type=""
-																					style="TEXT-ALIGN: center">1</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																			</tr>
-																			<tr>
-																				<td dbf.source="" dbf.type=""
-																					style="TEXT-ALIGN: center">2</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																			</tr>
-																			<tr>
-																				<td dbf.source="" dbf.type=""
-																					style="TEXT-ALIGN: center">3</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																			</tr>
-																			<tr>
-																				<td dbf.source="" dbf.type=""
-																					style="TEXT-ALIGN: center">4</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																			</tr>
-																			<tr>
-																				<td dbf.source="" dbf.type=""
-																					style="TEXT-ALIGN: center">5</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																			</tr>
-																			<tr>
-																				<td dbf.source="" dbf.type=""
-																					style="TEXT-ALIGN: center">6</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																			</tr>
-																			<tr>
-																				<td dbf.source="" dbf.type=""
-																					style="TEXT-ALIGN: center">7</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																				<td dbf.source="" dbf.type="">&nbsp;</td>
-																			</tr>
-																		</tbody>
-																	</table>
-																</div>
-																<!-- <textarea id="editor-trigger" style="display:none;">
-            <p>请输入内容...</p>
-        </textarea> -->
-															</div>
-															<div style="display: none" id="html"></div> <script
-																type="text/javascript" src="bjq/dist/js/wangEditor.js">
-                      	
-                      </script> <script type="text/javascript">
-                      // 阻止输出log
-                      // wangEditor.config.printLog = false;
-                      
-                      	var editor = new wangEditor('editor-trigger');
-                      
-                      	// 上传图片
-                      	editor.config.uploadImgUrl = '/upload';
-                      	editor.config.uploadParams = {
-                      		// token1: 'abcde',
-                      		// token2: '12345'
-                      	};
-                      	editor.config.uploadHeaders = {
-                      		// 'Accept' : 'text/x-json'
-                      	}
-                      	// editor.config.uploadImgFileName = 'myFileName';
-                      
-                      	// 隐藏网络图片
-                      	// editor.config.hideLinkImg = true;
-                      
-                      	// 表情显示项
-                      	editor.config.emotionsShow = 'value';
-                      	editor.config.emotions = {
-                      		'default' : {
-                      			title : '默认',
-                      			data : './emotions.data'
-                      		},
-                      		'weibo' : {
-                      			title : '微博表情',
-                      			data : [
-                      				{
-                      					icon : 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/7a/shenshou_thumb.gif',
-                      					value : '[草泥马]'
-                      				},
-                      				{
-                      					icon : 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/60/horse2_thumb.gif',
-                      					value : '[神马]'
-                      				},
-                      				{
-                      					icon : 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/bc/fuyun_thumb.gif',
-                      					value : '[浮云]'
-                      				},
-                      				{
-                      					icon : 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/c9/geili_thumb.gif',
-                      					value : '[给力]'
-                      				},
-                      				{
-                      					icon : 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/f2/wg_thumb.gif',
-                      					value : '[围观]'
-                      				},
-                      				{
-                      					icon : 'http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/70/vw_thumb.gif',
-                      					value : '[威武]'
-                      				}
-                      			]
-                      		}
-                      	};
-                      
-                      	// 插入代码时的默认语言
-                      	// editor.config.codeDefaultLang = 'html'
-                      
-                      	// 只粘贴纯文本
-                      	// editor.config.pasteText = true;
-                      
-                      	// 跨域上传
-                      	// editor.config.uploadImgUrl = 'http://localhost:8012/upload';
-                      
-                      	// 第三方上传
-                      	// editor.config.customUpload = true;
-                      
-                      	// 普通菜单配置
-                      	// editor.config.menus = [
-                      	//     'img',
-                      	//     'insertcode',
-                      	//     'eraser',
-                      	//     'fullscreen'
-                      	// ];
-                      	// 只排除某几个菜单（兼容IE低版本，不支持ES5的浏览器），支持ES5的浏览器可直接用 [].map 方法
-                      	// editor.config.menus = $.map(wangEditor.config.menus, function(item, key) {
-                      	//     if (item === 'insertcode') {
-                      	//         return null;
-                      	//     }
-                      	//     if (item === 'fullscreen') {
-                      	//         return null;
-                      	//     }
-                      	//     return item;
-                      	// });
-                      
-                      	// onchange 事件
-                      	editor.onchange = function() {
-                      		console.log(this.$txt.html());
-                      
-                      		// 获取编辑器区域完整html代码
-                      		var html = editor.$txt.html();
-                      		$("#html").text(html);
-                      	};
-                      
-                      
-                      	// 取消过滤js
-                      	// editor.config.jsFilter = false;
-                      
-                      	// 取消粘贴过来
-                      	// editor.config.pasteFilter = false;
-                      
-                      	// 设置 z-index
-                      	// editor.config.zindex = 20000;
-                      
-                      	// 语言
-                      	// editor.config.lang = wangEditor.langs['en'];
-                      
-                      	// 自定义菜单UI
-                      	// editor.UI.menus.bold = {
-                      	//     normal: '<button style="font-size:20px; margin-top:5px;">B</button>',
-                      	//     selected: '.selected'
-                      	// };
-                      	// editor.UI.menus.italic = {
-                      	//     normal: '<button style="font-size:20px; margin-top:5px;">I</button>',
-                      	//     selected: '<button style="font-size:20px; margin-top:5px;"><i>I</i></button>'
-                      	// };
-                      	editor.create();
-                      </script></td> --%>
-													</tr>
-													<!-- <tr>
-														<td style="text-align: center;">附件</td>
-														<td id="attachments" colspan="3" dbf.source="files">
-															<textarea id="e.dbf.subject"
-																class="fieldEditable"
-																style="height: 30px; font-size: 10px; font-weight: bold; "></textarea></td>
-													</tr> -->
 												</tbody>
-											</table> <!-- <strong><font color="#ff0000"></font></strong> --> </td>
+											</table>  
+											</td>
 									</tr>
 								</tbody>
 							</table>

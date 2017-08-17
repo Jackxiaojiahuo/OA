@@ -5,6 +5,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/hr/info/";
 %>
+<!DOCTYPE html >
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -16,7 +17,7 @@
 <link type="text/css" rel="stylesheet" href="jquery-ui.css"  />
  <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
  <script language="JavaScript" src="jquery-ui.min.js"></script>
-   <script>
+   <!-- <script>
 function checkjoindate(){
 		  var joindate=$("input[name='et_joindate']").val();
 		  var joindateid=$("#joindateid");
@@ -40,7 +41,34 @@ function checkjoindate(){
 		document.forms[0].submit();
     	}
     }
-</script>
+</script> -->
+<style type="text/css">
+.btn-primary {
+				color: #fff;
+				background-color: #337ab7;
+				border-color: #2e6da4;
+			}
+			
+			.btn {
+				display: inline-block;
+				position: relative;
+				left: 30%;
+				padding: 15px 12px;
+				margin-bottom: 0;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 1.42857143;
+				text-align: center;
+				white-space: nowrap;
+				vertical-align: middle;
+				cursor: pointer;
+				-ms-user-select: none;
+				user-select: none;
+				background-image: none;
+				border: 1px solid transparent;
+				border-radius: 4px;
+			}
+</style>
  <script>
      jQuery(function($){  
         $.datepicker.regional['zh-CN'] = {  
@@ -102,7 +130,6 @@ function checkjoindate(){
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
-            	$("#joindateid").hide();
             }  
             });  
         });
@@ -124,7 +151,6 @@ function checkjoindate(){
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
-            	$("#birthid").hide();
             }  
             });  
         }); 
@@ -176,7 +202,7 @@ function checkjoindate(){
                    <input id="e.dbf.description" class="fieldEditable" name="et_name"></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职日期</td>
                     <td id="dbf.time0" dbf.type="date,required" dbf.source="date"><!--img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="rzDate" name="et_joindate" onblur="checkjoindate()" placeholder="请输入入职日期"/><span id="joindateid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="rzDate" name="et_joindate" onblur="checkjoindate()" placeholder="请输入入职日期" required/></div></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职部门</td>
@@ -192,7 +218,7 @@ function checkjoindate(){
                   <tr>
                     <td style="text-align: center;">出生日期</td>
                     <td id="出生日期" dbf.type="date" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="csDate" name="et_birth" onblur="checkbirth()" placeholder="请输入出生日期"/><span id="birthid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="csDate" name="et_birth" onblur="checkbirth()" placeholder="请输入出生日期" required/></div></td>
                     <td style="text-align: center;">性别</td>
                     <td dbf.type="" dbf.source=""><input id="性别" checked="" value="男" name="et_sex" type="radio">
                       男
@@ -207,11 +233,13 @@ function checkjoindate(){
                     <td style="text-align: center;">备注</td>
                     <td id="备注" colspan="3" dbf.type="" dbf.source=""><input id="e.工作" class="fieldEditable" name="et_remarks"></td>
                   </tr>
-                   <tr style="text-align: right;">
+                   <!-- <tr style="text-align: right;">
                   <td colspan="4" dbf.type="" dbf.source=""><a class="button" onclick="check()">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
+              <b class="btn"><input type="submit" class="btn btn-primary" value="提交主管审批"/>
+				<input type="button" class="btn btn-primary" value="取消" onclick="location='../../recruit.do?action=Relist&num=1'" /></b>
             </div>
             <div>&nbsp;</div>
             <table class="tableForm" style="table-layout: fixed;" cellspacing="0" cellpadding="0" align="center" border="0">

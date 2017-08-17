@@ -30,7 +30,7 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<td>&nbsp;步骤: <span id="mapping.dbf.procXSource">${a.assi_state }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人:${a.assignment_create_name}
+								<td>&nbsp;步骤: <span id="mapping.dbf.procXSource">详细工作任务<%-- ${a.assi_state } --%></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;责任人:${a.assignment_create_name}
 									<span id="mapping.dbf.responsorSource"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- 参与人:
 									<span id="mapping.dbf.participantsSource"></span> --></td>
 								<!-- <td>&nbsp;优先级: <input id="dbf.priority" name="dbf.priority"
@@ -64,10 +64,10 @@
 							<tr>
 								<td style="text-align: center;">任务分类</td>
 								<td>${a.assignment_classify }</td>
-								<td style="text-align: center;">从属于</td>
+								<td style="text-align: center;">任务状态</td>
 								<td id="dbf.psid" dbf.type=""
 									dbf.source="select sid,subject from taskX where modello='taskX.workPlan' and statusX=-10 and observer like '%251000112%25' order by endTime desc"
-									dbf.key="0">${a.assignment_name }</td>
+									dbf.key="0">${a.assi_state }</td>
 							</tr>
 							<tr>
 								 <td style="text-align: center;">创建人</td>

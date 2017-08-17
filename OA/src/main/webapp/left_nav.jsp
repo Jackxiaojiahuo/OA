@@ -62,7 +62,7 @@ function changeLeft(index,ci){
 					</table>
 					<div id="treeOfMenu">
 						<shiro:authenticated>
-						<shiro:hasPermission name="/desktop.do?action=index">
+						<shiro:hasPermission name="/desk.do?action=init">
 						<a class="indent0ex textHighlight" href="desktop.jsp"
 							target="right"> <img src="css/plusFlag.gif" border="0">
 							<img src="css/desktop.png" border="0"> 我的桌面
@@ -101,29 +101,43 @@ function changeLeft(index,ci){
 						</a> <span><a style="display: none;" href="pros.do?action=Prospectuslist&prospectus_create_name=${s_emp.emp_name }"target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 我的工作计划
-						</a> <a style="display: none;" indent="1" href="pros.do?action=Prospectuslist"target="right"> <img
-								src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 全部工作计划
-						</a>
+						</a> 
+						<c:if test="${s_emp.emp_name eq '管理员' }">
+							<a style="display: none;" indent="1" href="pros.do?action=Prospectuslist"target="right"> <img
+									src="css/blank16.gif" border="0"> <img
+									src="css/catalogue1.png" border="0"> 全部工作计划
+							</a>
+						</c:if>
 						 <a style="display: none;" href="assi.do?action=Assignmentlist&assignment_create_name=${s_emp.emp_name }" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 我的工作任务
-						</a> <a style="display: none;" href="assi.do?action=Assignmentlist" target="right"> <img
-								src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 全部工作任务
-						</a> <a style="display: none;" href="repo.do?action=Reportlist&report_create_name=${s_emp.emp_name }" target="right"> <img
+						</a>
+						<c:if test="${s_emp.emp_name eq '管理员' }"> 
+							<a style="display: none;" href="assi.do?action=Assignmentlist" target="right"> <img
+									src="css/blank16.gif" border="0"> <img
+									src="css/catalogue1.png" border="0"> 全部工作任务
+							</a> 
+						</c:if>
+						<a style="display: none;" href="repo.do?action=Reportlist&report_create_name=${s_emp.emp_name }" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0"> 我的工作报告
-						</a> <a style="display: none;" href="repo.do?action=Reportlist"target="right"> <img
-								src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 全部工作报告
-						</a> <a style="display: none;" href="goal/wdgzrc.html" target="right"> <img
+						</a> 
+						<c:if test="${s_emp.emp_name eq '管理员' }">
+							<a style="display: none;" href="repo.do?action=Reportlist"target="right"> <img
+									src="css/blank16.gif" border="0"> <img
+									src="css/catalogue1.png" border="0"> 全部工作报告
+							</a>
+						</c:if>
+						 <a style="display: none;" href="goal/wdgzrc.html" target="right"> <img
 								src="css/blank16.gif" border="0"> <img
 								src="css/catalogue1.png" border="0" > 我的工作日程
-						</a> <a style="display: none;" href="cale.do?action=Calendarlist"target="right"> <img
-								src="css/blank16.gif" border="0"> <img
-								src="css/catalogue1.png" border="0"> 全部工作日程
-						</a></span> 
+						</a> 
+						<c:if test="${s_emp.emp_name eq '管理员' }">
+							<a style="display: none;" href="cale.do?action=Calendarlist"target="right"> <img
+									src="css/blank16.gif" border="0"> <img
+									src="css/catalogue1.png" border="0"> 全部工作日程
+							</a>
+						</c:if></span> 
 						</shiro:hasPermission>
 						<shiro:hasPermission name="/info">
 						<a class="indent0" href="#"> <img src="css/plusFlag.gif"

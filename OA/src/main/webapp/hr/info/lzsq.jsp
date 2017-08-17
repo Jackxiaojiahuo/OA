@@ -5,6 +5,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/hr/info/";
 %>
+<!DOCTYPE html >
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -16,7 +17,7 @@
 <link type="text/css" rel="stylesheet" href="jquery-ui.css"  />
  <script src="jquery-1.8.2.min.js" type="text/javascript"></script>
  <script language="JavaScript" src="jquery-ui.min.js"></script>
-   <script>
+<!--    <script>
    function checkapplydate(){
 		  var applydate=$("input[name='q_applydate']").val();
 		  var applydateid=$("#applydateid");
@@ -49,7 +50,34 @@
 		document.forms[0].submit();
     	}
   	}
-</script>
+</script> -->
+<style type="text/css">
+.btn-primary {
+				color: #fff;
+				background-color: #337ab7;
+				border-color: #2e6da4;
+			}
+			
+			.btn {
+				display: inline-block;
+				position: relative;
+				left: 30%;
+				padding: 15px 12px;
+				margin-bottom: 0;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 1.42857143;
+				text-align: center;
+				white-space: nowrap;
+				vertical-align: middle;
+				cursor: pointer;
+				-ms-user-select: none;
+				user-select: none;
+				background-image: none;
+				border: 1px solid transparent;
+				border-radius: 4px;
+			}
+</style>
  <script>
      jQuery(function($){  
         $.datepicker.regional['zh-CN'] = {  
@@ -111,7 +139,6 @@
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
-            	$("#applydateid").hide();
             }  
             });  
         });
@@ -133,7 +160,6 @@
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
-            	$("#joindateid").hide();
             }  
             });  
         }); 
@@ -155,7 +181,6 @@
             //dayNamesMin: ['日','一','二','三','四','五','六'],  
             onSelect: function(selectedDate) {//选择日期后执行的操作 
 				//alert(selectedDate);
-            	$("#quitid").hide();
             }  
             });  
         }); 
@@ -208,7 +233,7 @@
                      </td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>申请日期</td>
                     <td id="dbf.time2" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="sqDate" name="q_applydate" onblur="checkapplydate()" placeholder="请输入申请日期" /><span id="applydateid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="sqDate" name="q_applydate" onblur="checkapplydate()" placeholder="请输入申请日期" required/></div></td>
                   </tr>
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>所属部门</td>
@@ -221,10 +246,10 @@
                   <tr>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>入职日期</td>
                     <td id="入职日期" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="rzDate" name="q_joindate" onblur="checkjoindate()" placeholder="请输入入职日期" /><span id="joindateid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="rzDate" name="q_joindate" onblur="checkjoindate()" placeholder="请输入入职日期" required/></div></td>
                     <td style="text-align: center;"><span style="color: rgb(255, 0, 0);">*</span>预计离职日期</td>
                     <td id="dbf.time0" dbf.type="date,required" dbf.source="date"><!--<img class="fieldGetValueBySource" src="../css/fieldSource.gif">-->
-                      <div><input type="text" id="lzDate" name="q_quit" onblur="checkquit()" placeholder="请输入预计离职日期" /><span id="quitid" style="color:red; display: none;">不能为空</span></div></td>
+                      <div><input type="text" id="lzDate" name="q_quit" onblur="checkquit()" placeholder="请输入预计离职日期" required/></div></td>
                   </tr>
                   <tr>
                     <td style="height: 80px; text-align: center;" dbf.type="" dbf.source=""><span style="color: rgb(255, 0, 0);">*</span>离职类型</td>
@@ -260,11 +285,13 @@
                       <input disabled="" id="离职处理" name="离职处理" type="checkbox">
                       信息系统已经变更（请人事专员或系统管理员在本系统的【员工管理】模块中变更员工信息）</td>
                   </tr>
-                      <tr style="text-align: right;">
+                   <!--    <tr style="text-align: right;">
                   <td colspan="4" dbf.type="" dbf.source=""><a class="button" onclick="check()">提交主管审批</a><a class="button" href="javascript:history.back()">取消</a></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
+              <b class="btn"><input type="submit" class="btn btn-primary" value="提交主管审批"/>
+				<input type="button" class="btn btn-primary" value="取消" onclick="location='../../recruit.do?action=Relist&num=3'" /></b>
             </div>
           </form>
         </div>
