@@ -41,7 +41,7 @@ public class EmailController {
 	 * 部门编号
 	 */
 	@Autowired
-	private DepartmentBiz db;
+	private ParamController db;
 	
 	/**
 	 * 查询全部的邮件
@@ -180,7 +180,7 @@ public class EmailController {
 	//查找部门编号
 	@RequestMapping(params = "action=bm")
 	public String findByEmailBM(ModelMap model){
-		List<Department> bm=db.findAllDepart_select();
+		List<Department> bm=db.findAllDpeart(null);
 		Map map=new HashMap();
 		map.put("index", 0);
 		map.put("size", 100);
